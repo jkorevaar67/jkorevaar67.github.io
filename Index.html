@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JKO MathLab | Prime Factorisation</title>
+<style>
+:root{font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:#193047;background:#e8f8f6}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:linear-gradient(145deg,#e8f8f6,#e9e8ff)}header{background:#6246d9;color:white;text-align:center;padding:24px 12px}header h1{margin:0;font-size:clamp(1.4rem,4vw,2.1rem)}header p{margin:7px 0 0;opacity:.9}main{max-width:760px;margin:26px auto;padding:0 14px}.card{background:#fff;border-radius:22px;padding:clamp(20px,5vw,36px);box-shadow:0 12px 35px #24335a1a}.hidden{display:none!important}h2{color:#6246d9;margin:0 0 18px;font-size:1.6rem}.field{margin:18px 0}label{font-weight:700;display:block;margin-bottom:8px}input,select{font:inherit;padding:13px 14px;border:2px solid #cbd5e1;border-radius:11px;width:100%;max-width:310px}input:focus,select:focus{outline:3px solid #c3b6ff;border-color:#6246d9}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:23px}button{border:0;border-radius:12px;padding:13px 21px;font-size:1rem;font-weight:700;cursor:pointer;background:#6246d9;color:white}button.secondary{background:#008e89}button.exit{background:#e66c46}button:disabled{background:#a9b2c3;cursor:not-allowed}.muted{color:#536478}.pill{display:inline-block;border-radius:99px;padding:7px 14px;background:#f0edff;color:#6246d9;font-weight:700}.numbers{font-size:clamp(1.5rem,5vw,2rem);font-weight:800;margin:24px 0;color:#20334d}.step{font-size:1.2rem;font-weight:700;margin:18px 0 12px}.hint{background:#fff3e9;color:#934818;border-radius:12px;padding:11px 14px;margin:12px 0}.confirmed{background:#effaf6;border-left:5px solid #008e89;padding:12px 16px;border-radius:10px;margin:18px 0;white-space:pre-line;line-height:1.7}.feedback{min-height:28px;margin-top:14px;font-weight:700}.good{color:#00796d}.warn{color:#ba4c22}.small{font-size:.9rem}.footer{text-align:center;color:#596779;padding:0 15px 20px}
+
+.brand{display:flex;align-items:center;justify-content:center;gap:16px;max-width:650px;margin:auto;text-align:left}
+.brand-logo{width:94px;height:74px;flex:none;filter:drop-shadow(0 4px 8px #25107335)}
+.brand-name{font-size:clamp(1.7rem,5vw,2.45rem);font-weight:850;letter-spacing:-.04em;line-height:1.05}
+.brand-tagline{font-size:.94rem;letter-spacing:.09em;margin-top:7px;color:#f3eaff;font-weight:600}
+.brand-topic{text-align:center;margin-top:12px;font-size:.95rem;color:#e4dfff}
+@media(max-width:420px){.brand{gap:9px}.brand-logo{width:70px;height:62px}.brand-tagline{font-size:.78rem}header{padding:19px 10px}}
+</style>
+</head>
+<body><header>
+<div class="brand">
+<svg class="brand-logo" viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Parabola logo">
+  <rect x="3" y="3" width="114" height="94" rx="22" fill="#ffffff" fill-opacity=".13" stroke="#ffffff" stroke-opacity=".3"/>
+  <path d="M17 69H105 M60 14V85" stroke="#ffffff" stroke-opacity=".53" stroke-width="2" stroke-linecap="round"/>
+  <path d="M25 18Q60 118 95 18" fill="none" stroke="#70F4DC" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="60" cy="68" r="5" fill="#FFCE7C"/>
+</svg>
+<div><div class="brand-name">JKO MathLab</div><div class="brand-tagline">Think. Solve. Grow.</div></div>
+</div>
+<div class="brand-topic">Prime Factorisation · HCF · LCM</div>
+</header><main>
+<section class="card" id="start"><h2>Ready to practise?</h2><p>Find the HCF and LCM using prime factorisation. You will make the prime factorisations yourself.</p><div class="field"><label for="numberCount">How many numbers per question?</label><select id="numberCount"><option value="2">2 numbers</option><option value="3">3 numbers</option></select></div><div class="field"><label for="questionCount">How many questions?</label><input type="number" id="questionCount" value="5" min="1" max="50"></div><p class="muted">Numbers range from 2 to 100. Write factors separately, for example: <strong>2x2x3</strong> (no powers).</p><div class="actions"><button id="startButton">Start practising →</button></div></section>
+<section class="card hidden" id="practice"><div class="pill" id="progress"></div><div class="numbers" id="numbers"></div><div class="confirmed hidden" id="confirmed"></div><div class="step" id="instruction"></div><div class="hint hidden" id="hcfHint">If there is no common prime factor, enter <strong>1</strong>.</div><form id="answerForm"><label for="answer">Your answer</label><input id="answer" autocomplete="off" spellcheck="false" placeholder="Type here" aria-describedby="feedback"><div class="feedback" id="feedback" aria-live="polite"></div><div class="actions"><button id="checkButton" type="submit">Check answer ↵</button><button id="nextButton" type="button" class="secondary" disabled>Next step →</button></div></form><p class="muted small" id="score"></p></section>
+<section class="card hidden" id="finish"><h2>★ Great work! ★</h2><p id="result" style="font-size:1.25rem;font-weight:700"></p><p>Would you like to practise again or finish?</p><div class="actions"><button id="againButton" class="secondary">Practise again ↻</button><button id="exitButton" class="exit">Finish</button></div></section>
+<section class="card hidden" id="goodbye"><h2>See you next time! 👋</h2><p>Well done for practising today.</p><button id="homeButton">Back to start</button></section>
+</main><div class="footer small">JKO MathLab · Think. Solve. Grow.</div>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);
+const views=['start','practice','finish','goodbye'];
+const state={total:5,count:2,completed:0,perfect:0,numbers:[],step:0,firstTry:true,confirmed:{},locked:false};
+function show(view){views.forEach(v=>$(v).classList.toggle('hidden',v!==view));}
+function primeFactors(n){const a=[];for(let p=2;p*p<=n;p++){while(n%p===0){a.push(p);n/=p;}}if(n>1)a.push(n);return a;}
+function isPrime(n){return Number.isSafeInteger(n)&&n>=2&&primeFactors(n).length===1;}
+function gcd(a,b){while(b){[a,b]=[b,a%b];}return a;}
+function lcm(a,b){return a/gcd(a,b)*b;}
+function expected(kind){return kind==='hcf'?state.numbers.reduce(gcd):state.numbers.reduce(lcm);}
+function parseFactors(raw){const normalized=raw.replace(/\s/g,'').replace(/[×*X]/g,'x');if(!/^\d+(x\d+)*$/.test(normalized))return null;const nums=normalized.split('x').map(Number);return nums.every(isPrime)?nums:null;}
+function sameFactors(a,b){return a.length===b.length&&[...a].sort((x,y)=>x-y).every((v,i)=>v===[...b].sort((x,y)=>x-y)[i]);}
+function randUnique(count){const pool=Array.from({length:99},(_,i)=>i+2);for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]];}return pool.slice(0,count);}
+function currentKind(){return state.step<state.count?'factors':state.step===state.count?'hcf':'lcm';}
+function render(){const kind=currentKind();$('progress').textContent=`Question ${state.completed+1} of ${state.total} · Step ${state.step+1} of ${state.count+2}`;$('numbers').textContent=`Numbers: ${state.numbers.join(', ')}`;$('instruction').textContent=kind==='factors'?`Prime factorisation of ${state.numbers[state.step]}`:kind==='hcf'?'Find the HCF':'Find the LCM';$('hcfHint').classList.toggle('hidden',kind!=='hcf');$('confirmed').classList.toggle('hidden',kind==='factors');if(kind!=='factors'){$('confirmed').textContent='Your correct prime factorisations:\n'+state.numbers.map(n=>`${n} = ${state.confirmed[n].join(' × ')}`).join('\n');}$('answer').value='';$('feedback').textContent='Press Enter to check your answer.';$('feedback').className='feedback muted';$('score').textContent=`Completely correct on first try: ${state.perfect} / ${state.completed}`;state.locked=false;$('checkButton').disabled=false;$('nextButton').disabled=true;$('nextButton').textContent='Next step →';$('answer').focus();}
+function nextQuestion(){state.numbers=randUnique(state.count);state.confirmed={};state.step=0;state.firstTry=true;render();}
+function check(event){event.preventDefault();if(state.locked)return;const raw=$('answer').value.trim();const kind=currentKind();let correct=false;if(kind==='factors'){const factors=parseFactors(raw);if(!factors){message('Use prime numbers separated by x, e.g. 2x2x3. Do not use powers.','warn');return;}correct=sameFactors(factors,primeFactors(state.numbers[state.step]));if(correct)state.confirmed[state.numbers[state.step]]=factors;}else{const goal=expected(kind);if(/[xX×*]/.test(raw)){const factors=parseFactors(raw);if(factors&&factors.reduce((a,b)=>a*b,1)===goal){message('Almost correct! Your prime factors are right. Now multiply them and enter the final number.','good');return;}state.firstTry=false;message('Check your factors, then calculate and enter the final number.','warn');return;}if(!/^\d+$/.test(raw)){message('Enter the final answer as a whole number.','warn');return;}correct=Number(raw)===goal;}
+if(correct){state.locked=true;message('✓ Correct! Well done.','good');$('checkButton').disabled=true;$('nextButton').disabled=false;$('nextButton').textContent=state.step===state.count+1?'Finish question →':'Next step →';}else{state.firstTry=false;message('Not quite right. Check your work and try again.','warn');}}
+function message(msg,kind){$('feedback').textContent=msg;$('feedback').className=`feedback ${kind}`;}
+$('startButton').addEventListener('click',()=>{const total=Number($('questionCount').value);if(!Number.isInteger(total)||total<1||total>50){alert('Choose a whole number of questions from 1 to 50.');return;}state.total=total;state.count=Number($('numberCount').value);state.completed=0;state.perfect=0;show('practice');nextQuestion();});
+$('answerForm').addEventListener('submit',check);
+$('nextButton').addEventListener('click',()=>{if(!state.locked)return;if(state.step<state.count+1){state.step++;render();}else{state.completed++;if(state.firstTry)state.perfect++;if(state.completed===state.total){$('result').textContent=`${state.perfect} of ${state.total} questions completely correct on the first try (${Math.round(100*state.perfect/state.total)}%).`;show('finish');}else nextQuestion();}});
+$('againButton').addEventListener('click',()=>show('start'));
+$('exitButton').addEventListener('click',()=>show('goodbye'));
+$('homeButton').addEventListener('click',()=>show('start'));
+</script></body></html>
