@@ -19,7 +19,7 @@
 const SUPABASE_URL='https://wgocbnhtmzxalvwlpvyo.supabase.co';
 const KEY='sb_publishable_0yRUp4LVsYdBcdmwLYfqxg_soc0fpQB';
 const $=id=>document.getElementById(id);
-const db=window.supabase&&KEY.startsWith('sb_publishable_')?window.supabase.createClient(URL,KEY):null;
+const db=window.supabase&&KEY.startsWith('sb_publishable_')?window.supabase.createClient(SUPABASE_URL,KEY):null;
 let rows=[];
 const escapeHtml=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function msg(t,bad=false){$('status').textContent=t;$('status').className=bad?'error':'';}
