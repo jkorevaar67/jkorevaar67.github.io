@@ -16,7 +16,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
 'use strict';
-const URL = 'https://wgocbnhtmzxalvwlpvyo.supabase.co';
+const SUPABASE_URL='https://wgocbnhtmzxalvwlpvyo.supabase.co';
 const KEY='sb_publishable_0yRUp4LVsYdBcdmwLYfqxg_soc0fpQB';
 const $=id=>document.getElementById(id);
 const db=window.supabase&&KEY.startsWith('sb_publishable_')?window.supabase.createClient(URL,KEY):null;
