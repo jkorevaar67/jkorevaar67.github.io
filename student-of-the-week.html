@@ -1,6 +1,6 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Student of the Week · Mathfinity · POINTS V3</title><style>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Student of the Week · Mathfinity · HALL OF FAME V4</title><style>
 :root{font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:#25334a;background:#f0f9f7}*{box-sizing:border-box}body{margin:0;background:linear-gradient(130deg,#e9f9f3,#f1edff);min-height:100vh}header{background:#6246d9;color:white;text-align:center;padding:28px 16px}header h1{margin:0;font-size:clamp(1.7rem,5vw,2.7rem)}header p{margin:8px 0 0}main{max-width:850px;margin:24px auto;padding:0 16px 40px}.card{background:white;border-radius:22px;padding:clamp(18px,4vw,32px);box-shadow:0 12px 35px #27324c18;margin-bottom:18px}.top{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}a{color:#6246d9;font-weight:700}h2{color:#6246d9;margin:10px 0}button,select{font:inherit;border:1px solid #c9c4e8;border-radius:11px;padding:11px 15px;background:white;color:#26354a}button{cursor:pointer;background:#6246d9;color:white;border:0;font-weight:700}button:disabled{opacity:.6;cursor:wait}.muted{color:#607084}.winner{text-align:center;background:linear-gradient(120deg,#f5f0ff,#e9fbf3);border-radius:18px;padding:25px 12px}.trophy{font-size:3.4rem}.name{font-size:clamp(1.3rem,4vw,2rem);font-weight:800;color:#4931b2}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:18px 0}.stat{background:#f7f8fd;padding:18px;border-radius:14px;text-align:center}.stat strong{display:block;font-size:1.6rem;color:#4931b2}.rank{display:flex;align-items:center;gap:12px;padding:14px 6px;border-bottom:1px solid #edf0f4}.rank:last-child{border:0}.position{font-weight:800;color:#6246d9;width:35px}.who{flex:1;min-width:0;font-weight:700}.detail{display:block;font-size:.87rem;font-weight:400;color:#607084}.points{font-weight:800;color:#267c68}.notice{background:#fff8e9;border-radius:12px;padding:14px;line-height:1.5}.hidden{display:none}footer{text-align:center;color:#607084;font-size:.9rem;padding:8px}
-</style></head><body><header><h1>🌟 Student of the Week</h1><p>Mathfinity · Every step counts!</p></header><main><div class="card top"><a href="index.html">← Back to Mathfinity</a><div><label for="classFilter">Class: </label><select id="classFilter"><option value="all">All classes</option><option value="TVWO 1A">TVWO 1A</option><option value="TVWO 1B">TVWO 1B</option></select></div><button id="reload" type="button">↻ Refresh</button></div><section class="card"><h2>🏆 This week's maths star</h2><p class="muted" id="period"></p><div class="winner"><div class="trophy">🏆</div><div class="name" id="winner">Loading…</div><p id="winnerDetail" class="muted">Calculating this week's results</p></div><div class="grid"><div class="stat"><strong id="points">–</strong>Points earned</div><div class="stat"><strong id="correct">–</strong>Weekly ranking</div><div class="stat"><strong id="questions">–</strong>Week starts Monday</div></div><p class="muted">Only points actually earned in Mathfinity count. A new leaderboard starts every Monday (Netherlands time).</p></section><section class="card"><h2>✨ Weekly leaderboard</h2><div id="leaderboard" aria-live="polite">Loading results…</div></section><div id="notice" class="notice hidden" role="status"></div><footer>New week, new chances! 💜 · POINTS V3 · 13 October 2026</footer></main><script>
+</style></head><body><header><h1>🌟 Student of the Week</h1><p>Mathfinity · Every step counts!</p></header><main><div class="card top"><a href="index.html">← Back to Mathfinity</a><div><label for="classFilter">Class: </label><select id="classFilter"><option value="all">All classes</option><option value="TVWO 1A">TVWO 1A</option><option value="TVWO 1B">TVWO 1B</option></select></div><button id="reload" type="button">↻ Refresh</button></div><section class="card"><h2>🌍 Overall Student of the Week</h2><p class="muted" id="period"></p><div class="winner"><div class="trophy">🏆</div><div class="name" id="winner">Loading…</div><p id="winnerDetail" class="muted">Calculating this week's results</p></div><div class="grid"><div class="stat"><strong id="points">–</strong>Points earned</div><div class="stat"><strong id="correct">–</strong>Weekly ranking</div><div class="stat"><strong id="questions">–</strong>Week starts Monday</div></div><p class="muted">Only points actually earned in Mathfinity count. A new leaderboard starts every Monday (Netherlands time).</p></section><section class="card"><h2>🏫 Class champions this week</h2><div id="classWinners" class="grid" aria-live="polite"></div></section><section class="card"><h2>👑 Hall of Fame</h2><p class="muted">How many completed weeks has each student won? Overall and class victories are counted separately.</p><div id="hall" aria-live="polite">Loading past winners…</div></section><section class="card"><h2>✨ Weekly leaderboard</h2><div id="leaderboard" aria-live="polite">Loading results…</div></section><div id="notice" class="notice hidden" role="status"></div><footer>New week, new chances! 💜 · HALL OF FAME V4 · 13 October 2026</footer></main><script>
 'use strict';
 // Use the same public Supabase project configuration as the working Mathfinity index.
 // Direct HTTPS RPC avoids the Supabase SDK URL-initialization error.
@@ -13,12 +13,39 @@ function weekLabel(){
 }
 function notice(message){$('notice').textContent=message;$('notice').classList.remove('hidden');}
 let ranking=[];
+const CLASSES=['TVWO 1A','TVWO 1B'];
+function renderClassWinners(){
+ const area=$('classWinners');area.replaceChildren();
+ for(const cls of CLASSES){
+  const champion=ranking.filter(r=>r.class_name===cls).sort((a,b)=>b.total_points-a.total_points||a.display_name.localeCompare(b.display_name))[0];
+  const card=document.createElement('div');card.className='stat';
+  const title=document.createElement('strong');title.style.fontSize='1.05rem';title.textContent='🏆 '+cls;
+  const name=document.createElement('div');name.className='name';name.style.fontSize='1.35rem';name.textContent=champion?champion.display_name:'Waiting for a champion';
+  const points=document.createElement('div');points.className='muted';points.textContent=champion?champion.total_points+' points this week':'No points yet';
+  card.append(title,name,points);area.append(card);
+ }
+}
+function renderHall(rows){
+ const area=$('hall');area.replaceChildren();
+ for(const category of ['Overall',...CLASSES]){
+  const heading=document.createElement('h3');heading.textContent=category==='Overall'?'🌍 Overall champions':'🏫 '+category+' champions';area.append(heading);
+  const list=rows.filter(r=>r.category===category).sort((a,b)=>b.wins-a.wins||a.display_name.localeCompare(b.display_name)).slice(0,10);
+  if(!list.length){const empty=document.createElement('p');empty.className='muted';empty.textContent='No completed weekly champions yet.';area.append(empty);continue;}
+  list.forEach((p,i)=>{const row=document.createElement('div');row.className='rank';
+   const pos=document.createElement('span');pos.className='position';pos.textContent=['🥇','🥈','🥉'][i]||String(i+1)+'.';
+   const who=document.createElement('span');who.className='who';who.textContent=p.display_name;
+   const count=document.createElement('span');count.className='points';count.textContent=p.wins+(p.wins===1?' win':' wins');
+   row.append(pos,who,count);area.append(row);
+  });
+ }
+}
+
 function render(){
  const chosen=$('classFilter').value;
  const list=ranking.filter(r=>chosen==='all'||r.class_name===chosen).sort((a,b)=>b.total_points-a.total_points||a.display_name.localeCompare(b.display_name));
- const first=list[0];
+ const first=ranking.slice().sort((a,b)=>b.total_points-a.total_points||a.display_name.localeCompare(b.display_name))[0];
  $('winner').textContent=first?first.display_name:'Your place is waiting!';
- $('winnerDetail').textContent=first?first.class_name:'No points earned in this class this week yet.';
+ $('winnerDetail').textContent=first?first.class_name:'No points earned this week yet.';
  $('points').textContent=first?first.total_points:0;
  $('correct').textContent=first?'#1':'–';
  $('questions').textContent='Monday';
@@ -51,8 +78,18 @@ async function load(){
   if(!Array.isArray(result))throw new Error('Unexpected response from leaderboard function.');
   ranking=result.map(r=>({display_name:String(r.display_name||''),class_name:String(r.class_name||''),total_points:Math.max(0,Number(r.total_points)||0)}));
   render();
+  renderClassWinners();
+  try{
+   const hallResponse=await fetch(PROJECT_URL+'/rest/v1/rpc/mathfinity_hall_of_fame',{
+    method:'POST',headers:{'apikey':PUBLISHABLE_KEY,'Authorization':'Bearer '+PUBLISHABLE_KEY,'Content-Type':'application/json'},body:'{}',signal:controller.signal
+   });
+   const hallData=await hallResponse.json().catch(()=>null);
+   if(!hallResponse.ok)throw new Error(hallData?.message||'HTTP '+hallResponse.status);
+   if(!Array.isArray(hallData))throw new Error('Invalid Hall of Fame response');
+   renderHall(hallData.map(r=>({category:String(r.category||''),display_name:String(r.display_name||''),wins:Math.max(0,Number(r.wins)||0)})));
+  }catch(hallErr){$('hall').textContent='Hall of Fame unavailable. Run the new Hall of Fame SQL in Supabase first. ('+(hallErr.message||hallErr)+')';}
  }catch(err){
-  ranking=[];render();
+  ranking=[];render();renderClassWinners();$('hall').textContent='Hall of Fame unavailable until points can be loaded.';
   $('winner').textContent='Results unavailable';
   $('winnerDetail').textContent='Could not load this week’s points.';
   $('leaderboard').textContent='The points leaderboard could not be loaded.';
