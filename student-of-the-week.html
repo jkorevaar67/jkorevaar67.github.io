@@ -11,6 +11,37 @@ function publicName(name){const parts=String(name||'').trim().split(/\s+/).filte
 function notice(message){$('notice').textContent=message;$('notice').classList.remove('hidden');}
 let sessions=[];
 function render(){const chosen=$('classFilter').value;const group=new Map();for(const r of sessions){if(chosen!=='all'&&r.class_name!==chosen)continue;const name=String(r.student_code||'').trim(),cl=String(r.class_name||'').trim();if(!name||!cl)continue;const key=cl.toLowerCase()+'|'+name.toLowerCase();if(!group.has(key))group.set(key,{name,cl,correct:0,questions:0,sessions:0});const p=group.get(key);p.correct+=Math.max(0,Number(r.correct_answers)||0);p.questions+=Math.max(0,Number(r.total_questions)||0);p.sessions++;}const ranking=[...group.values()].sort((a,b)=>b.correct-a.correct||b.questions-a.questions||a.name.localeCompare(b.name));const first=ranking[0];$('winner').textContent=first?publicName(first.name):'Your place is waiting!';$('winnerDetail').textContent=first?first.cl+' · '+first.sessions+' completed sessions':'No completed practice sessions this week yet.';$('points').textContent=first?first.correct*10:0;$('correct').textContent=first?first.correct:0;$('questions').textContent=first?first.questions:0;const board=$('leaderboard');board.replaceChildren();if(!ranking.length){board.textContent='Complete a practice session to get started!';return;}ranking.slice(0,10).forEach((p,i)=>{const row=document.createElement('div');row.className='rank';const position=document.createElement('span');position.className='position';position.textContent=['🥇','🥈','🥉'][i]||String(i+1)+'.';const who=document.createElement('div');who.className='who';who.textContent=publicName(p.name);const detail=document.createElement('span');detail.className='detail';detail.textContent=p.cl+' · '+p.questions+' questions';who.append(detail);const score=document.createElement('span');score.className='points';score.textContent=(p.correct*10)+' pts';row.append(position,who,score);board.append(row);});}
-async function load(){const button=$('reload');button.disabled=true;$('notice').classList.add('hidden');$('leaderboard').textContent='Loading results…';try{if(!db)throw new Error('The database library could not be loaded.');const start=weekStart();const end=new Date(start);end.setDate(end.getDate()+7);$('period').textContent=start.toLocaleDateString('en-GB',{day:'numeric',month:'long'})+' – '+new Date(end.getTime()-1).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});let rows=[],offset=0;while(true){const {data,error}=await db.from('student_results').select('created_at,student_code,class_name,total_questions,correct_answers').gte('created_at',start.toISOString()).lt('created_at',end.toISOString()).order('created_at',{ascending:false}).range(offset,offset+999);if(error)throw error;rows.push(...data);if(data.length<1000||offset>=9000)break;offset+=1000;}sessions=rows;render();}catch(err){sessions=[];render();notice('The weekly leaderboard cannot access the results yet. A teacher-approved, read-only database view or function may be needed. Your existing results are safe. Technical detail: '+err.message);}finally{button.disabled=false;}}
+async function load(){
+ const button=$('reload');button.disabled=true;
+ $('notice').classList.add('hidden');
+ $('winner').textContent='Loading…';
+ $('winnerDetail').textContent='Connecting to results…';
+ $('leaderboard').textContent='Loading results…';
+ const timeoutMs=12000;
+ try{
+  if(!db)throw new Error('Supabase could not be loaded. Check your connection or browser extensions.');
+  const start=weekStart(),end=new Date(start);end.setDate(end.getDate()+7);
+  $('period').textContent=start.toLocaleDateString('en-GB',{day:'numeric',month:'long'})+' – '+new Date(end.getTime()-1).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+  let rows=[],offset=0;
+  while(true){
+   const request=db.from('student_results').select('created_at,student_code,class_name,total_questions,correct_answers').gte('created_at',start.toISOString()).lt('created_at',end.toISOString()).order('created_at',{ascending:false}).range(offset,offset+999);
+   let timer;
+   const result=await Promise.race([request,new Promise((_,reject)=>{timer=setTimeout(()=>reject(new Error('The database did not respond within 12 seconds. Check the Supabase connection or access policy.')),timeoutMs);})]).finally(()=>clearTimeout(timer));
+   const {data,error}=result;
+   if(error)throw error;
+   if(!Array.isArray(data))throw new Error('The database returned an unexpected response.');
+   rows.push(...data);
+   if(data.length<1000||offset>=9000)break;
+   offset+=1000;
+  }
+  sessions=rows;render();
+ }catch(err){
+  sessions=[];render();
+  $('winner').textContent='Results unavailable';
+  $('winnerDetail').textContent='Could not load this week’s scores.';
+  $('leaderboard').textContent='The leaderboard could not be loaded.';
+  notice('Could not load results: '+(err&&err.message?err.message:String(err))+' Your existing results have not been changed.');
+ }finally{button.disabled=false;}
+}
 $('classFilter').addEventListener('change',render);$('reload').addEventListener('click',load);load();
 </script></body></html>
