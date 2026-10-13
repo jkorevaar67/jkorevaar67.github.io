@@ -1,6 +1,6 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Student of the Week · Mathfinity · fixed 13 Oct</title><style>
 :root{font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:#25334a;background:#f0f9f7}*{box-sizing:border-box}body{margin:0;background:linear-gradient(130deg,#e9f9f3,#f1edff);min-height:100vh}header{background:#6246d9;color:white;text-align:center;padding:28px 16px}header h1{margin:0;font-size:clamp(1.7rem,5vw,2.7rem)}header p{margin:8px 0 0}main{max-width:850px;margin:24px auto;padding:0 16px 40px}.card{background:white;border-radius:22px;padding:clamp(18px,4vw,32px);box-shadow:0 12px 35px #27324c18;margin-bottom:18px}.top{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}a{color:#6246d9;font-weight:700}h2{color:#6246d9;margin:10px 0}button,select{font:inherit;border:1px solid #c9c4e8;border-radius:11px;padding:11px 15px;background:white;color:#26354a}button{cursor:pointer;background:#6246d9;color:white;border:0;font-weight:700}button:disabled{opacity:.6;cursor:wait}.muted{color:#607084}.winner{text-align:center;background:linear-gradient(120deg,#f5f0ff,#e9fbf3);border-radius:18px;padding:25px 12px}.trophy{font-size:3.4rem}.name{font-size:clamp(1.3rem,4vw,2rem);font-weight:800;color:#4931b2}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:18px 0}.stat{background:#f7f8fd;padding:18px;border-radius:14px;text-align:center}.stat strong{display:block;font-size:1.6rem;color:#4931b2}.rank{display:flex;align-items:center;gap:12px;padding:14px 6px;border-bottom:1px solid #edf0f4}.rank:last-child{border:0}.position{font-weight:800;color:#6246d9;width:35px}.who{flex:1;min-width:0;font-weight:700}.detail{display:block;font-size:.87rem;font-weight:400;color:#607084}.points{font-weight:800;color:#267c68}.notice{background:#fff8e9;border-radius:12px;padding:14px;line-height:1.5}.hidden{display:none}footer{text-align:center;color:#607084;font-size:.9rem;padding:8px}
-</style></head><body><header><h1>🌟 Student of the Week</h1><p>Mathfinity · Every step counts!</p></header><main><div class="card top"><a href="index.html">← Back to Mathfinity</a><div><label for="classFilter">Class: </label><select id="classFilter"><option value="all">All classes</option><option value="TVWO 1A">TVWO 1A</option><option value="TVWO 1B">TVWO 1B</option></select></div><button id="reload" type="button">↻ Refresh</button></div><section class="card"><h2>🏆 This week's maths star</h2><p class="muted" id="period"></p><div class="winner"><div class="trophy">🏆</div><div class="name" id="winner">Loading…</div><p id="winnerDetail" class="muted">Calculating this week's results</p></div><div class="grid"><div class="stat"><strong id="points">–</strong>Points earned</div><div class="stat"><strong id="correct">–</strong>First-try answers</div><div class="stat"><strong id="questions">–</strong>Questions practised</div></div><p class="muted">Each correct answer on the first try earns 10 points. Only completed practice sessions count. Ties are decided by the number of questions practised.</p></section><section class="card"><h2>✨ Weekly leaderboard</h2><div id="leaderboard" aria-live="polite">Loading results…</div></section><div id="notice" class="notice hidden" role="status"></div><footer>New week, new chances! 💜 · Version 13 October</footer></main><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script><script>
+</style></head><body><header><h1>🌟 Student of the Week</h1><p>Mathfinity · Every step counts!</p></header><main><div class="card top"><a href="index.html">← Back to Mathfinity</a><div><label for="classFilter">Class: </label><select id="classFilter"><option value="all">All classes</option><option value="TVWO 1A">TVWO 1A</option><option value="TVWO 1B">TVWO 1B</option></select></div><button id="reload" type="button">↻ Refresh</button></div><section class="card"><h2>🏆 This week's maths star</h2><p class="muted" id="period"></p><div class="winner"><div class="trophy">🏆</div><div class="name" id="winner">Loading…</div><p id="winnerDetail" class="muted">Calculating this week's results</p></div><div class="grid"><div class="stat"><strong id="points">–</strong>Points earned</div><div class="stat"><strong id="correct">–</strong>Weekly ranking</div><div class="stat"><strong id="questions">–</strong>Week starts Monday</div></div><p class="muted">Only points actually earned in Mathfinity count. A new leaderboard starts every Monday (Netherlands time).</p></section><section class="card"><h2>✨ Weekly leaderboard</h2><div id="leaderboard" aria-live="polite">Loading results…</div></section><div id="notice" class="notice hidden" role="status"></div><footer>New week, new chances! 💜 · Points leaderboard</footer></main><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script><script>
 'use strict';
 const URL='https://wgocbnhtmzxalvwlpvyo.supabase.co';
 const KEY='sb_publishable_0yRUp4LVsYdBcdmwLYfqxg_soc0fpQB';
@@ -13,42 +13,57 @@ try {
  if (!window.supabase) throw new Error('Supabase library did not load.');
  db=window.supabase.createClient(URL,KEY);
 } catch (error) { startupError=error; }
-function weekStart(){const d=new Date(),day=(d.getDay()+6)%7;d.setHours(0,0,0,0);d.setDate(d.getDate()-day);return d;}
-function publicName(name){const parts=String(name||'').trim().split(/\s+/).filter(Boolean);if(!parts.length)return 'Maths explorer';return parts[0]+' '+(parts.length>1?parts[parts.length-1][0].toUpperCase()+'.':'');}
+function weekLabel(){
+ const fmt=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Amsterdam',day:'numeric',month:'short',year:'numeric'});
+ $('period').textContent='Current week · Netherlands time · Monday to Sunday';
+}
 function notice(message){$('notice').textContent=message;$('notice').classList.remove('hidden');}
-let sessions=[];
-function render(){const chosen=$('classFilter').value;const group=new Map();for(const r of sessions){if(chosen!=='all'&&r.class_name!==chosen)continue;const name=String(r.student_code||'').trim(),cl=String(r.class_name||'').trim();if(!name||!cl)continue;const key=cl.toLowerCase()+'|'+name.toLowerCase();if(!group.has(key))group.set(key,{name,cl,correct:0,questions:0,sessions:0});const p=group.get(key);p.correct+=Math.max(0,Number(r.correct_answers)||0);p.questions+=Math.max(0,Number(r.total_questions)||0);p.sessions++;}const ranking=[...group.values()].sort((a,b)=>b.correct-a.correct||b.questions-a.questions||a.name.localeCompare(b.name));const first=ranking[0];$('winner').textContent=first?publicName(first.name):'Your place is waiting!';$('winnerDetail').textContent=first?first.cl+' · '+first.sessions+' completed sessions':'No completed practice sessions this week yet.';$('points').textContent=first?first.correct*10:0;$('correct').textContent=first?first.correct:0;$('questions').textContent=first?first.questions:0;const board=$('leaderboard');board.replaceChildren();if(!ranking.length){board.textContent='Complete a practice session to get started!';return;}ranking.slice(0,10).forEach((p,i)=>{const row=document.createElement('div');row.className='rank';const position=document.createElement('span');position.className='position';position.textContent=['🥇','🥈','🥉'][i]||String(i+1)+'.';const who=document.createElement('div');who.className='who';who.textContent=publicName(p.name);const detail=document.createElement('span');detail.className='detail';detail.textContent=p.cl+' · '+p.questions+' questions';who.append(detail);const score=document.createElement('span');score.className='points';score.textContent=(p.correct*10)+' pts';row.append(position,who,score);board.append(row);});}
+let ranking=[];
+function render(){
+ const chosen=$('classFilter').value;
+ const list=ranking.filter(r=>chosen==='all'||r.class_name===chosen).sort((a,b)=>b.total_points-a.total_points||a.display_name.localeCompare(b.display_name));
+ const first=list[0];
+ $('winner').textContent=first?first.display_name:'Your place is waiting!';
+ $('winnerDetail').textContent=first?first.class_name:'No points earned in this class this week yet.';
+ $('points').textContent=first?first.total_points:0;
+ $('correct').textContent=first?'#1':'–';
+ $('questions').textContent='Monday';
+ const board=$('leaderboard');board.replaceChildren();
+ if(!list.length){board.textContent='No points earned this week yet. Keep practising!';return;}
+ list.slice(0,10).forEach((p,i)=>{
+  const row=document.createElement('div');row.className='rank';
+  const pos=document.createElement('span');pos.className='position';pos.textContent=['🥇','🥈','🥉'][i]||String(i+1)+'.';
+  const who=document.createElement('div');who.className='who';who.textContent=p.display_name;
+  const detail=document.createElement('span');detail.className='detail';detail.textContent=p.class_name;who.append(detail);
+  const score=document.createElement('span');score.className='points';score.textContent=p.total_points+' pts';
+  row.append(pos,who,score);board.append(row);
+ });
+}
 async function load(){
  const button=$('reload');button.disabled=true;
  $('notice').classList.add('hidden');
- $('winner').textContent='Loading…';
- $('winnerDetail').textContent='Connecting to results…';
- $('leaderboard').textContent='Loading results…';
- const timeoutMs=12000;
+ $('winner').textContent='Loading…';$('winnerDetail').textContent='Loading weekly points…';$('leaderboard').textContent='Loading points…';
+ weekLabel();
+ let timer;
  try{
-  if(!db)throw (startupError||new Error('Supabase could not be loaded. Check your connection or browser extensions.'));
-  const start=weekStart(),end=new Date(start);end.setDate(end.getDate()+7);
-  $('period').textContent=start.toLocaleDateString('en-GB',{day:'numeric',month:'long'})+' – '+new Date(end.getTime()-1).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
-  let rows=[],offset=0;
-  while(true){
-   const request=db.from('student_results').select('created_at,student_code,class_name,total_questions,correct_answers').gte('created_at',start.toISOString()).lt('created_at',end.toISOString()).order('created_at',{ascending:false}).range(offset,offset+999);
-   let timer;
-   const result=await Promise.race([request,new Promise((_,reject)=>{timer=setTimeout(()=>reject(new Error('The database did not respond within 12 seconds. Check the Supabase connection or access policy.')),timeoutMs);})]).finally(()=>clearTimeout(timer));
-   const {data,error}=result;
-   if(error)throw error;
-   if(!Array.isArray(data))throw new Error('The database returned an unexpected response.');
-   rows.push(...data);
-   if(data.length<1000||offset>=9000)break;
-   offset+=1000;
-  }
-  sessions=rows;render();
+  if(!db)throw(startupError||new Error('Supabase client could not start.'));
+  const result=await Promise.race([
+   db.rpc('mathfinity_weekly_leaderboard'),
+   new Promise((_,reject)=>{timer=setTimeout(()=>reject(new Error('No response after 12 seconds.')),12000);})
+  ]);
+  if(result.error)throw result.error;
+  if(!Array.isArray(result.data))throw new Error('Unexpected response from leaderboard function.');
+  ranking=result.data.map(r=>({display_name:String(r.display_name||''),class_name:String(r.class_name||''),total_points:Math.max(0,Number(r.total_points)||0)}));
+  render();
  }catch(err){
-  sessions=[];render();
+  ranking=[];render();
   $('winner').textContent='Results unavailable';
-  $('winnerDetail').textContent='Could not load this week’s scores.';
-  $('leaderboard').textContent='The leaderboard could not be loaded.';
-  notice('Could not load results: '+(err&&err.message?err.message:String(err))+' Your existing results have not been changed.');
- }finally{button.disabled=false;}
+  $('winnerDetail').textContent='Could not load this week’s points.';
+  $('leaderboard').textContent='The points leaderboard could not be loaded.';
+  notice('Error: '+(err&&err.message?err.message:String(err))+' · Run the supplied SQL in Supabase SQL Editor first.');
+ }finally{clearTimeout(timer);button.disabled=false;}
 }
-$('classFilter').addEventListener('change',render);$('reload').addEventListener('click',load);load();
+$('classFilter').addEventListener('change',render);
+$('reload').addEventListener('click',load);
+load();
 </script></body></html>
