@@ -31,6 +31,58 @@ input,select{color-scheme:light;background:#f5f1ff!important;color:#24334d!impor
 .mathfinity-global-nav a{display:inline-flex;align-items:center;gap:7px;padding:12px 15px;border-radius:13px;color:#28536a;text-decoration:none;font-size:15px;font-weight:750;line-height:1.3}
 .mathfinity-global-nav a:hover,.mathfinity-global-nav a[aria-current="page"]{background:#e8f4ef;color:#09645c}
 @media(max-width:650px){.mathfinity-global-nav .nav-inner{flex-wrap:nowrap;overflow-x:auto}.mathfinity-global-nav a{white-space:nowrap;font-size:13px;padding:10px 12px}}
+</style><style id="mathfinity-calm-theme">
+/* Mathfinity unified calm-green theme and stable navigation */
+:root { background: #edf7f1 !important; }
+html { background: #edf7f1; }
+body { background: #edf7f1 !important; color: #263f3b; min-height: 100vh; }
+body > header { background: #f7fcf8 !important; color: #23564b !important;
+  border-bottom: 1px solid #dbe9df; box-shadow: none !important; }
+body > header h1, body > header .brand-name { color: #23564b !important; }
+body > header p, body > header .brand-tagline { color: #53766a !important; }
+main .card, main .topic, main .chapter { background: #fff !important; }
+main h2, main h3 { color: #235f50; }
+main .theory, main .lesson, main .setup-panel { background: #f1f8f2; }
+main .example, main .mini, main .stat { background: #f5faf6; }
+button:not(.home-card):not(.reward-avatar):not(.secondary):not(.ghost):not(.danger):not(.orange):not(.active),
+a.btn:not(.learn):not(.practise), .button:not(.secondary) {
+  background: #257b63; color: white;
+}
+button.secondary { background: #e1f1e7; color: #245f4c; }
+main .topic-choices label:has(input:checked),
+main .tabs button.active, main .topic-choices label:has(input[type=radio]:checked) {
+  background: #ffddcf !important; color: #80452f !important; border-color: #de9479 !important;
+}
+main .tabs button:not(.active) { background: #f8e8e1; color: #80513f; }
+main .btn.practise, main button.orange { background: #df8067 !important; color: white; }
+body > nav.mathfinity-global-nav {
+  position: sticky !important; top: 0; z-index: 1000;
+  display: block !important; width: 100%; margin: 0 !important;
+  padding: 0 16px !important; background: #f9fcfa !important;
+  border-bottom: 1px solid #d6e6db; box-shadow: 0 2px 9px #244e3610 !important;
+}
+body > nav.mathfinity-global-nav > .nav-inner {
+  display: flex !important; flex-wrap: nowrap !important; align-items: stretch !important;
+  justify-content: center !important; gap: 4px !important;
+  max-width: 1150px; height: 62px; margin: 0 auto;
+  overflow-x: auto; overflow-y: hidden; scrollbar-width: thin;
+}
+body > nav.mathfinity-global-nav a {
+  display: inline-flex !important; align-items: center !important;
+  justify-content: center; flex: 0 0 auto; white-space: nowrap;
+  padding: 0 15px !important; margin: 0 !important; height: 62px;
+  border-radius: 0 !important; background: transparent !important;
+  color: #315e50 !important; font-size: 14px !important;
+  font-weight: 700; line-height: 1.2; text-decoration: none;
+}
+body > nav.mathfinity-global-nav a:hover,
+body > nav.mathfinity-global-nav a[aria-current=page] {
+  background: #e0f1e6 !important; color: #176248 !important;
+}
+@media(max-width:780px) {
+  body > nav.mathfinity-global-nav > .nav-inner { justify-content: flex-start !important; }
+  body > nav.mathfinity-global-nav a { padding: 0 12px !important; font-size: 13px !important; }
+}
 </style></head>
 <body><nav class="mathfinity-global-nav" aria-label="Mathfinity main navigation">
 <div class="nav-inner">
@@ -46,7 +98,7 @@ input,select{color-scheme:light;background:#f5f1ff!important;color:#24334d!impor
 </div>
 <div class="brand-topic">TVWO 1 · Chapter 2 · 2.2 HCF and LCM</div>
 </header>
-<nav aria-label="Main navigation" id="exerciseNav" class="hidden"><button data-view="learn">📘 Theory &amp; explanation</button><button data-view="start">✏️ Practise</button><button data-view="help">💡 Need help?</button><button data-view="results">🏆 My results</button></nav>
+<nav aria-label="Main navigation" id="exerciseNav" class="hidden"><a href="index.html" style="padding:11px 17px;color:#6246d9;font-weight:700;text-decoration:none">⌂ Home</a><button data-view="learn">📘 Theory &amp; explanation</button><button data-view="start">✏️ Practise</button><button data-view="help">💡 Need help?</button><button data-view="results">🏆 My results</button></nav>
 <main><p id="learnerIdentity" class="pill"></p><section class="card hidden" id="learn"><span class="pill">TVWO 1 · Chapter 2 · 2.2 HCF and LCM</span><h2 style="margin-top:18px">Learn · Factors, primes, HCF and LCM</h2><p><strong>Learning goals:</strong> write a natural number greater than 1 as a product of prime factors, and calculate the HCF and LCM.</p><div class="actions"><button onclick="document.getElementById('theoryA22').scrollIntoView({behavior:'smooth'})">Theory A</button><button class="secondary" onclick="document.getElementById('theoryB22').scrollIntoView({behavior:'smooth'})">Theory B</button></div><div id="theoryA22" class="lesson"><h3>Theory A · Factors and prime numbers</h3><p>In this chapter, the <strong>natural numbers</strong> are 0, 1, 2, 3, … . There is no largest natural number.</p><h4>Factors</h4><p>A positive factor divides a number exactly, without a remainder. For example, 3 is a factor of 24 because 24 ÷ 3 = 8.</p><p>Find factors in pairs: <strong>1 × 24, 2 × 12, 3 × 8, 4 × 6</strong>.</p><p>All factors of 24: <strong>1, 2, 3, 4, 6, 8, 12, 24</strong>. For every positive natural number, 1 and the number itself are factors.</p><h4>Prime numbers</h4><p>A prime number has exactly two positive factors: 1 and itself. Examples: <strong>2, 3, 5, 7, 11, 13</strong>.</p><p><strong>1 is not prime</strong>: it has only one positive factor. <strong>2 is the only even prime number</strong>.</p><h4>A product of prime factors</h4><p>Split a number into factors until every factor is prime. For 60:</p><p><strong>60 = 2 × 30 = 2 × 2 × 15 = 2 × 2 × 3 × 5</strong>.</p><p>Check by multiplying your prime factors. In practice, type <strong>2x2x3x5</strong>; keep repeated factors and do not use powers.</p></div><div id="theoryB22" class="lesson teal"><h3>Theory B · HCF and LCM</h3><h4>Highest Common Factor (HCF)</h4><p>The HCF is the greatest positive factor shared by the numbers.</p><p>Factors of 24: 1, 2, 3, 4, 6, 8, 12, 24.<br>Factors of 30: 1, 2, 3, 5, 6, 10, 15, 30.<br>Common factors: 1, 2, 3, 6. So <strong>HCF(24, 30) = 6</strong>.</p><p><strong>Quick method:</strong> start with the largest factor of the smallest number. Work down until you find one that divides every number exactly.</p><details><summary>Example · HCF(12, 20)</summary><p>Try factors of 12 from largest to smallest: 12, 6, 4, … .<br>12 and 6 do not divide 20 exactly. 4 does.<br><strong>HCF(12, 20) = 4.</strong></p></details><h4>Lowest Common Multiple (LCM)</h4><p>A multiple is made by multiplying a number by a natural number. The LCM is the smallest <strong>positive</strong> multiple shared by the numbers.</p><p>Positive multiples of 6: 6, 12, 18, <strong>24</strong>, 30, … .<br>Positive multiples of 8: 8, 16, <strong>24</strong>, 32, … .<br>So <strong>LCM(6, 8) = 24</strong>.</p><p><strong>Quick method:</strong> start with the smallest positive multiple of the largest number. Work up until you find a multiple of every number.</p><details><summary>Example · LCM(12, 20)</summary><p>Try multiples of 20: 20, 40, 60, … .<br>20 and 40 are not multiples of 12. 60 is, because 60 ÷ 12 = 5.<br><strong>LCM(12, 20) = 60.</strong></p></details></div><div class="lesson orange"><h3>Next step · Use prime factors</h3><p>24 = 2 × 2 × 2 × 3<br>60 = 2 × 2 × 3 × 5</p><p><strong>HCF:</strong> take the shared prime factors, using only the copies available in both numbers.<br><strong>HCF(24, 60) = 2 × 2 × 3 = 12.</strong></p><p><strong>LCM:</strong> start with the prime factors of 24. Add only the factors from 60 that are still missing: one 5.<br><strong>LCM(24, 60) = 2 × 2 × 2 × 3 × 5 = 120.</strong></p><p>For three numbers, a factor must be shared by all three for the HCF. For the LCM, take enough copies of each prime to cover every number.</p></div><div class="lesson teal"><h3>Which one do I need?</h3><p><strong>HCF:</strong> the largest equal groups or largest square tiles that fit exactly.<br><strong>LCM:</strong> the first time repeating events happen together again.</p><details><summary>Two lights flash every 30 and 40 seconds. When do they next flash together?</summary><p>Use the LCM: multiples of 40 are 40, 80, 120. The first divisible by 30 is 120. They next flash together after <strong>120 seconds</strong>.</p></details></div><div class="actions"><button data-go="start">Start practising →</button></div></section>
 <section class="card hidden" id="help"><h2>💡 Need help?</h2><p>Choose the topic you want to understand.</p>
 <div class="grid"><button data-help="factors">Factors</button><button data-help="prime">Prime numbers</button><button data-help="factorisation">Prime factorisation</button><button data-help="hcf">HCF</button><button data-help="lcm">LCM</button></div>

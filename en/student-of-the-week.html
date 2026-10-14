@@ -31,7 +31,59 @@
 .mathfinity-global-nav a:hover,.mathfinity-global-nav a[aria-current="page"]{background:#e8f4ef;color:#09645c}
 @media(max-width:650px){.mathfinity-global-nav .nav-inner{flex-wrap:nowrap;overflow-x:auto}.mathfinity-global-nav a{white-space:nowrap;font-size:13px;padding:10px 12px}}
 </style>
-</head><body>
+<style id="mathfinity-calm-theme">
+/* Mathfinity unified calm-green theme and stable navigation */
+:root { background: #edf7f1 !important; }
+html { background: #edf7f1; }
+body { background: #edf7f1 !important; color: #263f3b; min-height: 100vh; }
+body > header { background: #f7fcf8 !important; color: #23564b !important;
+  border-bottom: 1px solid #dbe9df; box-shadow: none !important; }
+body > header h1, body > header .brand-name { color: #23564b !important; }
+body > header p, body > header .brand-tagline { color: #53766a !important; }
+main .card, main .topic, main .chapter { background: #fff !important; }
+main h2, main h3 { color: #235f50; }
+main .theory, main .lesson, main .setup-panel { background: #f1f8f2; }
+main .example, main .mini, main .stat { background: #f5faf6; }
+button:not(.home-card):not(.reward-avatar):not(.secondary):not(.ghost):not(.danger):not(.orange):not(.active),
+a.btn:not(.learn):not(.practise), .button:not(.secondary) {
+  background: #257b63; color: white;
+}
+button.secondary { background: #e1f1e7; color: #245f4c; }
+main .topic-choices label:has(input:checked),
+main .tabs button.active, main .topic-choices label:has(input[type=radio]:checked) {
+  background: #ffddcf !important; color: #80452f !important; border-color: #de9479 !important;
+}
+main .tabs button:not(.active) { background: #f8e8e1; color: #80513f; }
+main .btn.practise, main button.orange { background: #df8067 !important; color: white; }
+body > nav.mathfinity-global-nav {
+  position: sticky !important; top: 0; z-index: 1000;
+  display: block !important; width: 100%; margin: 0 !important;
+  padding: 0 16px !important; background: #f9fcfa !important;
+  border-bottom: 1px solid #d6e6db; box-shadow: 0 2px 9px #244e3610 !important;
+}
+body > nav.mathfinity-global-nav > .nav-inner {
+  display: flex !important; flex-wrap: nowrap !important; align-items: stretch !important;
+  justify-content: center !important; gap: 4px !important;
+  max-width: 1150px; height: 62px; margin: 0 auto;
+  overflow-x: auto; overflow-y: hidden; scrollbar-width: thin;
+}
+body > nav.mathfinity-global-nav a {
+  display: inline-flex !important; align-items: center !important;
+  justify-content: center; flex: 0 0 auto; white-space: nowrap;
+  padding: 0 15px !important; margin: 0 !important; height: 62px;
+  border-radius: 0 !important; background: transparent !important;
+  color: #315e50 !important; font-size: 14px !important;
+  font-weight: 700; line-height: 1.2; text-decoration: none;
+}
+body > nav.mathfinity-global-nav a:hover,
+body > nav.mathfinity-global-nav a[aria-current=page] {
+  background: #e0f1e6 !important; color: #176248 !important;
+}
+@media(max-width:780px) {
+  body > nav.mathfinity-global-nav > .nav-inner { justify-content: flex-start !important; }
+  body > nav.mathfinity-global-nav a { padding: 0 12px !important; font-size: 13px !important; }
+}
+</style></head><body>
 <nav class="mathfinity-global-nav" aria-label="Mathfinity main navigation">
 <div class="nav-inner">
 <a href="index.html" data-mnav="home">⌂ Home</a>

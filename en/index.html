@@ -111,11 +111,59 @@ button:not(nav button):not(.secondary):hover{background:#126656}
 .mathfinity-global-nav a:hover,.mathfinity-global-nav a[aria-current="page"]{background:#e8f4ef;color:#09645c}
 @media(max-width:650px){.mathfinity-global-nav .nav-inner{flex-wrap:nowrap;overflow-x:auto}.mathfinity-global-nav a{white-space:nowrap;font-size:13px;padding:10px 12px}}
 </style>
-<style id="mathfinity-reward-bar-style">
-.mathfinity-reward-bar{max-width:1050px;margin:16px auto 0;padding:12px 18px;background:#fff8e8;border:1px solid #f0d99c;border-radius:16px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;color:#244c55}
-.mathfinity-reward-bar .reward-person{display:flex;align-items:center;gap:12px}.mathfinity-reward-bar .reward-face{font-size:2.3rem}.mathfinity-reward-bar .reward-info{display:flex;flex-wrap:wrap;gap:9px;align-items:center}.mathfinity-reward-bar .reward-chip{background:#fff;border:1px solid #eee2bd;border-radius:999px;padding:8px 12px;font-weight:750}.mathfinity-reward-bar .reward-caption{font-size:.85rem;color:#5b7180}.mathfinity-reward-bar a{color:#176b5b;font-weight:750;text-decoration:none}
-</style>
-</head>
+<style id="mathfinity-calm-theme">
+/* Mathfinity unified calm-green theme and stable navigation */
+:root { background: #edf7f1 !important; }
+html { background: #edf7f1; }
+body { background: #edf7f1 !important; color: #263f3b; min-height: 100vh; }
+body > header { background: #f7fcf8 !important; color: #23564b !important;
+  border-bottom: 1px solid #dbe9df; box-shadow: none !important; }
+body > header h1, body > header .brand-name { color: #23564b !important; }
+body > header p, body > header .brand-tagline { color: #53766a !important; }
+main .card, main .topic, main .chapter { background: #fff !important; }
+main h2, main h3 { color: #235f50; }
+main .theory, main .lesson, main .setup-panel { background: #f1f8f2; }
+main .example, main .mini, main .stat { background: #f5faf6; }
+button:not(.home-card):not(.reward-avatar):not(.secondary):not(.ghost):not(.danger):not(.orange):not(.active),
+a.btn:not(.learn):not(.practise), .button:not(.secondary) {
+  background: #257b63; color: white;
+}
+button.secondary { background: #e1f1e7; color: #245f4c; }
+main .topic-choices label:has(input:checked),
+main .tabs button.active, main .topic-choices label:has(input[type=radio]:checked) {
+  background: #ffddcf !important; color: #80452f !important; border-color: #de9479 !important;
+}
+main .tabs button:not(.active) { background: #f8e8e1; color: #80513f; }
+main .btn.practise, main button.orange { background: #df8067 !important; color: white; }
+body > nav.mathfinity-global-nav {
+  position: sticky !important; top: 0; z-index: 1000;
+  display: block !important; width: 100%; margin: 0 !important;
+  padding: 0 16px !important; background: #f9fcfa !important;
+  border-bottom: 1px solid #d6e6db; box-shadow: 0 2px 9px #244e3610 !important;
+}
+body > nav.mathfinity-global-nav > .nav-inner {
+  display: flex !important; flex-wrap: nowrap !important; align-items: stretch !important;
+  justify-content: center !important; gap: 4px !important;
+  max-width: 1150px; height: 62px; margin: 0 auto;
+  overflow-x: auto; overflow-y: hidden; scrollbar-width: thin;
+}
+body > nav.mathfinity-global-nav a {
+  display: inline-flex !important; align-items: center !important;
+  justify-content: center; flex: 0 0 auto; white-space: nowrap;
+  padding: 0 15px !important; margin: 0 !important; height: 62px;
+  border-radius: 0 !important; background: transparent !important;
+  color: #315e50 !important; font-size: 14px !important;
+  font-weight: 700; line-height: 1.2; text-decoration: none;
+}
+body > nav.mathfinity-global-nav a:hover,
+body > nav.mathfinity-global-nav a[aria-current=page] {
+  background: #e0f1e6 !important; color: #176248 !important;
+}
+@media(max-width:780px) {
+  body > nav.mathfinity-global-nav > .nav-inner { justify-content: flex-start !important; }
+  body > nav.mathfinity-global-nav a { padding: 0 12px !important; font-size: 13px !important; }
+}
+</style></head>
 <body>
 <nav class="mathfinity-global-nav" aria-label="Mathfinity main navigation">
 <div class="nav-inner">
@@ -125,7 +173,6 @@ button:not(nav button):not(.secondary):hover{background:#126656}
 <a href="index.html#results" data-mnav="results">🏆 My results</a>
 <a href="student-of-the-week.html" data-mnav="week">🌟 Student of the Week</a>
 </div></nav>
-<aside id="mathfinityRewardBar" class="mathfinity-reward-bar" aria-label="My Mathfinity rewards"><div class="reward-person"><span id="rewardBarAvatar" class="reward-face" aria-hidden="true">⭐</span><div><strong id="rewardBarName">Your Mathfinity rewards</strong><div id="rewardBarNote" class="reward-caption">Enter your name and class when you practise to see your rewards.</div></div></div><div class="reward-info"><span class="reward-chip">🪙 <span id="rewardBarPoints">—</span> points</span><span class="reward-chip">🏅 <span id="rewardBarLevel">Explorer</span></span><a href="chapter-2-2.html">🎭 Choose avatar →</a></div></aside>
 <header>
 <div class="brand">
 <svg class="brand-logo" viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Parabola logo">
@@ -355,33 +402,6 @@ function openRequestedSection(){
 }
 window.addEventListener('hashchange',openRequestedSection);
 window.addEventListener('load',openRequestedSection);
-})();
-</script>
-<script id="mathfinity-reward-bar-script">
-(function(){
- 'use strict';
- const icons={star:'⭐',owl:'🦉',fox:'🦊',rocket:'👩‍🚀'};
- const get=(k)=>{try{return JSON.parse(localStorage.getItem(k))}catch{return null}};
- const $=id=>document.getElementById(id);
- function updateRewardBar(){
-  const p=get('jkoMathLabStudentV3');
-  if(!p||!p.name||!p.className){$('rewardBarName').textContent='Your Mathfinity rewards';$('rewardBarNote').textContent='Enter your name and class when you practise to see your rewards.';$('rewardBarAvatar').textContent='⭐';$('rewardBarPoints').textContent='—';$('rewardBarLevel').textContent='Explorer';return;}
-  // The same local wallet key used by the chapter exercises: do not create or reset a wallet here.
-  const key='mathfinityRewardsV1:'+p.className+'|'+p.name.trim().toLowerCase();
-  const wallet=get(key)||{points:0,avatar:'star'};
-  const points=Number.isFinite(Number(wallet.points))?Math.max(0,Number(wallet.points)):0;
-  $('rewardBarName').textContent=p.name;
-  $('rewardBarNote').textContent=p.className+' · Your rewards on this device';
-  $('rewardBarAvatar').textContent=icons[wallet.avatar]||'⭐';
-  $('rewardBarPoints').textContent=String(points);
-  $('rewardBarLevel').textContent=points>=100?'Maths Champion':points>=50?'Problem Solver':points>=15?'Rising Star':'Explorer';
- }
- window.addEventListener('storage',updateRewardBar);
- window.addEventListener('focus',updateRewardBar);
- document.addEventListener('visibilitychange',()=>{if(!document.hidden)updateRewardBar()});
- document.addEventListener('change',event=>{if(event.target.matches('#studentName,#studentClass'))setTimeout(updateRewardBar,0)});
- document.addEventListener('click',()=>setTimeout(updateRewardBar,0));
- updateRewardBar();
 })();
 </script>
 </body></html>
