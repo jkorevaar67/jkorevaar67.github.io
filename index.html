@@ -312,4 +312,10 @@ $('againButton').addEventListener('click',()=>show('start'));
 $('exitButton').addEventListener('click',()=>{const pct=state.total?Math.round(100*state.perfect/state.total):0;const student=profile();$('goodbyeName').textContent=student.name||'Maths explorer';$('goodbyeCorrect').textContent=`${state.perfect}/${state.total}`;$('goodbyePercent').textContent=`${pct}%`;$('goodbyePoints').textContent=String(state.perfect*10);$('goodbyeMessage').textContent=pct===100?'Amazing! Every question was perfect on your first try! 🎉':pct>=70?'Great effort! Keep practising and watch your score grow. 💪':'Every question helps you learn. Keep going! 🌱';show('goodbye');});
 $('homeButton').addEventListener('click',()=>show('start'));
 refreshStudent();show('home');updateResults();
+// Open the selected exercise from the chapter chooser, without changing existing behaviour.
+const requestedTopic=new URLSearchParams(window.location.search).get('topic');
+if(requestedTopic && Object.values(CHAPTER_SECTIONS).flat().some(([key])=>key===requestedTopic)){
+  const choice=document.querySelector('#topicChoices input[value="'+requestedTopic+'"]');
+  if(choice){choice.checked=true;updatePracticeOptions();navigate('start');}
+}
 </script></body></html>
