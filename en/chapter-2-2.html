@@ -83,6 +83,13 @@ body > nav.mathfinity-global-nav a[aria-current=page] {
   body > nav.mathfinity-global-nav > .nav-inner { justify-content: flex-start !important; }
   body > nav.mathfinity-global-nav a { padding: 0 12px !important; font-size: 13px !important; }
 }
+</style><style id="mathfinity-fixed-nav-v2">
+/* Stable navigation on every Mathfinity page */
+html { scrollbar-gutter: stable; }
+body > nav.mathfinity-global-nav { display:block !important; position:sticky !important; top:0 !important; padding:0 16px !important; margin:0 !important; width:100% !important; min-height:62px !important; box-sizing:border-box !important; }
+body > nav.mathfinity-global-nav > .nav-inner { display:flex !important; justify-content:flex-start !important; align-items:stretch !important; flex-wrap:nowrap !important; gap:4px !important; max-width:1050px !important; width:100% !important; height:62px !important; margin:0 auto !important; padding:0 !important; overflow-x:auto !important; }
+body > nav.mathfinity-global-nav .nav-inner > a { box-sizing:border-box !important; flex:0 0 auto !important; height:62px !important; line-height:1.2 !important; padding:0 14px !important; margin:0 !important; font-size:14px !important; border:0 !important; border-radius:0 !important; white-space:nowrap !important; }
+@media(max-width:780px){body > nav.mathfinity-global-nav .nav-inner > a {font-size:13px !important;padding:0 11px !important;}}
 </style></head>
 <body><nav class="mathfinity-global-nav" aria-label="Mathfinity main navigation">
 <div class="nav-inner">
@@ -91,7 +98,7 @@ body > nav.mathfinity-global-nav a[aria-current=page] {
 <a href="index.html#help" data-mnav="help">💡 Need help?</a>
 <a href="index.html#results" data-mnav="results">🏆 My results</a>
 <a href="student-of-the-week.html" data-mnav="week">🌟 Student of the Week</a>
-</div></nav><header>
+<a href="choose-avatar.html" data-mnav="avatar">🎭 Choose Avatar</a></div></nav><header>
 <div class="brand">
 <svg class="brand-logo" viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mathfinity infinity logo"><rect x="3" y="3" width="114" height="94" rx="22" fill="white" fill-opacity=".13"/><path d="M60 50C43 20 15 20 15 50S43 80 60 50S105 20 105 50S77 80 60 50" fill="none" stroke="#70f4dc" stroke-width="9" stroke-linecap="round"/><circle cx="60" cy="50" r="5" fill="#ffce7c"/></svg>
 <div><div class="brand-name">Mathfinity</div><div class="brand-tagline">Endless ways to learn.</div></div>

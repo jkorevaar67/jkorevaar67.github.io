@@ -60,6 +60,13 @@ body > nav.mathfinity-global-nav a[aria-current=page] {
   body > nav.mathfinity-global-nav > .nav-inner { justify-content: flex-start !important; }
   body > nav.mathfinity-global-nav a { padding: 0 12px !important; font-size: 13px !important; }
 }
+</style><style id="mathfinity-fixed-nav-v2">
+/* Stable navigation on every Mathfinity page */
+html { scrollbar-gutter: stable; }
+body > nav.mathfinity-global-nav { display:block !important; position:sticky !important; top:0 !important; padding:0 16px !important; margin:0 !important; width:100% !important; min-height:62px !important; box-sizing:border-box !important; }
+body > nav.mathfinity-global-nav > .nav-inner { display:flex !important; justify-content:flex-start !important; align-items:stretch !important; flex-wrap:nowrap !important; gap:4px !important; max-width:1050px !important; width:100% !important; height:62px !important; margin:0 auto !important; padding:0 !important; overflow-x:auto !important; }
+body > nav.mathfinity-global-nav .nav-inner > a { box-sizing:border-box !important; flex:0 0 auto !important; height:62px !important; line-height:1.2 !important; padding:0 14px !important; margin:0 !important; font-size:14px !important; border:0 !important; border-radius:0 !important; white-space:nowrap !important; }
+@media(max-width:780px){body > nav.mathfinity-global-nav .nav-inner > a {font-size:13px !important;padding:0 11px !important;}}
 </style></head><body>
 <nav class="mathfinity-global-nav" aria-label="Mathfinity main navigation">
 <div class="nav-inner">
@@ -68,7 +75,7 @@ body > nav.mathfinity-global-nav a[aria-current=page] {
 <a href="index.html#help" data-mnav="help">💡 Need help?</a>
 <a href="index.html#results" data-mnav="results">🏆 My results</a>
 <a href="student-of-the-week.html" data-mnav="week">🌟 Student of the Week</a>
-</div></nav>
+<a href="choose-avatar.html" data-mnav="avatar">🎭 Choose Avatar</a></div></nav>
 <header><h1>Mathfinity ✨</h1><p>Chapter 2 · §2.3 Fractions</p><nav><a href="index.html">← Back to Mathfinity</a></nav></header><main><section class="card"><span class="tag">Book pages 67–72</span><h2>Learn fractions</h2><p>Follow the theory from your textbook. Choose Theory A or Theory B, then practise.</p><button id="chooseA">Theory A · Add &amp; subtract</button><button id="chooseB">Theory B · Multiply</button></section>
 <section class="card" id="a"><span class="tag">Theory A</span><h2>Adding and subtracting fractions</h2><div class="theory"><h3>1. Like fractions</h3><p><strong>Like fractions</strong> have the same denominator. Add or subtract the numerators; keep the denominator the same.</p><div class="example">2/7 + 3/7 = 5/7<br>6/8 − 3/8 = 3/8</div><h3>2. Unlike fractions</h3><p>First convert the fractions to <strong>like fractions</strong>. Use the <strong>LCM</strong> of the denominators as the new denominator.</p><div class="example">1/4 + 1/5 = 5/20 + 4/20 = 9/20<br>3/10 + 1/15 = 9/30 + 2/30 = 11/30</div><h3>3. Mixed numbers</h3><p>Convert mixed numbers to improper fractions when necessary, then calculate.</p><div class="example">2 1/3 = 7/3<br>2 1/3 − 1/2 = 14/6 − 3/6 = 11/6 = 1 5/6</div><p><strong>Agreement:</strong> Simplify your answer as much as possible.</p></div><button class="secondary" id="toB">Continue to Theory B →</button><button id="practiceA">Practise Theory A →</button></section>
 <section class="card hidden" id="b"><span class="tag">Theory B</span><h2>Multiplying fractions</h2><div class="theory"><h3>1. Multiply numerators and denominators</h3><p>Multiply the numerators. Multiply the denominators. Simplify the result.</p><div class="example">2/3 × 3/5 = 6/15 = 2/5</div><h3>2. Multiply with whole or mixed numbers</h3><p>Write a whole number as a fraction over 1. Convert mixed numbers to improper fractions first.</p><div class="example">3 × 2/7 = 6/7<br>1 1/4 × 2 2/5 = 5/4 × 12/5 = 60/20 = 3</div><h3>3. Order of operations</h3><p>Multiplication comes before addition and subtraction.</p><div class="example">1/2 + 1/3 × 2/5 = 1/2 + 2/15 = 15/30 + 4/30 = 19/30</div></div><button id="practiceB">Practise Theory B →</button><button class="secondary" id="backA">← Theory A</button></section>

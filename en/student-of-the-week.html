@@ -83,6 +83,13 @@ body > nav.mathfinity-global-nav a[aria-current=page] {
   body > nav.mathfinity-global-nav > .nav-inner { justify-content: flex-start !important; }
   body > nav.mathfinity-global-nav a { padding: 0 12px !important; font-size: 13px !important; }
 }
+</style><style id="mathfinity-fixed-nav-v2">
+/* Stable navigation on every Mathfinity page */
+html { scrollbar-gutter: stable; }
+body > nav.mathfinity-global-nav { display:block !important; position:sticky !important; top:0 !important; padding:0 16px !important; margin:0 !important; width:100% !important; min-height:62px !important; box-sizing:border-box !important; }
+body > nav.mathfinity-global-nav > .nav-inner { display:flex !important; justify-content:flex-start !important; align-items:stretch !important; flex-wrap:nowrap !important; gap:4px !important; max-width:1050px !important; width:100% !important; height:62px !important; margin:0 auto !important; padding:0 !important; overflow-x:auto !important; }
+body > nav.mathfinity-global-nav .nav-inner > a { box-sizing:border-box !important; flex:0 0 auto !important; height:62px !important; line-height:1.2 !important; padding:0 14px !important; margin:0 !important; font-size:14px !important; border:0 !important; border-radius:0 !important; white-space:nowrap !important; }
+@media(max-width:780px){body > nav.mathfinity-global-nav .nav-inner > a {font-size:13px !important;padding:0 11px !important;}}
 </style></head><body>
 <nav class="mathfinity-global-nav" aria-label="Mathfinity main navigation">
 <div class="nav-inner">
@@ -91,7 +98,7 @@ body > nav.mathfinity-global-nav a[aria-current=page] {
 <a href="index.html#help" data-mnav="help">💡 Need help?</a>
 <a href="index.html#results" data-mnav="results">🏆 My results</a>
 <a href="student-of-the-week.html" data-mnav="week" aria-current="page">🌟 Student of the Week</a>
-</div></nav>
+<a href="choose-avatar.html" data-mnav="avatar">🎭 Choose Avatar</a></div></nav>
 <header><h1>🌟 Student of the Week</h1><p>Mathfinity · Every step counts!</p></header><main><div class="card top"><a href="index.html">← Back to Mathfinity</a><div><label for="classFilter">Class: </label><select id="classFilter"><option value="all">All classes</option><option value="TVWO 1A">TVWO 1A</option><option value="TVWO 1B">TVWO 1B</option></select></div><button id="reload" type="button">↻ Refresh</button></div><section class="card"><h2>🌍 Overall Student of the Week</h2><p class="muted" id="period"></p><div class="winner"><div class="trophy">🏆</div><div class="name" id="winner">Loading…</div><p id="winnerDetail" class="muted">Calculating this week's results</p></div><div class="grid"><div class="stat"><strong id="points">–</strong>Points earned</div><div class="stat"><strong id="correct">–</strong>Weekly ranking</div><div class="stat"><strong id="questions">–</strong>Week starts Monday</div></div><p class="muted">Points recorded in Mathfinity count. A new leaderboard starts every Monday (Netherlands time).</p></section><section class="card"><h2>🏫 Class champions this week</h2><div id="classWinners" class="grid" aria-live="polite"></div></section><section class="card"><h2>👑 Hall of Fame</h2><p class="muted">How many completed weeks has each student won? Overall and class victories are counted separately. Equal win counts share the same rank.</p><div id="hall" aria-live="polite">Loading past winners…</div></section><section class="card"><h2>✨ Weekly leaderboard</h2><div id="leaderboard" aria-live="polite">Loading results…</div></section><div id="notice" class="notice hidden" role="status"></div><footer>✨ Keep practising, keep growing! 💜</footer></main><script>
 'use strict';
 // Use the same public Supabase project configuration as the working Mathfinity index.
