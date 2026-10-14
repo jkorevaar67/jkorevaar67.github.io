@@ -111,6 +111,10 @@ button:not(nav button):not(.secondary):hover{background:#126656}
 .mathfinity-global-nav a:hover,.mathfinity-global-nav a[aria-current="page"]{background:#e8f4ef;color:#09645c}
 @media(max-width:650px){.mathfinity-global-nav .nav-inner{flex-wrap:nowrap;overflow-x:auto}.mathfinity-global-nav a{white-space:nowrap;font-size:13px;padding:10px 12px}}
 </style>
+<style id="mathfinity-reward-bar-style">
+.mathfinity-reward-bar{max-width:1050px;margin:16px auto 0;padding:12px 18px;background:#fff8e8;border:1px solid #f0d99c;border-radius:16px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;color:#244c55}
+.mathfinity-reward-bar .reward-person{display:flex;align-items:center;gap:12px}.mathfinity-reward-bar .reward-face{font-size:2.3rem}.mathfinity-reward-bar .reward-info{display:flex;flex-wrap:wrap;gap:9px;align-items:center}.mathfinity-reward-bar .reward-chip{background:#fff;border:1px solid #eee2bd;border-radius:999px;padding:8px 12px;font-weight:750}.mathfinity-reward-bar .reward-caption{font-size:.85rem;color:#5b7180}.mathfinity-reward-bar a{color:#176b5b;font-weight:750;text-decoration:none}
+</style>
 </head>
 <body>
 <nav class="mathfinity-global-nav" aria-label="Mathfinity main navigation">
@@ -121,6 +125,7 @@ button:not(nav button):not(.secondary):hover{background:#126656}
 <a href="index.html#results" data-mnav="results">🏆 My results</a>
 <a href="student-of-the-week.html" data-mnav="week">🌟 Student of the Week</a>
 </div></nav>
+<aside id="mathfinityRewardBar" class="mathfinity-reward-bar" aria-label="My Mathfinity rewards"><div class="reward-person"><span id="rewardBarAvatar" class="reward-face" aria-hidden="true">⭐</span><div><strong id="rewardBarName">Your Mathfinity rewards</strong><div id="rewardBarNote" class="reward-caption">Enter your name and class when you practise to see your rewards.</div></div></div><div class="reward-info"><span class="reward-chip">🪙 <span id="rewardBarPoints">—</span> points</span><span class="reward-chip">🏅 <span id="rewardBarLevel">Explorer</span></span><a href="chapter-2-2.html">🎭 Choose avatar →</a></div></aside>
 <header>
 <div class="brand">
 <svg class="brand-logo" viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Parabola logo">
@@ -350,6 +355,33 @@ function openRequestedSection(){
 }
 window.addEventListener('hashchange',openRequestedSection);
 window.addEventListener('load',openRequestedSection);
+})();
+</script>
+<script id="mathfinity-reward-bar-script">
+(function(){
+ 'use strict';
+ const icons={star:'⭐',owl:'🦉',fox:'🦊',rocket:'👩‍🚀'};
+ const get=(k)=>{try{return JSON.parse(localStorage.getItem(k))}catch{return null}};
+ const $=id=>document.getElementById(id);
+ function updateRewardBar(){
+  const p=get('jkoMathLabStudentV3');
+  if(!p||!p.name||!p.className){$('rewardBarName').textContent='Your Mathfinity rewards';$('rewardBarNote').textContent='Enter your name and class when you practise to see your rewards.';$('rewardBarAvatar').textContent='⭐';$('rewardBarPoints').textContent='—';$('rewardBarLevel').textContent='Explorer';return;}
+  // The same local wallet key used by the chapter exercises: do not create or reset a wallet here.
+  const key='mathfinityRewardsV1:'+p.className+'|'+p.name.trim().toLowerCase();
+  const wallet=get(key)||{points:0,avatar:'star'};
+  const points=Number.isFinite(Number(wallet.points))?Math.max(0,Number(wallet.points)):0;
+  $('rewardBarName').textContent=p.name;
+  $('rewardBarNote').textContent=p.className+' · Your rewards on this device';
+  $('rewardBarAvatar').textContent=icons[wallet.avatar]||'⭐';
+  $('rewardBarPoints').textContent=String(points);
+  $('rewardBarLevel').textContent=points>=100?'Maths Champion':points>=50?'Problem Solver':points>=15?'Rising Star':'Explorer';
+ }
+ window.addEventListener('storage',updateRewardBar);
+ window.addEventListener('focus',updateRewardBar);
+ document.addEventListener('visibilitychange',()=>{if(!document.hidden)updateRewardBar()});
+ document.addEventListener('change',event=>{if(event.target.matches('#studentName,#studentClass'))setTimeout(updateRewardBar,0)});
+ document.addEventListener('click',()=>setTimeout(updateRewardBar,0));
+ updateRewardBar();
 })();
 </script>
 </body></html>
