@@ -1,6 +1,29 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Student of the Week · Mathfinity · TIED CHAMPIONS V5</title><style>
 :root{font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:#25334a;background:#f0f9f7}*{box-sizing:border-box}body{margin:0;background:linear-gradient(130deg,#e9f9f3,#f1edff);min-height:100vh}header{background:#6246d9;color:white;text-align:center;padding:28px 16px}header h1{margin:0;font-size:clamp(1.7rem,5vw,2.7rem)}header p{margin:8px 0 0}main{max-width:850px;margin:24px auto;padding:0 16px 40px}.card{background:white;border-radius:22px;padding:clamp(18px,4vw,32px);box-shadow:0 12px 35px #27324c18;margin-bottom:18px}.top{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}a{color:#6246d9;font-weight:700}h2{color:#6246d9;margin:10px 0}button,select{font:inherit;border:1px solid #c9c4e8;border-radius:11px;padding:11px 15px;background:white;color:#26354a}button{cursor:pointer;background:#6246d9;color:white;border:0;font-weight:700}button:disabled{opacity:.6;cursor:wait}.muted{color:#607084}.winner{text-align:center;background:linear-gradient(120deg,#f5f0ff,#e9fbf3);border-radius:18px;padding:25px 12px}.trophy{font-size:3.4rem}.name{font-size:clamp(1.3rem,4vw,2rem);font-weight:800;color:#4931b2}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:18px 0}.stat{background:#f7f8fd;padding:18px;border-radius:14px;text-align:center}.stat strong{display:block;font-size:1.6rem;color:#4931b2}.rank{display:flex;align-items:center;gap:12px;padding:14px 6px;border-bottom:1px solid #edf0f4}.rank:last-child{border:0}.position{font-weight:800;color:#6246d9;width:35px}.who{flex:1;min-width:0;font-weight:700}.detail{display:block;font-size:.87rem;font-weight:400;color:#607084}.points{font-weight:800;color:#267c68}.notice{background:#fff8e9;border-radius:12px;padding:14px;line-height:1.5}.hidden{display:none}footer{text-align:center;color:#607084;font-size:.9rem;padding:8px}
-</style></head><body><header><h1>🌟 Student of the Week</h1><p>Mathfinity · Every step counts!</p></header><main><div class="card top"><a href="index.html">← Back to Mathfinity</a><div><label for="classFilter">Class: </label><select id="classFilter"><option value="all">All classes</option><option value="TVWO 1A">TVWO 1A</option><option value="TVWO 1B">TVWO 1B</option></select></div><button id="reload" type="button">↻ Refresh</button></div><section class="card"><h2>🌍 Overall Student of the Week</h2><p class="muted" id="period"></p><div class="winner"><div class="trophy">🏆</div><div class="name" id="winner">Loading…</div><p id="winnerDetail" class="muted">Calculating this week's results</p></div><div class="grid"><div class="stat"><strong id="points">–</strong>Points earned</div><div class="stat"><strong id="correct">–</strong>Weekly ranking</div><div class="stat"><strong id="questions">–</strong>Week starts Monday</div></div><p class="muted">Points recorded in Mathfinity count. A new leaderboard starts every Monday (Netherlands time).</p></section><section class="card"><h2>🏫 Class champions this week</h2><div id="classWinners" class="grid" aria-live="polite"></div></section><section class="card"><h2>👑 Hall of Fame</h2><p class="muted">How many completed weeks has each student won? Overall and class victories are counted separately. Equal win counts share the same rank.</p><div id="hall" aria-live="polite">Loading past winners…</div></section><section class="card"><h2>✨ Weekly leaderboard</h2><div id="leaderboard" aria-live="polite">Loading results…</div></section><div id="notice" class="notice hidden" role="status"></div><footer>New week, new chances! 💜 · TIED CHAMPIONS V5 · 13 October 2026</footer></main><script>
+
+/* Playful ranking, with explicit numbers even for medals */
+.position{width:78px;min-width:78px;display:flex;align-items:center;gap:6px;justify-content:flex-start}
+.place-number{display:inline-grid;place-items:center;min-width:34px;height:34px;padding:0 6px;border-radius:12px;background:#f0edff;color:#6246d9;font-size:1rem;font-weight:900;box-shadow:0 3px 0 #dcd5ff}
+.place-medal{display:inline-block;font-size:1.65rem;line-height:1;transform-origin:center bottom}
+.place-number.top-one{background:#fff1b6;color:#795500;box-shadow:0 3px 0 #f3d579}
+.place-number.top-two{background:#e8edf5;color:#4c627d;box-shadow:0 3px 0 #cbd5e3}
+.place-number.top-three{background:#ffe1cd;color:#90501d;box-shadow:0 3px 0 #edb990}
+.rank{animation:rankArrive .5s ease both;transition:background .2s,transform .2s;border-radius:12px}
+.rank:hover{background:#f7f4ff;transform:translateX(3px)}
+.rank.top-rank{background:linear-gradient(90deg,#fff8e2 0%,#fff 68%)}
+.rank.top-rank:hover{background:linear-gradient(90deg,#fff0bc 0%,#fff 80%)}
+.rank.top-rank .place-medal{animation:medalWiggle 3.5s ease-in-out infinite}
+.winner{position:relative;overflow:hidden}
+.winner .trophy{display:inline-block;animation:trophyFloat 3s ease-in-out infinite}
+.winner::before,.winner::after{content:'✦';position:absolute;color:#f0b930;font-size:1.8rem;animation:twinkle 2.2s ease-in-out infinite}
+.winner::before{left:13%;top:22%}.winner::after{right:14%;top:37%;animation-delay:1s}
+@keyframes rankArrive{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes medalWiggle{0%,85%,100%{transform:rotate(0)}89%{transform:rotate(-12deg)}94%{transform:rotate(10deg)}}
+@keyframes trophyFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes twinkle{0%,100%{opacity:.25;transform:scale(.75)}50%{opacity:1;transform:scale(1.2)}}
+@media(max-width:480px){.position{width:68px;min-width:68px}.place-number{min-width:30px;height:30px}.place-medal{font-size:1.35rem}}
+@media(prefers-reduced-motion:reduce){.rank,.rank.top-rank .place-medal,.winner .trophy,.winner::before,.winner::after{animation:none!important}.rank:hover{transform:none}}
+</style></head><body><header><h1>🌟 Student of the Week</h1><p>Mathfinity · Every step counts!</p></header><main><div class="card top"><a href="index.html">← Back to Mathfinity</a><div><label for="classFilter">Class: </label><select id="classFilter"><option value="all">All classes</option><option value="TVWO 1A">TVWO 1A</option><option value="TVWO 1B">TVWO 1B</option></select></div><button id="reload" type="button">↻ Refresh</button></div><section class="card"><h2>🌍 Overall Student of the Week</h2><p class="muted" id="period"></p><div class="winner"><div class="trophy">🏆</div><div class="name" id="winner">Loading…</div><p id="winnerDetail" class="muted">Calculating this week's results</p></div><div class="grid"><div class="stat"><strong id="points">–</strong>Points earned</div><div class="stat"><strong id="correct">–</strong>Weekly ranking</div><div class="stat"><strong id="questions">–</strong>Week starts Monday</div></div><p class="muted">Points recorded in Mathfinity count. A new leaderboard starts every Monday (Netherlands time).</p></section><section class="card"><h2>🏫 Class champions this week</h2><div id="classWinners" class="grid" aria-live="polite"></div></section><section class="card"><h2>👑 Hall of Fame</h2><p class="muted">How many completed weeks has each student won? Overall and class victories are counted separately. Equal win counts share the same rank.</p><div id="hall" aria-live="polite">Loading past winners…</div></section><section class="card"><h2>✨ Weekly leaderboard</h2><div id="leaderboard" aria-live="polite">Loading results…</div></section><div id="notice" class="notice hidden" role="status"></div><footer>New week, new chances! 💜 · ANIMATED RANKINGS V6 · 14 October 2026</footer></main><script>
 'use strict';
 // Use the same public Supabase project configuration as the working Mathfinity index.
 // Direct HTTPS RPC avoids the Supabase SDK URL-initialization error.
@@ -18,7 +41,13 @@ const CLASSES=['TVWO 1A','TVWO 1B'];
 function placeAt(sorted,index,key){
  return sorted.findIndex(item=>item[key]===sorted[index][key])+1;
 }
-function medal(place){return ['🥇','🥈','🥉'][place-1]||String(place)+'.';}
+function rankBadge(place){
+ const pos=document.createElement('span');pos.className='position';pos.setAttribute('aria-label','Place '+place);
+ const number=document.createElement('span');number.className='place-number'+(place<=3?' top-'+['one','two','three'][place-1]:'');number.textContent=place+'.';
+ pos.append(number);
+ if(place<=3){const icon=document.createElement('span');icon.className='place-medal';icon.textContent=['🥇','🥈','🥉'][place-1];icon.setAttribute('aria-hidden','true');pos.append(icon);}
+ return pos;
+}
 
 function renderClassWinners(){
  const area=$('classWinners');area.replaceChildren();
@@ -39,7 +68,7 @@ function renderHall(rows){
   const list=rows.filter(r=>r.category===category).sort((a,b)=>b.wins-a.wins||a.display_name.localeCompare(b.display_name)).slice(0,10);
   if(!list.length){const empty=document.createElement('p');empty.className='muted';empty.textContent='No completed weekly champions yet.';area.append(empty);continue;}
   list.forEach((p,i)=>{const row=document.createElement('div');row.className='rank';
-   const pos=document.createElement('span');pos.className='position';pos.textContent=medal(placeAt(list,i,'wins'));
+   const place=placeAt(list,i,'wins');const pos=rankBadge(place);if(place===1)row.classList.add('top-rank');row.style.animationDelay=Math.min(i,9)*55+'ms';
    const who=document.createElement('span');who.className='who';who.textContent=p.display_name;
    const count=document.createElement('span');count.className='points';count.textContent=p.wins+(p.wins===1?' win':' wins');
    row.append(pos,who,count);area.append(row);
@@ -62,7 +91,7 @@ function render(){
  if(!list.length){board.textContent='No points earned this week yet. Keep practising!';return;}
  list.slice(0,10).forEach((p,i)=>{
   const row=document.createElement('div');row.className='rank';
-  const pos=document.createElement('span');pos.className='position';pos.textContent=medal(placeAt(list,i,'total_points'));
+  const place=placeAt(list,i,'total_points');const pos=rankBadge(place);if(place===1)row.classList.add('top-rank');row.style.animationDelay=Math.min(i,9)*70+'ms';
   const who=document.createElement('div');who.className='who';who.textContent=p.display_name;
   const detail=document.createElement('span');detail.className='detail';detail.textContent=p.class_name;who.append(detail);
   const score=document.createElement('span');score.className='points';score.textContent=p.total_points+' pts';
