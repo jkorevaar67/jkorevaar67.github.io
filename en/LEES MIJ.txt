@@ -1,0 +1,14 @@
+Mathfinity update - navigatie en keuze Learn / Practise
+
+Upload alle HTML-bestanden in dezelfde GitHub-map als waar Mathfinity nu staat.
+Heb je Mathfinity al naar /en verplaatst? Upload ze dan allemaal in /en.
+Vervang niet de Nederlandse welkomstpagina door deze index.html.
+
+De knoppen op Choose a Chapter gaan nu naar de juiste paragraaf:
+Learn = uitleg; Practise = oefengedeelte.
+De navigatiebalk staat op alle meegeleverde pagina's, inclusief 2.2 en teacher.
+
+LET OP: databasepunten zijn NIET volledig gerepareerd of getest.
+2.1 en 2.2 hebben bestaande lokale beloningscode, 2.3 en 2.4 tonen
+oefenscores zonder volledige leaderboard-koppeling.
+Controleer eerst in de browser voordat leerlingen ermee werken.
