@@ -96,6 +96,12 @@ button:not(nav button):not(.secondary):hover{background:#126656}
   background: #f5f8f7;
   border-color: #dce7e2;
 }
+
+/* One clear entry point for chapter selection. */
+.chapter-nav-link{display:inline-flex;align-items:center;text-decoration:none;padding:10px 16px;border-radius:9px;font-weight:700;color:#176b5b;background:#e9f5f1}
+.chapter-nav-link:hover{background:#d9ede6}
+.chapter-cta{display:inline-block;background:#177e6d;color:white;text-decoration:none;border-radius:10px;padding:14px 20px;font-weight:750;margin-top:10px}
+.chapter-cta:hover{background:#126656}
 </style>
 </head>
 <body><header>
@@ -110,14 +116,13 @@ button:not(nav button):not(.secondary):hover{background:#126656}
 </div>
 <div class="brand-topic">Prime Factorisation · HCF · LCM</div>
 </header>
-<nav aria-label="Main navigation"><button data-view="home">⌂ Home</button><button data-view="learn">📘 Learn</button><button data-view="start">✏️ Practise</button><button data-view="help">💡 Need help?</button><button data-view="results">🏆 My results</button><a href="student-of-the-week.html" style="display:inline-flex;align-items:center;padding:10px 15px;color:inherit;font-weight:700;text-decoration:none">🌟 Student of the Week</a></nav>
+<nav aria-label="Main navigation"><button data-view="home">⌂ Home</button><a class="chapter-nav-link" href="choose-topic.html">📚 Choose a Chapter</a><button data-view="help">💡 Need help?</button><button data-view="results">🏆 My results</button><a href="student-of-the-week.html" style="display:inline-flex;align-items:center;padding:10px 15px;color:inherit;font-weight:700;text-decoration:none">🌟 Student of the Week</a></nav>
 <main>
 <section class="card" id="home">
- <div class="home-hero"><div><div class="home-eyebrow">Welcome to your maths space</div><h1>Small steps.<br>Big discoveries.</h1><p>Learn at your own pace, practise your skills and see how far you have come.</p><button type="button" data-go="start">Start practising →</button></div><div class="home-art" aria-hidden="true">✏️<br>📐 ✨</div></div>
- <h2 class="home-title">What would you like to do today?</h2>
+ <div class="home-hero"><div><div class="home-eyebrow">Welcome to your maths space</div><h1>Small steps.<br>Big discoveries.</h1><p>Learn at your own pace, practise your skills and see how far you have come.</p><a class="chapter-cta" href="choose-topic.html">Choose a Chapter →</a></div><div class="home-art" aria-hidden="true">✏️<br>📐 ✨</div></div>
+ <h2 class="home-title">Where would you like to start?</h2>
  <div class="home-cards">
- <button type="button" class="home-card" data-go="learn"><span class="symbol">📘</span><strong>Learn the theory</strong><small>Choose your topic and explore clear explanations, examples and step-by-step guidance.</small></button>
- <button type="button" class="home-card" data-go="start"><span class="symbol">✏️</span><strong>Practise maths</strong><small>Choose your exercises and work through each question step by step.</small></button>
+ <a class="home-card" href="choose-topic.html" style="text-decoration:none"><span class="symbol">📚</span><strong>Choose a Chapter</strong><small>Choose your section, then decide: 📘 Learn (no points) or ⭐ Practise (earn points).</small></a>
  <button type="button" class="home-card" data-go="results"><span class="symbol">🏆</span><strong>My progress</strong><small>See how much you have practised and celebrate your achievements.</small></button>
  <a class="home-card" href="student-of-the-week.html" style="text-decoration:none"><span class="symbol">🌟</span><strong>Student of the Week</strong><small>Celebrate this week’s maths stars!</small></a>
  </div><div class="home-footer"><a href="teacher.html" target="_blank" rel="noopener noreferrer" title="Teacher login" aria-label="Teacher login">🔒</a></div>
@@ -175,7 +180,7 @@ function restoreProgress(){const saved=getStored(PROGRESS_KEY);if(!saved)return;
 
 function updateResults(){refreshStudent();const r=savedResults();$('sessions').textContent=r.sessions;$('totalQuestions').textContent=r.total;$('perfectQuestions').textContent=r.perfect;$('lastResult').textContent=r.last||'No completed practice sessions yet.';}
 function recordResult(){const r=savedResults();r.sessions++;r.total+=state.total;r.perfect+=state.perfect;r.last=`Last session: ${state.perfect} out of ${state.total} questions perfect on the first try.`;try{localStorage.setItem(profileKey(),JSON.stringify(r));}catch{}updateResults();}
-function navigate(view){if(view==='start')refreshStudent();if(view==='help'&&document.querySelector('#practice:not(.hidden)'))previousView='practice';if(view==='results')updateResults();show(view);window.scrollTo(0,0);}
+function navigate(view){if((view==='start'||view==='learn') && !new URLSearchParams(window.location.search).has('topic')){window.location.href='choose-topic.html';return;}if(view==='start')refreshStudent();if(view==='help'&&document.querySelector('#practice:not(.hidden)'))previousView='practice';if(view==='results')updateResults();show(view);window.scrollTo(0,0);}
 document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.view)));
 document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.go)));
 document.querySelectorAll('[data-help]').forEach(b=>b.addEventListener('click',()=>{$('helpDetail').textContent=explanations[b.dataset.help];}));
