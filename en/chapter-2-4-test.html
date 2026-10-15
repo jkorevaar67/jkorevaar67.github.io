@@ -94,7 +94,7 @@ let syncing=false,loading=false;
 const avatars=[{id:'owl',name:'Wise Owl',icon:'🦉',points:5},{id:'fox',name:'Clever Fox',icon:'🦊',points:15},{id:'rocket',name:'Space Explorer',icon:'👩‍🚀',points:30}];
 function read(key,fallback){try{return JSON.parse(localStorage.getItem(key))||fallback}catch{return fallback}}
 function write(key,value){try{localStorage.setItem(key,JSON.stringify(value))}catch{}}
-function person(){const p=read(PROFILE,{});return p.name&&['TVWO 1A','TVWO 1B'].includes(p.className)?p:null}
+function person(){const p=read(PROFILE,{});const name=String(p.name||'').trim(),className=String(p.className||'').trim().toUpperCase().replace(/\s+/g,' ');return name&&['TVWO 1A','TVWO 1B'].includes(className)?{...p,name,className}:null}
 function storeKey(){const p=person();return p?'mathfinityRewardsV1:'+p.className+'|'+p.name.trim().toLowerCase():null}
 function wallet(){return read(storeKey(),{points:0,avatar:'star',events:[],credited:[]})}
 function today(){return new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Amsterdam',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date())}

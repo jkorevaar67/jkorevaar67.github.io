@@ -123,12 +123,12 @@ body.mathfinity-exercise .rewards-panel{display:none!important}
 <section class="card hidden" id="finish"><h2>★ Great work! ★</h2><p id="result" style="font-size:1.25rem;font-weight:700"></p><p>Would you like to practise again or finish?</p><div class="actions"><button id="againButton" class="secondary">Practise again ↻</button><button id="exitButton" class="exit">Finish</button></div></section>
 <section class="card hidden" id="goodbye"><h2>See you next time! 👋</h2><p>Well done for practising today.</p><button id="homeButton">Back to start</button></section>
 </main><div class="footer small">Mathfinity · Endless ways to learn.</div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-<script>window.MathfinityRewards={award:function(){},refresh:function(){},today:function(){return 0}};</script><script>
+
+<script>
 'use strict';
-const SUPABASE_URL='https://wgocbnhtmzxalvwlpvyo.supabase.co';
-const SUPABASE_PUBLISHABLE_KEY='sb_publishable_0yRUp4LVsYdBcdmwLYfqxg_soc0fpQB';
-const db=false && SUPABASE_PUBLISHABLE_KEY.startsWith('sb_publishable_') && window.supabase ? window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY) : null;
+
+
+const db=null;
 async function uploadResult(){
   if(!db)return;
   try{
@@ -205,7 +205,7 @@ function message(msg,kind){$('feedback').textContent=msg;$('feedback').className
 $('practiceMethod').addEventListener('change',()=>{$('methodDescription').textContent=$('practiceMethod').value==='listing'?'First enter the factors for each number. Then calculate the HCF and LCM.':'First write each number as a product of prime factors. Then calculate the HCF and LCM.';});
 $('startButton').addEventListener('click',()=>{if(!saveProfile())return;if(getStored(PROGRESS_KEY)&&!confirm('Start a new practice session? Your unfinished session will be replaced.'))return;const total=Number($('questionCount').value);if(!Number.isInteger(total)||total<1||total>50){alert('Choose a whole number of questions from 1 to 50.');return;}state.rewardSession=crypto.randomUUID();state.method=$('practiceMethod').value;state.total=total;state.count=Number($('numberCount').value);state.completed=0;state.perfect=0;show('practice');nextQuestion();});
 $('answerForm').addEventListener('submit',check);
-$('nextButton').addEventListener('click',()=>{if(!state.locked)return;if(state.step<(state.count+1)){state.step++;render();}else{state.completed++;if(state.firstTry){state.perfect++;if(false)window.MathfinityRewards.award(1,'2.2 HCF and LCM',(state.rewardSession||'legacy-'+JSON.stringify(state.numbers))+'-'+state.completed);}if(state.completed===state.total){localStorage.removeItem(PROGRESS_KEY);$('result').textContent=`${state.perfect} of ${state.total} questions completely correct on the first try (${Math.round(100*state.perfect/state.total)}%).`;recordResult();uploadResult();show('finish');}else nextQuestion();}});
+$('nextButton').addEventListener('click',()=>{if(!state.locked)return;if(state.step<(state.count+1)){state.step++;render();}else{state.completed++;if(state.firstTry){state.perfect++;if(false)(()=>{})(1,'2.2 HCF and LCM',(state.rewardSession||'legacy-'+JSON.stringify(state.numbers))+'-'+state.completed);}if(state.completed===state.total){localStorage.removeItem(PROGRESS_KEY);$('result').textContent=`${state.perfect} of ${state.total} questions completely correct on the first try (${Math.round(100*state.perfect/state.total)}%).`;recordResult();uploadResult();show('finish');}else nextQuestion();}});
 $('answer').addEventListener('input',saveProgress);
 $('resumeButton').addEventListener('click',()=>{if(saveProfile())restoreProgress();});
 $('discardButton').addEventListener('click',()=>{if(confirm('Delete the unfinished practice and start again?')){localStorage.removeItem(PROGRESS_KEY);refreshStudent();}});

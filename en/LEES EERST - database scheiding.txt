@@ -1,0 +1,4 @@
+Mathfinity: vier Exercise pagina's opgeschoond.
+Exercise 2.1, 2.2, 2.3 en 2.4: geen beloningspuntentoekenning, geen Supabase SDK of clientverbinding. Lokale oefenvoortgang kan nog worden opgeslagen op dit apparaat; dit is geen database.
+Test 2.1, 2.2, 2.3 en 2.4: bestaande code behouden; Supabase synchronisatie is NIET live geverifieerd en kan nog fouten bevatten.
+Upload HTML bestanden naar map en in GitHub. Test eerst op website.
