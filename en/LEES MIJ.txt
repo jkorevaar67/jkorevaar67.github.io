@@ -1,14 +1,13 @@
-Mathfinity update - navigatie en keuze Learn / Practise
+MATHFINITY – CORRECTIE PUNTENTELLING
 
-Upload alle HTML-bestanden in dezelfde GitHub-map als waar Mathfinity nu staat.
-Heb je Mathfinity al naar /en verplaatst? Upload ze dan allemaal in /en.
-Vervang niet de Nederlandse welkomstpagina door deze index.html.
+Upload de 9 HTML-bestanden rechtstreeks in GitHub map en (vervang de bestaande).
 
-De knoppen op Choose a Chapter gaan nu naar de juiste paragraaf:
-Learn = uitleg; Practise = oefengedeelte.
-De navigatiebalk staat op alle meegeleverde pagina's, inclusief 2.2 en teacher.
+- Learn: geen nieuwe beloningspunten, ook niet bij oefenvragen in de theorieles.
+- Practise: 1 beloningspunt per zelfstandig goed beantwoorde vraag op de eerste poging.
+- Paragraaf 2.1 en 2.2: punten alleen bij openen via ⭐ Practise.
+- Paragraaf 2.3 en 2.4: punten toegevoegd aan bestaande beloningsportemonnee.
+- Hoofdpagina Practise: punten toegevoegd.
+- Bestaande localStorage-gegevens blijven behouden; bestaande punten worden niet gewist.
 
-LET OP: databasepunten zijn NIET volledig gerepareerd of getest.
-2.1 en 2.2 hebben bestaande lokale beloningscode, 2.3 en 2.4 tonen
-oefenscores zonder volledige leaderboard-koppeling.
-Controleer eerst in de browser voordat leerlingen ermee werken.
+LET OP: dit is een codecorrectie, niet live getest op GitHub of Supabase.
+De al eerder onterecht toegekende punten worden NIET automatisch teruggedraaid.

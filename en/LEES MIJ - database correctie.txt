@@ -1,0 +1,1 @@
+OEFENPAGINAS: hoofdstuk 2.1 t/m 2.4 hebben geen beloningscode of database-synchronisatie voor punten. In 2.2 is ook het uploaden van student_results uitgeschakeld. Lokale oefenvoortgang blijft bestaan. TESTPAGINAS: oorspronkelijke puntencode behouden. Live niet getest.

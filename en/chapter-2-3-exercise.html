@@ -1,0 +1,93 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Mathfinity · §2.3 Fractions</title><style>
+:root{font-family:system-ui,Arial,sans-serif;color:#203047;background:#eaf7f6}*{box-sizing:border-box}body{margin:0;background:linear-gradient(140deg,#eaf7f6,#f0ecff)}header{background:#6246d9;color:white;text-align:center;padding:22px}header h1{margin:0}main{max-width:850px;margin:24px auto;padding:0 15px}.card{background:white;border-radius:22px;padding:clamp(18px,4vw,32px);margin:16px 0;box-shadow:0 8px 24px #1a274018}h2,h3{color:#6246d9}.tag{display:inline-block;background:#f0edff;color:#6246d9;border-radius:20px;padding:7px 12px;font-weight:bold}.theory{background:#e8f5dc;border-left:5px solid #78ae4c;padding:18px;border-radius:12px;margin:15px 0;line-height:1.7}.example{background:#f4f0ff;padding:15px;border-radius:12px;line-height:1.8}.hidden{display:none}button,.button{background:#6246d9;color:white;border:0;border-radius:12px;padding:12px 18px;font:inherit;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;margin:5px 5px 5px 0}button.secondary{background:#008d89}button:disabled{opacity:.5}input,select{font:inherit;padding:12px;border:2px solid #b9b7d3;border-radius:10px;max-width:100%;width:240px}label{display:block;margin:15px 0 6px;font-weight:700}.feedback{font-weight:bold;min-height:25px}.correct{color:#067456}.incorrect{color:#af3c34}.math{font-size:1.5rem;font-weight:700}.small{color:#526075}nav a{color:white}#progress{font-weight:700;color:#6246d9} .frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.1;margin:0 .15em}.frac span:first-child{border-bottom:1.5px solid currentColor;padding:0 .12em}.frac span:last-child{padding:0 .12em}
+</style>
+<style id="mathfinity-shared-navigation">
+.mathfinity-global-nav{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.97);border-bottom:1px solid #e2e9ed;box-shadow:0 3px 14px rgba(26,46,66,.06);padding:11px 15px}
+.mathfinity-global-nav .nav-inner{max-width:1150px;margin:auto;display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.mathfinity-global-nav a{display:inline-flex;align-items:center;gap:7px;padding:12px 15px;border-radius:13px;color:#28536a;text-decoration:none;font-size:15px;font-weight:750;line-height:1.3}
+.mathfinity-global-nav a:hover,.mathfinity-global-nav a[aria-current="page"]{background:#e8f4ef;color:#09645c}
+@media(max-width:650px){.mathfinity-global-nav .nav-inner{flex-wrap:nowrap;overflow-x:auto}.mathfinity-global-nav a{white-space:nowrap;font-size:13px;padding:10px 12px}}
+</style>
+<style id="mathfinity-calm-theme">
+/* Mathfinity unified calm-green theme and stable navigation */
+:root { background: #edf7f1 !important; }
+html { background: #edf7f1; }
+body { background: #edf7f1 !important; color: #263f3b; min-height: 100vh; }
+body > header { background: #f7fcf8 !important; color: #23564b !important;
+  border-bottom: 1px solid #dbe9df; box-shadow: none !important; }
+body > header h1, body > header .brand-name { color: #23564b !important; }
+body > header p, body > header .brand-tagline { color: #53766a !important; }
+main .card, main .topic, main .chapter { background: #fff !important; }
+main h2, main h3 { color: #235f50; }
+main .theory, main .lesson, main .setup-panel { background: #f1f8f2; }
+main .example, main .mini, main .stat { background: #f5faf6; }
+button:not(.home-card):not(.reward-avatar):not(.secondary):not(.ghost):not(.danger):not(.orange):not(.active),
+a.btn:not(.learn):not(.practise), .button:not(.secondary) {
+  background: #257b63; color: white;
+}
+button.secondary { background: #e1f1e7; color: #245f4c; }
+main .topic-choices label:has(input:checked),
+main .tabs button.active, main .topic-choices label:has(input[type=radio]:checked) {
+  background: #ffddcf !important; color: #80452f !important; border-color: #de9479 !important;
+}
+main .tabs button:not(.active) { background: #f8e8e1; color: #80513f; }
+main .btn.practise, main button.orange { background: #df8067 !important; color: white; }
+body > nav.mathfinity-global-nav {
+  position: sticky !important; top: 0; z-index: 1000;
+  display: block !important; width: 100%; margin: 0 !important;
+  padding: 0 16px !important; background: #f9fcfa !important;
+  border-bottom: 1px solid #d6e6db; box-shadow: 0 2px 9px #244e3610 !important;
+}
+body > nav.mathfinity-global-nav > .nav-inner {
+  display: flex !important; flex-wrap: nowrap !important; align-items: stretch !important;
+  justify-content: center !important; gap: 4px !important;
+  max-width: 1150px; height: 62px; margin: 0 auto;
+  overflow-x: auto; overflow-y: hidden; scrollbar-width: thin;
+}
+body > nav.mathfinity-global-nav a {
+  display: inline-flex !important; align-items: center !important;
+  justify-content: center; flex: 0 0 auto; white-space: nowrap;
+  padding: 0 15px !important; margin: 0 !important; height: 62px;
+  border-radius: 0 !important; background: transparent !important;
+  color: #315e50 !important; font-size: 14px !important;
+  font-weight: 700; line-height: 1.2; text-decoration: none;
+}
+body > nav.mathfinity-global-nav a:hover,
+body > nav.mathfinity-global-nav a[aria-current=page] {
+  background: #e0f1e6 !important; color: #176248 !important;
+}
+@media(max-width:780px) {
+  body > nav.mathfinity-global-nav > .nav-inner { justify-content: flex-start !important; }
+  body > nav.mathfinity-global-nav a { padding: 0 12px !important; font-size: 13px !important; }
+}
+</style><style id="mathfinity-fixed-nav-v2">
+/* Stable navigation on every Mathfinity page */
+html { scrollbar-gutter: stable; }
+body > nav.mathfinity-global-nav { display:block !important; position:sticky !important; top:0 !important; padding:0 16px !important; margin:0 !important; width:100% !important; min-height:62px !important; box-sizing:border-box !important; }
+body > nav.mathfinity-global-nav > .nav-inner { display:flex !important; justify-content:flex-start !important; align-items:stretch !important; flex-wrap:nowrap !important; gap:4px !important; max-width:1050px !important; width:100% !important; height:62px !important; margin:0 auto !important; padding:0 !important; overflow-x:auto !important; }
+body > nav.mathfinity-global-nav .nav-inner > a { box-sizing:border-box !important; flex:0 0 auto !important; height:62px !important; line-height:1.2 !important; padding:0 14px !important; margin:0 !important; font-size:14px !important; border:0 !important; border-radius:0 !important; white-space:nowrap !important; }
+@media(max-width:780px){body > nav.mathfinity-global-nav .nav-inner > a {font-size:13px !important;padding:0 11px !important;}}
+</style>
+<style id="mathfinity-page-mode">
+.mode-banner{max-width:900px;margin:18px auto;padding:13px 20px;border-radius:14px;
+font-weight:750;background:#fff;color:#245c4c;border:1px solid #d5e7d9;text-align:center}
+body.mathfinity-exercise #mathfinityRewards,
+body.mathfinity-exercise .rewards-panel{display:none!important}
+</style>
+</head><body class="mathfinity-exercise"><div class="mode-banner">✏️ Exercise page<br><small>Practise freely — no reward points</small></div>
+<nav class="mathfinity-global-nav" aria-label="Mathfinity main navigation">
+<div class="nav-inner">
+<a href="index.html" data-mnav="home">⌂ Home</a>
+<a href="choose-topic.html" data-mnav="choose">📚 Choose a Chapter</a>
+<a href="index.html#help" data-mnav="help">💡 Need help?</a>
+<a href="student-of-the-week.html" data-mnav="week">🌟 Student of the Week</a>
+<a href="choose-avatar.html" data-mnav="avatar">🎭 Choose Avatar</a></div></nav>
+<header><h1>Mathfinity ✨</h1><p>Chapter 2 · §2.3 Fractions</p><nav><a href="index.html">← Back to Mathfinity</a></nav></header><main><section class="card"><span class="tag">Book pages 67–72</span><h2>Learn fractions</h2><p>Follow the theory from your textbook. Choose Theory A or Theory B, then practise.</p><button id="chooseA">Theory A · Add &amp; subtract</button><button id="chooseB">Theory B · Multiply</button></section>
+<section class="card" id="a"><span class="tag">Theory A</span><h2>Adding and subtracting fractions</h2><div class="theory"><h3>1. Like fractions</h3><p><strong>Like fractions</strong> have the same denominator. Add or subtract the numerators; keep the denominator the same.</p><div class="example">2/7 + 3/7 = 5/7<br>6/8 − 3/8 = 3/8</div><h3>2. Unlike fractions</h3><p>First convert the fractions to <strong>like fractions</strong>. Use the <strong>LCM</strong> of the denominators as the new denominator.</p><div class="example">1/4 + 1/5 = 5/20 + 4/20 = 9/20<br>3/10 + 1/15 = 9/30 + 2/30 = 11/30</div><h3>3. Mixed numbers</h3><p>Convert mixed numbers to improper fractions when necessary, then calculate.</p><div class="example">2 1/3 = 7/3<br>2 1/3 − 1/2 = 14/6 − 3/6 = 11/6 = 1 5/6</div><p><strong>Agreement:</strong> Simplify your answer as much as possible.</p></div><button class="secondary" id="toB">Continue to Theory B →</button><button id="practiceA">Practise Theory A →</button></section>
+<section class="card hidden" id="b"><span class="tag">Theory B</span><h2>Multiplying fractions</h2><div class="theory"><h3>1. Multiply numerators and denominators</h3><p>Multiply the numerators. Multiply the denominators. Simplify the result.</p><div class="example">2/3 × 3/5 = 6/15 = 2/5</div><h3>2. Multiply with whole or mixed numbers</h3><p>Write a whole number as a fraction over 1. Convert mixed numbers to improper fractions first.</p><div class="example">3 × 2/7 = 6/7<br>1 1/4 × 2 2/5 = 5/4 × 12/5 = 60/20 = 3</div><h3>3. Order of operations</h3><p>Multiplication comes before addition and subtraction.</p><div class="example">1/2 + 1/3 × 2/5 = 1/2 + 2/15 = 15/30 + 4/30 = 19/30</div></div><button id="practiceB">Practise Theory B →</button><button class="secondary" id="backA">← Theory A</button></section>
+<section class="card hidden" id="practice"><span class="tag" id="modeTag"></span><h2>Practise fractions</h2><label for="level">Choose your level</label><select id="level"><option value="0">Foundation</option><option value="1">Intermediate</option><option value="2">Challenge</option></select><p id="progress"></p><p class="math" id="question"></p><form id="form"><label for="answer">Your answer (e.g. 3/4 or 1 1/2)</label><input id="answer" autocomplete="off" required><button type="submit">Check answer</button></form><p class="feedback" id="feedback" aria-live="polite"></p><p class="small" id="hint"></p><button id="next" disabled>Next question →</button><button class="secondary" id="switchTheory">Change theory</button><p id="score"></p></section>
+<section class="card hidden" id="finish"><h2>Well done! 🎉</h2><p id="summary"></p><p class="small">This exercise does not award reward points. Your teacher dashboard may track completed sessions separately.</p><button id="again">Practise again</button><a class="button" href="index.html">Back to Mathfinity</a></section></main><script>window.MathfinityRewards={award:function(){},refresh:function(){},today:function(){return 0}};</script>
+<script>
+'use strict';const $=id=>document.getElementById(id);let mode='A',number=0,correct=0,tries=0,answerValue=null;const gcd=(a,b)=>b?gcd(b,a%b):Math.abs(a),rnd=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;function F(n,d=1){if(d<0){n=-n;d=-d}const g=gcd(n,d);return {n:n/g,d:d/g}}const add=(a,b)=>F(a.n*b.d+b.n*a.d,a.d*b.d),sub=(a,b)=>F(a.n*b.d-b.n*a.d,a.d*b.d),mul=(a,b)=>F(a.n*b.n,a.d*b.d);function fmt(a){if(a.d===1)return ''+a.n;return a.n+'/'+a.d}function mix(a){let w=Math.floor(a.n/a.d),r=a.n%a.d;return w?`${w} ${r}/${a.d}`:fmt(a)}function parse(v){v=v.trim().replace(/\s+/g,' ');let m=v.match(/^(\d+) (\d+)\/(\d+)$/);if(m&&+m[3])return F(+m[1]*+m[3]+ +m[2],+m[3]);m=v.match(/^(-?\d+)\s*\/\s*(\d+)$/);if(m&&+m[2])return F(+m[1],+m[2]);if(/^-?\d+$/.test(v))return F(+v);return null}function show(id){for(const x of ['a','b','practice','finish'])$(x).classList.toggle('hidden',x!==id)}let rewardRound=crypto.randomUUID();function begin(m){rewardRound=crypto.randomUUID();mode=m;number=0;correct=0;show('practice');$('modeTag').textContent='Theory '+mode;newQuestion()}function fraction(){let d=rnd(2,9),n=rnd(1,d-1);return F(n,d)}function newQuestion(){if(number===10){$('summary').textContent=`${correct} out of 10 correct on the first try (${correct*10}%).`;show('finish');return}number++;tries=0;let level=+$('level').value,a=fraction(),b=fraction(),operator='';if(mode==='A'){operator=Math.random()<.5?'+':'−';if(level===0)b=F(rnd(1,8),a.d);if(level===2){a=add(F(rnd(1,3)),a);b=add(F(rnd(1,2)),b)}if(operator==='−'&&a.n*b.d<b.n*a.d)[a,b]=[b,a];answerValue=operator==='+'?add(a,b):sub(a,b)}else{operator='×';if(level===0)a=F(rnd(2,8));if(level===2){a=add(F(rnd(1,3)),a);b=add(F(rnd(1,3)),b)}answerValue=mul(a,b)}$('question').textContent=`${level===2?mix(a):fmt(a)} ${operator} ${level===2?mix(b):fmt(b)} = ?`;$('progress').textContent=`Question ${number} of 10`;$('answer').value='';$('feedback').textContent='';$('hint').textContent='Simplify your answer as much as possible.';$('next').disabled=true;$('form').querySelector('button').disabled=false;$('score').textContent=`First-try correct: ${correct} / ${number-1}`;$('answer').focus()}$('form').addEventListener('submit',e=>{e.preventDefault();let x=parse($('answer').value);if(!x){$('feedback').textContent='Enter a whole number, fraction (3/4), or mixed number (1 1/2).';$('feedback').className='feedback incorrect';return}tries++;if(x.n===answerValue.n&&x.d===answerValue.d){if(tries===1){correct++;if(false)window.MathfinityRewards.award(1,'2.3 Fractions '+mode,rewardRound+'-'+number);}$('feedback').textContent='Correct! ✓';$('feedback').className='feedback correct';$('next').disabled=false;$('form').querySelector('button').disabled=true}else{$('feedback').textContent='Not quite. Try again.';$('feedback').className='feedback incorrect';if(tries>=2)$('hint').textContent='Hint: simplify to '+fmt(answerValue)}});$('chooseA').onclick=()=>show('a');$('chooseB').onclick=()=>show('b');$('toB').onclick=()=>show('b');$('backA').onclick=()=>show('a');$('practiceA').onclick=()=>begin('A');$('practiceB').onclick=()=>begin('B');$('next').onclick=newQuestion;$('switchTheory').onclick=()=>show(mode==='A'?'a':'b');$('again').onclick=()=>begin(mode);
+if(false)begin('A');
+</script></body></html>
