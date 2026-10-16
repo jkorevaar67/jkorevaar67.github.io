@@ -97,6 +97,56 @@ font-weight:750;background:#fff;color:#245c4c;border:1px solid #d5e7d9;text-alig
 body.mathfinity-exercise #mathfinityRewards,
 body.mathfinity-exercise .rewards-panel{display:none!important}
 </style>
+<style id="mathfinity-uniform-nav-2026">
+/* One consistent Mathfinity navigation across every English page. */
+html, body { margin:0; }
+body > nav.mathfinity-global-nav {
+  box-sizing:border-box !important; display:block !important;
+  position:sticky !important; top:0 !important; z-index:1000 !important;
+  width:100% !important; max-width:none !important;
+  margin:0 !important; padding:0 16px !important;
+  min-height:62px !important; height:62px !important;
+  background:#f9fcfa !important; border:0 !important;
+  border-bottom:1px solid #d6e6db !important;
+  box-shadow:0 2px 9px #244e3610 !important;
+  text-align:left !important; transform:none !important;
+}
+body > nav.mathfinity-global-nav > .nav-inner {
+  box-sizing:border-box !important; display:flex !important;
+  flex-wrap:nowrap !important; align-items:stretch !important;
+  justify-content:flex-start !important; gap:4px !important;
+  width:100% !important; max-width:1150px !important;
+  height:61px !important; min-height:61px !important;
+  padding:0 !important; margin:0 auto !important;
+  overflow-x:auto !important; overflow-y:hidden !important;
+  scrollbar-width:thin;
+}
+body > nav.mathfinity-global-nav > .nav-inner > a {
+  box-sizing:border-box !important; display:inline-flex !important;
+  flex:0 0 auto !important; align-items:center !important;
+  justify-content:center !important; height:61px !important;
+  min-height:61px !important; margin:0 !important;
+  padding:0 14px !important; border-radius:0 !important;
+  background:transparent !important; color:#315e50 !important;
+  font:700 14px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif !important;
+  white-space:nowrap !important; text-decoration:none !important;
+}
+body > nav.mathfinity-global-nav > .nav-inner > a:hover,
+body > nav.mathfinity-global-nav > .nav-inner > a[aria-current='page'] {
+  background:#e0f1e6 !important; color:#176248 !important;
+}
+@media(max-width:760px){
+  body > nav.mathfinity-global-nav {padding:0 8px !important;}
+  body > nav.mathfinity-global-nav > .nav-inner > a {padding:0 11px !important;font-size:13px !important;}
+}
+</style>
+<style id="mathfinity-single-nav-22">#exerciseNav{display:none!important}</style>
+<style id="mathfinity-remove-legacy-ui-2026">
+/* Hide only duplicate legacy UI; keep reward syncing code running for Test. */
+#mathfinityRewards, .rewards-panel, #exerciseNav {display:none !important;}
+header > nav:not(.mathfinity-global-nav) {display:none !important;}
+/* Keep lesson section tabs used by 2.1 functioning. */
+</style>
 </head>
 <body class="mathfinity-test"><div class="mode-banner">⭐ Test page<br><small>Earn reward points for correct first attempts</small></div><nav class="mathfinity-global-nav" aria-label="Mathfinity main navigation">
 <div class="nav-inner">
@@ -104,7 +154,7 @@ body.mathfinity-exercise .rewards-panel{display:none!important}
 <a href="choose-topic.html" data-mnav="choose">📚 Choose a Chapter</a>
 <a href="index.html#help" data-mnav="help">💡 Need help?</a>
 <a href="student-of-the-week.html" data-mnav="week">🌟 Student of the Week</a>
-<a href="choose-avatar.html" data-mnav="avatar">🎭 Choose Avatar</a></div></nav><header>
+</div></nav><header>
 <div class="brand">
 <svg class="brand-logo" viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mathfinity infinity logo"><rect x="3" y="3" width="114" height="94" rx="22" fill="white" fill-opacity=".13"/><path d="M60 50C43 20 15 20 15 50S43 80 60 50S105 20 105 50S77 80 60 50" fill="none" stroke="#70f4dc" stroke-width="9" stroke-linecap="round"/><circle cx="60" cy="50" r="5" fill="#ffce7c"/></svg>
 <div><div class="brand-name">Mathfinity</div><div class="brand-tagline">Endless ways to learn.</div></div>
@@ -124,28 +174,54 @@ body.mathfinity-exercise .rewards-panel{display:none!important}
 <section class="card hidden" id="goodbye"><h2>See you next time! 👋</h2><p>Well done for practising today.</p><button id="homeButton">Back to start</button></section>
 </main><div class="footer small">Mathfinity · Endless ways to learn.</div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-<script>(function(){
+<script id="mathfinity-direct-test-points">
+(function(){
 'use strict';
 const PROFILE='jkoMathLabStudentV3';
 const URL='https://wgocbnhtmzxalvwlpvyo.supabase.co';
 const KEY='sb_publishable_0yRUp4LVsYdBcdmwLYfqxg_soc0fpQB';
-let syncing=false,loading=false;
-const avatars=[{id:'owl',name:'Wise Owl',icon:'🦉',points:5},{id:'fox',name:'Clever Fox',icon:'🦊',points:15},{id:'rocket',name:'Space Explorer',icon:'👩‍🚀',points:30}];
-function read(key,fallback){try{return JSON.parse(localStorage.getItem(key))||fallback}catch{return fallback}}
-function write(key,value){try{localStorage.setItem(key,JSON.stringify(value))}catch{}}
-function person(){const p=read(PROFILE,{});const name=String(p.name||'').trim(),className=String(p.className||'').trim().toUpperCase().replace(/\s+/g,' ');return name&&['TVWO 1A','TVWO 1B'].includes(className)?{...p,name,className}:null}
-function storeKey(){const p=person();return p?'mathfinityRewardsV1:'+p.className+'|'+p.name.trim().toLowerCase():null}
-function wallet(){return read(storeKey(),{points:0,avatar:'star',events:[],credited:[]})}
-function today(){return new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Amsterdam',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date())}
-function client(){return window.supabase?window.supabase.createClient(URL,KEY):null}
-function message(value){const el=document.getElementById('rewardMessage');if(el)el.textContent=value}
-function render(){const p=person(),panel=document.getElementById('mathfinityRewards');if(!panel)return;panel.hidden=!p;if(!p)return;const w=wallet(),icon=(avatars.find(a=>a.id===w.avatar)||{icon:'⭐'}).icon;document.getElementById('rewardIdentity').textContent=icon+' '+p.name;document.getElementById('rewardPoints').textContent=w.points+' reward points';const area=document.getElementById('avatarChoices');area.replaceChildren();avatars.forEach(a=>{const button=document.createElement('button');button.type='button';button.className='reward-avatar';button.disabled=w.points<a.points;button.setAttribute('aria-pressed',String(w.avatar===a.id));button.textContent=a.icon+' '+a.name+' · '+(w.points<a.points?a.points+' points to unlock':'Unlocked');button.onclick=()=>{const latest=wallet();if(latest.points<a.points)return;latest.avatar=a.id;write(storeKey(),latest);render();message('Avatar selected. Your points stay yours!')};area.append(button)});const next=avatars.find(a=>w.points<a.points);document.getElementById('rewardProgress').textContent=next?(next.points-w.points)+' more points to unlock '+next.name+'.':'All three avatars unlocked!';}
-async function sync(){if(syncing||!person())return;const db=client();if(!db){message('Rewards are saved here. Connect to the internet to sync your daily points.');return}syncing=true;try{let auth=await db.auth.getUser();let user=auth.data&&auth.data.user;if(!user){const signed=await db.auth.signInAnonymously();if(signed.error)throw signed.error;user=signed.data.user}const initialKey=storeKey();const pending=wallet().events.filter(e=>!e.synced);for(const event of pending){if(storeKey()!==initialKey)break;if(event.day!==today()){const w=read(initialKey,{});const match=w.events.find(e=>e.id===event.id);if(match)match.synced=true;write(initialKey,w);continue}const response=await db.from('mathfinity_point_events').insert({event_id:event.id,user_id:user.id,student_name:event.name,class_name:event.className,topic:event.topic,points:event.points});if(response.error&&response.error.code!=='23505')throw response.error;const latest=read(initialKey,{});const match=latest.events.find(e=>e.id===event.id);if(match)match.synced=true;write(initialKey,latest)}message('Reward points saved. Daily points synced.')}catch{message('Your reward points are saved on this device. Daily points are waiting for the database connection.')}finally{syncing=false}}
-async function leaderboard(){if(loading||!person())return;loading=true;const el=document.getElementById('dailyWinner');el.textContent='Loading today’s class leaders…';try{const db=client();if(!db)throw Error('offline');const result=await db.rpc('mathfinity_daily_leaders',{selected_class:person().className});if(result.error)throw result.error;const rows=result.data||[];el.textContent=rows.length?'🏆 '+person().className+' · '+rows.map(r=>r.display_name).join(' & ')+' · '+rows[0].points+' points today':'No points recorded yet today for '+person().className+'. Be the first!'}catch{el.textContent='The class winner will appear here after the database setup is active.'}finally{loading=false}}
-function award(points,topic,token){const p=person();if(!p||!Number.isSafeInteger(points)||points<=0)return;const w=wallet();const credit=today()+':'+topic+':'+token;if(w.credited.includes(credit))return;w.credited.push(credit);w.points+=points;w.events.push({id:crypto.randomUUID(),day:today(),name:p.name.trim(),className:p.className,topic,points,synced:false});write(storeKey(),w);render();message('+'+points+' reward point'+(points===1?'':'s')+'!');sync().then(leaderboard)}
-window.MathfinityRewards={award,refresh:()=>{render();sync().then(leaderboard)},today};
-const panel=document.createElement('section');panel.id='mathfinityRewards';panel.className='rewards-panel';panel.hidden=true;panel.innerHTML='<div class="rewards-top"><strong id="rewardIdentity"></strong><span id="rewardPoints"></span></div><details><summary>🎁 My avatars &amp; today’s class leaders</summary><p id="rewardProgress"></p><div id="avatarChoices" class="avatar-choices"></div><p class="reward-small">Earn 1 point per independently completed question. Hints are free; revealed answers earn no point. Avatars are saved in this browser. Repeating the same Operations question today earns no extra points.</p><p id="dailyWinner" aria-live="polite"></p><button type="button" id="refreshWinner" class="reward-avatar">↻ Refresh class leaders</button><p class="reward-small">Today’s leader can change until midnight (Netherlands time). Equal scores share first place.</p></details><p id="rewardMessage" class="reward-small" aria-live="polite"></p>';
-document.querySelector('main').prepend(panel);const css=document.createElement('style');css.textContent='.rewards-panel{background:#fff8e8;border:2px solid #f5d88e;border-radius:18px;padding:16px 20px;margin:0 auto 20px;max-width:720px;color:#193047}.rewards-panel[hidden]{display:none}.rewards-top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.rewards-panel summary{cursor:pointer;font-weight:700;padding:12px 0}.rewards-panel details{background:transparent;padding:0;margin:6px 0 0}.avatar-choices{display:flex;gap:10px;flex-wrap:wrap}.reward-avatar{font:inherit;border:2px solid #c6b6f5;background:#f5f1ff;color:#5439c4;border-radius:12px;padding:10px 12px;cursor:pointer}.reward-avatar[aria-pressed=true]{border-color:#008e89;background:#e8faf3}.reward-avatar:disabled{opacity:.6;background:#f1f1f1;color:#536478;cursor:not-allowed}.reward-small{font-size:.85rem;line-height:1.5;margin:10px 0 0}.reward-avatar:focus-visible{outline:3px solid #6246d9;outline-offset:3px}';document.head.append(css);document.getElementById('refreshWinner').onclick=()=>sync().then(leaderboard);window.addEventListener('online',()=>sync().then(leaderboard));if(location.pathname.endsWith('index.html')||!location.pathname.split('/').pop()){for(const id of ['studentName','studentClass']){const field=document.getElementById(id);if(field)field.addEventListener('change',()=>{const name=document.getElementById('studentName').value.trim(),className=document.getElementById('studentClass').value;if(name&&['TVWO 1A','TVWO 1B'].includes(className)){write(PROFILE,{name,className});render();leaderboard()}})}}render();sync().then(leaderboard);
+const QUEUE='mathfinityTestPendingV1';
+const CREDIT='mathfinityTestCreditedV1';
+let busy=false;
+function read(k,f){try{return JSON.parse(localStorage.getItem(k))??f}catch{return f}}
+function save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch{}}
+function person(){const p=read(PROFILE,{}),name=String(p.name||'').trim(),className=String(p.className||'').trim().toUpperCase().replace(/\s+/g,' ');return name&&['TVWO 1A','TVWO 1B'].includes(className)?{name,className}:null}
+function day(){return new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Amsterdam',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date())}
+function client(){return window.supabase?.createClient(URL,KEY)}
+function status(message,failed=false){let e=document.getElementById('testSyncStatus');if(!e){e=document.createElement('div');e.id='testSyncStatus';e.setAttribute('role','status');e.style.cssText='position:fixed;right:12px;bottom:12px;z-index:9999;max-width:300px;padding:9px 13px;border-radius:12px;font:600 13px system-ui;box-shadow:0 3px 14px #0002';document.body.append(e)}e.style.background=failed?'#fff0e8':'#e5f5eb';e.style.color='#225443';e.textContent=message}
+async function sync(){
+ if(busy||!person())return;
+ const db=client();if(!db){status('Points waiting for internet connection',true);return}
+ busy=true;
+ try{
+  let {data,error}=await db.auth.getUser();if(error&&!data?.user)console.warn('Mathfinity auth:',error);
+  let user=data?.user;
+  if(!user){const login=await db.auth.signInAnonymously();if(login.error)throw login.error;user=login.data.user}
+  for(const event of read(QUEUE,[])){
+   const response=await db.from('mathfinity_point_events').insert({
+     event_id:event.id,user_id:user.id,student_name:event.name,class_name:event.className,topic:event.topic,points:event.points
+   });
+   if(response.error&&response.error.code!=='23505')throw response.error;
+   save(QUEUE,read(QUEUE,[]).filter(e=>e.id!==event.id));
+  }
+  status('Test points saved to Student of the Week ✓');
+ }catch(error){console.error('Mathfinity test database save failed:',error);status('Point not yet saved: '+String(error.message||error),true)}
+ finally{busy=false}
+}
+function award(points,topic,token){
+ const p=person();if(!p||!Number.isSafeInteger(points)||points<=0)return;
+ const credit=[day(),p.className,p.name.toLowerCase(),topic,token].join('|');
+ const credited=read(CREDIT,[]);
+ if(credited.includes(credit))return;
+ credited.push(credit);save(CREDIT,credited);
+ const pending=read(QUEUE,[]);
+ pending.push({id:crypto.randomUUID(),name:p.name,className:p.className,topic,points});
+ save(QUEUE,pending);
+ status('Saving test point…');void sync();
+}
+window.MathfinityRewards={award,refresh:sync,today:day};
+window.addEventListener('online',()=>void sync());
+void sync();
 })();
 </script><script>
 'use strict';

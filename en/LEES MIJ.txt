@@ -1,13 +1,8 @@
-MATHFINITY – CORRECTIE PUNTENTELLING
-
-Upload de 9 HTML-bestanden rechtstreeks in GitHub map en (vervang de bestaande).
-
-- Learn: geen nieuwe beloningspunten, ook niet bij oefenvragen in de theorieles.
-- Practise: 1 beloningspunt per zelfstandig goed beantwoorde vraag op de eerste poging.
-- Paragraaf 2.1 en 2.2: punten alleen bij openen via ⭐ Practise.
-- Paragraaf 2.3 en 2.4: punten toegevoegd aan bestaande beloningsportemonnee.
-- Hoofdpagina Practise: punten toegevoegd.
-- Bestaande localStorage-gegevens blijven behouden; bestaande punten worden niet gewist.
-
-LET OP: dit is een codecorrectie, niet live getest op GitHub of Supabase.
-De al eerder onterecht toegekende punten worden NIET automatisch teruggedraaid.
+STAP 1 - ALLEEN TESTPAGINA'S
+Upload de vier HTML-bestanden rechtstreeks naar de map en op GitHub.
+De grote lokale Reward Points-module is verwijderd van deze vier Test-pagina's.
+Nieuwe verdiende punten worden rechtstreeks als gebeurtenissen naar Supabase verstuurd.
+Alleen een kleine tijdelijke wachtrij voor nog niet bevestigde verzoeken blijft in de browser (om verlies bij netwerkstoring te voorkomen); geen lokale puntentotalen.
+Student of the Week en Exercise zijn niet gewijzigd.
+BELANGRIJK: dit is niet live getest. Test een nieuwe eerste-poging-goed vraag en controleer in Supabase mathfinity_point_events.
+Oude lokale reward points worden niet gewist of gemigreerd; hierdoor worden ze niet onbedoeld dubbel geteld.

@@ -1,4 +1,53 @@
-<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mathfinity ∞ | 2.1 Operations</title><style>
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mathfinity ∞ | 2.1 Operations</title><style id="mathfinity-uniform-nav-2026">
+/* One consistent Mathfinity navigation across every English page. */
+html, body { margin:0; }
+body > nav.mathfinity-global-nav {
+  box-sizing:border-box !important; display:block !important;
+  position:sticky !important; top:0 !important; z-index:1000 !important;
+  width:100% !important; max-width:none !important;
+  margin:0 !important; padding:0 16px !important;
+  min-height:62px !important; height:62px !important;
+  background:#f9fcfa !important; border:0 !important;
+  border-bottom:1px solid #d6e6db !important;
+  box-shadow:0 2px 9px #244e3610 !important;
+  text-align:left !important; transform:none !important;
+}
+body > nav.mathfinity-global-nav > .nav-inner {
+  box-sizing:border-box !important; display:flex !important;
+  flex-wrap:nowrap !important; align-items:stretch !important;
+  justify-content:flex-start !important; gap:4px !important;
+  width:100% !important; max-width:1150px !important;
+  height:61px !important; min-height:61px !important;
+  padding:0 !important; margin:0 auto !important;
+  overflow-x:auto !important; overflow-y:hidden !important;
+  scrollbar-width:thin;
+}
+body > nav.mathfinity-global-nav > .nav-inner > a {
+  box-sizing:border-box !important; display:inline-flex !important;
+  flex:0 0 auto !important; align-items:center !important;
+  justify-content:center !important; height:61px !important;
+  min-height:61px !important; margin:0 !important;
+  padding:0 14px !important; border-radius:0 !important;
+  background:transparent !important; color:#315e50 !important;
+  font:700 14px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif !important;
+  white-space:nowrap !important; text-decoration:none !important;
+}
+body > nav.mathfinity-global-nav > .nav-inner > a:hover,
+body > nav.mathfinity-global-nav > .nav-inner > a[aria-current='page'] {
+  background:#e0f1e6 !important; color:#176248 !important;
+}
+@media(max-width:760px){
+  body > nav.mathfinity-global-nav {padding:0 8px !important;}
+  body > nav.mathfinity-global-nav > .nav-inner > a {padding:0 11px !important;font-size:13px !important;}
+}
+</style>
+<style id="mathfinity-remove-legacy-ui-2026">
+/* Hide only duplicate legacy UI; keep reward syncing code running for Test. */
+#mathfinityRewards, .rewards-panel, #exerciseNav {display:none !important;}
+header > nav:not(.mathfinity-global-nav) {display:none !important;}
+/* Keep lesson section tabs used by 2.1 functioning. */
+</style>
+<style>
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,Segoe UI,sans-serif;color:#193047;background:linear-gradient(145deg,#e8f8f6,#e9e8ff);line-height:1.65}header{background:#6246d9;color:white;padding:28px 20px;text-align:center}h1{margin:0;font-size:2.3rem}header p{margin:4px}main{max-width:900px;margin:24px auto;padding:0 16px}nav{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}button{font:inherit;font-weight:700;border:0;border-radius:12px;background:#6246d9;color:white;padding:11px 19px;cursor:pointer}nav button{background:white;color:#6246d9}nav button[aria-selected=true]{background:#6246d9;color:white}.card{background:white;border-radius:22px;padding:clamp(20px,4vw,36px);box-shadow:0 12px 35px #24335a1a;margin-bottom:20px}h2{color:#6246d9;margin-top:0}h3{margin-top:0}.box{background:#f6f4ff;border-left:5px solid #6246d9;border-radius:12px;padding:18px;margin:18px 0}.teal{background:#effaf6;border-color:#008e89}.orange{background:#fff4e9;border-color:#ed754e}table{width:100%;border-collapse:collapse}td,th{text-align:left;padding:10px;border-bottom:1px solid #dce2ed}.table-wrap{overflow-x:auto}.math{font-size:1.35rem;font-weight:700}.steps{white-space:pre-line;font-size:1.2rem}details{margin:14px 0;background:#f6f4ff;padding:14px;border-radius:12px}summary{cursor:pointer;font-weight:700}input{font:inherit;width:140px;padding:10px;border:2px solid #cbd5e1;border-radius:10px}input:focus,button:focus-visible,summary:focus-visible{outline:3px solid #b6a6ff}form{border-top:1px solid #dce2ed;padding:18px 0}form p{margin:4px 0 12px}.feedback{min-height:28px;font-weight:700}.good{color:#00796d}.warn{color:#a94422}.badge{font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;color:#008e89;font-weight:750}.hidden{display:none}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}footer{text-align:center;padding:20px;color:#536478}@media(max-width:500px){td,th{padding:8px;font-size:.9rem}nav button{flex:1}h1{font-size:1.8rem}}
 
 /* Mathfinity answer fields */
@@ -61,7 +110,7 @@ body > nav.mathfinity-global-nav a[aria-current=page] {
 <a href="choose-topic.html" data-mnav="choose">📚 Choose a Chapter</a>
 <a href="index.html#help" data-mnav="help">💡 Need help?</a>
 <a href="student-of-the-week.html" data-mnav="week">🌟 Student of the Week</a>
-<a href="choose-avatar.html" data-mnav="avatar">🎭 Choose Avatar</a></div></nav><header><h1>Mathfinity ∞</h1><p>Think. Solve. Grow.</p><p>Chapter 2 · Numbers and operations · 2.1 Operations</p></header><main><p id="learnerIdentity" class="badge"></p><p><a href="index.html" style="color:#6246d9;font-weight:700">⌂ Home · Choose a lesson</a></p><section class="card" id="choose"><div class="badge">Choose your lesson</div><h2>Welcome to Mathfinity</h2><p>Choose your year group, chapter and lesson.</p><div class="box"><label for="year"><strong>Year group</strong></label><br><select id="year" style="font:inherit;padding:10px;border-radius:10px;width:100%;margin:8px 0 16px"><option>TVWO 1</option></select><label for="chapter"><strong>Chapter</strong></label><br><select id="chapter" style="font:inherit;padding:10px;border-radius:10px;width:100%;margin:8px 0 16px"><option>Chapter 2 · Numbers and operations</option></select><label for="lesson"><strong>Lesson</strong></label><br><select id="lesson" style="font:inherit;padding:10px;border-radius:10px;width:100%;margin:8px 0 16px"><option>2.1 Operations · Theory A and Theory B</option></select><button id="openLesson">Open lesson →</button></div><p><a href="index.html" style="color:#6246d9;font-weight:700">← Mathfinity home · Choose another topic</a></p><p>More chapters and year groups will be added here.</p></section><div id="lessonContent" class="hidden"><p><a href="index.html" style="color:#6246d9;font-weight:700">⌂ Home</a></p><p class="badge">TVWO 1 · Chapter 2 · 2.1 Operations</p><nav aria-label="Lesson sections"><button data-tab="a" aria-selected="true">Theory &amp; explanation · A</button><button data-tab="b" aria-selected="false">Theory B</button><button data-tab="practice" aria-selected="false">Practise</button></nav>
+</div></nav><header><h1>Mathfinity ∞</h1><p>Think. Solve. Grow.</p><p>Chapter 2 · Numbers and operations · 2.1 Operations</p></header><main><p id="learnerIdentity" class="badge"></p><p><a href="index.html" style="color:#6246d9;font-weight:700">⌂ Home · Choose a lesson</a></p><section class="card" id="choose"><div class="badge">Choose your lesson</div><h2>Welcome to Mathfinity</h2><p>Choose your year group, chapter and lesson.</p><div class="box"><label for="year"><strong>Year group</strong></label><br><select id="year" style="font:inherit;padding:10px;border-radius:10px;width:100%;margin:8px 0 16px"><option>TVWO 1</option></select><label for="chapter"><strong>Chapter</strong></label><br><select id="chapter" style="font:inherit;padding:10px;border-radius:10px;width:100%;margin:8px 0 16px"><option>Chapter 2 · Numbers and operations</option></select><label for="lesson"><strong>Lesson</strong></label><br><select id="lesson" style="font:inherit;padding:10px;border-radius:10px;width:100%;margin:8px 0 16px"><option>2.1 Operations · Theory A and Theory B</option></select><button id="openLesson">Open lesson →</button></div><p><a href="index.html" style="color:#6246d9;font-weight:700">← Mathfinity home · Choose another topic</a></p><p>More chapters and year groups will be added here.</p></section><div id="lessonContent" class="hidden"><p><a href="index.html" style="color:#6246d9;font-weight:700">⌂ Home</a></p><p class="badge">TVWO 1 · Chapter 2 · 2.1 Operations</p><nav aria-label="Lesson sections"><button data-tab="a" aria-selected="true">Theory &amp; explanation · A</button><button data-tab="b" aria-selected="false">Theory B</button><button data-tab="practice" aria-selected="false">Practise</button></nav>
 <section id="a" class="card"><div class="badge">First theory lesson · Part A</div><h2>Sum, difference, product and quotient</h2><p><strong>Your goal:</strong> recognise the four operations and use their mathematical names.</p><div class="table-wrap"><table><thead><tr><th>Operation</th><th>Name of the result</th><th>Example</th></tr></thead><tbody><tr><td>Addition (+)</td><td>Sum</td><td>8 + 11 = 19</td></tr><tr><td>Subtraction (−)</td><td>Difference</td><td>12 − 7 = 5</td></tr><tr><td>Multiplication (× or ·)</td><td>Product</td><td>3 × 8 = 24</td></tr><tr><td>Division (÷)</td><td>Quotient</td><td>24 ÷ 3 = 8</td></tr></tbody></table></div><div class="box"><h3>1. Sum and terms</h3><p>Adding numbers gives their <strong>sum</strong>. The numbers you add are called <strong>terms</strong>.</p><div class="math">8 + 11 = 19</div><p>8 and 11 are the terms; 19 is their sum.</p></div><div class="box teal"><h3>2. Difference</h3><p>Subtracting one number from another gives their <strong>difference</strong>. Keep the numbers in the stated order.</p><div class="math">12 − 7 = 5</div><p>The difference between 12 and 7 is 5.</p></div><div class="box"><h3>3. Product and factors</h3><p>Multiplying numbers gives their <strong>product</strong>. The numbers you multiply are called <strong>factors</strong>.</p><div class="math">3 × 8 = 24</div><p>3 and 8 are factors; 24 is their product. Also: 3 × 8 = 8 + 8 + 8.</p></div><div class="box teal"><h3>4. Quotient</h3><p>Dividing one number by another gives their <strong>quotient</strong>. Division and multiplication are related.</p><div class="math">24 ÷ 3 = 8 because 3 × 8 = 24</div><p>The quotient of 24 and 3 is 8.</p></div><details><summary>Worked example · Turn words into a calculation</summary><p>Calculate the sum of the product of 4 and 5 and the quotient of 8 and 2.</p><p>Product: 4 × 5 = 20.<br>Quotient: 8 ÷ 2 = 4.<br>Sum: 20 + 4 = <strong>24</strong>.</p><p>In one calculation: (4 × 5) + (8 ÷ 2) = 24.</p></details><button data-next="b">Continue to Theory B →</button></section>
 <section id="b" class="card hidden"><div class="badge">First theory lesson · Part B</div><h2>Order of operations</h2><p><strong>Your goal:</strong> calculate in the correct order, including brackets.</p><div class="box teal"><h3>The three rules</h3><ol><li><strong>Brackets first.</strong> Calculate what is inside the brackets. Use these same rules inside them.</li><li><strong>Multiply and divide from left to right.</strong> They have equal priority.</li><li><strong>Add and subtract from left to right.</strong> They also have equal priority.</li></ol></div><div class="box"><h3>Multiplication before addition</h3><div class="steps">7 + 5 · 8
 = 7 + 40
@@ -75,28 +124,54 @@ body > nav.mathfinity-global-nav a[aria-current=page] {
 = 8 · 3 − 18 ÷ 9
 = 24 − 2
 = 22</div><p>Start with the inner brackets, then the outer brackets. Next multiply and divide. Finally subtract.</p></details><div class="box orange"><strong>Avoid this mistake:</strong> 2 + 7 · 5 is 37, because 7 · 5 = 35. Adding 2 and 7 first would give 45.</div><button data-next="practice">Check your understanding →</button></section>
-<section id="practice" class="card hidden"><div class="badge">Practise · A and B separately</div><h2>Check your understanding</h2><p>Write the calculation in your notebook, then enter the result. A hint is free. Revealing the answer with its explanation costs the independent point for that question.</p><p id="score" aria-live="polite"></p><h3>Theory A · Mathematical names</h3><div id="qa"></div><h3>Theory B · Order of operations</h3><div id="qb"></div><button id="reset">Reset this lesson</button><p>Progress is saved in this browser when storage is available.</p></section></div></main><footer>Mathfinity ∞ · 2.1 Operations · Adapted explanations and practice based on Theory A and B.</footer><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script><script>(function(){
+<section id="practice" class="card hidden"><div class="badge">Practise · A and B separately</div><h2>Check your understanding</h2><p>Write the calculation in your notebook, then enter the result. A hint is free. Revealing the answer with its explanation costs the independent point for that question.</p><p id="score" aria-live="polite"></p><h3>Theory A · Mathematical names</h3><div id="qa"></div><h3>Theory B · Order of operations</h3><div id="qb"></div><button id="reset">Reset this lesson</button><p>Progress is saved in this browser when storage is available.</p></section></div></main><footer>Mathfinity ∞ · 2.1 Operations · Adapted explanations and practice based on Theory A and B.</footer><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script><script id="mathfinity-direct-test-points">
+(function(){
 'use strict';
 const PROFILE='jkoMathLabStudentV3';
 const URL='https://wgocbnhtmzxalvwlpvyo.supabase.co';
 const KEY='sb_publishable_0yRUp4LVsYdBcdmwLYfqxg_soc0fpQB';
-let syncing=false,loading=false;
-const avatars=[{id:'owl',name:'Wise Owl',icon:'🦉',points:5},{id:'fox',name:'Clever Fox',icon:'🦊',points:15},{id:'rocket',name:'Space Explorer',icon:'👩‍🚀',points:30}];
-function read(key,fallback){try{return JSON.parse(localStorage.getItem(key))||fallback}catch{return fallback}}
-function write(key,value){try{localStorage.setItem(key,JSON.stringify(value))}catch{}}
-function person(){const p=read(PROFILE,{});const name=String(p.name||'').trim(),className=String(p.className||'').trim().toUpperCase().replace(/\s+/g,' ');return name&&['TVWO 1A','TVWO 1B'].includes(className)?{...p,name,className}:null}
-function storeKey(){const p=person();return p?'mathfinityRewardsV1:'+p.className+'|'+p.name.trim().toLowerCase():null}
-function wallet(){return read(storeKey(),{points:0,avatar:'star',events:[],credited:[]})}
-function today(){return new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Amsterdam',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date())}
-function client(){return window.supabase?window.supabase.createClient(URL,KEY):null}
-function message(value){const el=document.getElementById('rewardMessage');if(el)el.textContent=value}
-function render(){const p=person(),panel=document.getElementById('mathfinityRewards');if(!panel)return;panel.hidden=!p;if(!p)return;const w=wallet(),icon=(avatars.find(a=>a.id===w.avatar)||{icon:'⭐'}).icon;document.getElementById('rewardIdentity').textContent=icon+' '+p.name;document.getElementById('rewardPoints').textContent=w.points+' reward points';const area=document.getElementById('avatarChoices');area.replaceChildren();avatars.forEach(a=>{const button=document.createElement('button');button.type='button';button.className='reward-avatar';button.disabled=w.points<a.points;button.setAttribute('aria-pressed',String(w.avatar===a.id));button.textContent=a.icon+' '+a.name+' · '+(w.points<a.points?a.points+' points to unlock':'Unlocked');button.onclick=()=>{const latest=wallet();if(latest.points<a.points)return;latest.avatar=a.id;write(storeKey(),latest);render();message('Avatar selected. Your points stay yours!')};area.append(button)});const next=avatars.find(a=>w.points<a.points);document.getElementById('rewardProgress').textContent=next?(next.points-w.points)+' more points to unlock '+next.name+'.':'All three avatars unlocked!';}
-async function sync(){if(syncing||!person())return;const db=client();if(!db){message('Rewards are saved here. Connect to the internet to sync your daily points.');return}syncing=true;try{let auth=await db.auth.getUser();let user=auth.data&&auth.data.user;if(!user){const signed=await db.auth.signInAnonymously();if(signed.error)throw signed.error;user=signed.data.user}const initialKey=storeKey();const pending=wallet().events.filter(e=>!e.synced);for(const event of pending){if(storeKey()!==initialKey)break;if(event.day!==today()){const w=read(initialKey,{});const match=w.events.find(e=>e.id===event.id);if(match)match.synced=true;write(initialKey,w);continue}const response=await db.from('mathfinity_point_events').insert({event_id:event.id,user_id:user.id,student_name:event.name,class_name:event.className,topic:event.topic,points:event.points});if(response.error&&response.error.code!=='23505')throw response.error;const latest=read(initialKey,{});const match=latest.events.find(e=>e.id===event.id);if(match)match.synced=true;write(initialKey,latest)}message('Reward points saved. Daily points synced.')}catch{message('Your reward points are saved on this device. Daily points are waiting for the database connection.')}finally{syncing=false}}
-async function leaderboard(){if(loading||!person())return;loading=true;const el=document.getElementById('dailyWinner');el.textContent='Loading today’s class leaders…';try{const db=client();if(!db)throw Error('offline');const result=await db.rpc('mathfinity_daily_leaders',{selected_class:person().className});if(result.error)throw result.error;const rows=result.data||[];el.textContent=rows.length?'🏆 '+person().className+' · '+rows.map(r=>r.display_name).join(' & ')+' · '+rows[0].points+' points today':'No points recorded yet today for '+person().className+'. Be the first!'}catch{el.textContent='The class winner will appear here after the database setup is active.'}finally{loading=false}}
-function award(points,topic,token){const p=person();if(!p||!Number.isSafeInteger(points)||points<=0)return;const w=wallet();const credit=today()+':'+topic+':'+token;if(w.credited.includes(credit))return;w.credited.push(credit);w.points+=points;w.events.push({id:crypto.randomUUID(),day:today(),name:p.name.trim(),className:p.className,topic,points,synced:false});write(storeKey(),w);render();message('+'+points+' reward point'+(points===1?'':'s')+'!');sync().then(leaderboard)}
-window.MathfinityRewards={award,refresh:()=>{render();sync().then(leaderboard)},today};
-const panel=document.createElement('section');panel.id='mathfinityRewards';panel.className='rewards-panel';panel.hidden=true;panel.innerHTML='<div class="rewards-top"><strong id="rewardIdentity"></strong><span id="rewardPoints"></span></div><details><summary>🎁 My avatars &amp; today’s class leaders</summary><p id="rewardProgress"></p><div id="avatarChoices" class="avatar-choices"></div><p class="reward-small">Earn 1 point per independently completed question. Hints are free; revealed answers earn no point. Avatars are saved in this browser. Repeating the same Operations question today earns no extra points.</p><p id="dailyWinner" aria-live="polite"></p><button type="button" id="refreshWinner" class="reward-avatar">↻ Refresh class leaders</button><p class="reward-small">Today’s leader can change until midnight (Netherlands time). Equal scores share first place.</p></details><p id="rewardMessage" class="reward-small" aria-live="polite"></p>';
-document.querySelector('main').prepend(panel);const css=document.createElement('style');css.textContent='.rewards-panel{background:#fff8e8;border:2px solid #f5d88e;border-radius:18px;padding:16px 20px;margin:0 auto 20px;max-width:720px;color:#193047}.rewards-panel[hidden]{display:none}.rewards-top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.rewards-panel summary{cursor:pointer;font-weight:700;padding:12px 0}.rewards-panel details{background:transparent;padding:0;margin:6px 0 0}.avatar-choices{display:flex;gap:10px;flex-wrap:wrap}.reward-avatar{font:inherit;border:2px solid #c6b6f5;background:#f5f1ff;color:#5439c4;border-radius:12px;padding:10px 12px;cursor:pointer}.reward-avatar[aria-pressed=true]{border-color:#008e89;background:#e8faf3}.reward-avatar:disabled{opacity:.6;background:#f1f1f1;color:#536478;cursor:not-allowed}.reward-small{font-size:.85rem;line-height:1.5;margin:10px 0 0}.reward-avatar:focus-visible{outline:3px solid #6246d9;outline-offset:3px}';document.head.append(css);document.getElementById('refreshWinner').onclick=()=>sync().then(leaderboard);window.addEventListener('online',()=>sync().then(leaderboard));if(location.pathname.endsWith('index.html')||!location.pathname.split('/').pop()){for(const id of ['studentName','studentClass']){const field=document.getElementById(id);if(field)field.addEventListener('change',()=>{const name=document.getElementById('studentName').value.trim(),className=document.getElementById('studentClass').value;if(name&&['TVWO 1A','TVWO 1B'].includes(className)){write(PROFILE,{name,className});render();leaderboard()}})}}render();sync().then(leaderboard);
+const QUEUE='mathfinityTestPendingV1';
+const CREDIT='mathfinityTestCreditedV1';
+let busy=false;
+function read(k,f){try{return JSON.parse(localStorage.getItem(k))??f}catch{return f}}
+function save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch{}}
+function person(){const p=read(PROFILE,{}),name=String(p.name||'').trim(),className=String(p.className||'').trim().toUpperCase().replace(/\s+/g,' ');return name&&['TVWO 1A','TVWO 1B'].includes(className)?{name,className}:null}
+function day(){return new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Amsterdam',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date())}
+function client(){return window.supabase?.createClient(URL,KEY)}
+function status(message,failed=false){let e=document.getElementById('testSyncStatus');if(!e){e=document.createElement('div');e.id='testSyncStatus';e.setAttribute('role','status');e.style.cssText='position:fixed;right:12px;bottom:12px;z-index:9999;max-width:300px;padding:9px 13px;border-radius:12px;font:600 13px system-ui;box-shadow:0 3px 14px #0002';document.body.append(e)}e.style.background=failed?'#fff0e8':'#e5f5eb';e.style.color='#225443';e.textContent=message}
+async function sync(){
+ if(busy||!person())return;
+ const db=client();if(!db){status('Points waiting for internet connection',true);return}
+ busy=true;
+ try{
+  let {data,error}=await db.auth.getUser();if(error&&!data?.user)console.warn('Mathfinity auth:',error);
+  let user=data?.user;
+  if(!user){const login=await db.auth.signInAnonymously();if(login.error)throw login.error;user=login.data.user}
+  for(const event of read(QUEUE,[])){
+   const response=await db.from('mathfinity_point_events').insert({
+     event_id:event.id,user_id:user.id,student_name:event.name,class_name:event.className,topic:event.topic,points:event.points
+   });
+   if(response.error&&response.error.code!=='23505')throw response.error;
+   save(QUEUE,read(QUEUE,[]).filter(e=>e.id!==event.id));
+  }
+  status('Test points saved to Student of the Week ✓');
+ }catch(error){console.error('Mathfinity test database save failed:',error);status('Point not yet saved: '+String(error.message||error),true)}
+ finally{busy=false}
+}
+function award(points,topic,token){
+ const p=person();if(!p||!Number.isSafeInteger(points)||points<=0)return;
+ const credit=[day(),p.className,p.name.toLowerCase(),topic,token].join('|');
+ const credited=read(CREDIT,[]);
+ if(credited.includes(credit))return;
+ credited.push(credit);save(CREDIT,credited);
+ const pending=read(QUEUE,[]);
+ pending.push({id:crypto.randomUUID(),name:p.name,className:p.className,topic,points});
+ save(QUEUE,pending);
+ status('Saving test point…');void sync();
+}
+window.MathfinityRewards={award,refresh:sync,today:day};
+window.addEventListener('online',()=>void sync());
+void sync();
 })();
 </script><script>
 'use strict';
