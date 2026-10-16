@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SOMNOVA</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3faf7;
+      color: #173f37;
+    }
+    header {
+      background: #173f37;
+      color: white;
+      padding: 24px;
+      text-align: center;
+    }
+    main {
+      max-width: 650px;
+      margin: 60px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px #00000012;
+    }
+    h1 { margin-bottom: 8px; }
+    label {
+      display: block;
+      margin-top: 22px;
+      font-weight: bold;
+    }
+    select, button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 10px;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+    select { border: 1px solid #aacfc3; }
+    button {
+      border: 0;
+      background: #168675;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .note { color: #56766e; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>✦ SOMNOVA</h1>
+    <p>Ontdek. Oefen. Groei.</p>
+  </header>
+
+  <main>
+    <h2>Welkom bij SOMNOVA!</h2>
+    <p>Kies je klas en de paragraaf waarmee je wilt oefenen.</p>
+
+    <label for="klas">Kies je klas</label>
+    <select id="klas">
+      <option>TVWO 1A</option>
+      <option>TVWO 1B</option>
+    </select>
+
+    <label for="paragraaf">Kies je paragraaf</label>
+    <select id="paragraaf">
+      <option value="2.1">2.1 Operations</option>
+      <option value="2.2">2.2 HCF and LCM</option>
+      <option value="2.3">2.3 Fractions</option>
+      <option value="2.4">2.4 Negative numbers</option>
+      <option value="2.5">2.5 Multiplying and dividing negative numbers</option>
+      <option value="2.6">2.6 Negative fractions</option>
+    </select>
+
+    <p class="note">Binnenkort kun je hier oefenen met hints en zonder punten.</p>
+    <button disabled style="opacity:.5;cursor:not-allowed">
+      ✏️ Start met oefenen — binnenkort
+    </button>
+  </main>
+</body>
+</html>
