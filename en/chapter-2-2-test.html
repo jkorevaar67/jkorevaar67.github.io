@@ -147,8 +147,22 @@ body > nav.mathfinity-global-nav > .nav-inner > a[aria-current='page'] {
 header > nav:not(.mathfinity-global-nav) {display:none !important;}
 /* Keep lesson section tabs used by 2.1 functioning. */
 </style>
-</head>
-<body class="mathfinity-test"><nav class="mathfinity-global-nav" aria-label="Mathfinity main navigation">
+<style id="mathfinity-test-calm-2026">
+:root{--mint:#e9faf3;--green:#167c66;--dark:#173c35;--coral:#ff927e;--purple:#7560da}
+html,body{background:#f5faf8!important;color:var(--dark)!important;font-family:system-ui,Arial,sans-serif!important}
+header{background:#173c35!important;color:white!important;box-shadow:none!important;border:0!important}header h1,header h2,header p,header a{color:white!important}
+main{max-width:920px!important;margin:30px auto!important;padding:0 20px!important}
+.card,section.card{background:#fff!important;border:1px solid #dceae5!important;border-radius:20px!important;box-shadow:0 7px 20px #17493b0a!important;margin:20px 0!important;padding:clamp(20px,4vw,30px)!important}
+h2,h3{color:#173c35!important}button,.btn{border-radius:12px!important}button:not(.secondary):not(.ghost),.primary{background:#167c66!important;color:white!important}
+input,select{border:1.5px solid #b7d6cc!important;border-radius:11px!important;font:inherit!important;max-width:100%}
+input[type=number]{appearance:textfield!important;-moz-appearance:textfield!important}input::-webkit-inner-spin-button,input::-webkit-outer-spin-button{-webkit-appearance:none!important;margin:0!important}
+.mode-banner{background:#e9faf3!important;color:#173c35!important;border:1px solid #c8ebdf!important;border-radius:16px!important;max-width:920px!important;margin:20px auto 0!important;padding:16px 22px!important;font-weight:750!important;text-align:center!important}
+.mathfinity-global-nav{background:#fff!important;border-bottom:1px solid #dceae5!important}
+.mathfinity-global-nav a{color:#173c35!important}
+#mathfinityRewards,.rewards-panel{display:none!important}
+@media(max-width:600px){main{padding:0 12px!important}.mode-banner{margin:12px!important}}
+</style></head>
+<body class="mathfinity-test"><div class="mode-banner">⭐ Test page<br><small>Earn reward points for correct first attempts</small></div><nav class="mathfinity-global-nav" aria-label="Mathfinity main navigation">
 <div class="nav-inner">
 <a href="index.html" data-mnav="home">⌂ Home</a>
 <a href="choose-topic.html" data-mnav="choose">📚 Choose a Chapter</a>
@@ -168,7 +182,7 @@ header > nav:not(.mathfinity-global-nav) {display:none !important;}
 <div class="lesson" id="helpDetail" aria-live="polite">Select a topic above to see an explanation and an example.</div>
 <div class="actions"><button type="button" class="secondary" id="returnToPractice">← Back to exercise</button><button type="button" data-go="learn">Full lesson</button></div></section>
 <section class="card hidden" id="results"><h2>🏆 My results</h2><p>See how your practice is going on this device.</p><div class="grid"><div class="mini"><div class="result-number" id="sessions">0</div>Completed sessions</div><div class="mini"><div class="result-number" id="totalQuestions">0</div>Questions completed</div><div class="mini"><div class="result-number" id="perfectQuestions">0</div>Perfect on first try</div></div><p id="studentResultsName" class="muted"></p><p id="lastResult" class="muted">No completed practice sessions yet.</p><p class="small muted">Your name, class, progress and results are saved in this browser on this device. Completed results can also be sent securely to your teacher when online. Do not use a shared computer.</p><div class="actions"><button data-go="start">Practise now →</button></div></section>
-<section class="card hidden" id="start"><div class="field"><label for="studentName">Your name</label><input id="studentName" maxlength="80" autocomplete="name" placeholder="First name and surname"></div><div class="field"><label for="studentClass">Your class</label><select id="studentClass" required><option value="">Choose your class</option><option value="TVWO 1A">TVWO 1A</option><option value="TVWO 1B">TVWO 1B</option></select></div><p id="welcomeStudent" class="muted"></p><div class="actions"><button type="button" id="resumeButton" class="secondary hidden">▶ Resume unfinished practice</button><button type="button" id="discardButton" class="exit hidden">Start a new session instead</button></div><h2>Practise · 2.2 HCF and LCM</h2><div class="field"><label for="practiceMethod">Choose your method</label><select id="practiceMethod"><option value="prime">Prime factors first · HCF and LCM</option><option value="listing">List all factors first · HCF and LCM</option></select></div><p id="methodDescription">First enter the factors for each number. Then calculate the HCF and LCM.</p><div class="field"><label for="numberCount">How many numbers per question?</label><select id="numberCount"><option value="2">2 numbers</option><option value="3">3 numbers</option></select></div><div class="field"><label for="questionCount">How many questions?</label><input type="number" id="questionCount" value="5" min="1" max="50"></div><p class="muted">Numbers range from 2 to 100. Write factors separately, for example: <strong>2x2x3</strong> (no powers).</p><div class="actions"><button id="startButton">Start practising →</button></div></section>
+<section class="card hidden" id="start"><div class="field"><label for="studentName">Your name</label><input id="studentName" maxlength="80" autocomplete="name" placeholder="First name and surname"></div><div class="field"><label for="studentClass">Your class</label><select id="studentClass" required><option value="">Choose your class</option><option value="TVWO 1A">TVWO 1A</option><option value="TVWO 1B">TVWO 1B</option></select></div><p id="welcomeStudent" class="muted"></p><div class="actions"><button type="button" id="resumeButton" class="secondary hidden">▶ Resume unfinished practice</button><button type="button" id="discardButton" class="exit hidden">Start a new session instead</button></div><h2>Practise · 2.2 HCF and LCM</h2><div class="field"><label for="practiceMethod">Choose your method</label><select id="practiceMethod"><option value="prime">Prime factors first · HCF and LCM</option><option value="listing">List all factors first · HCF and LCM</option></select></div><p id="methodDescription">First enter the factors for each number. Then calculate the HCF and LCM.</p><div class="field"><label for="numberCount">How many numbers per question?</label><select id="numberCount"><option value="2">2 numbers</option><option value="3">3 numbers</option></select></div><div class="field"><label for="questionCount">How many questions?</label><input type="text" inputmode="decimal" pattern="-?[0-9]+([.][0-9]+)?" id="questionCount" value="5" min="1" max="50"></div><p class="muted">Numbers range from 2 to 100. Write factors separately, for example: <strong>2x2x3</strong> (no powers).</p><div class="actions"><button id="startButton">Start practising →</button></div></section>
 <section class="card hidden" id="practice"><div class="pill" id="progress"></div><div class="numbers" id="numbers"></div><div class="confirmed hidden" id="confirmed"></div><div class="step" id="instruction"></div><button type="button" class="help-toggle" id="exerciseHelp">💡 Need help with this step?</button><div class="actions"><button type="button" class="secondary" id="littleHelp">💡 Help me a little</button><button type="button" class="secondary" id="dontKnow">📖 Answer with explanation (costs a point)</button></div><div class="help-box hidden" id="exerciseHelpBox" aria-live="polite"></div><div class="hint hidden" id="hcfHint">If there is no common prime factor, enter <strong>1</strong>.</div><form id="answerForm"><label for="answer">Your answer</label><input id="answer" autocomplete="off" spellcheck="false" placeholder="Type here" aria-describedby="feedback"><div class="feedback" id="feedback" aria-live="polite"></div><div class="actions"><button id="checkButton" type="submit">Check answer ↵</button><button id="nextButton" type="button" class="secondary" disabled>Next step →</button></div></form><p class="muted small" id="score"></p></section>
 <section class="card hidden" id="finish"><h2>★ Great work! ★</h2><p id="result" style="font-size:1.25rem;font-weight:700"></p><p>Would you like to practise again or finish?</p><div class="actions"><button id="againButton" class="secondary">Practise again ↻</button><button id="exitButton" class="exit">Finish</button></div></section>
 <section class="card hidden" id="goodbye"><h2>See you next time! 👋</h2><p>Well done for practising today.</p><button id="homeButton">Back to start</button></section>
@@ -312,19 +326,7 @@ $('studentName').addEventListener('change',()=>{});
 $('againButton').addEventListener('click',()=>show('start'));
 $('exitButton').addEventListener('click',()=>show('goodbye'));
 $('homeButton').addEventListener('click',()=>show('start'));
-refreshStudent();updateResults();
-(function openTestImmediately(){
- const p=profile();
- if(!p.name||!p.className){show('start');return;}
- const saved=getStored(PROGRESS_KEY);
- if(saved && saved.profile && saved.profile.name===p.name && canonicalClass(saved.profile.className)===p.className){
-   restoreProgress();return;
- }
- state.rewardSession=crypto.randomUUID();
- state.method='prime';state.total=5;state.count=2;
- state.completed=0;state.perfect=0;
- show('practice');nextQuestion();
-})();
+refreshStudent();show(true?'start':'learn');updateResults();
 </script><div style="text-align:center; padding:20px;">
  <a href="teacher.html" target="_blank" rel="noopener noreferrer" style="color:#6246d9; font-weight:bold;">
     🔒 Docentenomgeving

@@ -1,0 +1,89 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mathfinity · Test 2.5 · Negative multiplication and division</title><style>
+:root{--mint:#e9faf3;--green:#167c66;--dark:#173c35;--coral:#ff927e;--purple:#7560da}*{box-sizing:border-box}
+body{margin:0;background:#f5faf8;color:var(--dark);font:16px/1.55 system-ui,Arial,sans-serif}
+nav{background:#fff;border-bottom:1px solid #dceae5;padding:16px max(18px,calc((100vw - 920px)/2));display:flex;gap:20px;flex-wrap:wrap}nav a{color:var(--dark);font-weight:650;text-decoration:none}
+header{background:var(--dark);color:#fff;padding:24px max(20px,calc((100vw - 920px)/2))}header h1{margin:0;font-size:clamp(24px,4vw,34px)}header p{margin:6px 0 0;color:#c3eee1}
+main{max-width:920px;margin:30px auto;padding:0 20px}.hero{background:var(--mint);border:1px solid #c8ebdf;border-radius:20px;padding:25px}.card{background:white;border:1px solid #dceae5;border-radius:20px;padding:clamp(20px,4vw,30px);margin:20px 0;box-shadow:0 7px 20px #17493b0a}
+h2{margin:0 0 12px}.chip{display:inline-block;border-radius:50px;padding:6px 12px;background:#e5f6ee;color:#11654f;font-weight:750;font-size:13px}.problem{background:#f1f8f5;border-radius:16px;padding:24px;text-align:center;font-size:clamp(30px,5vw,44px);font-weight:750;margin:18px 0}
+label{display:block;font-weight:700;margin:12px 0 7px}input,select{font:inherit;width:100%;border:1.5px solid #b7d6cc;border-radius:11px;padding:12px;background:white;color:var(--dark)}button{font:inherit;font-weight:750;border:0;border-radius:12px;padding:12px 19px;background:var(--green);color:white;cursor:pointer}button:hover{filter:brightness(.95)}button:disabled{opacity:.5;cursor:default}.secondary{background:#e9f1ee;color:var(--dark)}.hidden{display:none!important}.row{display:grid;grid-template-columns:1fr 1fr;gap:15px}.notice{background:#edf8f4;border-radius:13px;padding:15px;margin-top:16px}.warn{background:#fff0e8}.muted{color:#54736b}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:17px}footer{text-align:center;padding:22px;color:#627970}@media(max-width:600px){.row{grid-template-columns:1fr}}
+</style></head><body>
+<nav aria-label="Mathfinity navigation"><a href="index.html">⌂ Home</a><a href="choose-topic.html">📚 Choose a Topic</a><a href="student-of-the-week.html">🌟 Student of the Week</a></nav>
+<header><h1>∞ Mathfinity</h1><p>Chapter 2 · Test 2.5 · Multiplying and dividing negative numbers</p></header>
+<main><section class="hero"><span class="chip">🏆 Test · Earn points</span><h2>Ready for a sign challenge? ✨</h2><p>10 questions · No hints · Only a correct first answer earns 1 point for Student of the Week.</p></section>
+<section class="card" id="setup"><h2>Let's get started</h2><p class="muted">Your name and class are used to save your test points.</p><div class="row"><div><label for="name">Your name</label><input id="name" type="text" autocomplete="name" placeholder="First and last name"></div><div><label for="cls">Your class</label><select id="cls"><option value="">Choose class</option><option value="TVWO 1A">TVWO 1A</option><option value="TVWO 1B">TVWO 1B</option></select></div></div><label for="level">Level</label><select id="level"><option value="basic">Basic</option><option value="intermediate">Intermediate</option><option value="challenge">Challenge</option></select><div class="actions"><button id="start">Start test →</button></div><div id="setupError" class="notice warn hidden" role="alert"></div></section>
+<section class="card hidden" id="quiz"><span class="chip" id="counter">Question 1 of 10</span><div class="problem" id="problem"></div><label for="answer">Your answer (use a dot for decimals)</label><input id="answer" type="text" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="e.g. -12 or -2.5"><div class="actions"><button id="submit">Submit answer →</button></div><p id="feedback" class="notice hidden" role="status"></p></section>
+<section class="card hidden" id="finished"><h2>Well done! 🎉</h2><p id="summary" class="notice"></p><p class="muted">Points for correct answers are sent to Student of the Week. Check the save message at the bottom of the page.</p><div class="actions"><button id="again">Try another test</button><a href="student-of-the-week.html">View Student of the Week →</a></div></section></main><footer>Mathfinity · Small steps. Big discoveries.</footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script id="mathfinity-direct-test-points">
+(function(){
+'use strict';
+const PROFILE='jkoMathLabStudentV3';
+const URL='https://wgocbnhtmzxalvwlpvyo.supabase.co';
+const KEY='sb_publishable_0yRUp4LVsYdBcdmwLYfqxg_soc0fpQB';
+const QUEUE='mathfinityTestPendingV1';
+const CREDIT='mathfinityTestCreditedV1';
+let busy=false;
+function read(k,f){try{return JSON.parse(localStorage.getItem(k))??f}catch{return f}}
+function save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch{}}
+function person(){const p=read(PROFILE,{}),name=String(p.name||'').trim(),className=String(p.className||'').trim().toUpperCase().replace(/\s+/g,' ');return name&&['TVWO 1A','TVWO 1B'].includes(className)?{name,className}:null}
+function day(){return new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Amsterdam',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date())}
+function client(){return window.supabase?.createClient(URL,KEY)}
+function status(message,failed=false){let e=document.getElementById('testSyncStatus');if(!e){e=document.createElement('div');e.id='testSyncStatus';e.setAttribute('role','status');e.style.cssText='position:fixed;right:12px;bottom:12px;z-index:9999;max-width:300px;padding:9px 13px;border-radius:12px;font:600 13px system-ui;box-shadow:0 3px 14px #0002';document.body.append(e)}e.style.background=failed?'#fff0e8':'#e5f5eb';e.style.color='#225443';e.textContent=message}
+async function sync(){
+ if(busy||!person())return;
+ const db=client();if(!db){status('Points waiting for internet connection',true);return}
+ busy=true;
+ try{
+  let {data,error}=await db.auth.getUser();if(error&&!data?.user)console.warn('Mathfinity auth:',error);
+  let user=data?.user;
+  if(!user){const login=await db.auth.signInAnonymously();if(login.error)throw login.error;user=login.data.user}
+  for(const event of read(QUEUE,[])){
+   const response=await db.from('mathfinity_point_events').insert({
+     event_id:event.id,user_id:user.id,student_name:event.name,class_name:event.className,topic:event.topic,points:event.points
+   });
+   if(response.error&&response.error.code!=='23505')throw response.error;
+   save(QUEUE,read(QUEUE,[]).filter(e=>e.id!==event.id));
+  }
+  status('Test points saved to Student of the Week ✓');
+ }catch(error){console.error('Mathfinity test database save failed:',error);status('Point not yet saved: '+String(error.message||error),true)}
+ finally{busy=false}
+}
+function award(points,topic,token){
+ const p=person();if(!p||!Number.isSafeInteger(points)||points<=0)return;
+ const credit=[day(),p.className,p.name.toLowerCase(),topic,token].join('|');
+ const credited=read(CREDIT,[]);
+ if(credited.includes(credit))return;
+ credited.push(credit);save(CREDIT,credited);
+ const pending=read(QUEUE,[]);
+ pending.push({id:crypto.randomUUID(),name:p.name,className:p.className,topic,points});
+ save(QUEUE,pending);
+ status('Saving test point…');void sync();
+}
+window.MathfinityRewards={award,refresh:sync,today:day};
+window.addEventListener('online',()=>void sync());
+void sync();
+})();
+</script>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id),rand=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+const PROFILE='jkoMathLabStudentV3';let questions=[],index=0,score=0,round='';
+function getProfile(){try{return JSON.parse(localStorage.getItem(PROFILE)||'{}')}catch{return {}}}
+const p=getProfile();$('name').value=p.name||'';$('cls').value=p.className||'';
+function make(level){let a=rand(2,12),b=rand(2,12),kind=level==='basic'?rand(0,1):level==='intermediate'?rand(0,3):rand(0,5);let x,y,op,ans;
+ switch(kind){
+ case 0:x=-a;y=b;op='×';ans=x*y;break;
+ case 1:x=-a;y=-b;op='×';ans=x*y;break;
+ case 2:x=a;y=-b;op='×';ans=x*y;break;
+ case 3:x=-a*b;y=a;op='÷';ans=-b;break;
+ case 4:x=a*b;y=-a;op='÷';ans=-b;break;
+ default:x=-a*b;y=-a;op='÷';ans=b;
+ }return {display:`${x} ${op} ${y}`,answer:ans};}
+function show(){let q=questions[index];$('counter').textContent=`Question ${index+1} of ${questions.length}`;$('problem').textContent=q.display+' = ?';$('answer').value='';$('feedback').classList.add('hidden');$('submit').disabled=false;$('answer').focus();}
+$('start').onclick=()=>{const name=$('name').value.trim().replace(/\s+/g,' '),className=$('cls').value;if(!name||!className){$('setupError').textContent='Please enter your name and choose your class.';$('setupError').classList.remove('hidden');return;}
+ localStorage.setItem(PROFILE,JSON.stringify({...getProfile(),name,className}));questions=Array.from({length:10},()=>make($('level').value));index=0;score=0;round=crypto.randomUUID();$('setup').classList.add('hidden');$('finished').classList.add('hidden');$('quiz').classList.remove('hidden');show();};
+function submit(){if($('submit').disabled)return;let value=$('answer').value.trim().replace(/\u2212/g,'-');if(!/^-?\d+(?:\.\d+)?$/.test(value)){let f=$('feedback');f.textContent='Enter a number using a dot for decimals (e.g. -2.5).';f.classList.remove('hidden');return;}
+ const correct=Number(value)===questions[index].answer;if(correct){score++;window.MathfinityRewards.award(1,'2.5 Negative Multiplication and Division',round+'-'+index);}index++;
+ if(index>=questions.length){$('quiz').classList.add('hidden');$('finished').classList.remove('hidden');$('summary').textContent=`You answered ${score} of ${questions.length} correctly and earned ${score} test point${score===1?'':'s'}.`;void window.MathfinityRewards.refresh();}else show();}
+$('submit').onclick=submit;$('answer').addEventListener('keydown',e=>{if(e.key==='Enter')submit();});$('again').onclick=()=>{$('setup').classList.remove('hidden');$('finished').classList.add('hidden');};
+})();
+</script></body></html>
