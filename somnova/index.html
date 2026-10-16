@@ -1,84 +1,14 @@
-<!DOCTYPE html>
-<html lang="nl">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SOMNOVA</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f3faf7;
-      color: #173f37;
-    }
-    header {
-      background: #173f37;
-      color: white;
-      padding: 24px;
-      text-align: center;
-    }
-    main {
-      max-width: 650px;
-      margin: 60px auto;
-      padding: 30px;
-      background: white;
-      border-radius: 20px;
-      box-shadow: 0 8px 30px #00000012;
-    }
-    h1 { margin-bottom: 8px; }
-    label {
-      display: block;
-      margin-top: 22px;
-      font-weight: bold;
-    }
-    select, button {
-      width: 100%;
-      padding: 14px;
-      margin-top: 10px;
-      border-radius: 10px;
-      font-size: 16px;
-    }
-    select { border: 1px solid #aacfc3; }
-    button {
-      border: 0;
-      background: #168675;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .note { color: #56766e; }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>✦ SOMNOVA</h1>
-    <p>Ontdek. Oefen. Groei.</p>
-  </header>
-
-  <main>
-    <h2>Welkom bij SOMNOVA!</h2>
-    <p>Kies je klas en de paragraaf waarmee je wilt oefenen.</p>
-
-    <label for="klas">Kies je klas</label>
-    <select id="klas">
-      <option>TVWO 1A</option>
-      <option>TVWO 1B</option>
-    </select>
-
-    <label for="paragraaf">Kies je paragraaf</label>
-    <select id="paragraaf">
-      <option value="2.1">2.1 Operations</option>
-      <option value="2.2">2.2 HCF and LCM</option>
-      <option value="2.3">2.3 Fractions</option>
-      <option value="2.4">2.4 Negative numbers</option>
-      <option value="2.5">2.5 Multiplying and dividing negative numbers</option>
-      <option value="2.6">2.6 Negative fractions</option>
-    </select>
-
-    <p class="note">Binnenkort kun je hier oefenen met hints en zonder punten.</p>
-    <button disabled style="opacity:.5;cursor:not-allowed">
-      ✏️ Start met oefenen — binnenkort
-    </button>
-  </main>
-</body>
-</html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Mathfinity · Chapter 2</title><style>
+:root{--mint:#e9faf3;--green:#167c66;--dark:#173c35;--coral:#ff927e;--purple:#7560da}*{box-sizing:border-box}body{margin:0;background:#f5faf8;color:var(--dark);font:16px/1.55 system-ui,Arial,sans-serif}header{background:var(--dark);color:white;padding:18px max(20px,calc((100vw - 920px)/2));display:flex;align-items:center;justify-content:space-between}header strong{font-size:24px}header span{font-size:13px;color:#c3eee1}.wrap{max-width:920px;margin:36px auto;padding:0 20px}.hero{background:var(--mint);padding:32px;border-radius:24px;border:1px solid #c8ebdf}h1{font-size:32px;line-height:1.2;margin:0 0 10px}h2{margin:0 0 12px;font-size:24px}.muted{color:#54736b}.card{background:white;border:1px solid #dceae5;border-radius:20px;padding:25px;margin:22px 0;box-shadow:0 7px 20px #17493b0a}label{font-weight:700;display:block;margin-bottom:7px}input,select{font:inherit;padding:12px 14px;border:1.5px solid #b7d6cc;border-radius:11px;background:white;color:var(--dark);width:100%}button{font:inherit;font-weight:750;border:0;border-radius:12px;padding:12px 19px;cursor:pointer;background:var(--green);color:white}button:hover{filter:brightness(.95)}button:disabled{opacity:.5;cursor:default}.secondary{background:#e9f1ee;color:var(--dark)}.accent{background:var(--purple)}.tabs{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}.tabs button{flex:1;min-width:120px}.tabs button[aria-pressed=true]{background:var(--dark)}.row{display:grid;grid-template-columns:1fr 1fr;gap:15px}.hidden{display:none!important}.problem{font-size:clamp(27px,5vw,39px);font-weight:750;margin:24px 0;background:#f1f8f5;border-radius:15px;padding:23px;text-align:center}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.notice{padding:15px;border-radius:13px;margin-top:17px;background:#edf8f4}.warn{background:#fff0e8}.small{font-size:14px}.chip{display:inline-block;background:#e5f6ee;border-radius:100px;padding:5px 12px;font-size:13px;font-weight:750;color:#11654f}footer{padding:24px;text-align:center;color:#627970}@media(max-width:600px){.row{grid-template-columns:1fr}.hero{padding:22px}}
+</style></head><body><header><strong>∞ Mathfinity</strong><span>Learn · Exercise · Test</span></header><main class="wrap"><section class="hero"><span class="chip">Chapter 2 · Numbers and operations</span><h1>Maths, one step at a time.</h1><p>Choose a section and start learning. Exercises are for practice, not points.</p></section><section class="card"><h2>Choose your lesson</h2><div class="row"><div><label for="lesson">Section</label><select id="lesson"><option value="2.1">2.1 · Operations</option><option value="2.2" disabled>2.2 · HCF and LCM (coming soon)</option><option value="2.3" disabled>2.3 · Fractions (coming soon)</option><option value="2.4" disabled>2.4 · Negative numbers (coming soon)</option><option value="2.5" disabled>2.5 · Multiplying and dividing negative numbers (coming soon)</option><option value="2.6" disabled>2.6 · Negative fractions (coming soon)</option></select></div><div><label for="level">Level</label><select id="level"><option value="basic">Basic</option><option value="intermediate">Intermediate</option><option value="challenge">Challenge</option></select></div></div><div class="tabs"><button id="learnBtn" class="secondary" aria-pressed="false">📖 Learn</button><button id="exerciseBtn" aria-pressed="true">✏️ Exercise</button><button id="testBtn" class="accent" aria-pressed="false">🏆 Test</button></div></section><section id="learn" class="card hidden"><h2>2.1 · Operations</h2><p>Use the correct order of operations:</p><p><strong>1.</strong> Brackets first. <strong>2.</strong> Multiplication and division, from left to right. <strong>3.</strong> Addition and subtraction, from left to right.</p><div class="problem">8 + 3 × 4 = 20</div><p>Multiply first: 3 × 4 = 12. Then add 8 + 12 = 20.</p><div class="problem">(8 + 3) × 4 = 44</div><p>Brackets first: 8 + 3 = 11. Then 11 × 4 = 44.</p><button id="goExercise">Let's practise →</button></section><section id="exercise" class="card"><div class="row"><div><span class="chip">✏️ Exercise · No points</span><h2>Practice at your pace</h2></div><div><p class="muted" id="exerciseCount" style="text-align:right">Question 1</p></div></div><div id="exerciseProblem" class="problem"></div><label for="exerciseAnswer">Your answer</label><input id="exerciseAnswer" type="number" step="any" inputmode="decimal" placeholder="Type your answer"><div class="actions"><button id="checkExercise">Check answer</button><button class="secondary" id="hintExercise">💡 Hint</button><button class="secondary" id="nextExercise">Next question →</button></div><div id="exerciseFeedback" class="notice hidden" aria-live="polite"></div><div id="exerciseHint" class="notice hidden" aria-live="polite"></div></section><section id="test" class="card hidden"><span class="chip">🏆 Test · 10 questions</span><h2>Show what you know</h2><p class="muted">No hints. Only your first answer counts. One point per correct answer.</p><div id="testSetup"><div class="row"><div><label for="studentName">Your name</label><input id="studentName" autocomplete="name" placeholder="First and last name"></div><div><label for="studentClass">Your class</label><select id="studentClass"><option value="">Choose class</option><option>TVWO 1A</option><option>TVWO 1B</option></select></div></div><p class="small muted">This preview calculates your test score, but does not yet send points to Supabase.</p><button id="startTest">Start test →</button></div><div id="testActive" class="hidden"><p id="testCount" class="muted"></p><div id="testProblem" class="problem"></div><label for="testAnswer">Your answer</label><input id="testAnswer" type="number" step="any" inputmode="decimal"><div class="actions"><button id="submitTest">Submit answer →</button></div></div><div id="testEnd" class="hidden"><div id="testSummary" class="notice"></div><p class="small muted">Preview only: no database points have been awarded.</p><button id="restartTest">Try another test</button></div></section></main><footer>Mathfinity · Chapter 2 · Learning is unlimited</footer><script>
+'use strict';const $=id=>document.getElementById(id);const rand=(a,b)=>a+Math.floor(Math.random()*(b-a+1));let mode='exercise',exerciseNumber=0,current=null,attempts=0,testQuestions=[],testIndex=0,testScore=0;const operations=['+','−','×','÷'];
+function makeQuestion(level){const kind=level==='basic'?rand(0,2):level==='intermediate'?rand(0,4):rand(0,5);let a,b,c,display,answer,hint,working;switch(kind){case 0:a=rand(12,90);b=rand(5,55);display=`${a} + ${b}`;answer=a+b;hint='Add the tens first, then the ones.';working=`${a} + ${b} = ${answer}`;break;case 1:a=rand(30,99);b=rand(5,a);display=`${a} − ${b}`;answer=a-b;hint='Subtract tens and ones carefully.';working=`${a} − ${b} = ${answer}`;break;case 2:a=rand(3,12);b=rand(3,12);display=`${a} × ${b}`;answer=a*b;hint='Think of equal groups or repeated addition.';working=`${a} × ${b} = ${answer}`;break;case 3:a=rand(2,12);b=rand(2,12);display=`${a*b} ÷ ${a}`;answer=b;hint=`What number multiplied by ${a} equals ${a*b}?`;working=`${a*b} ÷ ${a} = ${b}`;break;case 4:a=rand(3,20);b=rand(2,9);c=rand(2,8);display=`${a} + ${b} × ${c}`;answer=a+b*c;hint='Multiply before you add.';working=`${b} × ${c} = ${b*c}; then ${a} + ${b*c} = ${answer}`;break;default:a=rand(3,18);b=rand(2,9);c=rand(2,7);display=`(${a} + ${b}) × ${c}`;answer=(a+b)*c;hint='Calculate inside the brackets first.';working=`${a} + ${b} = ${a+b}; then ${a+b} × ${c} = ${answer}`;}return {display,answer,hint,working};}
+function switchMode(m){mode=m;for(const x of ['learn','exercise','test']){$(x).classList.toggle('hidden',x!==m);$(x+'Btn').setAttribute('aria-pressed',String(x===m));}if(m==='exercise'&&!current)nextExercise();}
+function nextExercise(){exerciseNumber++;attempts=0;current=makeQuestion($('level').value);$('exerciseProblem').textContent=current.display+' = ?';$('exerciseCount').textContent=`Question ${exerciseNumber}`;$('exerciseAnswer').value='';$('exerciseFeedback').classList.add('hidden');$('exerciseHint').classList.add('hidden');$('exerciseAnswer').focus();}
+function checkExercise(){const raw=$('exerciseAnswer').value;if(raw.trim()==='')return;attempts++;const correct=Number(raw)===current.answer;const feedback=$('exerciseFeedback');feedback.classList.remove('hidden');if(correct){feedback.classList.remove('warn');feedback.textContent=`Correct! ✓ ${current.working} — No points: this is practice.`;}else{feedback.classList.add('warn');feedback.textContent=attempts===1?'Not quite. Try the hint and have another go.':`Try again. If you need it, here's the worked answer: ${current.working}`;}}
+function hint(){const h=$('exerciseHint');h.classList.remove('hidden');h.textContent='💡 '+current.hint;}
+function startTest(){const name=$('studentName').value.trim(),cls=$('studentClass').value;if(!name||!cls){alert('Please enter your name and choose your class.');return;}localStorage.setItem('mathfinityNewProfile',JSON.stringify({name,cls}));testQuestions=Array.from({length:10},()=>makeQuestion($('level').value));testIndex=0;testScore=0;$('testSetup').classList.add('hidden');$('testEnd').classList.add('hidden');$('testActive').classList.remove('hidden');showTest();}
+function showTest(){$('testCount').textContent=`Question ${testIndex+1} of 10`;$('testProblem').textContent=testQuestions[testIndex].display+' = ?';$('testAnswer').value='';$('testAnswer').focus();}
+function submitTest(){const raw=$('testAnswer').value;if(raw.trim()==='')return;if(Number(raw)===testQuestions[testIndex].answer)testScore++;testIndex++;if(testIndex===10){$('testActive').classList.add('hidden');$('testEnd').classList.remove('hidden');$('testSummary').textContent=`Test completed! You answered ${testScore} out of 10 correctly. This preview has not saved any points.`;}else showTest();}
+$('learnBtn').onclick=()=>switchMode('learn');$('exerciseBtn').onclick=()=>switchMode('exercise');$('testBtn').onclick=()=>switchMode('test');$('goExercise').onclick=()=>switchMode('exercise');$('checkExercise').onclick=checkExercise;$('hintExercise').onclick=hint;$('nextExercise').onclick=nextExercise;$('startTest').onclick=startTest;$('submitTest').onclick=submitTest;$('restartTest').onclick=()=>{$('testSetup').classList.remove('hidden');$('testEnd').classList.add('hidden');};$('exerciseAnswer').addEventListener('keydown',e=>{if(e.key==='Enter')checkExercise();});$('testAnswer').addEventListener('keydown',e=>{if(e.key==='Enter')submitTest();});$('level').addEventListener('change',()=>{if(mode==='exercise')nextExercise();});try{const p=JSON.parse(localStorage.getItem('mathfinityNewProfile')||'null');if(p){$('studentName').value=p.name||'';$('studentClass').value=p.cls||'';}}catch(e){}nextExercise();
+</script></body></html>
