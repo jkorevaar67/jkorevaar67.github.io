@@ -148,7 +148,7 @@ header > nav:not(.mathfinity-global-nav) {display:none !important;}
 /* Keep lesson section tabs used by 2.1 functioning. */
 </style>
 </head>
-<body class="mathfinity-test"><div class="mode-banner">⭐ Test page<br><small>Earn reward points for correct first attempts</small></div><nav class="mathfinity-global-nav" aria-label="Mathfinity main navigation">
+<body class="mathfinity-test"><nav class="mathfinity-global-nav" aria-label="Mathfinity main navigation">
 <div class="nav-inner">
 <a href="index.html" data-mnav="home">⌂ Home</a>
 <a href="choose-topic.html" data-mnav="choose">📚 Choose a Chapter</a>
@@ -312,7 +312,19 @@ $('studentName').addEventListener('change',()=>{});
 $('againButton').addEventListener('click',()=>show('start'));
 $('exitButton').addEventListener('click',()=>show('goodbye'));
 $('homeButton').addEventListener('click',()=>show('start'));
-refreshStudent();show(true?'start':'learn');updateResults();
+refreshStudent();updateResults();
+(function openTestImmediately(){
+ const p=profile();
+ if(!p.name||!p.className){show('start');return;}
+ const saved=getStored(PROGRESS_KEY);
+ if(saved && saved.profile && saved.profile.name===p.name && canonicalClass(saved.profile.className)===p.className){
+   restoreProgress();return;
+ }
+ state.rewardSession=crypto.randomUUID();
+ state.method='prime';state.total=5;state.count=2;
+ state.completed=0;state.perfect=0;
+ show('practice');nextQuestion();
+})();
 </script><div style="text-align:center; padding:20px;">
  <a href="teacher.html" target="_blank" rel="noopener noreferrer" style="color:#6246d9; font-weight:bold;">
     🔒 Docentenomgeving
