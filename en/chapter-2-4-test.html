@@ -7,8 +7,28 @@ main{max-width:920px;margin:30px auto;padding:0 20px}.hero{background:var(--mint
 h2{margin:0 0 12px}.chip{display:inline-block;border-radius:50px;padding:6px 12px;background:#e5f6ee;color:#11654f;font-weight:750;font-size:13px}.problem{background:#f1f8f5;border-radius:16px;padding:24px;text-align:center;font-size:clamp(30px,5vw,44px);font-weight:750;margin:18px 0}
 label{display:block;font-weight:700;margin:12px 0 7px}input,select{font:inherit;width:100%;border:1.5px solid #b7d6cc;border-radius:11px;padding:12px;background:white;color:var(--dark)}button{font:inherit;font-weight:750;border:0;border-radius:12px;padding:12px 19px;background:var(--green);color:white;cursor:pointer}button:hover{filter:brightness(.95)}button:disabled{opacity:.5;cursor:default}.secondary{background:#e9f1ee;color:var(--dark)}.hidden{display:none!important}.row{display:grid;grid-template-columns:1fr 1fr;gap:15px}.notice{background:#edf8f4;border-radius:13px;padding:15px;margin-top:16px}.warn{background:#fff0e8}.muted{color:#54736b}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:17px}footer{text-align:center;padding:22px;color:#627970}@media(max-width:600px){.row{grid-template-columns:1fr}}
 .back-row{max-width:920px;margin:16px auto 0;padding:0 20px}.back-link{display:inline-block;background:#e5f6ee;border:1px solid #c8ebdf;border-radius:12px;padding:10px 16px;color:#145b4a;text-decoration:none;font-weight:750}.back-link:hover{background:#d4efe4}
+
+/* Match the light, cheerful Mathfinity Test 2.6 appearance */
+body{background:#eff9f4!important;color:#294e46!important;line-height:1.65}
+.global-nav{position:sticky;top:0;z-index:10;background:#f9fefa!important;border-bottom:1px solid #d0e9d9;padding:0!important;display:block!important}
+.global-nav .nav-inner{max-width:1050px;min-height:62px;margin:auto;display:flex;align-items:center;gap:3px;padding:0 14px;overflow-x:auto}
+.global-nav a{display:inline-flex;align-items:center;height:62px;padding:0 14px;white-space:nowrap;text-decoration:none;font-size:14px;font-weight:700;color:#315e50!important}
+.global-nav a:hover{background:#e0f1e6}.global-nav .nav-brand{margin-left:auto;white-space:nowrap;padding-left:20px;font-size:1.15rem;font-weight:850;color:#378b76}
+header{background:#e2f5ea!important;color:#285c4d!important;border-bottom:1px solid #d0e9d9;text-align:center;padding:28px 16px}
+header h1{color:#285c4d!important;font-size:clamp(1.6rem,4vw,2.2rem)}header p{color:#477a68!important}
+main{max-width:880px;margin:25px auto;padding:0 16px 35px}
+.card{background:#fff!important;border:0!important;border-radius:21px;box-shadow:0 5px 20px #31594a0b}
+.hero{background:#e9f8ef!important;border:1px solid #d0e9d9!important;border-radius:20px}
+h2,h3{color:#337e67!important}.chip{background:#e0f4e9!important;color:#2c705a!important}
+.problem{background:#f0faf4!important;color:#294e46;border-radius:16px}
+button{background:#68b99a!important;color:#123e33!important;border-radius:12px}
+button.secondary{background:#e0f4e9!important;color:#2c705a!important}
+input,select{border:2px solid #b5d9c6!important;border-radius:10px;background:white!important;color:#294e46!important}
+.notice{background:#eaf7ee!important}.notice.warn,.warn{background:#fff4e9!important}
+.back-row{display:none!important}footer{color:#628375}
+@media(max-width:680px){.global-nav .nav-inner{gap:0}.global-nav a{padding:0 10px;font-size:12px}.global-nav .nav-brand{font-size:13px;padding-left:10px}}
 </style></head><body>
-<nav aria-label="Mathfinity navigation"><a href="index.html">⌂ Home</a><a href="choose-topic.html">📚 Choose a Topic</a><a href="student-of-the-week.html">🌟 Student of the Week</a></nav>
+<nav class="global-nav" aria-label="Mathfinity main navigation"><div class="nav-inner"><a href="index.html">⌂ Home</a><a href="choose-topic.html">📚 Choose a Chapter</a><a href="need-help.html">💡 Need help?</a><a href="student-of-the-week.html">🌟 Student of the Week</a><span class="nav-brand">∞ Mathfinity</span></div></nav>
 <header><h1>∞ Mathfinity</h1><p>Chapter 2 · Test 2.4 · Negative Numbers</p></header>
 <div class="back-row"><a class="back-link" href="choose-topic.html">← Back to Choose a Topic</a></div>
 <main><section class="hero"><span class="chip">🏆 Test · Earn points</span><h2>Ready for a negative numbers challenge? ✨</h2><p>10 questions · No hints · Only a correct first answer earns 1 point for Student of the Week.</p></section>
