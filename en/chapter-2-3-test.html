@@ -54,6 +54,7 @@ async function sync(){
  if(busy||!person())return;
  const db=client();if(!db){status('Points waiting for internet connection',true);return}
  busy=true;
+ let capped=false;
  try{
   let {data,error}=await db.auth.getUser();if(error&&!data?.user)console.warn('Mathfinity auth:',error);
   let user=data?.user;
@@ -61,11 +62,12 @@ async function sync(){
   for(const event of read(QUEUE,[])){
    const response=await db.from('mathfinity_point_events').insert({
      event_id:event.id,user_id:user.id,student_name:event.name,class_name:event.className,topic:event.topic,points:event.points
-   });
+   }).select('event_id');
    if(response.error&&response.error.code!=='23505')throw response.error;
    save(QUEUE,read(QUEUE,[]).filter(e=>e.id!==event.id));
+   if(response.data && response.data.length===0){capped=true;}
   }
-  status('Test points saved to Student of the Week ✓');
+  status(capped ? '🏆 You have reached the 10-point limit for this topic. Keep practising!' : 'Test points saved to Student of the Week ✓');
  }catch(error){console.error('Mathfinity test database save failed:',error);status('Point not yet saved: '+String(error.message||error),true)}
  finally{busy=false}
 }
@@ -95,8 +97,8 @@ function gcd(a,b){while(b){[a,b]=[b,a%b]}return a}function make(level){let a=ran
 let checked=false,usedHelp=false,firstAttempt=true;
 function show(){const q=questions[index];checked=false;usedHelp=false;firstAttempt=true;$('counter').textContent=`Question ${index+1} of ${questions.length}`;$('problem').textContent=q.display+' = ?';$('answer').value='';$('answer').disabled=false;$('feedback').classList.add('hidden');$('helpText').classList.add('hidden');$('submit').disabled=false;$('nextQuestion').classList.add('hidden');$('answer').focus()}
 $('start').onclick=()=>{const name=$('name').value.trim().replace(/\s+/g,' '),className=$('cls').value;if(!name||!className){$('setupError').textContent='Please enter your name and choose your class.';$('setupError').classList.remove('hidden');return;}localStorage.setItem(PROFILE,JSON.stringify({...getProfile(),name,className}));questions=Array.from({length:10},()=>make($('level').value));index=0;score=0;round=crypto.randomUUID();$('setup').classList.add('hidden');$('finished').classList.add('hidden');$('quiz').classList.remove('hidden');show()};
-function submit(){if(checked)return;const raw=$('answer').value.trim().replace(/\u2212/g,'-').replace(',','.');if(!/^-?\d+(?:\.\d+)?$/.test(raw)){$('feedback').textContent='Enter a valid number.';$('feedback').classList.remove('hidden');return}const correct=Number(raw)===questions[index].answer;if(correct){if(firstAttempt&&!usedHelp){score++;window.MathfinityRewards?.award(1,'2.3 Fractions',round+'-'+index)}$('feedback').textContent=firstAttempt&&!usedHelp?'✓ Correct! 1 test point earned.':'✓ Correct! Well done.';checked=true;$('answer').disabled=true;$('submit').disabled=true;$('nextQuestion').classList.remove('hidden')}else{$('feedback').textContent='Not quite. Try again, or ask for a hint.';firstAttempt=false}$('feedback').classList.remove('hidden')}
-function nextQuestion(){if(!checked)return;index++;if(index>=questions.length){$('quiz').classList.add('hidden');$('finished').classList.remove('hidden');$('summary').textContent=`You earned ${score} test point${score===1?'':'s'} from ${questions.length} questions.`;void window.MathfinityRewards?.refresh()}else show()}
+function submit(){if(checked)return;const raw=$('answer').value.trim().replace(/\u2212/g,'-').replace(',','.');if(!/^-?\d+(?:\.\d+)?$/.test(raw)){$('feedback').textContent='Enter a valid number.';$('feedback').classList.remove('hidden');return}const correct=Number(raw)===questions[index].answer;if(correct){if(firstAttempt&&!usedHelp){score++;window.MathfinityRewards?.award(1,'2.3 Fractions',round+'-'+index)}$('feedback').textContent=firstAttempt&&!usedHelp?'✓ Correct! Checking your test point…':'✓ Correct! Well done.';checked=true;$('answer').disabled=true;$('submit').disabled=true;$('nextQuestion').classList.remove('hidden')}else{$('feedback').textContent='Not quite. Try again, or ask for a hint.';firstAttempt=false}$('feedback').classList.remove('hidden')}
+function nextQuestion(){if(!checked)return;index++;if(index>=questions.length){$('quiz').classList.add('hidden');$('finished').classList.remove('hidden');$('summary').textContent=`You answered ${score} question${score===1?'':'s'} correctly on the first try. Up to 10 points per topic count for Student of the Week.`;void window.MathfinityRewards?.refresh()}else show()}
 $('submit').onclick=submit;$('nextQuestion').onclick=nextQuestion;
 $('hint').onclick=()=>{usedHelp=true;$('helpText').textContent='Think about the order of operations and check each step carefully.';$('helpText').classList.remove('hidden')};
 $('solution').onclick=()=>{usedHelp=true;firstAttempt=false;$('helpText').textContent='Answer: '+questions[index].answer+'. Work through the calculation step by step.';$('helpText').classList.remove('hidden')};

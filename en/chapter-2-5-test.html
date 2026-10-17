@@ -53,6 +53,7 @@ async function sync(){
   if(!person()){status('Point not saved: enter your name and select TVWO 1A or TVWO 1B.',true);return;}
  const db=client();if(!db){status('Points waiting for internet connection',true);return}
  busy=true;
+ let capped=false;
  try{
   let {data,error}=await db.auth.getUser();if(error&&!data?.user)console.warn('Mathfinity auth:',error);
   let user=data?.user;
@@ -61,10 +62,11 @@ async function sync(){
   for(const event of read(QUEUE,[])){
    const response=await db.from('mathfinity_point_events').insert({
      event_id:event.id,user_id:user.id,student_name:event.name,class_name:event.className,topic:event.topic,points:event.points
-   });
+   }).select('event_id');
    if(response.error&&response.error.code!=='23505')throw response.error;
    savedCount++;
    save(QUEUE,read(QUEUE,[]).filter(e=>e.id!==event.id));
+   if(response.data && response.data.length===0){capped=true;}
   }
   if(savedCount)status(savedCount+' test point(s) saved to Student of the Week ✓');
  }catch(error){console.error('Mathfinity test database save failed:',error);status('Point not yet saved: '+String(error.message||error),true)}
