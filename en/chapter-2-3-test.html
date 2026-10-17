@@ -93,15 +93,50 @@ const $=id=>document.getElementById(id),rand=(a,b)=>a+Math.floor(Math.random()*(
 const PROFILE='jkoMathLabStudentV3';let questions=[],index=0,score=0,round='';
 function getProfile(){try{return JSON.parse(localStorage.getItem(PROFILE)||'{}')}catch{return {}}}
 const p=getProfile();$('name').value=p.name||'';$('cls').value=p.className||'';
-function gcd(a,b){while(b){[a,b]=[b,a%b]}return a}function make(level){let a=rand(1,5),b=rand(a+1,10),c=rand(1,5),d=rand(c+1,10),k=level==='basic'?rand(0,1):level==='intermediate'?rand(0,2):rand(0,3),n,den,op;if(k===0){d=b;op='+';n=a+c;den=b}else if(k===1){d=b;op='−';n=Math.abs(a-c);den=b;return {display:`${Math.max(a,c)}/${b} − ${Math.min(a,c)}/${b}`,answer:n/den}}else if(k===2){op='×';n=a*c;den=b*d}else{op='+';n=a*d+c*b;den=b*d}return {display:`${a}/${b} ${op} ${c}/${d}`,answer:n/den}}
+function gcd(a,b){a=Math.abs(a);b=Math.abs(b);while(b){[a,b]=[b,a%b]}return a||1}
+function fraction(n,d){if(d<0){n=-n;d=-d}const g=gcd(n,d);return (n/g)+'/'+(d/g)}
+function make(level){
+ const a=rand(1,5),b=rand(a+1,10),c=rand(1,5),d0=rand(c+1,10);
+ const k=level==='basic'?rand(0,1):level==='intermediate'?rand(0,2):rand(0,3);
+ let x=a,y=b,z=c,d=d0,op,n,den,steps;
+ if(k===0){d=b;op='+';n=a+c;den=b;steps=`The denominators are equal, so add the numerators: (${a} + ${c})/${b} = ${n}/${den}.`}
+ else if(k===1){d=b;op='−';x=Math.max(a,c);z=Math.min(a,c);n=x-z;den=b;steps=`The denominators are equal, so subtract the numerators: (${x} − ${z})/${b} = ${n}/${den}.`}
+ else if(k===2){op='×';n=a*c;den=b*d;steps=`Multiply the numerators and denominators: (${a} × ${c})/(${b} × ${d}) = ${n}/${den}.`}
+ else{op='+';n=a*d+c*b;den=b*d;steps=`Find a common denominator: ${a*d}/${den} + ${c*b}/${den} = (${a*d} + ${c*b})/${den} = ${n}/${den}.`}
+ const simplified=fraction(n,den);
+ if(simplified!==n+'/'+den)steps+=` Simplify: ${n}/${den} = ${simplified}.`;
+ return {display:`${x}/${y} ${op} ${z}/${d}`,numerator:n,denominator:den,answer:n/den,answerText:simplified,explanation:steps,operation:op};
+}
+function parseAnswer(raw){
+ const text=raw.trim().replace(/\u2212/g,'-').replace(',','.');
+ const mixed=text.match(/^(-?\d+)\s+(\d+)\/(\d+)$/);
+ if(mixed){const whole=Number(mixed[1]),num=Number(mixed[2]),den=Number(mixed[3]);if(!den||num>=den)return null;return {value:(whole<0?-1:1)*(Math.abs(whole)+num/den),exactNumerator:(whole<0?-1:1)*(Math.abs(whole)*den+num),exactDenominator:den}}
+ const f=text.match(/^(-?\d+)\s*\/\s*(-?\d+)$/);
+ if(f){let num=Number(f[1]),den=Number(f[2]);if(!den)return null;if(den<0){num=-num;den=-den}return {value:num/den,exactNumerator:num,exactDenominator:den}}
+ if(/^-?\d+(?:\.\d+)?$/.test(text))return {value:Number(text)};
+ return null;
+}
+function answersMatch(input,q){
+ if(input.exactDenominator!==undefined)return input.exactNumerator*q.denominator===q.numerator*input.exactDenominator;
+ return Math.abs(input.value-q.answer)<1e-9;
+}
+
 let checked=false,usedHelp=false,firstAttempt=true;
 function show(){const q=questions[index];checked=false;usedHelp=false;firstAttempt=true;$('counter').textContent=`Question ${index+1} of ${questions.length}`;$('problem').textContent=q.display+' = ?';$('answer').value='';$('answer').disabled=false;$('feedback').classList.add('hidden');$('helpText').classList.add('hidden');$('submit').disabled=false;$('nextQuestion').classList.add('hidden');$('answer').focus()}
 $('start').onclick=()=>{const name=$('name').value.trim().replace(/\s+/g,' '),className=$('cls').value;if(!name||!className){$('setupError').textContent='Please enter your name and choose your class.';$('setupError').classList.remove('hidden');return;}localStorage.setItem(PROFILE,JSON.stringify({...getProfile(),name,className}));questions=Array.from({length:10},()=>make($('level').value));index=0;score=0;round=crypto.randomUUID();$('setup').classList.add('hidden');$('finished').classList.add('hidden');$('quiz').classList.remove('hidden');show()};
-function submit(){if(checked)return;const raw=$('answer').value.trim().replace(/\u2212/g,'-').replace(',','.');if(!/^-?\d+(?:\.\d+)?$/.test(raw)){$('feedback').textContent='Enter a valid number.';$('feedback').classList.remove('hidden');return}const correct=Number(raw)===questions[index].answer;if(correct){if(firstAttempt&&!usedHelp){score++;window.MathfinityRewards?.award(1,'2.3 Fractions',round+'-'+index)}$('feedback').textContent=firstAttempt&&!usedHelp?'✓ Correct! Checking your test point…':'✓ Correct! Well done.';checked=true;$('answer').disabled=true;$('submit').disabled=true;$('nextQuestion').classList.remove('hidden')}else{$('feedback').textContent='Not quite. Try again, or ask for a hint.';firstAttempt=false}$('feedback').classList.remove('hidden')}
+function submit(){
+ if(checked)return;
+ const input=parseAnswer($('answer').value);
+ if(!input){$('feedback').textContent='Enter a valid fraction (e.g. 1/7), mixed number, or decimal.';$('feedback').classList.remove('hidden');return}
+ const correct=answersMatch(input,questions[index]);
+ if(correct){if(firstAttempt&&!usedHelp){score++;window.MathfinityRewards?.award(1,'2.3 Fractions',round+'-'+index)}$('feedback').textContent=firstAttempt&&!usedHelp?'✓ Correct! Checking your test point…':'✓ Correct! Well done.';checked=true;$('answer').disabled=true;$('submit').disabled=true;$('nextQuestion').classList.remove('hidden')}
+ else{$('feedback').textContent='Not quite. Try again, or ask for a hint.';firstAttempt=false}
+ $('feedback').classList.remove('hidden');
+}
 function nextQuestion(){if(!checked)return;index++;if(index>=questions.length){$('quiz').classList.add('hidden');$('finished').classList.remove('hidden');$('summary').textContent=`You answered ${score} question${score===1?'':'s'} correctly on the first try. Up to 10 points per topic count for Student of the Week.`;void window.MathfinityRewards?.refresh()}else show()}
 $('submit').onclick=submit;$('nextQuestion').onclick=nextQuestion;
-$('hint').onclick=()=>{usedHelp=true;$('helpText').textContent='Think about the order of operations and check each step carefully.';$('helpText').classList.remove('hidden')};
-$('solution').onclick=()=>{usedHelp=true;firstAttempt=false;$('helpText').textContent='Answer: '+questions[index].answer+'. Work through the calculation step by step.';$('helpText').classList.remove('hidden')};
+$('hint').onclick=()=>{usedHelp=true;const q=questions[index];$('helpText').textContent=q.operation==='×'?'Multiply the top numbers together and the bottom numbers together.':q.operation==='−'?'The denominators are already the same. Subtract only the numerators.':'To add fractions, first make sure the denominators are equal.';$('helpText').classList.remove('hidden')};
+$('solution').onclick=()=>{usedHelp=true;firstAttempt=false;const q=questions[index];$('helpText').textContent='Answer: '+q.answerText+'. '+q.explanation;$('helpText').classList.remove('hidden')};
 $('answer').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();if(checked)nextQuestion();else submit()}});
 $('again').onclick=()=>{$('setup').classList.remove('hidden');$('finished').classList.add('hidden');};
 })();
