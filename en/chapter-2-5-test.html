@@ -37,14 +37,16 @@ async function sync(){
   let {data,error}=await db.auth.getUser();if(error&&!data?.user)console.warn('Mathfinity auth:',error);
   let user=data?.user;
   if(!user){const login=await db.auth.signInAnonymously();if(login.error)throw login.error;user=login.data.user}
+  let savedCount=0;
   for(const event of read(QUEUE,[])){
    const response=await db.from('mathfinity_point_events').insert({
      event_id:event.id,user_id:user.id,student_name:event.name,class_name:event.className,topic:event.topic,points:event.points
    });
    if(response.error&&response.error.code!=='23505')throw response.error;
+   savedCount++;
    save(QUEUE,read(QUEUE,[]).filter(e=>e.id!==event.id));
   }
-  status(read(QUEUE,[]).length===0 ? 'Test points synchronised with Student of the Week ✓' : 'Some points are still waiting to be saved.',read(QUEUE,[]).length!==0);
+  if(savedCount)status(savedCount+' test point(s) saved to Student of the Week ✓');
  }catch(error){console.error('Mathfinity test database save failed:',error);status('Point not yet saved: '+String(error.message||error),true)}
  finally{busy=false}
 }
