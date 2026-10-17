@@ -1,1 +1,4 @@
-Upload ONLY the five chapter-2-X-test.html files to /en/. Do not replace any index.html. IMPORTANT: Run the supplied SQL to permit the new 2.5 topic before using test 2.5. Existing 2.1–2.4 scoring code is preserved.
+Plaats deze bestanden in GitHub map en/ (niet in de hoofdmap).
+De navigatie Need help? verwijst naar need-help.html.
+Deze ZIP bevat de startpagina, de Help-pagina, Choose a Chapter, Student of the Week en Learn 2.1 t/m 2.5.
+Exercise- en Test-pagina’s zijn niet vervangen om de huidige puntentelling niet te verstoren.
