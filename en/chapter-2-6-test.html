@@ -1,4 +1,55 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mathfinity · Test 2.6</title><style>:root{font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:#294e46;background:#eff9f4}*{box-sizing:border-box}body{margin:0;background:#eff9f4;line-height:1.65}.global-nav{position:sticky;top:0;z-index:10;background:#f9fefa;border-bottom:1px solid #d0e9d9}.nav-inner{max-width:1050px;min-height:62px;margin:auto;display:flex;align-items:center;gap:3px;padding:0 14px;overflow-x:auto}.global-nav a{display:inline-flex;align-items:center;height:62px;padding:0 14px;white-space:nowrap;text-decoration:none;font-size:14px;font-weight:700;color:#315e50}.global-nav a:hover{background:#e0f1e6}.nav-brand{margin-left:auto;white-space:nowrap;padding-left:20px;font-size:1.15rem;font-weight:850;color:#378b76}header{background:#e2f5ea;border-bottom:1px solid #d0e9d9;text-align:center;padding:28px 16px}header h1{margin:0;color:#285c4d;font-size:clamp(1.6rem,4vw,2.2rem)}header p{margin:5px 0 0;color:#477a68}main{max-width:880px;margin:25px auto;padding:0 16px 35px}.card{background:white;border-radius:21px;padding:clamp(20px,4vw,32px);margin:18px 0;box-shadow:0 5px 20px #31594a0b}.eyebrow{font-size:.82rem;font-weight:800;color:#4b9a7a;letter-spacing:.08em}h2,h3{color:#337e67;line-height:1.3}.theory{background:#f0faf4;border-left:5px solid #91cdb0;padding:17px 20px;border-radius:12px}.example{background:#f4faf6;padding:15px 18px;border-radius:12px;margin:12px 0}.math{font-size:1.25rem;font-weight:750}.tip{background:#fff4e9;border-left:4px solid #e6a476;padding:14px 18px;border-radius:11px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}.btn,button{display:inline-block;background:#68b99a;color:#123e33;text-decoration:none;font-weight:800;border-radius:12px;padding:12px 19px;border:0;cursor:pointer;font-size:1rem}.secondary{background:#e0f4e9;color:#2c705a}input,select{border:2px solid #b5d9c6;border-radius:10px;padding:12px;font:inherit;max-width:100%;background:white}input[type=number]{width:180px}.fraction{display:inline-flex;flex-direction:column;text-align:center;vertical-align:middle;line-height:1.25}.fraction>span:first-child{border-bottom:2px solid;padding:0 10px}.q{font-size:1.4rem;font-weight:750;margin:15px 0}.feedback{min-height:32px;font-weight:700}.muted{color:#648276}.hidden{display:none!important}footer{text-align:center;color:#648276;padding:10px 20px 28px}@media(max-width:620px){.global-nav a{font-size:12px;padding:0 9px}.nav-brand{font-size:.95rem;padding-left:8px}}</style></head><body><nav class="global-nav" aria-label="Mathfinity main navigation"><div class="nav-inner"><a href="index.html">⌂ Home</a><a href="choose-topic.html">📚 Choose a Chapter</a><a href="index.html#help">💡 Need help?</a><a href="student-of-the-week.html">🌟 Student of the Week</a><span class="nav-brand">∞ Mathfinity</span></div></nav><header><h1>2.6 Negative Fractions</h1><p>Test · Chapter 2 · TVWO 1</p></header><main><section class="card" id="intro"><div class="eyebrow">TEST · 2.6</div><h2>Negative fractions</h2><p>Calculate with negative fractions. Write answers as simplified fractions, for example <strong>−3/4</strong> or <strong>2</strong>.</p><div class="example"><label>Student name<br><input id="student" autocomplete="name" placeholder="Your name"></label> &nbsp; <label>Class<br><select id="klass"><option value="">Choose class</option><option>TVWO 1A</option><option>TVWO 1B</option></select></label><p id="loginMsg" class="feedback"></p></div><button id="start">Start test →</button></section><section class="card hidden" id="quiz"><p class="eyebrow" id="count"></p><h2>Calculate</h2><p class="q" id="question"></p><label>Your answer<br><input id="answer" type="text" inputmode="text" autocomplete="off" placeholder="e.g. −2/3"></label><p class="feedback" id="feedback" aria-live="polite"></p><div class="actions"><button id="check">Check answer</button><button class="secondary" id="hint">💡 Give me a hint</button><button class="secondary" id="solution">📖 Answer with explanation</button><button class="hidden" id="next">Next question →</button></div><div class="example hidden" id="solutionBox"></div></section><section class="card hidden" id="end"><h2>Well done! 🌟</h2><p id="result"></p><p id="pointsMsg" class="muted"></p><div class="actions"><button id="again">Try again</button><a class="btn secondary" href="choose-topic.html">Choose a Chapter</a></div></section></main><footer>🌱 Small steps, big discoveries · Mathfinity</footer><script>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mathfinity · Test 2.6</title><style>:root{font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:#294e46;background:#eff9f4}*{box-sizing:border-box}body{margin:0;background:#eff9f4;line-height:1.65}.global-nav{position:sticky;top:0;z-index:10;background:#f9fefa;border-bottom:1px solid #d0e9d9}.nav-inner{max-width:1050px;min-height:62px;margin:auto;display:flex;align-items:center;gap:3px;padding:0 14px;overflow-x:auto}.global-nav a{display:inline-flex;align-items:center;height:62px;padding:0 14px;white-space:nowrap;text-decoration:none;font-size:14px;font-weight:700;color:#315e50}.global-nav a:hover{background:#e0f1e6}.nav-brand{margin-left:auto;white-space:nowrap;padding-left:20px;font-size:1.15rem;font-weight:850;color:#378b76}header{background:#e2f5ea;border-bottom:1px solid #d0e9d9;text-align:center;padding:28px 16px}header h1{margin:0;color:#285c4d;font-size:clamp(1.6rem,4vw,2.2rem)}header p{margin:5px 0 0;color:#477a68}main{max-width:880px;margin:25px auto;padding:0 16px 35px}.card{background:white;border-radius:21px;padding:clamp(20px,4vw,32px);margin:18px 0;box-shadow:0 5px 20px #31594a0b}.eyebrow{font-size:.82rem;font-weight:800;color:#4b9a7a;letter-spacing:.08em}h2,h3{color:#337e67;line-height:1.3}.theory{background:#f0faf4;border-left:5px solid #91cdb0;padding:17px 20px;border-radius:12px}.example{background:#f4faf6;padding:15px 18px;border-radius:12px;margin:12px 0}.math{font-size:1.25rem;font-weight:750}.tip{background:#fff4e9;border-left:4px solid #e6a476;padding:14px 18px;border-radius:11px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}.btn,button{display:inline-block;background:#68b99a;color:#123e33;text-decoration:none;font-weight:800;border-radius:12px;padding:12px 19px;border:0;cursor:pointer;font-size:1rem}.secondary{background:#e0f4e9;color:#2c705a}input,select{border:2px solid #b5d9c6;border-radius:10px;padding:12px;font:inherit;max-width:100%;background:white}input[type=number]{width:180px}.fraction{display:inline-flex;flex-direction:column;text-align:center;vertical-align:middle;line-height:1.25}.fraction>span:first-child{border-bottom:2px solid;padding:0 10px}.q{font-size:1.4rem;font-weight:750;margin:15px 0}.feedback{min-height:32px;font-weight:700}.muted{color:#648276}.hidden{display:none!important}footer{text-align:center;color:#648276;padding:10px 20px 28px}@media(max-width:620px){.global-nav a{font-size:12px;padding:0 9px}.nav-brand{font-size:.95rem;padding-left:8px}}</style></head><body><nav class="global-nav" aria-label="Mathfinity main navigation"><div class="nav-inner"><a href="index.html">⌂ Home</a><a href="choose-topic.html">📚 Choose a Chapter</a><a href="need-help.html">💡 Need help?</a><a href="student-of-the-week.html">🌟 Student of the Week</a><span class="nav-brand">∞ Mathfinity</span></div></nav><header><h1>2.6 Negative Fractions</h1><p>Test · Chapter 2 · TVWO 1</p></header><main><section class="card" id="intro"><div class="eyebrow">TEST · 2.6</div><h2>Negative fractions</h2><p>Calculate with negative fractions. Write your answer as a fraction, mixed number or integer, for example <strong>−3/2</strong>, <strong>−1 1/2</strong> or <strong>2</strong>. Equivalent fractions are accepted.</p><div class="example"><label>Student name<br><input id="student" autocomplete="name" placeholder="Your name"></label> &nbsp; <label>Class<br><select id="klass"><option value="">Choose class</option><option>TVWO 1A</option><option>TVWO 1B</option></select></label><p id="loginMsg" class="feedback"></p></div><button id="start">Start test →</button></section><section class="card hidden" id="quiz"><p class="eyebrow" id="count"></p><h2>Calculate</h2><p class="q" id="question"></p><label>Your answer<br><input id="answer" type="text" inputmode="text" autocomplete="off" placeholder="e.g. −2/3"></label><p class="feedback" id="feedback" aria-live="polite"></p><div class="actions"><button id="check">Check answer</button><button class="secondary" id="hint">💡 Give me a hint</button><button class="secondary" id="solution">📖 Answer with explanation</button><button class="hidden" id="next">Next question →</button></div><div class="example hidden" id="solutionBox"></div></section><section class="card hidden" id="end"><h2>Well done! 🌟</h2><p id="result"></p><p id="pointsMsg" class="muted"></p><div class="actions"><button id="again">Try again</button><a class="btn secondary" href="choose-topic.html">Choose a Chapter</a></div></section></main><footer>🌱 Small steps, big discoveries · Mathfinity</footer><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script id="mathfinity-direct-test-points">
+(function(){
+'use strict';
+const PROFILE='jkoMathLabStudentV3';
+const URL='https://wgocbnhtmzxalvwlpvyo.supabase.co';
+const KEY='sb_publishable_0yRUp4LVsYdBcdmwLYfqxg_soc0fpQB';
+const QUEUE='mathfinityTestPendingV1';
+const CREDIT='mathfinityTestCreditedV1';
+let busy=false;
+function read(k,f){try{return JSON.parse(localStorage.getItem(k))??f}catch{return f}}
+function save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch{}}
+function person(){const p=read(PROFILE,{}),name=String(p.name||'').trim(),className=String(p.className||'').trim().toUpperCase().replace(/\s+/g,' ');return name&&['TVWO 1A','TVWO 1B'].includes(className)?{name,className}:null}
+function day(){return new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Amsterdam',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date())}
+function client(){return window.supabase?.createClient(URL,KEY)}
+function status(message,failed=false){let e=document.getElementById('testSyncStatus');if(!e){e=document.createElement('div');e.id='testSyncStatus';e.setAttribute('role','status');e.style.cssText='position:fixed;right:12px;bottom:12px;z-index:9999;max-width:300px;padding:9px 13px;border-radius:12px;font:600 13px system-ui;box-shadow:0 3px 14px #0002';document.body.append(e)}e.style.background=failed?'#fff0e8':'#e5f5eb';e.style.color='#225443';e.textContent=message}
+async function sync(){
+ if(busy)return;
+  if(!person()){status('Point not saved: enter your name and select TVWO 1A or TVWO 1B.',true);return;}
+ const db=client();if(!db){status('Points waiting for internet connection',true);return}
+ busy=true;
+ try{
+  let {data,error}=await db.auth.getUser();if(error&&!data?.user)console.warn('Mathfinity auth:',error);
+  let user=data?.user;
+  if(!user){const login=await db.auth.signInAnonymously();if(login.error)throw login.error;user=login.data.user}
+  for(const event of read(QUEUE,[])){
+   const response=await db.from('mathfinity_point_events').insert({
+     event_id:event.id,user_id:user.id,student_name:event.name,class_name:event.className,topic:event.topic,points:event.points
+   });
+   if(response.error&&response.error.code!=='23505')throw response.error;
+   save(QUEUE,read(QUEUE,[]).filter(e=>e.id!==event.id));
+  }
+  status(read(QUEUE,[]).length===0 ? 'Test points synchronised with Student of the Week ✓' : 'Some points are still waiting to be saved.',read(QUEUE,[]).length!==0);
+ }catch(error){console.error('Mathfinity test database save failed:',error);status('Point not yet saved: '+String(error.message||error),true)}
+ finally{busy=false}
+}
+function award(points,topic,token){
+ const p=person();if(!p){status('Point not saved: student name or class missing.',true);return;}
+  if(!Number.isSafeInteger(points)||points<=0)return;
+ const credit=[day(),p.className,p.name.toLowerCase(),topic,token].join('|');
+ const credited=read(CREDIT,[]);
+ if(credited.includes(credit))return;
+ credited.push(credit);save(CREDIT,credited);
+ const pending=read(QUEUE,[]);
+ pending.push({id:crypto.randomUUID(),name:p.name,className:p.className,topic,points});
+ save(QUEUE,pending);
+ status('Saving test point…');void sync();
+}
+window.MathfinityRewards={award,refresh:sync,today:day};
+window.addEventListener('online',()=>void sync());
+void sync();
+})();
+</script><script>
 const MODE='Test';const questions=[
 {t:'−5/11 + 3/11',a:'-2/11',hint:'The denominators are equal. Add the signed numerators.',why:'(−5 + 3)/11 = −2/11.'},
 {t:'−5/11 − 3/11',a:'-8/11',hint:'Subtract 3 from −5.',why:'(−5 − 3)/11 = −8/11.'},
@@ -18,15 +69,46 @@ const MODE='Test';const questions=[
 {t:'−7/12 + 1/3',a:'-1/4',hint:'Rewrite 1/3 as 4/12.',why:'−7/12 + 4/12 = −3/12 = −1/4.'}
 ];
 function gcd(a,b){a=Math.abs(a);b=Math.abs(b);while(b){[a,b]=[b,a%b]}return a}
-function parseFraction(x){x=String(x).trim().replaceAll('−','-').replace(/\s+/g,'').replace(/,/g,'.');let m=x.match(/^([+-]?\d+)(?:\/([+-]?\d+))?$/);if(!m)return null;let n=Number(m[1]),d=m[2]===undefined?1:Number(m[2]);if(!d)return null;let g=gcd(n,d);return [n/g*(d<0?-1:1),Math.abs(d)/g]}
+function parseFraction(value){
+  // Accept integers, fractions, equivalent fractions and mixed numbers.
+  // Examples: -3/2, -6/4, -1 1/2, -1½, 1 1/2, 1½.
+  let x=String(value).trim().replace(/[−–—]/g,'-').replace(/⁄/g,'/').replace(/\u00a0/g,' ');
+  const unicodeFractions={'½':'1/2','⅓':'1/3','⅔':'2/3','¼':'1/4','¾':'3/4','⅕':'1/5','⅖':'2/5','⅗':'3/5','⅘':'4/5','⅙':'1/6','⅚':'5/6','⅛':'1/8','⅜':'3/8','⅝':'5/8','⅞':'7/8'};
+  x=x.replace(/([+-]?\d+)([½⅓⅔¼¾⅕⅖⅗⅘⅙⅚⅛⅜⅝⅞])/g,(_,whole,f)=>whole+' '+unicodeFractions[f]);
+  if(unicodeFractions[x])x=unicodeFractions[x];
+  let m=x.match(/^([+-]?)(\d+)\s+(\d+)\s*\/\s*(\d+)$/);
+  let n,d;
+  if(m){
+    const sign=m[1]==='-'?-1:1,whole=Number(m[2]),part=Number(m[3]);
+    d=Number(m[4]);if(!d||part>=d)return null;
+    n=sign*(whole*d+part);
+  }else{
+    m=x.match(/^([+-]?\d+)\s*(?:\/\s*([+-]?\d+))?$/);
+    if(!m)return null;
+    n=Number(m[1]);d=m[2]===undefined?1:Number(m[2]);
+  }
+  if(!Number.isSafeInteger(n)||!Number.isSafeInteger(d)||!d)return null;
+  const g=gcd(n,d);return [n/g*(d<0?-1:1),Math.abs(d)/g];
+}
+function simplified(value){
+  let x=String(value).trim().replace(/[−–—]/g,'-').replace(/⁄/g,'/').replace(/\u00a0/g,' ');
+  const glyphs={'½':'1/2','⅓':'1/3','⅔':'2/3','¼':'1/4','¾':'3/4','⅕':'1/5','⅖':'2/5','⅗':'3/5','⅘':'4/5','⅙':'1/6','⅚':'5/6','⅛':'1/8','⅜':'3/8','⅝':'5/8','⅞':'7/8'};
+  x=x.replace(/([+-]?\d+)([½⅓⅔¼¾⅕⅖⅗⅘⅙⅚⅛⅜⅝⅞])/g,(_,w,f)=>w+' '+glyphs[f]);
+  if(glyphs[x])x=glyphs[x];
+  const mixed=x.match(/^[+-]?\d+\s+(\d+)\s*\/\s*(\d+)$/);
+  if(mixed)return Number(mixed[1])>0&&Number(mixed[1])<Number(mixed[2])&&gcd(Number(mixed[1]),Number(mixed[2]))===1;
+  const frac=x.match(/^([+-]?\d+)\s*\/\s*([+-]?\d+)$/);
+  if(frac)return Number(frac[2])>0&&gcd(Number(frac[1]),Number(frac[2]))===1;
+  return !!parseFraction(x);
+}
 function equal(a,b){let x=parseFraction(a),y=parseFraction(b);return !!(x&&y&&x[0]===y[0]&&x[1]===y[1])}
-let idx=0,first=true,correctFirst=0,answered=false,helped=false,order=[];
+let idx=0,first=true,correctFirst=0,answered=false,helped=false,order=[];let testRound=crypto.randomUUID();
 const $=id=>document.getElementById(id);
-function start(){let name=$('student').value.trim(),klass=$('klass').value;if(MODE==='Test'&&(!name||!klass)){ $('loginMsg').textContent='Enter your name and choose your class.';return }$('intro').classList.add('hidden');$('quiz').classList.remove('hidden');order=MODE==='Test'?[...questions.keys()].sort(()=>Math.random()-.5).slice(0,10):[...questions.keys()];idx=0;correctFirst=0;render()}
+function start(){let name=$('student').value.trim(),klass=$('klass').value;if(MODE==='Test'&&(!name||!klass)){ $('loginMsg').textContent='Enter your name and choose your class.';return }localStorage.setItem('jkoMathLabStudentV3',JSON.stringify({name,className:klass}));$('intro').classList.add('hidden');$('quiz').classList.remove('hidden');testRound=crypto.randomUUID();order=MODE==='Test'?[...questions.keys()].sort(()=>Math.random()-.5).slice(0,10):[...questions.keys()];idx=0;correctFirst=0;render()}
 function render(){answered=false;first=true;helped=false;$('feedback').textContent='';$('feedback').style.color='';$('answer').value='';$('answer').disabled=false;$('check').disabled=false;$('next').classList.add('hidden');$('hint').classList.remove('hidden');$('solution').classList.remove('hidden');$('solutionBox').classList.add('hidden');let q=questions[order[idx]];$('question').textContent=q.t;$('count').textContent=`Question ${idx+1} of ${order.length}`;$('answer').focus()}
-function check(){let q=questions[order[idx]],v=$('answer').value;if(!parseFraction(v)){$('feedback').textContent='Enter an integer or fraction, for example −2/3.';return}if(equal(v,q.a)){if(first&&!helped)correctFirst++;answered=true;$('feedback').textContent='✓ Correct! Well done.';$('feedback').style.color='#278267';$('answer').disabled=true;$('check').disabled=true;$('next').classList.remove('hidden')}else{first=false;$('feedback').textContent='Not quite. Try again, or use a hint.';$('feedback').style.color='#a85c4d'}}
+function check(){let q=questions[order[idx]],v=$('answer').value;if(!parseFraction(v)){$('feedback').textContent='Enter a fraction, mixed number or integer, for example −3/2 or −1 1/2.';return}if(equal(v,q.a)&&!simplified(v)){$('feedback').textContent='Your answer has the correct value, but it is not fully simplified. Try again!';$('feedback').style.color='#a85c4d';first=false;return;}if(equal(v,q.a)){if(first&&!helped){correctFirst++;window.MathfinityRewards.award(1,'2.6 Negative Fractions',testRound+'-'+order[idx]);}answered=true;$('feedback').textContent='✓ Correct! Well done.';$('feedback').style.color='#278267';$('answer').disabled=true;$('check').disabled=true;$('next').classList.remove('hidden')}else{first=false;$('feedback').textContent='Not quite. Try again, or use a hint.';$('feedback').style.color='#a85c4d'}}
 function hint(){helped=true;$('feedback').textContent='💡 '+questions[order[idx]].hint;$('feedback').style.color='#477a68'}
 function solution(){helped=true;first=false;$('solutionBox').textContent='Answer: '+questions[order[idx]].a+' · '+questions[order[idx]].why;$('solutionBox').classList.remove('hidden');$('next').classList.remove('hidden');$('check').disabled=true;$('answer').disabled=true}
-async function next(){idx++;if(idx>=order.length){$('quiz').classList.add('hidden');$('end').classList.remove('hidden');$('result').textContent=MODE==='Test'?`You answered ${correctFirst} out of ${order.length} correctly on your first try.`:`You completed ${order.length} questions. Keep practising!`;if(MODE==='Test'){$('pointsMsg').textContent='Your test result is shown here. Student of the Week points require database setup for topic 2.6.';}return}render()}
+async function next(){idx++;if(idx>=order.length){$('quiz').classList.add('hidden');$('end').classList.remove('hidden');$('result').textContent=MODE==='Test'?`You answered ${correctFirst} out of ${order.length} correctly on your first try.`:`You completed ${order.length} questions. Keep practising!`;if(MODE==='Test'){$('pointsMsg').textContent='Points for first-try answers are sent to Student of the Week when the database is available.';}return}render()}
 $('start').onclick=start;$('check').onclick=check;$('answer').addEventListener('keydown',e=>{if(e.key==='Enter'&&!$('check').disabled)check()});$('hint').onclick=hint;$('solution').onclick=solution;$('next').onclick=next;$('again').onclick=()=>location.reload();
 </script></body></html>
