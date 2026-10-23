@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mathfinity · Microsoft login test</title>
+<style>body{margin:0;background:#eff9f4;color:#294e46;font:16px/1.55 system-ui,sans-serif}main{max-width:630px;margin:9vh auto;padding:35px;background:#fff;border-radius:22px;box-shadow:0 6px 28px #1d5d4420}h1{color:#28755d}button{border:0;border-radius:12px;padding:14px 22px;background:#68b99a;color:#143d32;font:700 16px system-ui;cursor:pointer}#logout{background:#e6f3eb}#message{margin-top:20px;padding:15px;border-radius:12px;background:#edf8f4;white-space:pre-wrap;overflow-wrap:anywhere}small{color:#54736b}</style></head>
+<body><main><h1>∞ Mathfinity</h1><h2>Microsoft 365 – Login test</h2><p>This is only a login test. No schoolwork or scores are recorded.</p><button id="login" type="button">🔐 Sign in with Microsoft 365</button> <button id="logout" type="button" hidden>Sign out</button><div id="message" role="status">Checking sign-in status…</div><p><small>Only use your own school account. Do not share passwords or secret keys.</small></p></main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(async()=>{
+'use strict';
+const URL='https://wgocbnhtmzxalvwlpvyo.supabase.co';
+const KEY='sb_publishable_0yRUp4LVsYdBcdmwLYfqxg_soc0fpQB';
+const output=document.getElementById('message');
+const login=document.getElementById('login');
+const logout=document.getElementById('logout');
+if(!window.supabase){output.textContent='Supabase library could not load. Check your internet connection.';login.disabled=true;return;}
+const client=window.supabase.createClient(URL,KEY);
+const show=user=>{if(user&&!user.is_anonymous){const name=user.user_metadata?.full_name||user.user_metadata?.name||'School account';output.textContent='✅ Signed in successfully!\nName: '+name+'\nEmail: '+(user.email||'(not provided)')+'\nYour account is now recognized. No test answers have been saved.';login.hidden=true;logout.hidden=false;}else{output.textContent='Not signed in with a school account yet.';login.hidden=false;logout.hidden=true;}};
+const current=new URL(window.location.href);
+const errorText=current.searchParams.get('error_description')||current.searchParams.get('error');
+if(errorText)output.textContent='❌ Microsoft sign-in was not completed: '+errorText;
+else{const {data,error}=await client.auth.getUser();if(error&&error.status!==400)console.warn('Auth state:',error.message);show(data?.user);}
+login.onclick=async()=>{login.disabled=true;output.textContent='Opening Microsoft sign-in…';const {error}=await client.auth.signInWithOAuth({provider:'azure',options:{scopes:'email',redirectTo:window.location.origin+window.location.pathname}});if(error){output.textContent='❌ '+error.message;login.disabled=false;}};
+logout.onclick=async()=>{const {error}=await client.auth.signOut();if(error){output.textContent='❌ '+error.message;return;}show(null);};
+})();
+</script></body></html>
