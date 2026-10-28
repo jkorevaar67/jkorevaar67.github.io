@@ -1,0 +1,18 @@
+Mathfinity – toevoeging hoofdstuk 3, alleen §3.1
+
+Pak het ZIP-bestand uit. Zet de HTML-bestanden naast elkaar in dezelfde map op je bestaande website. De aangepaste startpagina heet index.html.
+
+Nieuw: chapter-3-1.html, chapter-3-1-exercise.html, chapter-3-1-test.html.
+Aangepast: index.html.
+Meegeleverd: een nieuwe choose-topic.html en eenvoudige need-help.html omdat de bestaande versies niet waren meegestuurd. Vergelijk deze met je eigen versies voordat je ze vervangt; zet de links naar §3.1 zo nodig in je bestaande pagina’s.
+De drie aangeleverde breukenpagina’s zijn ongewijzigd meegeleverd. Student of the Week gebruikt de eerder aangepaste versie zonder klassen.
+
+Basic: gehele coördinaten, assen, oorsprong, kwadranten en tekenen.
+Intermediate: alle kwadranten, verplaatsingen en rechthoeken.
+Challenge: halve coördinaten, roosterpunten, middens en gekantelde vierkanten.
+
+Exercise geeft geen punten. Test gebruikt dezelfde Supabase-instellingen, profielopslag en wachtrij als de bestaande test. Een eerste correct antwoord zonder hulp dient één punt in met onderwerp 3.1 Coordinate planes. Het bestaande databasebeleid bepaalt hoeveel punten worden geaccepteerd. Er zijn geen databasewijzigingen uitgevoerd. Live puntenopslag is niet getest.
+
+De link Teacher Login verwijst naar de bestaande huiswerk.html; dat bestand was niet meegestuurd en zit niet in dit pakket. Ook de bestaande link naar chapter-2-1.html vereist je eigen hoofdstuk 2.1-bestand. De hoofdstuk 2-routes verwijzen naar de aangeleverde bestanden of bestaande oefenroutes in index.html.
+
+Hoofdstuk 3 gebruikt een blauw-lila kleurenpalet. De puntentelling en wachtrij zijn lokaal getest met gesimuleerde databaseantwoorden, inclusief fout/herstel en de 10-puntenlimietmelding. Het live databasebeleid is niet gecontroleerd.
