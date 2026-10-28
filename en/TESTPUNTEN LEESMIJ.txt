@@ -1,1 +1,0 @@
-Testpuntencorrectie: profielnaam/klas genormaliseerd, paragraaf 2.1 heeft aparte testvoortgang en geeft alleen een punt bij eerste poging zonder oplossing; 2.2 aparte testvoortgang. Bestaande punten blijven bewaard. Database synchronisatie nog live testen.\n
