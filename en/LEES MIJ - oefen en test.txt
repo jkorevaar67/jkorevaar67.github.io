@@ -1,4 +1,0 @@
-Upload alle HTML-bestanden rechtstreeks naar de map en op GitHub.
-Kies bij Choose a Chapter voor Exercise page (geen beloningspunten) of Test page (wel beloningspunten).
-De bestaande hoofdstukbestanden zijn behouden. Bestaande punten worden niet gewist.
-Let op: live databasewerking is niet getest.
