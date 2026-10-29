@@ -7,9 +7,7 @@
 :root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#173d36;background:#f5faf8}*{box-sizing:border-box}body{margin:0}header{background:#173d36;color:white;padding:23px 7%;font-size:24px;font-weight:800}main{max-width:980px;margin:65px auto;padding:0 22px;text-align:center}h1{font-size:clamp(32px,5vw,52px);margin:0 0 12px}p{color:#55736c;font-size:18px}.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:40px}.card{background:white;border:1px solid #d4e9e1;border-radius:22px;padding:38px 28px;box-shadow:0 12px 30px #173d3610;text-align:left}.icon{font-size:44px}.card h2{font-size:29px;margin:16px 0 8px}.card p{min-height:60px;font-size:16px;line-height:1.5}.button{display:inline-block;margin-top:15px;padding:14px 23px;border-radius:12px;background:#167c6b;color:white;text-decoration:none;font-weight:750}.button:hover{background:#105d50}.somnova .button{background:#6955c7}.somnova .button:hover{background:#503eab}footer{margin:55px 0 20px;color:#708a83;font-size:14px}@media(max-width:650px){main{margin:38px auto}.choices{grid-template-columns:1fr}.card p{min-height:0}}
 .wiznova-logo{display:block;width:180px;max-width:100%;height:auto;border-radius:12px;margin:0 0 16px}.somnova h2{margin-top:0}
 .card{display:flex;flex-direction:column;align-items:flex-start}.brand-logo{display:block;width:100%;height:220px;object-fit:contain;margin:0 0 20px;border-radius:12px}.card h2{margin:0 0 8px}.card p{margin:0 0 24px;min-height:72px}.card .button{margin-top:auto}.somnova .button{background:#167c6b}.somnova .button:hover{background:#105d50}
-.homepage-ad{max-width:900px;margin:30px auto 0;text-align:center}
-.homepage-ad.ad-empty{display:none}
-.homepage-ad ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important}
+.homepage-ad{max-width:900px;margin:46px auto 0;text-align:center;min-height:100px}
 .homepage-ad-label{font-size:12px;color:#708a83;margin:0 0 12px}
 </style>
 <link rel="icon" type="image/png" sizes="256x256" href="/wiznova-icon-v3.png">
@@ -30,27 +28,12 @@
   <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6081585611366495" data-ad-slot="1838128525" data-ad-format="auto" data-full-width-responsive="true"></ins>
   <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </section>
-<script>
-// Google may reserve space before deciding whether an ad is available.
-// Collapse the empty placement, while retaining the original AdSense unit.
-(function () {
-  const placement = document.querySelector('.homepage-ad');
-  const unit = placement && placement.querySelector('ins.adsbygoogle');
-  if (!unit) return;
-  const update = () => {
-    const status = unit.getAttribute('data-ad-status');
-    if (status === 'filled') placement.classList.remove('ad-empty');
-    else if (status === 'unfilled') placement.classList.add('ad-empty');
-  };
-  new MutationObserver(update).observe(unit, {attributes:true, attributeFilter:['data-ad-status']});
-  // If AdSense has not filled it after loading, avoid an enormous blank space.
-  setTimeout(() => {
-    if (unit.getAttribute('data-ad-status') !== 'filled') placement.classList.add('ad-empty');
-  }, 8000);
-  update();
-})();
-</script>
-<footer>Think. Solve. Grow.</footer>
+<footer>
+  <p style="font-size:14px;margin:0 0 6px" role="status">Totaal aantal bezoeken: <strong id="visitor-total">laden…</strong></p>
+  <p style="font-size:12px;margin:0 0 18px">Maximaal één geteld bezoek per browser per dag, vanaf de start van de teller.</p>
+  Think. Solve. Grow.
+</footer>
+<script src="./visitor-counter.js" defer></script>
 </main>
 </body>
 </html>
