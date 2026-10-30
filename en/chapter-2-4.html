@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 
 <html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>Mathfinity · §2.4 Negative Numbers</title><style>
-:root{font-family:system-ui,Segoe UI,Arial,sans-serif;color:#263b4b;background:#f4f8fb}*{box-sizing:border-box}body{margin:0;background:linear-gradient(145deg,#ecf9f5,#f5f0ff)}header{background:#6246d9;color:white;padding:22px;text-align:center}header h1{margin:0;font-size:2rem}header a{color:white}main{max-width:900px;margin:24px auto;padding:0 16px}.card{background:white;border-radius:20px;padding:clamp(18px,4vw,30px);margin:16px 0;box-shadow:0 7px 24px #24334713}h2,h3{color:#5540c4}.eyebrow{font-size:.83rem;font-weight:800;color:#148474;letter-spacing:.08em}.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:15px 0}.tabs button,button,.btn{font:inherit;cursor:pointer;border:0;border-radius:11px;padding:11px 16px;font-weight:750;background:#6246d9;color:white}.tabs button{background:#ece8ff;color:#4935ac}.tabs button.active{background:#6246d9;color:white}.btn.secondary,button.secondary{background:#e6f5f0;color:#176d5c}.btn.orange,button.orange{background:#d9633b}.hidden{display:none!important}.theory{background:#e9f6e4;padding:18px;border-radius:13px;margin:15px 0;line-height:1.65}.example{background:#f1edff;padding:17px;border-radius:13px;line-height:1.65}.muted{color:#5d6d7d}.math{font-size:1.35rem;font-weight:750}input,select{font:inherit;padding:12px;border:2px solid #c9c3e9;border-radius:10px;width:190px;max-width:100%}.feedback{min-height:28px;font-weight:750}.good{color:#087b56}.bad{color:#a54332}.stats{display:flex;flex-wrap:wrap;gap:12px;margin:12px 0}.pill{background:#edf7f5;border-radius:30px;padding:9px 13px;font-weight:750}.line{overflow-x:auto;padding:10px 0}.line svg{max-width:100%;height:auto}.note{border-left:4px solid #e2a05b;background:#fff8eb;padding:12px 15px;border-radius:8px}details{background:#f6f8fb;border-radius:10px;padding:12px;margin:12px 0}summary{cursor:pointer;font-weight:700}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:15px}.progress{height:12px;background:#e9e7f4;border-radius:20px;overflow:hidden}.progress>div{height:100%;background:#21a386;width:0;transition:width .2s}#question{font-size:1.65rem;font-weight:800;color:#24394d}#feedback{margin-top:12px}footer{text-align:center;padding:25px;color:#667889}
+:root{font-family:system-ui,Segoe UI,Arial,sans-serif;color:#263b4b;background:#f4f8fb}*{box-sizing:border-box}body{margin:0;background:linear-gradient(145deg,#eceef9,#f5f0ff)}header{background:#6246d9;color:white;padding:22px;text-align:center}header h1{margin:0;font-size:2rem}header a{color:white}main{max-width:900px;margin:24px auto;padding:0 16px}.card{background:white;border-radius:20px;padding:clamp(18px,4vw,30px);margin:16px 0;box-shadow:0 7px 24px #24334713}h2,h3{color:#5540c4}.eyebrow{font-size:.83rem;font-weight:800;color:#1d2e7b;letter-spacing:.08em}.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:15px 0}.tabs button,button,.btn{font:inherit;cursor:pointer;border:0;border-radius:11px;padding:11px 16px;font-weight:750;background:#6246d9;color:white}.tabs button{background:#ece8ff;color:#4935ac}.tabs button.active{background:#6246d9;color:white}.btn.secondary,button.secondary{background:#e6e9f5;color:#19286b}.btn.orange,button.orange{background:#d9633b}.hidden{display:none!important}.theory{background:#e4e7f6;padding:18px;border-radius:13px;margin:15px 0;line-height:1.65}.example{background:#f1edff;padding:17px;border-radius:13px;line-height:1.65}.muted{color:#5d6d7d}.math{font-size:1.35rem;font-weight:750}input,select{font:inherit;padding:12px;border:2px solid #c9c3e9;border-radius:10px;width:190px;max-width:100%}.feedback{min-height:28px;font-weight:750}.good{color:#19286a}.bad{color:#a54332}.stats{display:flex;flex-wrap:wrap;gap:12px;margin:12px 0}.pill{background:#edeff7;border-radius:30px;padding:9px 13px;font-weight:750}.line{overflow-x:auto;padding:10px 0}.line svg{max-width:100%;height:auto}.note{border-left:4px solid #e2a05b;background:#fff8eb;padding:12px 15px;border-radius:8px}details{background:#f6f8fb;border-radius:10px;padding:12px;margin:12px 0}summary{cursor:pointer;font-weight:700}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:15px}.progress{height:12px;background:#e9e7f4;border-radius:20px;overflow:hidden}.progress>div{height:100%;background:#253c9f;width:0;transition:width .2s}#question{font-size:1.65rem;font-weight:800;color:#24394d}#feedback{margin-top:12px}footer{text-align:center;padding:25px;color:#667889}
 </style>
 <style id="mathfinity-shared-navigation">
 .mathfinity-global-nav{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.97);border-bottom:1px solid #e2e9ed;box-shadow:0 3px 14px rgba(26,46,66,.06);padding:11px 15px}
 .mathfinity-global-nav .nav-inner{max-width:1150px;margin:auto;display:flex;gap:7px;align-items:center;flex-wrap:wrap}
 .mathfinity-global-nav a{display:inline-flex;align-items:center;gap:7px;padding:12px 15px;border-radius:13px;color:#28536a;text-decoration:none;font-size:15px;font-weight:750;line-height:1.3}
-.mathfinity-global-nav a:hover,.mathfinity-global-nav a[aria-current="page"]{background:#e8f4ef;color:#09645c}
+.mathfinity-global-nav a:hover,.mathfinity-global-nav a[aria-current="page"]{background:#e8eaf4;color:#152158}
 @media(max-width:650px){.mathfinity-global-nav .nav-inner{flex-wrap:nowrap;overflow-x:auto}.mathfinity-global-nav a{white-space:nowrap;font-size:13px;padding:10px 12px}}
 </style>
 <style id="mathfinity-calm-theme">
 /* Mathfinity unified calm-green theme and stable navigation */
-:root { background: #edf7f1 !important; }
-html { background: #edf7f1; }
-body { background: #edf7f1 !important; color: #263f3b; min-height: 100vh; }
-body > header { background: #f7fcf8 !important; color: #23564b !important;
-  border-bottom: 1px solid #dbe9df; box-shadow: none !important; }
-body > header h1, body > header .brand-name { color: #23564b !important; }
-body > header p, body > header .brand-tagline { color: #53766a !important; }
+:root { background: #edeff7 !important; }
+html { background: #edeff7; }
+body { background: #edeff7 !important; color: #262b3f; min-height: 100vh; }
+body > header { background: #f7f8fc !important; color: #232c56 !important;
+  border-bottom: 1px solid #dbdee9; box-shadow: none !important; }
+body > header h1, body > header .brand-name { color: #232c56 !important; }
+body > header p, body > header .brand-tagline { color: #535976 !important; }
 main .card, main .topic, main .chapter { background: #fff !important; }
-main h2, main h3 { color: #235f50; }
-main .theory, main .lesson, main .setup-panel { background: #f1f8f2; }
-main .example, main .mini, main .stat { background: #f5faf6; }
+main h2, main h3 { color: #232e5f; }
+main .theory, main .lesson, main .setup-panel { background: #f1f2f8; }
+main .example, main .mini, main .stat { background: #f5f6fa; }
 button:not(.home-card):not(.reward-avatar):not(.secondary):not(.ghost):not(.danger):not(.orange):not(.active),
 a.btn:not(.learn):not(.practise), .button:not(.secondary) {
-  background: #257b63; color: white;
+  background: #25357b; color: white;
 }
-button.secondary { background: #e1f1e7; color: #245f4c; }
+button.secondary { background: #e1e4f1; color: #242f5f; }
 main .topic-choices label:has(input:checked),
 main .tabs button.active, main .topic-choices label:has(input[type=radio]:checked) {
   background: #ffddcf !important; color: #80452f !important; border-color: #de9479 !important;
@@ -37,8 +37,8 @@ main .btn.practise, main button.orange { background: #df8067 !important; color: 
 body > nav.mathfinity-global-nav {
   position: sticky !important; top: 0; z-index: 1000;
   display: block !important; width: 100%; margin: 0 !important;
-  padding: 0 16px !important; background: #f9fcfa !important;
-  border-bottom: 1px solid #d6e6db; box-shadow: 0 2px 9px #244e3610 !important;
+  padding: 0 16px !important; background: #f9fafc !important;
+  border-bottom: 1px solid #d6d9e6; box-shadow: 0 2px 9px #242c4e10 !important;
 }
 body > nav.mathfinity-global-nav > .nav-inner {
   display: flex !important; flex-wrap: nowrap !important; align-items: stretch !important;
@@ -51,12 +51,12 @@ body > nav.mathfinity-global-nav a {
   justify-content: center; flex: 0 0 auto; white-space: nowrap;
   padding: 0 15px !important; margin: 0 !important; height: 62px;
   border-radius: 0 !important; background: transparent !important;
-  color: #315e50 !important; font-size: 14px !important;
+  color: #31395e !important; font-size: 14px !important;
   font-weight: 700; line-height: 1.2; text-decoration: none;
 }
 body > nav.mathfinity-global-nav a:hover,
 body > nav.mathfinity-global-nav a[aria-current=page] {
-  background: #e0f1e6 !important; color: #176248 !important;
+  background: #e0e3f1 !important; color: #172562 !important;
 }
 @media(max-width:780px) {
   body > nav.mathfinity-global-nav > .nav-inner { justify-content: flex-start !important; }
@@ -69,24 +69,24 @@ body > nav.mathfinity-global-nav { display:block !important; position:sticky !im
 body > nav.mathfinity-global-nav > .nav-inner { display:flex !important; justify-content:flex-start !important; align-items:stretch !important; flex-wrap:nowrap !important; gap:4px !important; max-width:1050px !important; width:100% !important; height:62px !important; margin:0 auto !important; padding:0 !important; overflow-x:auto !important; }
 body > nav.mathfinity-global-nav .nav-inner > a { box-sizing:border-box !important; flex:0 0 auto !important; height:62px !important; line-height:1.2 !important; padding:0 14px !important; margin:0 !important; font-size:14px !important; border:0 !important; border-radius:0 !important; white-space:nowrap !important; }
 @media(max-width:780px){body > nav.mathfinity-global-nav .nav-inner > a {font-size:13px !important;padding:0 11px !important;}}
-</style><style>html,body{background:#eff9f4!important;color:#294e46!important}body>nav.mathfinity-global-nav>.nav-inner{justify-content:flex-start!important;align-items:center!important;max-width:1050px!important;width:100%!important} .right-logo{margin-left:auto;flex:0 0 auto;font-weight:850;color:#388a74;padding-left:20px}body>header{background:#e2f5ea!important;color:#285c4d!important;text-align:center!important;padding:25px 12px!important}body>header h1,body>header .brand-name{color:#285c4d!important}body>header p{color:#477a68!important}main h2,main h3,main h4{color:#337e67!important}main .lesson,main .theory,main .example{background:#f0faf4!important;border-color:#91cdb0!important}main button:not(.secondary):not(.orange){background:#68b99a!important;color:#123e33!important}main button.secondary{background:#e0f4e9!important;color:#2c705a!important}main input,main select{background:white!important;border-color:#b5d9c6!important}</style><style id="mathfinity-learn-21-matched">
+</style><style>html,body{background:#eff1f9!important;color:#29304e!important}body>nav.mathfinity-global-nav>.nav-inner{justify-content:flex-start!important;align-items:center!important;max-width:1050px!important;width:100%!important} .right-logo{margin-left:auto;flex:0 0 auto;font-weight:850;color:#38478a;padding-left:20px}body>header{background:#e2e5f5!important;color:#28325c!important;text-align:center!important;padding:25px 12px!important}body>header h1,body>header .brand-name{color:#28325c!important}body>header p{color:#47507a!important}main h2,main h3,main h4{color:#33417e!important}main .lesson,main .theory,main .example{background:#f0f2fa!important;border-color:#919ccd!important}main button:not(.secondary):not(.orange){background:#6877b9!important;color:#121a3e!important}main button.secondary{background:#e0e4f4!important;color:#2c3870!important}main input,main select{background:white!important;border-color:#b5bcd9!important}</style><style id="mathfinity-learn-21-matched">
 /* Mathfinity unified calm-green theme and stable navigation */
-:root { background: #edf7f1 !important; }
-html { background: #edf7f1; }
-body { background: #edf7f1 !important; color: #263f3b; min-height: 100vh; }
-body > header { background: #f7fcf8 !important; color: #23564b !important;
-  border-bottom: 1px solid #dbe9df; box-shadow: none !important; }
-body > header h1, body > header .brand-name { color: #368775 !important; }
-body > header p, body > header .brand-tagline { color: #53766a !important; }
+:root { background: #edeff7 !important; }
+html { background: #edeff7; }
+body { background: #edeff7 !important; color: #262b3f; min-height: 100vh; }
+body > header { background: #f7f8fc !important; color: #232c56 !important;
+  border-bottom: 1px solid #dbdee9; box-shadow: none !important; }
+body > header h1, body > header .brand-name { color: #364587 !important; }
+body > header p, body > header .brand-tagline { color: #535976 !important; }
 main .card, main .topic, main .chapter { background: #fff !important; }
-main h2, main h3 { color: #347e6c; }
-main .theory, main .lesson, main .setup-panel { background: #f1f8f2; }
-main .example, main .mini, main .stat { background: #f5faf6; }
+main h2, main h3 { color: #34427e; }
+main .theory, main .lesson, main .setup-panel { background: #f1f2f8; }
+main .example, main .mini, main .stat { background: #f5f6fa; }
 button:not(.home-card):not(.reward-avatar):not(.secondary):not(.ghost):not(.danger):not(.orange):not(.active),
 a.btn:not(.learn):not(.practise), .button:not(.secondary) {
-  background: #56ad92; color: #103e34;
+  background: #5666ad; color: #10183e;
 }
-button.secondary { background: #e1f1e7; color: #245f4c; }
+button.secondary { background: #e1e4f1; color: #242f5f; }
 main .topic-choices label:has(input:checked),
 main .tabs button.active, main .topic-choices label:has(input[type=radio]:checked) {
   background: #ffddcf !important; color: #80452f !important; border-color: #de9479 !important;
@@ -96,8 +96,8 @@ main .btn.practise, main button.orange { background: #df8067 !important; color: 
 body > nav.mathfinity-global-nav {
   position: sticky !important; top: 0; z-index: 1000;
   display: block !important; width: 100%; margin: 0 !important;
-  padding: 0 16px !important; background: #f9fcfa !important;
-  border-bottom: 1px solid #d6e6db; box-shadow: 0 2px 9px #244e3610 !important;
+  padding: 0 16px !important; background: #f9fafc !important;
+  border-bottom: 1px solid #d6d9e6; box-shadow: 0 2px 9px #242c4e10 !important;
 }
 body > nav.mathfinity-global-nav > .nav-inner {
   display: flex !important; flex-wrap: nowrap !important; align-items: stretch !important;
@@ -110,12 +110,12 @@ body > nav.mathfinity-global-nav a {
   justify-content: center; flex: 0 0 auto; white-space: nowrap;
   padding: 0 15px !important; margin: 0 !important; height: 62px;
   border-radius: 0 !important; background: transparent !important;
-  color: #347e6c !important; font-size: 14px !important;
+  color: #34427e !important; font-size: 14px !important;
   font-weight: 700; line-height: 1.2; text-decoration: none;
 }
 body > nav.mathfinity-global-nav a:hover,
 body > nav.mathfinity-global-nav a[aria-current=page] {
-  background: #e0f1e6 !important; color: #347e6c !important;
+  background: #e0e3f1 !important; color: #34427e !important;
 }
 @media(max-width:780px) {
   body > nav.mathfinity-global-nav > .nav-inner { justify-content: flex-start !important; }
@@ -123,29 +123,40 @@ body > nav.mathfinity-global-nav a[aria-current=page] {
 }
 
 /* Consistent with Learn 2.1: airy mint surfaces and identical masthead */
-body>header{background:#f7fcf8!important;color:#23564b!important;padding:28px 20px!important;border-bottom:1px solid #dbe9df!important}
-body>header h1{font-size:2.3rem!important;color:#368775!important;margin:0!important}
-body>header p{margin:4px!important;color:#53766a!important}
+body>header{background:#f7f8fc!important;color:#232c56!important;padding:28px 20px!important;border-bottom:1px solid #dbdee9!important}
+body>header h1{font-size:2.3rem!important;color:#364587!important;margin:0!important}
+body>header p{margin:4px!important;color:#535976!important}
 body>main{max-width:900px!important;margin:24px auto!important;padding:0 16px!important}
 body>main>.badge{display:inline-block!important;margin:0 0 16px!important}
 main .card{background:white!important;border-radius:22px!important;padding:clamp(20px,4vw,36px)!important;box-shadow:0 12px 35px #24335a1a!important;margin-bottom:20px!important}
-main .lesson,main .theory{background:#effaf6!important;border-left:5px solid #56ad92!important;border-radius:12px!important;padding:18px!important}
-main .example,main .box{background:#f4fbf7!important;border-left:4px solid #80c7a9!important;border-radius:12px!important;padding:16px!important}
-main h2{color:#368775!important}main h3{color:#337e67!important}
-main button:not(.secondary){background:#56ad92!important;color:#103e34!important;border-radius:12px!important;padding:11px 19px!important}
-main button.secondary{background:#e5f6ed!important;color:#285e4e!important;border-radius:12px!important}
+main .lesson,main .theory{background:#eff1fa!important;border-left:5px solid #5666ad!important;border-radius:12px!important;padding:18px!important}
+main .example,main .box{background:#f4f5fb!important;border-left:4px solid #808dc7!important;border-radius:12px!important;padding:16px!important}
+main h2{color:#364587!important}main h3{color:#33417e!important}
+main button:not(.secondary){background:#5666ad!important;color:#10183e!important;border-radius:12px!important;padding:11px 19px!important}
+main button.secondary{background:#e5e8f6!important;color:#28325e!important;border-radius:12px!important}
 main button{cursor:pointer!important;font-weight:700!important}
 .lesson-tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
-.lesson-tabs button{background:#fff!important;color:#368775!important}
-.right-logo{margin-left:auto!important;font-weight:850!important;color:#388a74!important}
+.lesson-tabs button{background:#fff!important;color:#364587!important}
+.right-logo{margin-left:auto!important;font-weight:850!important;color:#38478a!important}
 @media(max-width:600px){body>header h1{font-size:1.9rem!important}main .card{padding:20px!important}}
+</style><style id="bijles-link-style">a.bijles-link{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;padding:9px 14px;border:1px solid #a6adce;border-radius:9px;background:#e9ebf5;color:#17214e!important;font:700 14px/1.4 system-ui,Arial,sans-serif;text-decoration:none;margin:5px}a.bijles-link:hover{background:#d4d8eb}a.bijles-link:focus-visible{outline:3px solid #6955c7;outline-offset:3px}.bijles-access{padding:8px 16px;text-align:right;background:#f5f6fa;border-bottom:1px solid #d4d8e9}.bijles-home{margin:28px 0;text-align:center}.bijles-home p{margin:0 0 10px;font-size:17px}</style><style id="wiznova-blue-standard">
+body{background-color:#f3f5fc;color:#303c61}
+body>header{background:#e8eafa;color:#303c61;border-bottom:1px solid #dcdff2}
+body>header p,body>header h1,body>header strong{color:#303c61}
+body>header a{color:#465781!important}
+body>nav,.mathfinity-global-nav,.global-nav,.bijles-access{background:#fbfbff;border-color:#dcdff2}
+nav a{color:#465781}h2,h3{color:#586ca1}
+a.bijles-link{background:#e9eafa;color:#303d6b!important;border-color:#c5cbed}
+a.bijles-link:hover{background:#dce0f8}
+.bijles-access{background:#f3f5fc}
+.bijles-home{background:#e8eafa;border:1px solid #dcdff2;border-radius:20px;padding:25px}
 </style></head><body>
 <nav aria-label="Mathfinity main navigation" class="mathfinity-global-nav">
 <div class="nav-inner">
 <a data-mnav="home" href="index.html">⌂ Home</a>
 <a data-mnav="choose" href="choose-topic.html">📚 Choose a Chapter</a>
 <a data-mnav="help" href="need-help.html">💡 Need help?</a>
-<a data-mnav="week" href="student-of-the-week.html">🌟 Student of the Week</a>
+<a data-mnav="week" href="student-of-the-week.html">🌟 Student of the Week</a><a class="bijles-link" href="/bijles.html">Vraag bijles aan</a>
 <span class="right-logo">∞ Mathfinity</span></div></nav>
 <header><h1>Mathfinity ∞</h1><p>Think. Solve. Grow.</p><p>Chapter 2 · Numbers and operations · 2.4 Negative Numbers</p></header><main><p class="badge">TVWO 1 · Chapter 2 · 2.4 Negative Numbers</p>
 <div id="learn"><section class="card"><h2>Choose your theory</h2><div class="tabs" id="theoryTabs"><button class="active" data-part="a" type="button">Theory A</button><button data-part="b" type="button">Theory B</button><button data-part="c" type="button">Theory C</button><button data-part="d" type="button">Theory D</button></div><div class="part" id="part-a"><h3>Theory A · Positive and negative numbers</h3><div class="theory">Numbers greater than 0 are <strong>positive</strong>. Numbers smaller than 0 are <strong>negative</strong>. Zero is neither positive nor negative.<p>On a number line, moving right makes numbers larger. Moving left makes numbers smaller.</p></div><div class="line" id="lineA"></div><div class="example"><strong>Example:</strong> −3 &lt; 2 because −3 is to the left of 2. The <strong>opposite</strong> of −5 is 5, and the opposite of 0 is 0.</div><p><strong>Remember:</strong> Opposite numbers add up to zero: −7 + 7 = 0.</p></div><div class="part hidden" id="part-b"><h3>Theory B · Arrows on a number line</h3><div class="theory">To <strong>add a positive number</strong>, move right. To <strong>subtract a positive number</strong>, move left.</div><div class="example"><strong>Example 1:</strong> −3 + 5 = 2. Start at −3, move five steps right.<p><strong>Example 2:</strong> −1 − 7 = −8. Start at −1, move seven steps left.</p></div><div class="line" id="lineB"></div></div><div class="part hidden" id="part-c"><h3>Theory C · Adding negative numbers</h3><div class="theory">Adding a negative number has the same effect as subtracting its positive opposite.<p class="math">8 + (−3) = 8 − 3 = 5</p></div><div class="example"><strong>Worked examples</strong><p>−9 + (−3) = −12</p><p>15 + (−16) = −1</p><p>−5 + 8 = 3</p></div><p><strong>Tip:</strong> If both numbers are negative, add their sizes and keep the minus sign.</p></div><div class="part hidden" id="part-d"><h3>Theory D · Subtracting negative numbers</h3><div class="theory">Subtracting a negative number is the same as adding its positive opposite.<p class="math">15 − (−4) = 15 + 4 = 19</p></div><div class="example"><strong>Worked examples</strong><p>8 − (−3) = 8 + 3 = 11</p><p>−13 − (−27) = −13 + 27 = 14</p><p>−16 − (−2 − 8) = −16 − (−10) = −6</p></div><p><strong>Remember:</strong> Work out brackets first. Then change subtraction of a negative number into addition.</p></div><div class="actions"><button class="orange" id="goPractice">Ready? Start practising →</button></div></section></div>

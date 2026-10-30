@@ -1,7 +1,18 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mathfinity · Microsoft login test</title>
-<style>body{margin:0;background:#eff9f4;color:#294e46;font:16px/1.55 system-ui,sans-serif}main{max-width:630px;margin:9vh auto;padding:35px;background:#fff;border-radius:22px;box-shadow:0 6px 28px #1d5d4420}h1{color:#28755d}button{border:0;border-radius:12px;padding:14px 22px;background:#68b99a;color:#143d32;font:700 16px system-ui;cursor:pointer}#logout{background:#e6f3eb}#message{margin-top:20px;padding:15px;border-radius:12px;background:#edf8f4;white-space:pre-wrap;overflow-wrap:anywhere}small{color:#54736b}</style></head>
-<body><main><h1>∞ Mathfinity</h1><h2>Microsoft 365 – Login test</h2><p>This is only a login test. No schoolwork or scores are recorded.</p><button id="login" type="button">🔐 Sign in with Microsoft 365</button> <button id="logout" type="button" hidden>Sign out</button><div id="message" role="status">Checking sign-in status…</div><p><small>Only use your own school account. Do not share passwords or secret keys.</small></p></main>
+<style>body{margin:0;background:#eff1f9;color:#29304e;font:16px/1.55 system-ui,sans-serif}main{max-width:630px;margin:9vh auto;padding:35px;background:#fff;border-radius:22px;box-shadow:0 6px 28px #1d295d20}h1{color:#283675}button{border:0;border-radius:12px;padding:14px 22px;background:#6877b9;color:#141c3d;font:700 16px system-ui;cursor:pointer}#logout{background:#e6e8f3}#message{margin-top:20px;padding:15px;border-radius:12px;background:#edeff8;white-space:pre-wrap;overflow-wrap:anywhere}small{color:#545a73}</style><style id="bijles-link-style">a.bijles-link{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;padding:9px 14px;border:1px solid #a6adce;border-radius:9px;background:#e9ebf5;color:#17214e!important;font:700 14px/1.4 system-ui,Arial,sans-serif;text-decoration:none;margin:5px}a.bijles-link:hover{background:#d4d8eb}a.bijles-link:focus-visible{outline:3px solid #6955c7;outline-offset:3px}.bijles-access{padding:8px 16px;text-align:right;background:#f5f6fa;border-bottom:1px solid #d4d8e9}.bijles-home{margin:28px 0;text-align:center}.bijles-home p{margin:0 0 10px;font-size:17px}</style><style id="wiznova-blue-standard">
+body{background-color:#f3f5fc;color:#303c61}
+body>header{background:#e8eafa;color:#303c61;border-bottom:1px solid #dcdff2}
+body>header p,body>header h1,body>header strong{color:#303c61}
+body>header a{color:#465781!important}
+body>nav,.mathfinity-global-nav,.global-nav,.bijles-access{background:#fbfbff;border-color:#dcdff2}
+nav a{color:#465781}h2,h3{color:#586ca1}
+a.bijles-link{background:#e9eafa;color:#303d6b!important;border-color:#c5cbed}
+a.bijles-link:hover{background:#dce0f8}
+.bijles-access{background:#f3f5fc}
+.bijles-home{background:#e8eafa;border:1px solid #dcdff2;border-radius:20px;padding:25px}
+</style></head>
+<body><div class="bijles-access"><a class="bijles-link" href="/bijles.html">Vraag bijles aan</a></div><main><h1>∞ Mathfinity</h1><h2>Microsoft 365 – Login test</h2><p>This is only a login test. No schoolwork or scores are recorded.</p><button id="login" type="button">🔐 Sign in with Microsoft 365</button> <button id="logout" type="button" hidden>Sign out</button><div id="message" role="status">Checking sign-in status…</div><p><small>Only use your own school account. Do not share passwords or secret keys.</small></p></main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 (async()=>{

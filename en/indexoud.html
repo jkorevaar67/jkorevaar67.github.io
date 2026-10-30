@@ -4,7 +4,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Mathfinity | Chapter 2</title>
 <style>
-:root{font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:#193047;background:#e8f8f6}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:linear-gradient(145deg,#e8f8f6,#e9e8ff)}header{background:#6246d9;color:white;text-align:center;padding:24px 12px}header h1{margin:0;font-size:clamp(1.4rem,4vw,2.1rem)}header p{margin:7px 0 0;opacity:.9}main{max-width:760px;margin:26px auto;padding:0 14px}.card{background:#fff;border-radius:22px;padding:clamp(20px,5vw,36px);box-shadow:0 12px 35px #24335a1a}.hidden{display:none!important}h2{color:#6246d9;margin:0 0 18px;font-size:1.6rem}.field{margin:18px 0}label{font-weight:700;display:block;margin-bottom:8px}input,select{font:inherit;padding:13px 14px;border:2px solid #cbd5e1;border-radius:11px;width:100%;max-width:310px}input:focus,select:focus{outline:3px solid #c3b6ff;border-color:#6246d9}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:23px}button{border:0;border-radius:12px;padding:13px 21px;font-size:1rem;font-weight:700;cursor:pointer;background:#6246d9;color:white}button.secondary{background:#008e89}button.exit{background:#e66c46}button:disabled{background:#a9b2c3;cursor:not-allowed}.muted{color:#536478}.pill{display:inline-block;border-radius:99px;padding:7px 14px;background:#f0edff;color:#6246d9;font-weight:700}.numbers{font-size:clamp(1.5rem,5vw,2rem);font-weight:800;margin:24px 0;color:#20334d}.step{font-size:1.2rem;font-weight:700;margin:18px 0 12px}.hint{background:#fff3e9;color:#934818;border-radius:12px;padding:11px 14px;margin:12px 0}.confirmed{background:#effaf6;border-left:5px solid #008e89;padding:12px 16px;border-radius:10px;margin:18px 0;white-space:pre-line;line-height:1.7}.feedback{min-height:28px;margin-top:14px;font-weight:700}.good{color:#00796d}.warn{color:#ba4c22}.small{font-size:.9rem}.footer{text-align:center;color:#596779;padding:0 15px 20px}
+:root{font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:#193047;background:#e8ebf8}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:linear-gradient(145deg,#e8ebf8,#e9e8ff)}header{background:#6246d9;color:white;text-align:center;padding:24px 12px}header h1{margin:0;font-size:clamp(1.4rem,4vw,2.1rem)}header p{margin:7px 0 0;opacity:.9}main{max-width:760px;margin:26px auto;padding:0 14px}.card{background:#fff;border-radius:22px;padding:clamp(20px,5vw,36px);box-shadow:0 12px 35px #24335a1a}.hidden{display:none!important}h2{color:#6246d9;margin:0 0 18px;font-size:1.6rem}.field{margin:18px 0}label{font-weight:700;display:block;margin-bottom:8px}input,select{font:inherit;padding:13px 14px;border:2px solid #cbd5e1;border-radius:11px;width:100%;max-width:310px}input:focus,select:focus{outline:3px solid #c3b6ff;border-color:#6246d9}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:23px}button{border:0;border-radius:12px;padding:13px 21px;font-size:1rem;font-weight:700;cursor:pointer;background:#6246d9;color:white}button.secondary{background:#1b2b73}button.exit{background:#e66c46}button:disabled{background:#a9b2c3;cursor:not-allowed}.muted{color:#536478}.pill{display:inline-block;border-radius:99px;padding:7px 14px;background:#f0edff;color:#6246d9;font-weight:700}.numbers{font-size:clamp(1.5rem,5vw,2rem);font-weight:800;margin:24px 0;color:#20334d}.step{font-size:1.2rem;font-weight:700;margin:18px 0 12px}.hint{background:#fff3e9;color:#934818;border-radius:12px;padding:11px 14px;margin:12px 0}.confirmed{background:#eff1fa;border-left:5px solid #1b2b73;padding:12px 16px;border-radius:10px;margin:18px 0;white-space:pre-line;line-height:1.7}.feedback{min-height:28px;margin-top:14px;font-weight:700}.good{color:#172562}.warn{color:#ba4c22}.small{font-size:.9rem}.footer{text-align:center;color:#596779;padding:0 15px 20px}
 
 .brand{display:flex;align-items:center;justify-content:center;gap:16px;max-width:650px;margin:auto;text-align:left}
 .brand-logo{width:94px;height:74px;flex:none;filter:drop-shadow(0 4px 8px #25107335)}
@@ -16,8 +16,8 @@
 nav{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;padding:15px;background:#fff;box-shadow:0 3px 12px #24335a13}
 nav button{background:#f0edff;color:#5439c4;padding:11px 17px}nav button.active{background:#6246d9;color:white}
 .lesson{background:#f7f6ff;border-left:5px solid #6246d9;border-radius:12px;padding:15px 19px;margin:16px 0;line-height:1.65}
-.lesson.teal{background:#effaf6;border-color:#008e89}.lesson.orange{background:#fff4e9;border-color:#ed754e}
-.help-toggle{margin-top:14px;background:#008e89}.help-box{margin-top:16px;padding:18px;background:#fff8e9;border:2px solid #ffdb9d;border-radius:15px;line-height:1.65}
+.lesson.teal{background:#eff1fa;border-color:#1b2b73}.lesson.orange{background:#fff4e9;border-color:#ed754e}
+.help-toggle{margin-top:14px;background:#1b2b73}.help-box{margin-top:16px;padding:18px;background:#fff8e9;border:2px solid #ffdb9d;border-radius:15px;line-height:1.65}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:13px;margin:18px 0}.mini{background:#f5f4ff;padding:16px;border-radius:15px}
 .result-number{font-size:2.3rem;font-weight:850;color:#6246d9}
 @media(max-width:480px){nav button{flex:1 1 40%}}
@@ -27,43 +27,43 @@ nav button{background:#f0edff;color:#5439c4;padding:11px 17px}nav button.active{
 body{background:#f7f9fc;color:#24344b}
 header{background:white!important;color:#203c55!important;border-bottom:1px solid #e5eaf0;box-shadow:none!important;padding:18px 24px!important}
 .brand{max-width:1080px;justify-content:flex-start;gap:12px}
-.brand-logo{width:62px;height:52px;filter:none;background:#eaf7f3;border-radius:14px}
+.brand-logo{width:62px;height:52px;filter:none;background:#eaecf7;border-radius:14px}
 .brand-name{font-size:1.65rem;color:#174e54;letter-spacing:-.035em}
 .brand-tagline{color:#597282;font-size:.75rem;letter-spacing:.02em;margin-top:3px}
 .brand-topic{display:none}
 nav{background:#fff;box-shadow:none;border-bottom:1px solid #e5eaf0;gap:5px;justify-content:center;padding:11px}
 nav button{background:transparent;color:#405a70;border-radius:9px;padding:10px 16px;font-weight:650}
-nav button.active,nav button:hover{background:#e9f5f1;color:#176b5b}
+nav button.active,nav button:hover{background:#e9ebf5;color:#192769}
 main{max-width:1050px!important;margin:28px auto!important;padding:0 20px!important}
 .card{background:#fff!important;border:1px solid #e4eaf0!important;border-radius:18px!important;box-shadow:0 6px 25px #2c4a6510!important;padding:28px!important}
 .card h2{color:#233e52}
 button{border-radius:10px!important}
-button:not(nav button):not(.secondary){background:#177e6d}
-button:not(nav button):not(.secondary):hover{background:#126656}
-.lesson{background:#f6f9fd;border-color:#2c8c79}
-.lesson.teal{background:#f0faf6}.lesson.orange{background:#fff8ef}
+button:not(nav button):not(.secondary){background:#1c2d79}
+button:not(nav button):not(.secondary):hover{background:#172461}
+.lesson{background:#f6f9fd;border-color:#2c3e8c}
+.lesson.teal{background:#f0f2fa}.lesson.orange{background:#fff8ef}
 .mini{background:#f5f8fb;border:1px solid #e8edf2}
 #home{border:none!important;box-shadow:none!important;background:transparent!important;padding:0!important}
-.home-hero{display:grid;grid-template-columns:1.5fr 1fr;gap:24px;align-items:center;background:#e8f5ef;border-radius:20px;padding:40px 42px;overflow:hidden}
-.home-eyebrow{font-size:.8rem;text-transform:uppercase;letter-spacing:.14em;font-weight:800;color:#23745d}
-.home-hero h1{font-size:clamp(2rem,4vw,3.15rem);line-height:1.13;margin:13px 0;color:#183d40;letter-spacing:-.04em}
-.home-hero p{color:#476b66;font-size:1.08rem;line-height:1.6;max-width:480px}
+.home-hero{display:grid;grid-template-columns:1.5fr 1fr;gap:24px;align-items:center;background:#e8eaf5;border-radius:20px;padding:40px 42px;overflow:hidden}
+.home-eyebrow{font-size:.8rem;text-transform:uppercase;letter-spacing:.14em;font-weight:800;color:#233274}
+.home-hero h1{font-size:clamp(2rem,4vw,3.15rem);line-height:1.13;margin:13px 0;color:#181f40;letter-spacing:-.04em}
+.home-hero p{color:#474e6b;font-size:1.08rem;line-height:1.6;max-width:480px}
 .home-art{font-size:5.2rem;text-align:center;line-height:1.2;background:#fff9;border-radius:22px;padding:36px 10px;transform:rotate(3deg)}
 .home-title{font-size:1.4rem;margin:30px 0 14px;color:#263e52}
 .home-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .home-card{display:flex;flex-direction:column;align-items:flex-start;text-align:left;min-height:215px;padding:24px;border:1px solid #e2e9ef;border-radius:16px;background:white!important;color:#24344b!important;box-shadow:0 4px 15px #2c4a6509;cursor:pointer;transition:transform .15s,border-color .15s}
-.home-card:hover{transform:translateY(-3px);border-color:#86cbb9;background:#fff!important}
-.home-card .symbol{font-size:2rem;background:#edf8f4;border-radius:12px;padding:10px;margin-bottom:16px}
+.home-card:hover{transform:translateY(-3px);border-color:#8693cb;background:#fff!important}
+.home-card .symbol{font-size:2rem;background:#edeff8;border-radius:12px;padding:10px;margin-bottom:16px}
 .home-card strong{font-size:1.16rem;margin-bottom:9px}.home-card small{color:#60778a;font-size:.92rem;line-height:1.5}
 .home-footer{margin-top:24px;text-align:right}
 .home-footer a{color:#597282;text-decoration:none;font-size:.85rem}
 @media(max-width:720px){.home-hero{grid-template-columns:1fr;padding:28px}.home-art{display:none}.home-cards{grid-template-columns:1fr}.home-card{min-height:145px}.card{padding:19px!important}}
 
-.session-summary{background:#f0f8f3;border:1px solid #d9eee2;border-radius:20px;padding:25px;margin:22px 0;text-align:center}.summary-star{font-size:3rem}.session-summary h3{margin:10px 0;color:#245e4b}.summary-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0}.summary-stats>div{background:white;border-radius:14px;padding:18px 8px}.summary-stats strong{display:block;font-size:1.65rem;color:#176c52}.summary-stats span{font-size:.82rem;color:#617589}@media(max-width:500px){.summary-stats{grid-template-columns:1fr}}
- .topic-choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:10px}.topic-choices label{display:flex;align-items:center;gap:10px;padding:14px;background:#f0f8f5;border:1px solid #d6e8e1;border-radius:12px;cursor:pointer;font-weight:600}.topic-choices input{width:auto;accent-color:#df704f}.topic-choices label:has(input:checked){border-color:#e57852;background:#ffe0d2;color:#853c25;box-shadow:0 0 0 1px #e5785233}#studentClass{max-width:310px} 
+.session-summary{background:#f0f1f8;border:1px solid #d9ddee;border-radius:20px;padding:25px;margin:22px 0;text-align:center}.summary-star{font-size:3rem}.session-summary h3{margin:10px 0;color:#242f5e}.summary-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0}.summary-stats>div{background:white;border-radius:14px;padding:18px 8px}.summary-stats strong{display:block;font-size:1.65rem;color:#19286a}.summary-stats span{font-size:.82rem;color:#617589}@media(max-width:500px){.summary-stats{grid-template-columns:1fr}}
+ .topic-choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:10px}.topic-choices label{display:flex;align-items:center;gap:10px;padding:14px;background:#f0f1f8;border:1px solid #d6d9e8;border-radius:12px;cursor:pointer;font-weight:600}.topic-choices input{width:auto;accent-color:#df704f}.topic-choices label:has(input:checked){border-color:#e57852;background:#ffe0d2;color:#853c25;box-shadow:0 0 0 1px #e5785233}#studentClass{max-width:310px} 
 /* Friendly, compact student details on the Practise page only. */
-#start .student-profile{padding:20px 22px 8px;border:1px solid #d8ebe5;border-radius:18px;background:linear-gradient(120deg,#f0faf6 0%,#f8f5ff 100%)}
-#start .student-profile-heading{display:flex;align-items:center;gap:12px;color:#245d53}
+#start .student-profile{padding:20px 22px 8px;border:1px solid #d8dbeb;border-radius:18px;background:linear-gradient(120deg,#f0f2fa 0%,#f8f5ff 100%)}
+#start .student-profile-heading{display:flex;align-items:center;gap:12px;color:#242e5d}
 #start .student-profile-heading>span{font-size:1.75rem;line-height:1}
 #start .student-profile-heading strong{display:block;font-size:1.1rem}
 #start .student-profile-heading small{display:block;color:#647487;margin-top:3px}
@@ -93,42 +93,42 @@ button:not(nav button):not(.secondary):hover{background:#126656}
   box-shadow: 0 2px 9px rgba(205,93,57,.16) !important;
 }
 #start #topicChoices label:not(:has(input:checked)) {
-  background: #f5f8f7;
-  border-color: #dce7e2;
+  background: #f5f6f8;
+  border-color: #dcdee7;
 }
 
 /* One clear entry point for chapter selection. */
-.chapter-nav-link{display:inline-flex;align-items:center;text-decoration:none;padding:10px 16px;border-radius:9px;font-weight:700;color:#176b5b;background:#e9f5f1}
-.chapter-nav-link:hover{background:#d9ede6}
-.chapter-cta{display:inline-block;background:#177e6d;color:white;text-decoration:none;border-radius:10px;padding:14px 20px;font-weight:750;margin-top:10px}
-.chapter-cta:hover{background:#126656}
+.chapter-nav-link{display:inline-flex;align-items:center;text-decoration:none;padding:10px 16px;border-radius:9px;font-weight:700;color:#192769;background:#e9ebf5}
+.chapter-nav-link:hover{background:#d9dded}
+.chapter-cta{display:inline-block;background:#1c2d79;color:white;text-decoration:none;border-radius:10px;padding:14px 20px;font-weight:750;margin-top:10px}
+.chapter-cta:hover{background:#172461}
 </style>
 
 <style id="mathfinity-shared-navigation">
 .mathfinity-global-nav{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.97);border-bottom:1px solid #e2e9ed;box-shadow:0 3px 14px rgba(26,46,66,.06);padding:11px 15px}
 .mathfinity-global-nav .nav-inner{max-width:1150px;margin:auto;display:flex;gap:7px;align-items:center;flex-wrap:wrap}
 .mathfinity-global-nav a{display:inline-flex;align-items:center;gap:7px;padding:12px 15px;border-radius:13px;color:#28536a;text-decoration:none;font-size:15px;font-weight:750;line-height:1.3}
-.mathfinity-global-nav a:hover,.mathfinity-global-nav a[aria-current="page"]{background:#e8f4ef;color:#09645c}
+.mathfinity-global-nav a:hover,.mathfinity-global-nav a[aria-current="page"]{background:#e8eaf4;color:#152158}
 @media(max-width:650px){.mathfinity-global-nav .nav-inner{flex-wrap:nowrap;overflow-x:auto}.mathfinity-global-nav a{white-space:nowrap;font-size:13px;padding:10px 12px}}
 </style>
 <style id="mathfinity-calm-theme">
 /* Mathfinity unified calm-green theme and stable navigation */
-:root { background: #edf7f1 !important; }
-html { background: #edf7f1; }
-body { background: #edf7f1 !important; color: #263f3b; min-height: 100vh; }
-body > header { background: #f7fcf8 !important; color: #23564b !important;
-  border-bottom: 1px solid #dbe9df; box-shadow: none !important; }
-body > header h1, body > header .brand-name { color: #23564b !important; }
-body > header p, body > header .brand-tagline { color: #53766a !important; }
+:root { background: #edeff7 !important; }
+html { background: #edeff7; }
+body { background: #edeff7 !important; color: #262b3f; min-height: 100vh; }
+body > header { background: #f7f8fc !important; color: #232c56 !important;
+  border-bottom: 1px solid #dbdee9; box-shadow: none !important; }
+body > header h1, body > header .brand-name { color: #232c56 !important; }
+body > header p, body > header .brand-tagline { color: #535976 !important; }
 main .card, main .topic, main .chapter { background: #fff !important; }
-main h2, main h3 { color: #235f50; }
-main .theory, main .lesson, main .setup-panel { background: #f1f8f2; }
-main .example, main .mini, main .stat { background: #f5faf6; }
+main h2, main h3 { color: #232e5f; }
+main .theory, main .lesson, main .setup-panel { background: #f1f2f8; }
+main .example, main .mini, main .stat { background: #f5f6fa; }
 button:not(.home-card):not(.reward-avatar):not(.secondary):not(.ghost):not(.danger):not(.orange):not(.active),
 a.btn:not(.learn):not(.practise), .button:not(.secondary) {
-  background: #257b63; color: white;
+  background: #25357b; color: white;
 }
-button.secondary { background: #e1f1e7; color: #245f4c; }
+button.secondary { background: #e1e4f1; color: #242f5f; }
 main .topic-choices label:has(input:checked),
 main .tabs button.active, main .topic-choices label:has(input[type=radio]:checked) {
   background: #ffddcf !important; color: #80452f !important; border-color: #de9479 !important;
@@ -138,8 +138,8 @@ main .btn.practise, main button.orange { background: #df8067 !important; color: 
 body > nav.mathfinity-global-nav {
   position: sticky !important; top: 0; z-index: 1000;
   display: block !important; width: 100%; margin: 0 !important;
-  padding: 0 16px !important; background: #f9fcfa !important;
-  border-bottom: 1px solid #d6e6db; box-shadow: 0 2px 9px #244e3610 !important;
+  padding: 0 16px !important; background: #f9fafc !important;
+  border-bottom: 1px solid #d6d9e6; box-shadow: 0 2px 9px #242c4e10 !important;
 }
 body > nav.mathfinity-global-nav > .nav-inner {
   display: flex !important; flex-wrap: nowrap !important; align-items: stretch !important;
@@ -152,12 +152,12 @@ body > nav.mathfinity-global-nav a {
   justify-content: center; flex: 0 0 auto; white-space: nowrap;
   padding: 0 15px !important; margin: 0 !important; height: 62px;
   border-radius: 0 !important; background: transparent !important;
-  color: #315e50 !important; font-size: 14px !important;
+  color: #31395e !important; font-size: 14px !important;
   font-weight: 700; line-height: 1.2; text-decoration: none;
 }
 body > nav.mathfinity-global-nav a:hover,
 body > nav.mathfinity-global-nav a[aria-current=page] {
-  background: #e0f1e6 !important; color: #176248 !important;
+  background: #e0e3f1 !important; color: #172562 !important;
 }
 @media(max-width:780px) {
   body > nav.mathfinity-global-nav > .nav-inner { justify-content: flex-start !important; }
@@ -170,6 +170,17 @@ body > nav.mathfinity-global-nav { display:block !important; position:sticky !im
 body > nav.mathfinity-global-nav > .nav-inner { display:flex !important; justify-content:flex-start !important; align-items:stretch !important; flex-wrap:nowrap !important; gap:4px !important; max-width:1050px !important; width:100% !important; height:62px !important; margin:0 auto !important; padding:0 !important; overflow-x:auto !important; }
 body > nav.mathfinity-global-nav .nav-inner > a { box-sizing:border-box !important; flex:0 0 auto !important; height:62px !important; line-height:1.2 !important; padding:0 14px !important; margin:0 !important; font-size:14px !important; border:0 !important; border-radius:0 !important; white-space:nowrap !important; }
 @media(max-width:780px){body > nav.mathfinity-global-nav .nav-inner > a {font-size:13px !important;padding:0 11px !important;}}
+</style><style id="bijles-link-style">a.bijles-link{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;padding:9px 14px;border:1px solid #a6adce;border-radius:9px;background:#e9ebf5;color:#17214e!important;font:700 14px/1.4 system-ui,Arial,sans-serif;text-decoration:none;margin:5px}a.bijles-link:hover{background:#d4d8eb}a.bijles-link:focus-visible{outline:3px solid #6955c7;outline-offset:3px}.bijles-access{padding:8px 16px;text-align:right;background:#f5f6fa;border-bottom:1px solid #d4d8e9}.bijles-home{margin:28px 0;text-align:center}.bijles-home p{margin:0 0 10px;font-size:17px}</style><style id="wiznova-blue-standard">
+body{background-color:#f3f5fc;color:#303c61}
+body>header{background:#e8eafa;color:#303c61;border-bottom:1px solid #dcdff2}
+body>header p,body>header h1,body>header strong{color:#303c61}
+body>header a{color:#465781!important}
+body>nav,.mathfinity-global-nav,.global-nav,.bijles-access{background:#fbfbff;border-color:#dcdff2}
+nav a{color:#465781}h2,h3{color:#586ca1}
+a.bijles-link{background:#e9eafa;color:#303d6b!important;border-color:#c5cbed}
+a.bijles-link:hover{background:#dce0f8}
+.bijles-access{background:#f3f5fc}
+.bijles-home{background:#e8eafa;border:1px solid #dcdff2;border-radius:20px;padding:25px}
 </style></head>
 <body>
 <nav class="mathfinity-global-nav" aria-label="Mathfinity main navigation">
@@ -177,7 +188,7 @@ body > nav.mathfinity-global-nav .nav-inner > a { box-sizing:border-box !importa
 <a href="index.html" data-mnav="home" aria-current="page">⌂ Home</a>
 <a href="choose-topic.html" data-mnav="choose">📚 Choose a Chapter</a>
 <a href="index.html#help" data-mnav="help">💡 Need help?</a>
-<a href="student-of-the-week.html" data-mnav="week">🌟 Student of the Week</a>
+<a href="student-of-the-week.html" data-mnav="week">🌟 Student of the Week</a><a class="bijles-link" href="/bijles.html">Vraag bijles aan</a>
 <a href="choose-avatar.html" data-mnav="avatar">🎭 Choose Avatar</a></div></nav>
 <header>
 <div class="brand">

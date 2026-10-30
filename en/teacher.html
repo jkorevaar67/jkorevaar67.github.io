@@ -2,31 +2,31 @@
 <html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Mathfinity | Docentendashboard</title>
 <style>
-:root{font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:#21344c;background:#edf6fa}*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#e9f8f5,#eeecff);min-height:100vh}header{background:#6246d9;color:#fff;padding:30px 20px;text-align:center}header h1{margin:0;font-size:clamp(1.6rem,4vw,2.4rem)}header p{margin:8px 0 0;color:#e9e2ff}main{max-width:1120px;margin:25px auto;padding:0 16px 60px}.card{background:white;border-radius:20px;box-shadow:0 10px 35px #22235b12;padding:25px;margin-bottom:18px}.hidden{display:none!important}h2{margin:0 0 16px;color:#6246d9}label{display:block;font-weight:700;margin-bottom:7px}input,select{font:inherit;padding:12px;border:2px solid #d7d6e7;border-radius:11px;max-width:100%;width:100%}button{font:inherit;border:0;border-radius:11px;padding:11px 17px;font-weight:700;color:#fff;background:#6246d9;cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}button.secondary{background:#008b87}button.danger{background:#b63245}button.ghost{background:#eeeaff;color:#4d32a8}.row{display:flex;flex-wrap:wrap;align-items:end;gap:14px}.row>div{flex:1 1 210px}.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:13px}.stat{background:#f3f0ff;border-radius:15px;padding:18px}.stat strong{display:block;font-size:2rem;color:#6246d9}.muted{color:#63718a}.notice{background:#fff4dd;padding:12px 15px;border-radius:11px;margin:12px 0}.error{color:#b63245;font-weight:650}.tablewrap{overflow:auto}table{border-collapse:collapse;width:100%;min-width:690px}th,td{padding:12px;text-align:left;border-bottom:1px solid #e8e8f1}th{background:#f6f4ff;color:#5032b2}td button{padding:8px 11px;font-size:.9rem}small{color:#63718a}#status{min-height:1.4em}a{color:#fff}#logout{margin-left:auto}@media(max-width:550px){.card{padding:18px}}
+:root{font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:#21344c;background:#edf6fa}*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#e9ecf8,#eeecff);min-height:100vh}header{background:#6246d9;color:#fff;padding:30px 20px;text-align:center}header h1{margin:0;font-size:clamp(1.6rem,4vw,2.4rem)}header p{margin:8px 0 0;color:#e9e2ff}main{max-width:1120px;margin:25px auto;padding:0 16px 60px}.card{background:white;border-radius:20px;box-shadow:0 10px 35px #22235b12;padding:25px;margin-bottom:18px}.hidden{display:none!important}h2{margin:0 0 16px;color:#6246d9}label{display:block;font-weight:700;margin-bottom:7px}input,select{font:inherit;padding:12px;border:2px solid #d7d6e7;border-radius:11px;max-width:100%;width:100%}button{font:inherit;border:0;border-radius:11px;padding:11px 17px;font-weight:700;color:#fff;background:#6246d9;cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}button.secondary{background:#1a2a71}button.danger{background:#b63245}button.ghost{background:#eeeaff;color:#4d32a8}.row{display:flex;flex-wrap:wrap;align-items:end;gap:14px}.row>div{flex:1 1 210px}.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:13px}.stat{background:#f3f0ff;border-radius:15px;padding:18px}.stat strong{display:block;font-size:2rem;color:#6246d9}.muted{color:#63718a}.notice{background:#fff4dd;padding:12px 15px;border-radius:11px;margin:12px 0}.error{color:#b63245;font-weight:650}.tablewrap{overflow:auto}table{border-collapse:collapse;width:100%;min-width:690px}th,td{padding:12px;text-align:left;border-bottom:1px solid #e8e8f1}th{background:#f6f4ff;color:#5032b2}td button{padding:8px 11px;font-size:.9rem}small{color:#63718a}#status{min-height:1.4em}a{color:#fff}#logout{margin-left:auto}@media(max-width:550px){.card{padding:18px}}
 </style><style id="mathfinity-shared-navigation">
 .mathfinity-global-nav{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.97);border-bottom:1px solid #e2e9ed;box-shadow:0 3px 14px rgba(26,46,66,.06);padding:11px 15px}
 .mathfinity-global-nav .nav-inner{max-width:1150px;margin:auto;display:flex;gap:7px;align-items:center;flex-wrap:wrap}
 .mathfinity-global-nav a{display:inline-flex;align-items:center;gap:7px;padding:12px 15px;border-radius:13px;color:#28536a;text-decoration:none;font-size:15px;font-weight:750;line-height:1.3}
-.mathfinity-global-nav a:hover,.mathfinity-global-nav a[aria-current="page"]{background:#e8f4ef;color:#09645c}
+.mathfinity-global-nav a:hover,.mathfinity-global-nav a[aria-current="page"]{background:#e8eaf4;color:#152158}
 @media(max-width:650px){.mathfinity-global-nav .nav-inner{flex-wrap:nowrap;overflow-x:auto}.mathfinity-global-nav a{white-space:nowrap;font-size:13px;padding:10px 12px}}
 </style><style id="mathfinity-calm-theme">
 /* Mathfinity unified calm-green theme and stable navigation */
-:root { background: #edf7f1 !important; }
-html { background: #edf7f1; }
-body { background: #edf7f1 !important; color: #263f3b; min-height: 100vh; }
-body > header { background: #f7fcf8 !important; color: #23564b !important;
-  border-bottom: 1px solid #dbe9df; box-shadow: none !important; }
-body > header h1, body > header .brand-name { color: #23564b !important; }
-body > header p, body > header .brand-tagline { color: #53766a !important; }
+:root { background: #edeff7 !important; }
+html { background: #edeff7; }
+body { background: #edeff7 !important; color: #262b3f; min-height: 100vh; }
+body > header { background: #f7f8fc !important; color: #232c56 !important;
+  border-bottom: 1px solid #dbdee9; box-shadow: none !important; }
+body > header h1, body > header .brand-name { color: #232c56 !important; }
+body > header p, body > header .brand-tagline { color: #535976 !important; }
 main .card, main .topic, main .chapter { background: #fff !important; }
-main h2, main h3 { color: #235f50; }
-main .theory, main .lesson, main .setup-panel { background: #f1f8f2; }
-main .example, main .mini, main .stat { background: #f5faf6; }
+main h2, main h3 { color: #232e5f; }
+main .theory, main .lesson, main .setup-panel { background: #f1f2f8; }
+main .example, main .mini, main .stat { background: #f5f6fa; }
 button:not(.home-card):not(.reward-avatar):not(.secondary):not(.ghost):not(.danger):not(.orange):not(.active),
 a.btn:not(.learn):not(.practise), .button:not(.secondary) {
-  background: #257b63; color: white;
+  background: #25357b; color: white;
 }
-button.secondary { background: #e1f1e7; color: #245f4c; }
+button.secondary { background: #e1e4f1; color: #242f5f; }
 main .topic-choices label:has(input:checked),
 main .tabs button.active, main .topic-choices label:has(input[type=radio]:checked) {
   background: #ffddcf !important; color: #80452f !important; border-color: #de9479 !important;
@@ -36,8 +36,8 @@ main .btn.practise, main button.orange { background: #df8067 !important; color: 
 body > nav.mathfinity-global-nav {
   position: sticky !important; top: 0; z-index: 1000;
   display: block !important; width: 100%; margin: 0 !important;
-  padding: 0 16px !important; background: #f9fcfa !important;
-  border-bottom: 1px solid #d6e6db; box-shadow: 0 2px 9px #244e3610 !important;
+  padding: 0 16px !important; background: #f9fafc !important;
+  border-bottom: 1px solid #d6d9e6; box-shadow: 0 2px 9px #242c4e10 !important;
 }
 body > nav.mathfinity-global-nav > .nav-inner {
   display: flex !important; flex-wrap: nowrap !important; align-items: stretch !important;
@@ -50,12 +50,12 @@ body > nav.mathfinity-global-nav a {
   justify-content: center; flex: 0 0 auto; white-space: nowrap;
   padding: 0 15px !important; margin: 0 !important; height: 62px;
   border-radius: 0 !important; background: transparent !important;
-  color: #315e50 !important; font-size: 14px !important;
+  color: #31395e !important; font-size: 14px !important;
   font-weight: 700; line-height: 1.2; text-decoration: none;
 }
 body > nav.mathfinity-global-nav a:hover,
 body > nav.mathfinity-global-nav a[aria-current=page] {
-  background: #e0f1e6 !important; color: #176248 !important;
+  background: #e0e3f1 !important; color: #172562 !important;
 }
 @media(max-width:780px) {
   body > nav.mathfinity-global-nav > .nav-inner { justify-content: flex-start !important; }
@@ -68,12 +68,23 @@ body > nav.mathfinity-global-nav { display:block !important; position:sticky !im
 body > nav.mathfinity-global-nav > .nav-inner { display:flex !important; justify-content:flex-start !important; align-items:stretch !important; flex-wrap:nowrap !important; gap:4px !important; max-width:1050px !important; width:100% !important; height:62px !important; margin:0 auto !important; padding:0 !important; overflow-x:auto !important; }
 body > nav.mathfinity-global-nav .nav-inner > a { box-sizing:border-box !important; flex:0 0 auto !important; height:62px !important; line-height:1.2 !important; padding:0 14px !important; margin:0 !important; font-size:14px !important; border:0 !important; border-radius:0 !important; white-space:nowrap !important; }
 @media(max-width:780px){body > nav.mathfinity-global-nav .nav-inner > a {font-size:13px !important;padding:0 11px !important;}}
+</style><style id="bijles-link-style">a.bijles-link{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;padding:9px 14px;border:1px solid #a6adce;border-radius:9px;background:#e9ebf5;color:#17214e!important;font:700 14px/1.4 system-ui,Arial,sans-serif;text-decoration:none;margin:5px}a.bijles-link:hover{background:#d4d8eb}a.bijles-link:focus-visible{outline:3px solid #6955c7;outline-offset:3px}.bijles-access{padding:8px 16px;text-align:right;background:#f5f6fa;border-bottom:1px solid #d4d8e9}.bijles-home{margin:28px 0;text-align:center}.bijles-home p{margin:0 0 10px;font-size:17px}</style><style id="wiznova-blue-standard">
+body{background-color:#f3f5fc;color:#303c61}
+body>header{background:#e8eafa;color:#303c61;border-bottom:1px solid #dcdff2}
+body>header p,body>header h1,body>header strong{color:#303c61}
+body>header a{color:#465781!important}
+body>nav,.mathfinity-global-nav,.global-nav,.bijles-access{background:#fbfbff;border-color:#dcdff2}
+nav a{color:#465781}h2,h3{color:#586ca1}
+a.bijles-link{background:#e9eafa;color:#303d6b!important;border-color:#c5cbed}
+a.bijles-link:hover{background:#dce0f8}
+.bijles-access{background:#f3f5fc}
+.bijles-home{background:#e8eafa;border:1px solid #dcdff2;border-radius:20px;padding:25px}
 </style></head><body><nav class="mathfinity-global-nav" aria-label="Mathfinity main navigation">
 <div class="nav-inner">
 <a href="index.html" data-mnav="home">⌂ Home</a>
 <a href="choose-topic.html" data-mnav="choose">📚 Choose a Chapter</a>
 <a href="index.html#help" data-mnav="help">💡 Need help?</a>
-<a href="student-of-the-week.html" data-mnav="week">🌟 Student of the Week</a>
+<a href="student-of-the-week.html" data-mnav="week">🌟 Student of the Week</a><a class="bijles-link" href="/bijles.html">Vraag bijles aan</a>
 <a href="choose-avatar.html" data-mnav="avatar">🎭 Choose Avatar</a></div></nav>
 <header><h1>📊 Mathfinity</h1><p>Docentendashboard · Think. Solve. Grow.</p></header>
 <main>
