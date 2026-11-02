@@ -3,7 +3,7 @@ const $=id=>document.getElementById(id), enc=new TextEncoder();
 let lesson=null,output=null;
 const catalog=structuredClone(window.WIZNOVA_CATALOG||[]);
 function status(s){$('status').textContent=s}
-function invalidate(){output=null;$('download').disabled=true}
+function invalidate(){output=null;$('download').disabled=true;$('publish').disabled=true}
 for(const id of ['group','chapter','section','chapterTitle','title','overwrite']) $(id).addEventListener('input',invalidate);
 $('files').onchange=()=>{lesson=null;invalidate();$('prepare').disabled=true};
 function validPage(s){return typeof s==='string'&&s.length<3000000&&/<!doctype html|<html[\s>]/i.test(s)&&/<head[\s>]/i.test(s)&&/<body[\s>]/i.test(s)}
@@ -32,7 +32,7 @@ $('prepare').onclick=async()=>{try{invalidate();if(!lesson)throw Error('Importee
  if(!chooseHtml.includes('chapter-catalog.js'))throw Error('Upload eerst de volledige website met beheerfunctie.');
  output=new Map();for(const k of ['learn','exercise','test'])output.set(dir+'/'+entry.pages[k],enc.encode(lesson.pages[k]));
  output.set('en/chapter-catalog.js',enc.encode('window.WIZNOVA_CATALOG = '+safe+';\n'));output.set(dir+'/choose-topic.html',enc.encode(chooseHtml));
- $('download').disabled=false;status(`Gereed: ${chapter}.${section} · ${title}\nDrie pagina’s en de hoofdstukkeuze staan klaar voor upload. Bestaande overige paragrafen blijven behouden.`);
+ $('download').disabled=false;$('publish').disabled=false;status(`Gereed: ${chapter}.${section} · ${title}\nDrie pagina’s en de hoofdstukkeuze staan klaar voor upload. Bestaande overige paragrafen blijven behouden.`);
  }catch(e){status(e.message)}};
 function crc32(bytes){let c=0xffffffff;for(const b of bytes){c^=b;for(let j=0;j<8;j++)c=(c>>>1)^((c&1)?0xedb88320:0)}return(c^0xffffffff)>>>0}
 function zip(files){let chunks=[],central=[],offset=0;const now=new Date(),time=(now.getHours()<<11)|(now.getMinutes()<<5)|(now.getSeconds()>>1),date=((now.getFullYear()-1980)<<9)|((now.getMonth()+1)<<5)|now.getDate();
@@ -40,3 +40,5 @@ function zip(files){let chunks=[],central=[],offset=0;const now=new Date(),time=
  const c=new Uint8Array(46+name.length),w=new DataView(c.buffer);w.setUint32(0,0x02014b50,true);w.setUint16(4,20,true);w.setUint16(6,20,true);w.setUint16(8,0x800,true);w.setUint16(12,time,true);w.setUint16(14,date,true);w.setUint32(16,crc,true);w.setUint32(20,bytes.length,true);w.setUint32(24,bytes.length,true);w.setUint16(28,name.length,true);w.setUint32(42,offset,true);c.set(name,46);central.push(c);offset+=h.length+bytes.length;}
  const size=central.reduce((n,c)=>n+c.length,0),end=new Uint8Array(22),v=new DataView(end.buffer);v.setUint32(0,0x06054b50,true);v.setUint16(8,files.size,true);v.setUint16(10,files.size,true);v.setUint32(12,size,true);v.setUint32(16,offset,true);return new Blob([...chunks,...central,end],{type:'application/zip'})}
 $('download').onclick=()=>{if(!output)return;const u=URL.createObjectURL(zip(output)),a=document.createElement('a');a.href=u;a.download=`Wiznova-${$('chapter').value}-${$('section').value}-publicatie.zip`;a.click();setTimeout(()=>URL.revokeObjectURL(u),30000)};
+
+$('publish').onclick=async()=>{if(!output||!window.WIZNOVA_AUTH)return;if(!confirm('Deze paragraaf publiceren op de website?'))return;$('publish').disabled=true;try{const decoder=new TextDecoder(),files=[...output].map(([path,bytes])=>({path,content:decoder.decode(bytes)}));$('publishStatus').textContent='Publiceren…';const result=await window.WIZNOVA_AUTH.call('publish',{files,baseCatalog:window.WIZNOVA_CATALOG||[]});output=null;$('download').disabled=true;$('publishStatus').textContent='Opgeslagen in GitHub. De website wordt nu bijgewerkt. Herlaad beheer voor een volgende paragraaf.';}catch(e){$('publishStatus').textContent=e.message;$('publish').disabled=false}};
