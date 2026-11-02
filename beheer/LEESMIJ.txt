@@ -1,0 +1,7 @@
+WIZNOVA BEHEER
+Upload de volledige website met behoud van de mappen. Open daarna https://wiznova.nl/beheer/.
+Kies een lespakket van ChatGPT (JSON of drie complete HTML-bestanden), selecteer Mathfinity of de Wiznova-klas, controleer de titels en maak het publicatiepakket.
+Download de ZIP, pak die uit en upload de inhoud naar de hoofdmap van GitHub. Upload alle bestanden; de centrale catalogus staat in en/chapter-catalog.js.
+Beheer verandert niets rechtstreeks op de server. Er is geen beheerderslogin of AI-koppeling; schrijfrechten blijven bij jouw GitHub-account. Dit is bewust geen verborgen pagina als beveiliging.
+Wiznova bevat MAVO 2, HAVO 3 en VWO 3, voorlopig zonder lesinhoud. Bestaand Mathfinity-materiaal blijft behouden.
+De voorbeeldweergave voert geen scripts uit. Controleer de inhoud en daadwerkelijke werking na publicatie.
