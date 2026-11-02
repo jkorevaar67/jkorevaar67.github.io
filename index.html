@@ -1,4 +1,48 @@
-<!doctype html><html lang="nl"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Wiznova · Beheer</title><style>*{box-sizing:border-box}body{margin:0;background:#f3f5fc;color:#303c61;font:16px/1.6 system-ui}header{background:#e8eafa;padding:28px}main{max-width:1000px;margin:24px auto;padding:0 20px}.card{background:white;border:1px solid #dcdff2;border-radius:20px;padding:26px;margin-bottom:20px}h1,h2{line-height:1.2}h2{color:#586ca1}label{display:block;font-weight:700;margin-top:15px}input,button,select{font:inherit;padding:11px;border:1px solid #c5cbed;border-radius:9px}input{max-width:100%;width:100%}button{background:#b1bbed;color:#303d6b;cursor:pointer;font-weight:700;margin:10px 8px 0 0}button:disabled{opacity:.45;cursor:default}.row{display:grid;grid-template-columns:1fr 1fr;gap:20px}a{color:#536397}iframe{width:100%;height:500px;border:1px solid #dcdff2;background:white}.notice{background:#e9eafa;border-radius:12px;padding:15px}#status{white-space:pre-line}li{margin-bottom:7px}@media(max-width:650px){.row{grid-template-columns:1fr}}</style><header><a href="/">← Website</a><h1>Hoofdstukken beheren</h1><p>Importeer een uitgewerkt lespakket. Download daarna de drie pagina’s en de bijgewerkte hoofdstukkeuze.</p></header><section class="card" id="authPanel" style="max-width:960px;margin:24px auto"><h2>Beheer · GitHub-login</h2><p id="authStatus" role="status">Login controleren…</p><button id="login">Inloggen met GitHub</button><button id="logout" hidden>Uitloggen</button></section><main hidden>
-<section class="card"><h2>1 · Lespakket van ChatGPT</h2><p>Laat ChatGPT de theorie, oefeningen en toets uitwerken op Basic, Intermediate en Challenge. Vraag om een <strong>Wiznova-lespakket.json</strong> volgens het meegeleverde formaat. Je kunt ook de drie complete HTML-bestanden selecteren.</p><p class="notice">Publiceren wordt op de server alleen toegestaan voor GitHub-account jkorevaar67. Lesinhoud wordt vooraf door ChatGPT uitgewerkt.</p><label>Lespakket (JSON), of drie HTML-bestanden<input id="files" type="file" multiple accept=".json,.html"></label><button id="import">Lespakket inlezen</button><a href="lespakket-formaat.txt" download>Formaat en instructie voor ChatGPT</a></section>
-<section class="card"><h2>2 · Klas, hoofdstuk en paragraaf</h2><label>Website en klas<select id="group"><option value="mathfinity">Mathfinity · English</option><option value="mavo2">Wiznova · MAVO 2</option><option value="havo3">Wiznova · HAVO 3</option><option value="vwo3">Wiznova · VWO 3</option></select></label><div class="row"><label>Hoofdstuknummer<input id="chapter" type="number" min="1" max="99"></label><label>Paragraafnummer<input id="section" type="number" min="1" max="99"></label></div><label>Hoofdstuktitel<input id="chapterTitle" maxlength="150" placeholder="Graphs and Formulas"></label><label>Paragraaftitel<input id="title" maxlength="150" placeholder="Patterns in coordinate planes"></label><p>De bestandsnamen worden automatisch samengesteld, bijvoorbeeld <code>chapter-3-3.html</code>, <code>chapter-3-3-exercise.html</code> en <code>chapter-3-3-test.html</code>. Het lespakket moet inhoudelijk bij dit nummer passen, inclusief de identificatie voor de puntentelling.</p><label><input id="overwrite" type="checkbox" style="width:auto"> Bestaande paragraaf bewust vervangen</label><button id="prepare" disabled>Drie pagina’s en hoofdstukkeuze maken</button><p id="status" role="status" aria-live="polite">Lees eerst het lespakket in.</p></section>
-<section class="card"><h2>3 · Controleren en downloaden</h2><p>Voorbeeld van de opmaak; scripts zijn in dit voorbeeld uitgeschakeld. Controleer de oefeningen en puntentelling na het uploaden.</p><select id="view"><option value="learn">Learn</option><option value="exercise">Exercise</option><option value="test">Test</option></select><iframe title="Voorbeeld lespagina" sandbox=""></iframe><button id="publish" disabled>Publiceren naar GitHub</button><p id="publishStatus" role="status"></p><button id="download" disabled>Download publicatiepakket (ZIP)</button><ol><li>Pak de gedownloade ZIP uit.</li><li>Upload de inhoud naar de hoofdmap van je GitHub-repository. Behoud de map <code>en/</code>.</li><li>Open de website en controleer de nieuwe paragraaf.</li></ol><p>Bij opnieuw openen wordt de catalogus uit de gepubliceerde website geladen. Upload daarom steeds alle bestanden uit het pakket.</p></section></main><script src="../en/chapter-catalog.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script><script src="auth.js"></script></html>
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Welkom | Mathfinity & Wiznova</title>
+<link rel="icon" type="image/png" sizes="256x256" href="/wiznova-icon-v3.png">
+<meta name="google-adsense-account" content="ca-pub-6081585611366495">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6081585611366495" crossorigin="anonymous"></script>
+<style>
+:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#303c61;background:#f3f5fc}
+*{box-sizing:border-box}body{margin:0}header{background:#e8eafa;color:#303c61;border-bottom:1px solid #dcdff2;padding:23px 7%;font-size:24px;font-weight:800}
+main{max-width:980px;margin:65px auto;padding:0 22px;text-align:center}h1{font-size:clamp(32px,5vw,52px);margin:0 0 12px}p{color:#555a73;font-size:18px}
+.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:40px}
+.card{display:flex;flex-direction:column;align-items:flex-start;background:white;border:1px solid #d4d8e9;border-radius:22px;padding:38px 28px;box-shadow:0 12px 30px #171e3d10;text-align:left}
+.brand-logo{display:block;width:100%;height:220px;object-fit:contain;margin:0 0 20px;border-radius:12px}.card h2{color:#586ca1;font-size:29px;margin:0 0 8px}.card p{margin:0 0 24px;min-height:72px;font-size:16px;line-height:1.5}
+.button{display:inline-block;margin-top:auto;padding:14px 23px;border-radius:12px;background:#1c2c76;color:white;text-decoration:none;font-weight:750}.button:hover{background:#152158}
+footer{margin:55px 0 20px;color:#70758a;font-size:14px}
+.bijles-access{padding:8px 16px;text-align:right;background:#fbfbff;border-bottom:1px solid #dcdff2}
+a.bijles-link{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;padding:9px 14px;border:1px solid #c5cbed;border-radius:9px;background:#e9eafa;color:#303d6b;font:700 14px/1.4 system-ui,Arial,sans-serif;text-decoration:none;margin:5px}
+a.bijles-link:hover{background:#dce0f8}a.bijles-link:focus-visible{outline:3px solid #6955c7;outline-offset:3px}
+@media(max-width:650px){main{margin:38px auto}.choices{grid-template-columns:1fr}.card p{min-height:0}}
+</style>
+</head>
+<body>
+<header>∞ Mathfinity &amp; Wiznova</header>
+<div class="bijles-access"><a class="bijles-link" href="/bijles.html">Vraag bijles aan</a></div>
+<main>
+<h1>Welkom!</h1>
+<p>Waar wil je vandaag aan werken?</p>
+<div class="choices">
+<section class="card">
+<img class="brand-logo" src="./mathfinity-logo.jpg" alt="Mathfinity infinity-logo">
+<h2>Mathfinity</h2>
+<p>Practise mathematics in English. Learn, exercise and test your skills.</p>
+<a class="button" href="./en/">Go to Mathfinity →</a>
+</section>
+<section class="card">
+<img class="brand-logo" src="./wiznova-logo.jpg" alt="Wiznova-logo met wiskundige figuren">
+<h2>Wiznova</h2>
+<p>Oefen wiskunde in het Nederlands. Kies straks je hoofdstuk en paragraaf.</p>
+<a class="button" href="./wiznova/">Naar Wiznova →</a>
+</section>
+</div>
+<footer>Think. Solve. Grow.</footer>
+</main>
+</body>
+</html>
