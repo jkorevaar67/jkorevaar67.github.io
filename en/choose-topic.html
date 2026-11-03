@@ -19,17 +19,9 @@ a.bijles-link:hover{background:#dce0f8}
 <div class="summary" id="summary" aria-live="polite">Start by choosing what you would like to do.</div><button class="start" id="start" disabled>Choose an activity first</button><p class="notice hidden" id="notice">🔐 The Final Test requires your Microsoft 365 school account. You can continue later on the same device.</p>
 </section></main><footer>Mathfinity · Think. Solve. Grow.</footer>
 <script src="chapter-catalog.js"></script>
+<script src="mathfinity-chapters.js"></script>
 <script>
-const common2=[
-['2.1A · Operations · Theory A','index.html?topic=opA'],['2.1B · Operations · Theory B','index.html?topic=opB'],['2.2A · Prime factorisation','index.html?topic=prime'],['2.2B · Highest common factor','index.html?topic=hcf'],['2.2C · Lowest common multiple','index.html?topic=lcm']
-];
-const data={
-learn:{label:'Learn',chapters:{'2':{label:'Chapter 2 · Numbers and Operations',sections:[...common2,['2.3 · Fractions','chapter-2-3.html'],['2.4 · Negative Numbers','chapter-2-4.html'],['2.5 · Multiplying and Dividing Negative Numbers','chapter-2-5.html'],['2.6 · Negative Fractions','chapter-2-6.html']]},'3':{label:'Chapter 3 · Graphs and Formulas',sections:[['3.1 · Coordinate planes','chapter-3-1.html'],['3.2 · Patterns in coordinate planes','chapter-3-2.html']]}}},
-exercise:{label:'Exercise',chapters:{'2':{label:'Chapter 2 · Numbers and Operations',sections:[...common2.map(x=>[x[0].replace('Theory','Practice'),x[1]]),['2.3 · Fractions','chapter-2-3-exercise.html'],['2.4 · Negative Numbers','chapter-2-4-exercise.html'],['2.5 · Multiplying and Dividing Negative Numbers','chapter-2-5-exercise.html'],['2.6 · Negative Fractions','chapter-2-6-exercise.html']]},'3':{label:'Chapter 3 · Graphs and Formulas',sections:[['3.1 · Coordinate planes','chapter-3-1-exercise.html'],['3.2 · Patterns in coordinate planes','chapter-3-2-exercise.html']]}}},
-test:{label:'Test',chapters:{'2':{label:'Chapter 2 · Numbers and Operations',sections:[['2.3 · Fractions','chapter-2-3-test.html'],['2.4 · Negative Numbers','chapter-2-4-test.html'],['2.5 · Multiplying and Dividing Negative Numbers','chapter-2-5-test.html'],['2.6 · Negative Fractions','chapter-2-6-test.html']]},'3':{label:'Chapter 3 · Graphs and Formulas',sections:[['3.1 · Coordinate planes','chapter-3-1-test.html'],['3.2 · Patterns in coordinate planes','chapter-3-2-test.html']]}}},
-final:{label:'Final Test',chapters:{'2':{label:'Chapter 2 · Numbers and Operations',url:'chapter-2-final-test.html'}}}
-};
-for(const item of window.WIZNOVA_CATALOG||[]){if(item.group&&item.group!=='mathfinity')continue;for(const kind of ['learn','exercise','test']){const chapters=data[kind].chapters,key=String(item.chapter);if(!chapters[key])chapters[key]={label:'Chapter '+key+' · '+item.chapterTitle,sections:[]};const url=item.pages[kind],existing=chapters[key].sections.findIndex(x=>x[1]===url);const row=[item.chapter+'.'+item.section+' · '+item.title,url];if(existing>=0)chapters[key].sections[existing]=row;else chapters[key].sections.push(row);}}
+const data = window.MATHFINITY_CHAPTERS;
 
 /* catalog-merge.js logic is inlined for synchronous menu initialization */
 const buttons=[...document.querySelectorAll('[data-a]')],chapter=document.getElementById('chapter'),section=document.getElementById('section'),sectionStep=document.getElementById('sectionStep'),summary=document.getElementById('summary'),start=document.getElementById('start'),notice=document.getElementById('notice');let activity='';
