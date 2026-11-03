@@ -1,3 +1,11 @@
-Wiznova beheer ondersteunt nu directe PNG/JPG-upload naast de bestaande JSON/HTML-import.
-Lees START-HIER.txt in de hoofdmap en INSTALLATIE/PNG-upload.txt voor de eenmalige AI-koppeling.
-De bestaande GitHub-login en wiznova-beheer-publicatiefunctie blijven in gebruik. De nieuwe wiznova-generate-functie leest de lesafbeeldingen uit. De hoofdstukkencatalogus wordt bijgewerkt voor de gekozen groep.
+WIZNOVA BEHEER – JSON/HTML-IMPORT
+
+1. Laat in ChatGPT een Wiznova-lespakket.json maken volgens lespakket-formaat.txt.
+2. Open https://wiznova.nl/beheer/ en log in met GitHub.
+3. Selecteer het JSON-bestand en klik Lespakket inlezen.
+4. Controleer klas, hoofdstuk, paragraaf en titels. Maak de drie pagina’s en hoofdstukkeuze.
+5. Controleer het voorbeeld en publiceer naar GitHub, of download het publicatiepakket.
+
+Deze route roept geen OpenAI API aan. Er is geen OpenAI API-sleutel of API-tegoed nodig voor het importeren en publiceren. De bestaande GitHub/Supabase-login en publicatiefunctie blijven in gebruik. De uitgewerkte pagina’s staan al in het JSON-bestand; beheer bedenkt zelf geen nieuwe lesinhoud.
+
+Het voorbeeld voert geen scripts uit. Test de daadwerkelijke werking en puntentelling na publicatie.
