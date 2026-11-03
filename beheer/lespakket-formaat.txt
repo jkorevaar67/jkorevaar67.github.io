@@ -1,7 +1,7 @@
 INSTRUCTIE VOOR CHATGPT
 Maak een Wiznova-lespakket.json met dit schema:
 {"version":1,"group":"vwo3","chapter":4,"section":1,"chapterTitle":"Hoofdstuktitel","title":"Paragraaftitel","pages":{"learn":"VOLLEDIGE HTML","exercise":"VOLLEDIGE HTML","test":"VOLLEDIGE HTML"}}
-Groep: mathfinity (Engels), mavo2, havo3 vwo3 of vwo5wisb (Nederlands).
+Groep: mathfinity (Engels), mavo2, havo3, vwo3 of vwo5wisb (Nederlands).
 Werk de inhoud zelf volledig uit: theorie, oefeningen en test op drie niveaus. Gebruik de bestaande blauwe vormgeving en navigeer binnen de juiste website en klas.
 Mathfinity bestandsnamen: chapter-N-S.html, chapter-N-S-exercise.html en chapter-N-S-test.html in en/.
 Wiznova: GROEP-chapter-N-S.html, GROEP-chapter-N-S-exercise.html en GROEP-chapter-N-S-test.html in wiznova/.
@@ -9,3 +9,5 @@ Leer- en oefenpagina: geen punten. Test: alleen eerste volledig juiste antwoord 
 Het beheer genereert bestandsnamen en menuverwijzingen. Het herschrijft de inhoud en puntenidentificaties niet. Maak alle drie pagina's dus passend voor het gekozen nummer en de klas.
 
 VWO 5 Wiskunde B: group=vwo5wisb. Geen score, punten of ranglijstkoppeling.
+
+De klasnaam HAVO 2 gebruikt om compatibiliteitsredenen de bestaande technische groepscode havo3. Bestaande links en pakketten blijven hiermee werken.
