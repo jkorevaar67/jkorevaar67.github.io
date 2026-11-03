@@ -1,0 +1,3 @@
+[functions.wiznova-generate]
+# The function verifies the Supabase session and matching GitHub owner itself.
+verify_jwt = false

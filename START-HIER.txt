@@ -1,0 +1,37 @@
+WIZNOVA – COMPLETE WEBSITE, VASTE LAY-OUT EN PNG-UPLOAD
+
+1. WEBSITE BIJWERKEN
+Pak deze ZIP uit. Upload alle bestanden en mappen naar de hoofdmap van je bestaande GitHub-repository. De mappen assets/, beheer/, en/ en wiznova/ moeten naast elkaar staan. Vervang de overeenkomstige bestanden. Je hoeft bestaande andere bestanden niet te verwijderen.
+
+De gedeelde vormgeving staat in assets/site-layout.css. Alle 53 HTML-pagina’s uit de aangeleverde website gebruiken nu dezelfde balkhoogte, logo-uitlijning, kolombreedte en kaartvormgeving. De bestaande stijl van de homepage en /en/ is als uitgangspunt gebruikt. Lokale lesknoppen blijven aanwezig. Een vaste scrollbalkruimte voorkomt dat de hele pagina horizontaal verschuift bij het openen van langere pagina’s. Op smalle schermen heeft de bovenbalk steeds twee vaste rijen; de menuregel kan horizontaal worden verschoven.
+
+Ververs na publicatie eenmaal met Ctrl+Shift+R, op telefoon met opnieuw laden. Het kan even duren voordat GitHub Pages de wijziging toont.
+
+2. PNG-UPLOAD ACTIVEREN – EENMALIG IN SUPABASE
+Alleen de website uploaden is niet voldoende om afbeeldingen door AI te laten uitlezen. De nieuwe, meegeleverde functie moet eenmalig in Supabase worden geïnstalleerd. Zie INSTALLATIE/PNG-upload.txt voor de stappen. Je bestaande wiznova-beheer-functie blijft staan.
+
+De knop voor PNG/JPG-upload staat al in beheer. Na het activeren:
+- log in met je bestaande GitHub-account;
+- selecteer één tot acht afbeeldingen;
+- kies Mathfinity, MAVO 2, HAVO 3 of VWO 3 en vul hoofdstuk, paragraaf en titels in;
+- klik Genereer les uit afbeeldingen;
+- controleer theorie, oefeningen en test op alle drie niveaus;
+- klik Drie pagina’s en hoofdstukkeuze maken en daarna Publiceren naar GitHub.
+
+Je hoeft zelf geen JSON-bestanden te maken. De bestaande JSON/HTML-import blijft beschikbaar als extra mogelijkheid. De generator maakt meerkeuzevragen: vijf oefenvragen en tien toetsvragen per niveau. De titels moeten vóór het genereren worden ingevuld. Maak bij gewijzigde titels of nummers de les opnieuw.
+
+Mathfinity-tests gebruiken de bestaande puntenkoppeling: maximaal één punt per vraag voor een juist eerste antwoord. Oefenen en leren leveren geen ranglijstpunten op. Wiznova-klassen gebruiken een eigen lokale testscoresamenvatting en schrijven niet naar de Mathfinity-ranglijst. In het beheervoorbeeld worden geen leerlingpunten opgeslagen.
+
+3. AUTOMATISCHE HOOFDSTUKKENLIJST
+Gecontroleerd in je bestaande beheer: bij het maken van een publicatiepakket wordt en/chapter-catalog.js bijgewerkt voor de gekozen groep. De bestaande GitHub-publicatiefunctie krijgt dit bestand samen met de drie lespagina’s en het keuzemenu aangeboden. Zo sluiten nieuwe lessen aan op de automatische Nieuw-kaarten. Deze serverpublicatie is niet live uitgevoerd; de bestaande endpointcode was niet opgenomen in de aangeleverde website en is niet vervangen.
+
+4. WAT IS GECONTROLEERD
+- Alle scripts in de oorspronkelijke en gewijzigde website op geldige syntax.
+- Navigatie in het browservoorbeeld, inclusief hoofdstuk 3 en paragrafen 3.1/3.2.
+- Identieke balkhoogte (78 px) en logo-positie op desktop, ook na navigeren tussen homepage, keuzepagina en lespagina.
+- Opmaak op een 390 px breed scherm: bovenbalk 120 px hoog bij Mathfinity en Wiznova.
+- PNG-route, foutmeldingen, niveau-inhoud, gegenereerde HTML, oefen-/testgedrag en één punt per correct eerste testantwoord met nagebootste antwoorden van de AI-dienst.
+- Onbevoegde accounts en ongeldige uploads worden door de nieuwe serverfunctie geweigerd.
+- Cataloguswijzigingen behouden bestaande paragrafen en worden naar de juiste taal-/klasmap geschreven.
+
+De AI-aanvraag met een echte sleutel, de installatie in jouw Supabase-project en het live publiceren naar GitHub zijn niet uitgevoerd. De inhoud van AI-lessen moet vóór publicatie door jou worden gecontroleerd. Schema- en programmacontroles bewijzen niet dat iedere door AI bedachte wiskundeopgave inhoudelijk klopt.

@@ -1,6 +1,7 @@
 'use strict';
 const $=id=>document.getElementById(id), enc=new TextEncoder();
 let lesson=null,output=null;
+window.WIZNOVA_ADMIN={clear(){lesson=null;invalidate();$('prepare').disabled=true;show();},load(item){for(const k of ['learn','exercise','test'])if(!validPage(item.pages?.[k]))throw Error('Onvolledige pagina: '+k);lesson=item;invalidate();for(const k of ['group','chapter','section','chapterTitle','title'])$(k).value=item[k]||'';$('prepare').disabled=false;status('Les gegenereerd. Controleer de inhoud en maak daarna het publicatiepakket.');show();}};
 const catalog=structuredClone(window.WIZNOVA_CATALOG||[]);
 function status(s){$('status').textContent=s}
 function invalidate(){output=null;$('download').disabled=true;$('publish').disabled=true}
@@ -15,12 +16,13 @@ $('import').onclick=async()=>{try{
  lesson=item;$('group').value=item.group||'mathfinity';for(const k of ['chapter','section','chapterTitle','title'])$(k).value=item[k]||'';
  $('prepare').disabled=false;status('Drie pagina’s ingelezen. Controleer nummer en titels.');show();
  }catch(e){lesson=null;$('prepare').disabled=true;status(e.message)}};
-function show(){document.querySelector('iframe').srcdoc=lesson?.pages[$('view').value]||''}
+function show(){const frame=document.querySelector('iframe');frame.setAttribute('sandbox',lesson?.generatedFromImages?'allow-scripts':'');frame.srcdoc=lesson?.pages[$('view').value]||'';}
 $('view').onchange=show;
 $('prepare').onclick=async()=>{try{invalidate();if(!lesson)throw Error('Importeer eerst het lespakket.');
  const chapter=Number($('chapter').value),section=Number($('section').value),chapterTitle=$('chapterTitle').value.trim(),title=$('title').value.trim();
  if(!Number.isInteger(chapter)||chapter<1||chapter>99||!Number.isInteger(section)||section<1||section>99||!title||!chapterTitle)throw Error('Vul geldige nummers (1–99) en beide titels in.');
  if(lesson.chapter&&Number(lesson.chapter)!==chapter||lesson.section&&Number(lesson.section)!==section)throw Error('Het nummer wijkt af van het lespakket. Laat het pakket eerst door ChatGPT aanpassen, inclusief de puntenidentificatie.');
+ if(lesson.generatedFromImages&&['chapterTitle','title'].some(k=>lesson[k]!==$(k).value.trim()))throw Error('De titels zijn gewijzigd. Genereer de les opnieuw met de nieuwe titels.');
  const group=$('group').value,dir=group==='mathfinity'?'en':'wiznova';
  if(lesson.group&&lesson.group!==group)throw Error('De klas wijkt af van het lespakket.');
  const exists=catalog.some(x=>(x.group||'mathfinity')===group&&x.chapter===chapter&&x.section===section);

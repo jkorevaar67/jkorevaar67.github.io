@@ -1,0 +1,46 @@
+/* Shared geometry: loaded after the existing page styles, before first paint. */
+:root{--site-width:1120px;--site-ink:#303c61;--site-muted:#60708a;--site-bg:#f3f5fc;--site-line:#dcdff2;--site-accent:#b1bbed;color-scheme:light}
+html{overflow-y:scroll!important;scrollbar-gutter:stable!important;background:var(--site-bg)!important;scroll-behavior:auto}
+body.site-unified{margin:0!important;min-height:100vh;background:var(--site-bg)!important;color:var(--site-ink)!important;font:16px/1.65 system-ui,-apple-system,"Segoe UI",Arial,sans-serif!important}
+body.site-unified *,body.site-unified *::before,body.site-unified *::after{box-sizing:border-box}
+body.site-unified>.site-nav{position:sticky!important;inset:0 0 auto!important;z-index:1000!important;display:block!important;width:100%!important;height:78px!important;min-height:78px!important;margin:0!important;padding:0!important;background:#fbfbff!important;color:var(--site-ink)!important;border:0!important;border-bottom:1px solid var(--site-line)!important;box-shadow:none!important;text-align:left!important}
+body.site-unified>.site-nav>.site-nav-inner{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:24px!important;max-width:var(--site-width)!important;height:77px!important;margin:0 auto!important;padding:0 24px!important;overflow:visible!important}
+body.site-unified .site-nav .site-brand{display:inline-flex!important;flex:0 0 174px!important;align-items:center!important;gap:10px!important;white-space:nowrap!important;margin:0!important;padding:0!important;border:0!important;background:none!important;text-decoration:none!important;color:var(--site-ink)!important;font:800 23px/1.2 system-ui,Arial,sans-serif!important;letter-spacing:-.04em!important;box-shadow:none!important;border-radius:0!important;height:auto!important}
+.site-brand svg{display:block;width:34px!important;height:34px!important;flex:0 0 34px!important;margin:0!important}
+body.site-unified .site-nav .site-links{display:grid!important;grid-template-columns:74px 157px 118px 190px 103px!important;align-items:center!important;gap:0!important;height:100%!important;margin:0!important;padding:0!important}
+body.site-unified .site-nav .site-links a{display:flex!important;align-items:center!important;justify-content:center!important;align-self:center!important;width:auto!important;min-width:0!important;height:42px!important;min-height:42px!important;margin:0 2px!important;padding:0 10px!important;border:0!important;border-radius:10px!important;box-shadow:none!important;background:transparent!important;color:#465781!important;font:700 14px/1.25 system-ui,Arial,sans-serif!important;white-space:nowrap!important;text-decoration:none!important;letter-spacing:0!important;text-transform:none!important}
+body.site-unified .site-nav .site-links a:hover,body.site-unified .site-nav .site-links a[aria-current=page]{background:#e8eafa!important;color:#303c61!important}
+.site-nav a:focus-visible{outline:3px solid #6375bd!important;outline-offset:2px}
+body.site-unified>main,body.site-unified>.wrap{width:100%!important;max-width:var(--site-width)!important;margin:28px auto 0!important;padding:0 24px 40px!important}
+body.site-unified>header{display:block!important;width:100%!important;max-width:var(--site-width)!important;margin:28px auto 0!important;padding:24px!important;background:#e8eafa!important;color:var(--site-ink)!important;border:1px solid var(--site-line)!important;border-radius:18px!important;text-align:left!important;box-shadow:none!important}
+body.site-unified>header h1{margin:8px 0 12px!important;color:var(--site-ink)!important;font-size:clamp(26px,3.6vw,38px)!important;line-height:1.2!important;letter-spacing:-.035em!important}
+body.site-unified>header p{margin:8px 0!important;color:#536397!important}
+body.site-unified>main>h1,body.site-unified .hero h1{color:var(--site-ink);font-size:clamp(26px,3.6vw,38px);line-height:1.2;letter-spacing:-.035em}
+body.site-unified .card,body.site-unified .topic,body.site-unified .chapter,body.site-unified .step{border:1px solid var(--site-line)!important;border-radius:18px!important;box-shadow:none!important;background:#fff!important}
+body.site-unified .card{padding:24px!important;margin-bottom:20px!important}
+body.site-unified h2,body.site-unified h3{color:#586ca1}
+body.site-unified .card h2:first-child,body.site-unified .card h3:first-child{margin-top:0}
+body.site-unified .hero,body.site-unified .home-hero{background:#e8eafa!important;border:1px solid var(--site-line)!important;border-radius:18px!important;color:var(--site-ink)!important}
+body.site-unified .home-hero{padding:30px!important}
+body.site-unified .home-hero p,body.site-unified .home-hero h1{color:var(--site-ink)!important}
+body.site-unified .notice{border-radius:12px}
+body.site-unified input,body.site-unified select,body.site-unified textarea,body.site-unified button{font-family:inherit}
+body.site-unified img{max-width:100%}
+body.site-unified iframe{max-width:100%}
+body.site-unified>footer{max-width:var(--site-width);margin:20px auto;padding:20px 24px;text-align:center;color:var(--site-muted)}
+body.site-unified>#authPanel{max-width:calc(var(--site-width) - 48px)!important;margin:28px auto 20px!important}
+@media(max-width:1060px){
+ body.site-unified>.site-nav{height:120px!important;min-height:120px!important}
+ body.site-unified>.site-nav>.site-nav-inner{height:119px!important;display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:center!important;gap:4px!important;padding:8px 20px!important}
+ body.site-unified .site-nav .site-brand{flex:0 0 44px!important;height:44px!important;font-size:22px!important}
+ body.site-unified .site-nav .site-links{display:flex!important;height:46px!important;flex:0 0 46px!important;overflow-x:auto!important;overflow-y:hidden!important;scrollbar-width:thin!important;gap:4px!important}
+ body.site-unified .site-nav .site-links a{flex:0 0 auto!important;height:38px!important;min-height:38px!important;padding:0 12px!important;margin:0!important;font-size:13px!important}
+}
+@media(max-width:650px){
+ body.site-unified>main,body.site-unified>.wrap{margin-top:20px!important;padding:0 16px 28px!important}
+ body.site-unified>header{width:calc(100% - 32px)!important;margin-top:20px!important;padding:20px!important}
+ body.site-unified .card{padding:20px!important;border-radius:16px!important}
+ body.site-unified .home-hero{padding:22px!important}
+ body.site-unified>#authPanel{max-width:calc(100% - 32px)!important}
+}
+@media(min-width:651px){body.site-unified>header{width:calc(100% - 48px)!important;max-width:calc(var(--site-width) - 48px)!important}}

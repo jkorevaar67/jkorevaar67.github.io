@@ -1,0 +1,55 @@
+PNG/JPG DIRECT IN BEHEER – EENMALIG ACTIVEREN
+
+Je bestaande GitHub-login en publicatiefunctie blijven in gebruik. Maak er één nieuwe Supabase Edge Function bij, met de naam wiznova-generate. Overschrijf wiznova-beheer niet.
+
+A. AI-SLEUTEL
+1. Zorg voor een OpenAI API-sleutel met beschikbaar API-tegoed.
+2. Open je bestaande Supabase-project.
+3. Ga naar Edge Functions > Secrets.
+4. Voeg de secret OPENAI_API_KEY toe met je API-sleutel als waarde.
+   Plaats deze sleutel alleen in Supabase, nooit in GitHub of een HTML-bestand.
+5. Optioneel: voeg OPENAI_MODEL toe als je een ander geschikt visionmodel met Responses API en Structured Outputs wilt gebruiken. Zonder deze instelling gebruikt de functie gpt-4.1.
+
+B. NIEUWE FUNCTIE MAKEN
+1. Ga in Supabase naar Edge Functions en kies een nieuwe functie aanmaken via de editor.
+2. Noem de functie precies: wiznova-generate
+3. Open het bestand INSTALLATIE/wiznova-generate.txt uit deze download.
+4. Kopieer de volledige tekst daarvan naar index.ts in de Supabase-editor. Dit bestand bevat de volledige functie, inclusief het lesschema; je hoeft geen tweede codebestand in de editor toe te voegen.
+5. Publiceer/deploy deze nieuwe functie.
+6. Open de instellingen/details van alleen wiznova-generate. Zet de gateway-optie Verify JWT with legacy secret uit. De functie controleert zelf de geldigheid van de Supabase-sessie én of het gekoppelde GitHub-account jkorevaar67 is. Een bezoeker zonder geldige sessie wordt geweigerd; de functie is niet vrij toegankelijk voor AI-aanvragen.
+7. Laat de instellingen en code van je bestaande wiznova-beheer ongewijzigd.
+
+Alternatief met de Supabase CLI, voor wie die al gebruikt:
+- Dezelfde code staat als bronbestanden in supabase/functions/wiznova-generate/.
+- Merge de sectie [functions.wiznova-generate] uit supabase/config.toml in je bestaande configuratie. Overschrijf geen andere configuratie.
+- Deploy wiznova-generate met de eigen sessiecontrole, bijvoorbeeld:
+  supabase functions deploy wiznova-generate --no-verify-jwt
+- Zet OPENAI_API_KEY via Secrets in het dashboard; zet de sleutel niet op de commandoregel.
+
+C. WEBSITE EN TEST
+1. Upload de volledige website-update naar GitHub, inclusief assets/ en beheer/.
+2. Open https://wiznova.nl/beheer/ en log zo nodig opnieuw in met GitHub.
+3. Kies eerst een nog niet gebruikte paragraaf voor een proefles.
+4. Selecteer een scherpe PNG/JPG, vul alle metadata in en klik Genereer les uit afbeeldingen.
+5. Wacht tot de drie lespagina’s klaarstaan. Het genereren kan circa twee minuten duren. Er wordt op dit moment nog niets gepubliceerd.
+6. Controleer de herkende lesstof, eventuele controlepunten en de drie lespagina’s op alle niveaus.
+7. Maak het publicatiepakket en publiceer pas als de inhoud klopt.
+
+Uploads: maximaal acht afbeeldingen, maximaal 15 MB per bronafbeelding. De browser schaalt ze indien nodig terug tot maximaal 2400 pixels aan de langste zijde en verstuurt ze als JPEG. Kies liever scherpe uitsneden van de relevante theorie dan een complete onleesbare boekpagina. Bij onleesbare bronstof moet de generator stoppen of controlepunten tonen.
+
+De geselecteerde beelden worden naar jouw Supabase-functie en vandaar naar OpenAI gestuurd om lesinhoud te maken. De functie maakt geen aparte opslagkopie van de beelden en verstuurt geen GitHub-token naar OpenAI. De API-aanvraag gebruikt store:false. De API-dienst kan eigen bewaartermijnen en kosten hanteren. Verstuur alleen de benodigde lesstof.
+
+Toegestane websites zijn standaard https://wiznova.nl, https://www.wiznova.nl en https://jkorevaar67.github.io. Bij een ander eigen domein kun je WIZNOVA_ALLOWED_ORIGINS als komma-gescheiden lijst instellen. Dit verandert niets aan de controle op je GitHub-account.
+
+D. FOUTMELDINGEN
+- De afbeeldingsgenerator is nog niet beschikbaar: controleer de functienaam en deployment.
+- De AI-koppeling is nog niet ingesteld: voeg OPENAI_API_KEY aan Secrets toe.
+- Log opnieuw in: je Supabase-sessie of GitHub-toegang is verlopen.
+- De AI-limiet is bereikt: controleer je API-tegoed/limieten of probeer later.
+- Afbeeldingen zijn te groot of genereren duurt te lang: kies minder of kleinere uitsneden.
+
+Technische documentatie:
+https://developers.openai.com/api/docs/guides/images-vision
+https://developers.openai.com/api/docs/guides/structured-outputs
+https://supabase.com/docs/guides/functions/auth
+https://supabase.com/kb/troubleshooting/edge-function-401-error-response
