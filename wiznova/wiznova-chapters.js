@@ -2,7 +2,7 @@
    The newest section is the highest chapter/section number within each class. */
 (function () {
   'use strict';
-  const labels = {mavo2:'MAVO 2', havo3:'HAVO 3', vwo3:'VWO 3'};
+  const labels = {mavo2:'MAVO 2', havo3:'HAVO 3', vwo3:'VWO 3', vwo5wisb:'VWO 5 Wiskunde B'};
   const kinds = {learn:'Leren', exercise:'Oefenen', test:'Test maken'};
   const catalog = Array.isArray(window.WIZNOVA_CATALOG) ? window.WIZNOVA_CATALOG : [];
   function page(item, kind) {
