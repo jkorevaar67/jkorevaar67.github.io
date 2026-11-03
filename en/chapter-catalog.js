@@ -4,7 +4,7 @@ window.WIZNOVA_CATALOG = [
     "chapter": 2,
     "section": 1,
     "chapterTitle": "Numbers and Operations",
-    "title": "Mathfinity \u221e",
+    "title": "Mathfinity ∞",
     "pages": {
       "learn": "chapter-2-1.html",
       "exercise": "chapter-2-1-exercise.html",
@@ -16,7 +16,7 @@ window.WIZNOVA_CATALOG = [
     "chapter": 2,
     "section": 2,
     "chapterTitle": "Numbers and Operations",
-    "title": "Mathfinity \u221e",
+    "title": "Mathfinity ∞",
     "pages": {
       "learn": "chapter-2-2.html",
       "exercise": "chapter-2-2-exercise.html",
@@ -28,7 +28,7 @@ window.WIZNOVA_CATALOG = [
     "chapter": 2,
     "section": 3,
     "chapterTitle": "Numbers and Operations",
-    "title": "Mathfinity \u221e",
+    "title": "Mathfinity ∞",
     "pages": {
       "learn": "chapter-2-3.html",
       "exercise": "chapter-2-3-exercise.html",
@@ -40,7 +40,7 @@ window.WIZNOVA_CATALOG = [
     "chapter": 2,
     "section": 4,
     "chapterTitle": "Numbers and Operations",
-    "title": "Mathfinity \u221e",
+    "title": "Mathfinity ∞",
     "pages": {
       "learn": "chapter-2-4.html",
       "exercise": "chapter-2-4-exercise.html",
@@ -93,6 +93,18 @@ window.WIZNOVA_CATALOG = [
       "learn": "chapter-3-2.html",
       "exercise": "chapter-3-2-exercise.html",
       "test": "chapter-3-2-test.html"
+    }
+  },
+  {
+    "group": "mathfinity",
+    "chapter": 3,
+    "section": 3,
+    "chapterTitle": "Graphs and Formulas",
+    "title": "Graphs in coordinate planes",
+    "pages": {
+      "learn": "chapter-3-3.html",
+      "exercise": "chapter-3-3-exercise.html",
+      "test": "chapter-3-3-test.html"
     }
   }
 ];
