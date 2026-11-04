@@ -112,7 +112,7 @@ window.WIZNOVA_CATALOG = [
     "chapter": 8,
     "section": 1,
     "chapterTitle": "Goniometrische functies",
-    "title": "De eenheidscirkel en radialen",
+    "title": "Transformaties van goniometrische functies",
     "pages": {
       "learn": "vwo5wisb-chapter-8-1.html",
       "exercise": "vwo5wisb-chapter-8-1-exercise.html",
