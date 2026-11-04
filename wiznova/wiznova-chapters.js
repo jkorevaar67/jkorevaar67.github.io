@@ -5,6 +5,10 @@
   const labels = {mavo2:'MAVO 2', havo3:'HAVO 2', vwo3:'VWO 3', vwo5wisb:'VWO 5 Wiskunde B'};
   const kinds = {learn:'Leren', exercise:'Oefenen', test:'Test maken'};
   const catalog = Array.isArray(window.WIZNOVA_CATALOG) ? window.WIZNOVA_CATALOG : [];
+  // VWO 5 uses one practice site per section. Keep the shared catalog intact.
+  const practiceSite = item => page(item, 'exercise') || page(item, 'learn');
+  const goniometry = catalog.find(item => item.group === 'vwo5wisb' && Number(item.chapter) === 8 && Number(item.section) === 1);
+  if (goniometry) goniometry.pages = {exercise:'goniometrie-oefenen.html'};
   function page(item, kind) {
     const path = item.pages?.[kind];
     if (typeof path !== 'string' || !path.trim()) return null;
@@ -29,8 +33,8 @@
     const heading = document.createElement('h3');
     heading.textContent = 'Nieuw · ' + title(item);
     const actions = document.createElement('div');
-    for (const [kind, label] of Object.entries(kinds)) {
-      const href = page(item,kind);
+    for (const [kind, label] of (item.group === 'vwo5wisb' ? [['exercise','Open oefensite']] : Object.entries(kinds))) {
+      const href = item.group === 'vwo5wisb' ? practiceSite(item) : page(item,kind);
       if (!href) continue;
       const a = document.createElement('a');
       a.className = 'button'; a.href = href; a.textContent = label;
@@ -46,6 +50,8 @@
   const $ = id => document.getElementById(id);
   const group = new URLSearchParams(location.search).get('klas');
   const items = labels[group] ? itemsFor(group) : [];
+  const practiceOnly = group === 'vwo5wisb';
+  if (practiceOnly) { $('activity').value = 'exercise'; $('activity').closest('label').hidden = true; $('start').textContent = 'Open oefensite'; }
   const latest = items.at(-1);
   $('heading').textContent = labels[group] || 'Kies eerst je klas';
   latestContent($('latest-section'),latest);
@@ -54,7 +60,7 @@
   }
   function update() {
     const item = selected();
-    const href = item && page(item,$('activity').value);
+    const href = item && (practiceOnly ? practiceSite(item) : page(item,$('activity').value));
     $('start').disabled = !href;
     $('empty').textContent = !labels[group] ? 'Kies eerst je klas via de link bovenaan.' :
       !items.length ? 'Voor deze klas staat nog geen lesmateriaal klaar.' :
