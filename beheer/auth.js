@@ -6,7 +6,29 @@
  const client=window.supabase.createClient('https://wgocbnhtmzxalvwlpvyo.supabase.co','sb_publishable_0yRUp4LVsYdBcdmwLYfqxg_soc0fpQB',{auth:{storageKey:'wiznova-admin-auth-v1',storage:window.sessionStorage,flowType:'pkce',persistSession:true,detectSessionInUrl:true}});
  const endpoint='https://wgocbnhtmzxalvwlpvyo.supabase.co/functions/v1/wiznova-beheer';
  async function call(action,extra={}){const {data:{session}}=await client.auth.getSession();if(!session?.provider_token)throw Error('Log opnieuw in met GitHub.');const res=await fetch(endpoint,{method:'POST',headers:{Authorization:'Bearer '+session.access_token,'Content-Type':'application/json'},body:JSON.stringify({action,githubToken:session.provider_token,...extra})});let result;try{result=await res.json()}catch{throw Error('De beheerfunctie is nog niet beschikbaar in Supabase.')}if(!res.ok)throw Error(result.error||'Geen beheertoegang.');return result}
+ async function publishBookAnswers(chapter, title, exercises) {
+  const {data:{session}}=await client.auth.getSession();
+  if(!session?.provider_token)throw Error('Log opnieuw in met GitHub.');
+  const url='https://api.github.com/repos/jkorevaar67/jkorevaar67.github.io/contents/en/book-answers/imports.json';
+  const headers={Authorization:'Bearer '+session.provider_token,Accept:'application/vnd.github+json'};
+  const current=await fetch(url,{headers,cache:'no-store'});
+  if(!current.ok)throw Error('Het antwoordenbestand kon niet worden gelezen (GitHub '+current.status+').');
+  const file=await current.json();
+  const bytes=Uint8Array.from(atob(file.content),character=>character.charCodeAt(0));
+  const imports=JSON.parse(new TextDecoder().decode(bytes));
+  const data=imports[chapter]??={sections:[]};
+  const existing=data.sections.find(section=>section.title===title);
+  if(existing)Object.assign(existing.exercises,exercises);
+  else data.sections.push({title,exercises});
+  const encoded=new TextEncoder().encode(JSON.stringify(imports,null,2)+'\n');
+  if(encoded.length>750000)throw Error('Het gezamenlijke antwoordenbestand is groter dan 750 kB.');
+  let binary='';
+  for(const byte of encoded)binary+=String.fromCharCode(byte);
+  const saved=await fetch(url,{method:'PUT',headers:{...headers,'Content-Type':'application/json'},body:JSON.stringify({message:'Mathfinity: update book answers',content:btoa(binary),sha:file.sha})});
+  if(saved.status===409)throw Error('Het bestand is intussen gewijzigd. Probeer opnieuw.');
+  if(!saved.ok)throw Error('Publiceren mislukt (GitHub '+saved.status+'). Controleer je schrijftoegang.');
+ }
  login.onclick=async()=>{const {error}=await client.auth.signInWithOAuth({provider:'github',options:{redirectTo:'https://wiznova.nl/beheer/',scopes:'public_repo'}});if(error)message.textContent=error.message};
  logout.onclick=async()=>{await client.auth.signOut({scope:'local'});sessionStorage.removeItem('wiznova-admin-auth-v1');location.replace('/beheer/')};
- try{const {data:{session},error}=await client.auth.getSession();if(error)throw error;if(!session){message.textContent='Log in met je GitHub-account om verder te gaan.';return}const result=await call('check');window.WIZNOVA_AUTH={call};main.hidden=false;login.hidden=true;logout.hidden=false;message.textContent='Ingelogd als '+result.login;const script=document.createElement('script');script.src='admin.js?v=json-only-1';document.body.append(script)}catch(e){message.textContent=e.message;logout.hidden=false}
+ try{const {data:{session},error}=await client.auth.getSession();if(error)throw error;if(!session){message.textContent='Log in met je GitHub-account om verder te gaan.';return}const result=await call('check');window.WIZNOVA_AUTH={call,publishBookAnswers};main.hidden=false;login.hidden=true;logout.hidden=false;message.textContent='Ingelogd als '+result.login;const script=document.createElement('script');script.src='admin.js?v=json-only-1';document.body.append(script)}catch(e){message.textContent=e.message;logout.hidden=false}
 })();
