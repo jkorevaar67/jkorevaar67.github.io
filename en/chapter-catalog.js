@@ -192,6 +192,18 @@ window.WIZNOVA_CATALOG = [
     }
   },
   {
+    "group": "mathfinity",
+    "chapter": 3,
+    "section": 11,
+    "chapterTitle": "Graphs and Formulas",
+    "title": "Investigate Growing patterns",
+    "pages": {
+      "learn": "chapter-3-11.html",
+      "exercise": "chapter-3-11-exercise.html",
+      "test": "chapter-3-11-test.html"
+    }
+  },
+  {
     "group": "vwo5wisb",
     "chapter": 8,
     "section": 1,
