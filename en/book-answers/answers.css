@@ -1,0 +1,10 @@
+.book-answers { width: min(100% - 2rem, 900px); margin: 2rem auto; }
+.answer-filters { display: flex; flex-wrap: wrap; gap: 1rem; }
+.answer-filters label { display: grid; gap: .3rem; flex: 1 1 13rem; min-width: 0; }
+.answer-filters select { width: 100%; padding: .55rem; font: inherit; }
+.answer-page { overflow: auto; max-height: min(72vh, 40rem); border: 1px solid #bdc8dd; border-radius: .4rem; margin-bottom: 1rem; background: white; }
+.answer-source { position: relative; width: 100%; min-width: 380px; max-width: 650px; }
+.answer-source img { display: block; width: 100%; height: auto; }
+.answer-marker { position: absolute; left: 0; color: #124eb0; font-size: 1.2rem; font-weight: bold; line-height: 1; transform: translateY(-20%); }
+
+.answer-text { white-space: pre-wrap; overflow-wrap: anywhere; }
