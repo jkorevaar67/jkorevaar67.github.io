@@ -144,6 +144,18 @@ window.WIZNOVA_CATALOG = [
     }
   },
   {
+    "group": "mathfinity",
+    "chapter": 3,
+    "section": 8,
+    "chapterTitle": "Graphs and Formulas",
+    "title": "Mixed exercises",
+    "pages": {
+      "learn": "chapter-3-8.html",
+      "exercise": "chapter-3-8-exercise.html",
+      "test": "chapter-3-8-test.html"
+    }
+  },
+  {
     "group": "vwo5wisb",
     "chapter": 8,
     "section": 1,
