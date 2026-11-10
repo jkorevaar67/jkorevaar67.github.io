@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Welkom | Mathfinity & Wiznova</title>
 <link rel="icon" type="image/png" sizes="256x256" href="/wiznova-icon-v3.png">
-<meta name="google-adsense-account" content="ca-pub-6081585611366495">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6081585611366495" crossorigin="anonymous"></script>
 <style>
 :root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#303c61;background:#f3f5fc}
 *{box-sizing:border-box}body{margin:0}header{background:#e8eafa;color:#303c61;border-bottom:1px solid #dcdff2;padding:23px 7%;font-size:24px;font-weight:800}
@@ -18,16 +16,17 @@ main{max-width:980px;margin:65px auto;padding:0 22px;text-align:center}h1{font-s
 footer{margin:35px 0 20px;color:#70758a;font-size:14px}
 .visitor-stats{margin:28px auto 0;padding:14px 18px;max-width:360px;border:1px solid #d4d8e9;border-radius:16px;background:#fff;box-shadow:0 7px 22px #171e3d0a;font-size:16px;color:#303c61}
 .visitor-stats strong{font-size:22px;color:#1c2c76}
-.ad-area{margin:30px auto 0;max-width:850px;min-height:92px;padding:14px 20px;background:#fafbff;border:1px solid #dfe2ef;border-radius:15px;text-align:center}
-.ad-area .ad-label{display:block;font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:#7a8196;font-weight:700}
-.ad-area .ad-note{margin:14px 0 0;font-size:13px;color:#777f91}
-.ad-area{transition:opacity .35s ease,margin .35s ease,padding .35s ease,min-height .35s ease;overflow:hidden}
-.ad-area.is-hidden{display:none}
 
 .bijles-access{padding:8px 16px;text-align:right;background:#fbfbff;border-bottom:1px solid #dcdff2}
 a.bijles-link{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;padding:9px 14px;border:1px solid #c5cbed;border-radius:9px;background:#e9eafa;color:#303d6b;font:700 14px/1.4 system-ui,Arial,sans-serif;text-decoration:none;margin:5px}
 a.bijles-link:hover{background:#dce0f8}a.bijles-link:focus-visible{outline:3px solid #6955c7;outline-offset:3px}
 @media(max-width:650px){main{margin:38px auto}.choices{grid-template-columns:1fr}.card p{min-height:0}}
+.home-lesson{margin:28px 0;padding:clamp(16px,4vw,32px);text-align:left;background:#fff;border:1px solid #dcdff2;border-radius:18px}
+.home-fields{display:flex;flex-wrap:wrap;align-items:end;gap:12px}
+.home-fields label{display:grid;gap:4px}
+.home-fields input{width:5rem;padding:8px;font:inherit}
+.home-fields button{padding:9px 14px;border:0;border-radius:8px;background:#34457e;color:white;font:inherit;cursor:pointer}
+.home-lesson summary{cursor:pointer}
 </style>
 <link rel="stylesheet" href="/assets/site-layout.css"></head>
 <body class="site-unified"><nav class="site-nav" aria-label="Hoofdnavigatie"><div class="site-nav-inner"><a class="site-brand" href="/"><svg aria-hidden="true" viewBox="0 0 36 36" width="34" height="34"><rect x="1" y="1" width="34" height="34" rx="10" fill="#e8eafa"/><path d="M7 24H29M18 7V29" stroke="#a3add5" stroke-width="1.5"/><path d="M8 10Q18 39 28 10" fill="none" stroke="#586ca1" stroke-width="2.8" stroke-linecap="round"/></svg><span>Wiznova</span></a><div class="site-links"><a href="/" data-mnav="root" aria-current="page">Start</a><a href="/en/" data-mnav="english">Mathfinity</a><a href="/wiznova/" data-mnav="dutch">Wiznova</a><a href="/privacy.html" data-mnav="privacy">Privacy</a><a href="/bijles.html" data-mnav="bijles">Vraag bijles aan</a></div></div></nav>
@@ -50,18 +49,48 @@ a.bijles-link:hover{background:#dce0f8}a.bijles-link:focus-visible{outline:3px s
 <a class="button" href="./wiznova/">Naar Wiznova →</a>
 </section>
 </div>
+<section class="home-lesson" aria-labelledby="home-lesson-title">
+<h2 id="home-lesson-title">Een punt vinden in het assenstelsel</h2>
+<p>Bij een punt (x, y) lees je eerst de horizontale en daarna de verticale coördinaat. Begin in de oorsprong (0, 0). Naar rechts en omhoog zijn positief. Naar links en omlaag zijn negatief.</p>
+<h3>Voorbeeld</h3>
+<p>Zo vind je het punt (4, −2). Ga vanaf de oorsprong eerst vier vakjes naar rechts. Ga daarna twee vakjes omlaag. Het punt ligt dus vier vakjes rechts van de y-as en twee vakjes onder de x-as.</p>
+<h3>Probeer het zelf</h3>
+<p>Je gaat vanaf de oorsprong drie vakjes naar links en twee vakjes omhoog. Wat zijn de coördinaten?</p>
+<form id="home-practice">
+<div class="home-fields">
+<label>x <input name="x" type="number" required></label>
+<label>y <input name="y" type="number" required></label>
+<button type="submit">Controleer</button>
+</div>
+<p id="home-feedback" role="status"></p>
+</form>
+<details><summary>Bekijk de uitwerking</summary><p>Drie naar links geeft x = −3. Twee omhoog geeft y = 2. Het punt is (−3, 2).</p></details>
+<h3>Verder oefenen in het Engels</h3>
+<ul>
+<li><a href="/en/chapter-3-1.html">Coordinate planes</a> · Punten aflezen en tekenen.</li>
+<li><a href="/en/chapter-3-2.html">Patterns in coordinate planes</a> · Regelmaat herkennen in coördinaten.</li>
+</ul>
+</section>
 <section class="visitor-stats" aria-label="Bezoekersteller"><strong id="visitor-total" aria-live="polite">laden…</strong></section>
-<section class="ad-area" aria-label="Advertentieruimte"><span class="ad-label">Advertentie</span><p class="ad-note"></p></section>
 <footer>Think. Solve. Grow.</footer>
 </main>
 <script src="/visitor-counter.js" defer></script>
 <script>
-// Verberg alleen het informatieve advertentie-placeholdervlak na 8 seconden.
-// Echte Google AdSense-advertenties worden niet verborgen of aangepast.
-window.setTimeout(() => {
-  const placeholder = document.querySelector(".ad-area");
-  if (placeholder) placeholder.classList.add("is-hidden");
-}, 8000);
+const practice = document.querySelector('#home-practice');
+practice.addEventListener('submit', event => {
+  event.preventDefault();
+  const x = practice.elements.namedItem('x').valueAsNumber;
+  const y = practice.elements.namedItem('y').valueAsNumber;
+  let feedback = 'Het eerste getal geeft links of rechts aan. Het tweede geeft omhoog of omlaag aan.';
+  if (x === -3 && y === 2) {
+    feedback = 'Goed! Drie naar links geeft x = −3 en twee omhoog geeft y = 2. Je komt uit op (−3, 2).';
+  } else if (x === -3) {
+    feedback = 'Je x-coördinaat klopt. Bij twee omhoog is de y-coördinaat positief.';
+  } else if (y === 2) {
+    feedback = 'Je y-coördinaat klopt. Bij drie naar links is de x-coördinaat negatief.';
+  }
+  document.querySelector('#home-feedback').textContent = feedback;
+});
 </script>
 </body>
 </html>
