@@ -108,6 +108,18 @@ window.WIZNOVA_CATALOG = [
     }
   },
   {
+    "group": "mathfinity",
+    "chapter": 3,
+    "section": 4,
+    "chapterTitle": "Graphs and Formulas",
+    "title": "Word formulas",
+    "pages": {
+      "learn": "chapter-3-4.html",
+      "exercise": "chapter-3-4-exercise.html",
+      "test": "chapter-3-4-test.html"
+    }
+  },
+  {
     "group": "vwo5wisb",
     "chapter": 8,
     "section": 1,
