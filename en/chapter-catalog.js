@@ -168,6 +168,18 @@ window.WIZNOVA_CATALOG = [
     }
   },
   {
+    "group": "mathfinity",
+    "chapter": 3,
+    "section": 9,
+    "chapterTitle": "Graphs and Formulas",
+    "title": "Learning goals test",
+    "pages": {
+      "learn": "chapter-3-9.html",
+      "exercise": "chapter-3-9-exercise.html",
+      "test": "chapter-3-9-test.html"
+    }
+  },
+  {
     "group": "vwo5wisb",
     "chapter": 8,
     "section": 1,
