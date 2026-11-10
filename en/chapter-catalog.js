@@ -120,6 +120,18 @@ window.WIZNOVA_CATALOG = [
     }
   },
   {
+    "group": "mathfinity",
+    "chapter": 3,
+    "section": 5,
+    "chapterTitle": "Graphs and Formulas",
+    "title": "Formulas with letters",
+    "pages": {
+      "learn": "chapter-3-5.html",
+      "exercise": "chapter-3-5-exercise.html",
+      "test": "chapter-3-5-test.html"
+    }
+  },
+  {
     "group": "vwo5wisb",
     "chapter": 8,
     "section": 1,
