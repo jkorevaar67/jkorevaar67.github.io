@@ -1,6 +1,5 @@
 const chapter = document.querySelector('#chapter');
 const section = document.querySelector('#section');
-const exercise = document.querySelector('#exercise');
 const status = document.querySelector('#status');
 const answer = document.querySelector('#answer');
 
@@ -13,66 +12,53 @@ function options(select, entries, prompt) {
   select.disabled = !entries.length;
 }
 
-function renderAnswer() {
+function renderSection() {
   answer.replaceChildren();
   const data = chapterData.get(chapter.value);
-  const selectedSection = data?.sections[section.value];
-  const pages = selectedSection?.exercises[exercise.value];
-  if (!pages) {
-    status.textContent = 'Choose an exercise to view its answer.';
+  const selected = data?.sections[section.value];
+  if (!selected) {
+    status.textContent = 'Choose a section.';
     return;
   }
-
-  status.textContent = selectedSection.title + ' · Exercise ' + exercise.value;
-  if (typeof pages === 'string') {
-    const text = document.createElement('p');
-    text.className = 'answer-text';
-    text.textContent = pages;
-    answer.append(text);
-    return;
-  }
-  const dataUrl = new URL(chapters[chapter.value], document.baseURI);
-  for (const [index, [name, y]] of pages.entries()) {
-    const viewport = document.createElement('div');
-    viewport.className = 'answer-page';
-    viewport.tabIndex = 0;
-    viewport.setAttribute('role', 'region');
-    viewport.setAttribute('aria-label', index ? 'Answer continued' : status.textContent);
-    const source = document.createElement('div');
-    source.className = 'answer-source';
-    const image = document.createElement('img');
-    const [width, height] = data.pages[name];
-    image.width = width;
-    image.height = height;
-    image.alt = index ? 'Continuation of the answer page' : 'Answer page for exercise ' + exercise.value;
-    const marker = document.createElement('span');
-    marker.className = 'answer-marker';
-    marker.setAttribute('aria-hidden', 'true');
-    marker.textContent = '➜';
-    marker.style.top = (100 * y / height) + '%';
-    image.addEventListener('load', () => {
-      viewport.scrollTop = Math.max(0, marker.offsetTop - 32);
-    });
-    image.addEventListener('error', () => {
-      viewport.textContent = 'The answer image could not be loaded.';
-    });
-    source.append(image, marker);
-    viewport.append(source);
-    answer.append(viewport);
-    image.src = new URL(name, dataUrl);
+  status.textContent = selected.title;
+  const displayed = new Set();
+  for (const [number, entry] of Object.entries(selected.exercises)) {
+    if (typeof entry === 'string') {
+      const heading = document.createElement('h2');
+      heading.textContent = 'Exercise ' + number;
+      const text = document.createElement('p');
+      text.className = 'answer-text';
+      text.textContent = entry;
+      answer.append(heading, text);
+      continue;
+    }
+    for (const [name] of entry) {
+      if (displayed.has(name)) continue;
+      displayed.add(name);
+      const source = document.createElement('figure');
+      source.className = 'answer-source';
+      source.style.margin = '0 0 1rem';
+      source.style.minWidth = '0';
+      const image = document.createElement('img');
+      [image.width, image.height] = data.pages[name];
+      image.alt = selected.title + ' · answer page ' + displayed.size;
+      image.loading = 'lazy';
+      image.addEventListener('error', () => {
+        source.textContent = 'This answer page could not be loaded.';
+      });
+      const dataUrl = new URL(chapters[chapter.value], document.baseURI);
+      image.src = new URL(name, dataUrl);
+      source.append(image);
+      answer.append(source);
+    }
   }
 }
 
-section.addEventListener('change', () => {
-  const selected = chapterData.get(chapter.value)?.sections[section.value];
-  options(exercise, Object.keys(selected?.exercises ?? {}).map(number => [number, number]), 'Choose an exercise');
-  renderAnswer();
-});
+section.addEventListener('change', renderSection);
 
 chapter.addEventListener('change', async () => {
   const selected = chapter.value;
   options(section, [], 'Choose a section');
-  options(exercise, [], 'Choose an exercise');
   answer.replaceChildren();
   if (!selected) {
     status.textContent = 'Choose a chapter.';
@@ -105,6 +91,7 @@ chapter.addEventListener('change', async () => {
     status.textContent = 'Book answers could not be loaded. Choose the chapter again to retry.';
   }
 });
+
 
 async function initialise() {
   let importFailed = false;
