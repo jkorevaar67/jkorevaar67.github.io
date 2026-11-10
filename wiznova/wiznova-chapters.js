@@ -4,11 +4,23 @@
   'use strict';
   const labels = {mavo2:'MAVO 2', havo3:'HAVO 2', vwo3:'VWO 3', vwo5wisb:'VWO 5 Wiskunde B'};
   const kinds = {learn:'Leren', exercise:'Oefenen', test:'Test maken'};
-  const catalog = Array.isArray(window.WIZNOVA_CATALOG) ? window.WIZNOVA_CATALOG : [];
+  const catalog = Array.isArray(window.WIZNOVA_CATALOG) ? [...window.WIZNOVA_CATALOG] : [];
   // VWO 5 uses one practice site per section. Keep the shared catalog intact.
   const practiceSite = item => page(item, 'exercise') || page(item, 'learn');
   const goniometry = catalog.find(item => item.group === 'vwo5wisb' && Number(item.chapter) === 8 && Number(item.section) === 1);
   if (goniometry) goniometry.pages = {exercise:'goniometrie-oefenen.html'};
+  const hasGoniometricEquations = catalog.some(item => item?.group === 'vwo5wisb' &&
+    Number(item.chapter) === 8 && Number(item.section) === 3 && page(item, 'exercise'));
+  if (!hasGoniometricEquations) {
+    catalog.push({
+      group: 'vwo5wisb',
+      chapter: 8,
+      section: 3,
+      chapterTitle: 'Goniometrische functies',
+      title: 'Goniometrische vergelijkingen',
+      pages: {exercise:'vwo5wisb-chapter-8-3-exercise.html'}
+    });
+  }
   function page(item, kind) {
     const path = item.pages?.[kind];
     if (typeof path !== 'string' || !path.trim()) return null;
