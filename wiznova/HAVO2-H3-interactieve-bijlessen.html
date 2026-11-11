@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HAVO 2 · Lineaire formules en vergelijkingen</title>
+<style>
+:root{--ink:#132d42;--soft:#435c6f;--blue:#2157a9;--mint:#d4f4ec;--line:#d4e1e7;--paper:#f3f8fa}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:1rem/1.6 "Atkinson Hyperlegible Next",system-ui,sans-serif}
+.wrap{max-width:1080px;margin:auto;padding-inline:clamp(14px,4vw,36px)}header{background:#12334c;color:white;border-bottom:5px solid #5ce0c2;padding:26px 0 37px}header .wrap{display:grid;grid-template-columns:1fr auto;align-items:center;gap:20px}.head-art{font-size:clamp(2rem,6vw,4rem);letter-spacing:.04em;color:#94f0db;white-space:nowrap}header p{color:#a8eadb;font-weight:800;margin:0 0 .45rem}h1,h2,h3,h4{line-height:1.16;margin:0 0 .55em}h1{font-size:clamp(2rem,6vw,3.8rem);letter-spacing:-.05em;max-width:19ch}h2{font-size:clamp(1.6rem,4vw,2.5rem)}h3{font-size:1.4rem}p{margin:.5em 0 1em}main{padding-block:22px 55px}nav,.row{display:flex;gap:10px;flex-wrap:wrap}nav button{flex:1;min-width:170px;text-align:left}button,input,select,textarea{font:inherit;color:inherit}button{cursor:pointer;background:white;border:1px solid #9cb2c6;border-radius:9px;padding:.52em .75em;font-weight:750}button:hover{background:#ebf4ff}button[aria-current=true],.primary{background:var(--blue);color:white;border-color:var(--blue)}button:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible,canvas:focus-visible{outline:3px solid #b64507;outline-offset:3px}.card{border-radius:16px;background:#fff;border:1px solid var(--line);padding:clamp(15px,3.5vw,28px);margin:14px 0}.intro{background:var(--mint);border-color:#aeddd0}.phase{font-weight:800;color:#176756}.lab{background:#eaf3ff;border:1px solid #bfd4ee;padding:14px;border-radius:12px}.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:16px;align-items:start}.formula{font-size:clamp(1.16rem,3vw,1.52rem);font-weight:800;font-variant-numeric:tabular-nums}.label{display:block;margin:.35rem 0}.label input[type=range]{width:min(145px,48vw);accent-color:var(--blue);vertical-align:middle}canvas{display:block;width:100%;height:auto;background:white;border:1px solid #9ab1c7;border-radius:7px}.grid{border-collapse:collapse;width:100%;margin:.5em 0}.grid th,.grid td{border:1px solid #9db4cc;padding:.3em .45em;text-align:center}.grid th{background:#d9e9fb}.steps{padding-left:1.65em}.steps li{margin:.4em 0}.question{border-top:1px solid var(--line);padding:12px 0}.question:first-of-type{border-top:0}.question label{font-weight:750}.answer{display:flex;flex-wrap:wrap;gap:8px;margin:.5em 0}.answer input{width:175px}input,textarea,select{background:#fff;border:1px solid #7c97ad;border-radius:7px;padding:.5em .65em;max-width:100%}textarea{display:block;width:100%;min-height:65px}.feedback{min-height:1.4em;font-weight:750}.good{color:#11634f}.wrong{color:#9f2e29}details{margin:.65em 0}summary{cursor:pointer;font-weight:750;color:#194c8b}.balance{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;text-align:center;gap:.55em;margin:14px 0}.balance span:not(:nth-child(2)){border-bottom:5px solid #28719f;background:#fff;padding:.55em .2em;border-radius:7px}.history{margin:.65em 0;padding-left:1.5em}.history li{margin:.3em 0}.muted{color:var(--soft)}.tabs{margin-bottom:10px}.tab-panel{min-height:100px}.callout{background:#fff6db;padding:10px 13px;border-radius:9px;border:1px solid #ebce87}@media(max-width:690px){.split,header .wrap{grid-template-columns:1fr}.head-art{display:none}}
+</style></head>
+<body><header><div class="wrap"><div><p>HAVO 2 · Hoofdstuk 3 · Drie bijlessen</p><h1>Lineaire formules en vergelijkingen</h1></div><div class="head-art" aria-hidden="true">y = ax + b</div></div></header>
+<main class="wrap"><nav id="nav" aria-label="Kies een bijles"></nav><article id="lesson"></article></main>
+<script>
+const lessons = [
+{
+title:'Van formule naar lijn en terug', section:'§3.1 → §3.2',
+goal:'Ik kan een lijn tekenen, een punt controleren en de formule van een lijn bepalen.',
+parts:[
+['§3.1 · Grafiek en punten · 20 min','Vul eerst twee x-waarden in en zet de bijbehorende punten in het assenstelsel. Controleer daarna een gegeven punt door in te vullen.','graph'],
+['§3.2 · Richtingscoëfficiënt en formule · 20 min','Voorspel wat er gebeurt als je alleen a verandert. Verander daarna alleen b. Zoek ook een dalende en een horizontale lijn.','slope']
+],
+practice:'Oefenen en hardop uitleggen · 15 min',
+questions:[
+['Bij y = −½x + 3 hoort x = 4. Bereken y.','1','Vermenigvuldig −½ eerst met 4.','−½ × 4 + 3 = −2 + 3 = 1.'],
+['Ligt P(−2, 7) op y = −3x + 1?','Ja','Vul −2 in voor x en vergelijk met 7.','−3 × (−2) + 1 = 7. Dat is precies de y-coördinaat.',['Ja','Nee']],
+['Een lijn gaat door (0, 5) en (4, −1). Bereken a.','-3/2','Ga 4 naar rechts. Wat is de verticale verandering?','Δy = −1 − 5 = −6 en Δx = 4. Dus a = −6/4 = −1,5. De formule is y = −1,5x + 5.'],
+['Een lijn is evenwijdig aan y = 2x − 7 en gaat door (3, 10). Bereken b.','4','De richtingscoëfficiënt is 2. Vul het gegeven punt in.','10 = 2 × 3 + b, dus b = 4. De lijn is y = 2x + 4.']
+],
+exit:['Een lijn gaat door (2, 9) en (5, 15). Bereken b.','5','Bereken eerst a. Vul daarna een van de punten in.','a = (15 − 9)/(5 − 2) = 2. Met (2, 9) volgt 9 = 4 + b, dus b = 5.'],
+challenge:['Een bezorggrafiek gaat door (0, 12) en (20, 42). Horizontaal staat afstand in km, verticaal prijs in euro. Wat betekenen a en b?','De startprijs is €12. De prijs stijgt met (42 − 12)/20 = €1,50 per kilometer. De formule is B = 1,5k + 12. Kijk naar de aswaarden bij het berekenen van a.'],
+},
+{
+title:'De balansmethode', section:'§3.3',
+goal:'Ik kan een oplossing controleren en een vergelijking met de onbekende aan één kant stap voor stap oplossen.',
+parts:[
+['Oplossing controleren · 10 min','Een oplossing is een waarde waarvoor het linkerlid en rechterlid gelijk zijn. Test verschillende waarden en vergelijk de twee uitkomsten.','check'],
+['Dezelfde bewerking links en rechts · 25 min','Kies een stap. Kijk wat er aan beide kanten gebeurt en leg uit waarom dezelfde x nog steeds klopt. Probeer ook een negatieve coëfficiënt.','balance']
+],
+practice:'Oefenen en vertalen naar een vergelijking · 20 min',
+questions:[
+['Los op. 4x + 7 = 31','6','Haal eerst 7 weg aan beide kanten.','4x + 7 = 31 → 4x = 24 → x = 6. Controle: 4 × 6 + 7 = 31.'],
+['Los op. −3x + 5 = 20','-5','Trek 5 af en deel daarna door −3.','−3x = 15. Deel door −3: x = −5. Controle: −3 × (−5) + 5 = 20.'],
+['Los op. 8 − x = 13','-5','Schrijf −x als −1 × x.','Na −8 aan beide kanten krijg je −x = 5. Deel door −1: x = −5.'],
+['Een werkplaats rekent €18 vaste kosten en €7 per uur. Je betaalt €53. Welke vergelijking hoort bij het aantal uren u?','7u + 18 = 53','Zet het berekende bedrag gelijk aan het betaalde bedrag.','De formule is B = 7u + 18. Met B = 53 krijg je 7u + 18 = 53. Daaruit volgt 7u = 35 en u = 5.',['7u + 18 = 53','18u + 7 = 53','7u = 53 + 18']]
+],
+exit:['Los op. −4x − 3 = 13','-4','Tel 3 op aan beide kanten en deel door −4.','−4x = 16, dus x = −4. Invullen geeft 16 − 3 = 13.'],
+challenge:['Vier opeenvolgende gehele getallen tellen op tot 58. Stel een vergelijking op en zoek alle vier.','Noem het kleinste getal n. Dan n + (n + 1) + (n + 2) + (n + 3) = 58. Dus 4n + 6 = 58, n = 13. De getallen zijn 13, 14, 15 en 16.']
+},
+{
+title:'Vergelijkingen met twee leden', section:'§3.4',
+goal:'Ik kan vergelijkingen met x aan beide kanten, haakjes of breuken oplossen en een snijpunt berekenen.',
+parts:[
+['x aan beide kanten en snijpunten · 20 min','Los eerst een vergelijking met x aan beide kanten op. Onderzoek daarna waarom twee formules bij een snijpunt dezelfde y-waarde geven.','both'],
+['Haakjes en breuken · 20 min','Kies per regel de volgende stap. Let op het minteken vóór een haakje. Bij breuken vermenigvuldig je elke term aan beide kanten.','hard']
+],
+practice:'Gemengd oefenen · 15 min',
+questions:[
+['Los op. 6x − 7 = 2x + 13','5','Trek aan beide kanten 2x af.','4x − 7 = 13 → 4x = 20 → x = 5.'],
+['Los op. −2(x − 3) + 4 = x + 1','3','Vermenigvuldig beide termen binnen de haakjes met −2.','−2x + 6 + 4 = x + 1 → −3x = −9 → x = 3.'],
+['Los op. ⅓x − 1 = ½x − 3','12','Vermenigvuldig alle termen met 6.','2x − 6 = 3x − 18 → 12 = x. Controle: 4 − 1 = 6 − 3.'],
+['De lijnen y = 2x + 1 en y = −x + 10 snijden elkaar. Bereken de y-coördinaat van het snijpunt.','7','Stel eerst de formules gelijk. Vul daarna x in.','2x + 1 = −x + 10 → 3x = 9 → x = 3. Dan y = 7, dus S(3, 7).']
+],
+exit:['Los op. ½(x + 4) = ¾x − 1','12','Vermenigvuldig eerst beide leden met 4 en werk dan de haakjes weg.','2(x + 4) = 3x − 4 → 2x + 8 = 3x − 4 → x = 12.'],
+challenge:['Een fiets huren kost bij A €9 plus €4 per uur. Bij B kost het €3 plus €6 per uur. Na hoeveel uur betaal je evenveel? Welke aanbieder is daarna goedkoper?','9 + 4t = 3 + 6t → 6 = 2t → t = 3. Beide kosten dan €21. Na 3 uur is A goedkoper: de prijs stijgt daar langzamer.']
+}
+];
+const $ = id => document.getElementById(id);
+const fmt = n => String(Math.round(n*100)/100).replace('.',',').replace('-','−');
+function line(a,b,v='x') {
+  const term = a===0 ? '' : a===1 ? v : a===-1 ? '−'+v : fmt(a)+v;
+  return !term ? fmt(b) : !b ? term : term+(b<0?' − ':' + ')+fmt(Math.abs(b));
+}
+function number(raw) {
+  const s = raw.trim().replace('−','-').replace(',','.');
+  const frac = s.match(/^([+-]?\d+)\s*\/\s*([+-]?\d+)$/);
+  if (frac) return +frac[2] ? +frac[1]/+frac[2] : NaN;
+  return /^[+-]?(?:\d+(?:\.\d+)?|\.\d+)$/.test(s) ? Number(s) : NaN;
+}
+function graph(canvas, lines, points=[], guide=null, bounds=[-6,6,-8,10]) {
+  const ctx=canvas.getContext('2d');
+  const [left,right,bottom,top]=bounds;
+  const w=canvas.width,h=canvas.height,m=31;
+  const px=x=>m+(x-left)*(w-2*m)/(right-left), py=y=>h-m-(y-bottom)*(h-2*m)/(top-bottom);
+  const path=(x1,y1,x2,y2,c,width=1)=>{
+    ctx.beginPath();ctx.strokeStyle=c;ctx.lineWidth=width;
+    ctx.moveTo(px(x1),py(y1));ctx.lineTo(px(x2),py(y2));ctx.stroke();
+  };
+  ctx.clearRect(0,0,w,h);
+  ctx.fillStyle='#fff';ctx.fillRect(0,0,w,h);ctx.font='13px system-ui';ctx.textAlign='center';ctx.textBaseline='middle';
+  for(let x=left;x<=right;x++){
+    path(x,bottom,x,top,x===0?'#385b74':'#dbe7ee',x===0?2:1);
+    if(x!==0 && x%2===0){ctx.fillStyle='#35546a';ctx.fillText(x,px(x),py(0)+11);}
+  }
+  for(let y=bottom;y<=top;y++){
+    path(left,y,right,y,y===0?'#385b74':'#dbe7ee',y===0?2:1);
+    if(y!==0 && y%2===0){ctx.fillStyle='#35546a';ctx.fillText(y,px(0)-13,py(y));}
+  }
+  ctx.fillStyle='#263f55';ctx.fillText('x',w-13,py(0));ctx.fillText('y',px(0),13);ctx.fillText('0',px(0)-10,py(0)+11);
+  ctx.save();ctx.beginPath();ctx.rect(m,m,w-2*m,h-2*m);ctx.clip();
+  lines.forEach(([a,b,color])=>path(left,a*left+b,right,a*right+b,color,3));
+  if(guide) {
+    const [x1,y1,x2,y2]=guide;
+    ctx.setLineDash([5,4]);path(x1,y1,x2,y1,'#a83c15',2);path(x2,y1,x2,y2,'#a83c15',2);ctx.setLineDash([]);
+  }
+  points.forEach(([x,y,color])=>{
+    ctx.beginPath();ctx.arc(px(x),py(y),5,0,2*Math.PI);
+    ctx.fillStyle=color;ctx.fill();ctx.strokeStyle='white';ctx.lineWidth=1.6;ctx.stroke();
+  });
+  ctx.restore();
+}
+function range(id,label,min,max,step,value) {
+  return '<label class="label" for="'+id+'">'+label+' <input type="range" id="'+id+'" min="'+min+'" max="'+max+'" step="'+step+'" value="'+value+'"> <output id="'+id+'v" for="'+id+'"></output></label>';
+}
+const canvas = id => '<canvas width="440" height="310" id="'+id+'" role="img" aria-label="Assenstelsel"></canvas>';
+const labs = {
+ graph(host) {
+   host.innerHTML='<div class="split"><div><p class="formula">y = −½x + 2</p><p>Kies twee verschillende x-waarden. Voorspel de y-waarden voordat je ze controleert.</p>'+range('x1','Eerste x',-6,6,2,0)+range('x2','Tweede x',-6,6,2,4)+'<table class="grid"><tr><th>x</th><td id="tx1"></td><td id="tx2"></td></tr><tr><th>y</th><td id="ty1"></td><td id="ty2"></td></tr></table><button id="plot">Zet de punten en teken</button><p class="feedback" id="graph-feedback" role="status"></p><details><summary>Controleer een punt</summary><p>Ligt P(4; 1) op deze lijn? Voorspel het en klik op controleren.</p><button id="verify-point">Controleer P(4; 1)</button><p id="point-feedback" role="status"></p></details></div>'+canvas('graph')+'</div>';
+   function show(draw=false) {
+     const x1=+$('x1').value,x2=+$('x2').value,y1=2-x1/2,y2=2-x2/2;
+     $('x1v').textContent=$('tx1').textContent=fmt(x1);
+     $('x2v').textContent=$('tx2').textContent=fmt(x2);
+     $('ty1').textContent=draw?fmt(y1):'?';$('ty2').textContent=draw?fmt(y2):'?';
+     const ready=draw&&x1!==x2;
+     graph($('graph'),ready?[[-.5,2,'#2157a9']]:[],draw?[[x1,y1,'#2157a9'],[x2,y2,'#167664']]:[]);
+     $('graph').setAttribute('aria-label',ready?'Dalende lijn door ('+fmt(x1)+'; '+fmt(y1)+') en ('+fmt(x2)+'; '+fmt(y2)+')':'Assenstelsel voor het tekenen van een lijn');
+     $('graph-feedback').textContent=draw?(ready?'Bij x = '+fmt(x2)+' krijg je y = −½ × ('+fmt(x2)+') + 2 = '+fmt(y2)+'. Twee verschillende punten bepalen de lijn.':'Je hebt hetzelfde punt twee keer. Kies een andere tweede x-waarde.'):'';
+   }
+   $('x1').oninput=$('x2').oninput=()=>show();
+   $('plot').onclick=()=>show(true);
+   $('verify-point').onclick=()=>{
+     $('x1').value=0;$('x2').value=4;show(true);
+     graph($('graph'),[[-.5,2,'#2157a9']],[[0,2,'#2157a9'],[4,0,'#167664'],[4,1,'#ad3f1c']],[4,0,4,1]);
+     $('graph').setAttribute('aria-label','Bij x = 4 ligt het oranje punt P één eenheid boven de blauwe lijn');
+     $('point-feedback').textContent='Vul x = 4 in: y = −½ × 4 + 2 = 0. P heeft y = 1. Het oranje punt ligt één eenheid boven de lijn.';
+   };
+   show();
+ },
+ slope(host) {
+   host.innerHTML='<div class="split"><div>'+range('a','Helling a',-3,3,.5,-1.5)+range('b','Startwaarde b',-4,4,1,3)+'<p class="formula" id="slope-formula"></p><p id="slope-data"></p><p class="muted">Oranje stippels tonen de horizontale en verticale stap.</p></div>'+canvas('slope')+'</div><details><summary>Nu andersom: lees de formule uit de grafiek</summary><p>Lees de twee gemarkeerde punten af en bereken zelf a en b.</p><div class="split">'+canvas('reverse')+'<div><button id="reveal-line">Toon de stappen</button><ol id="reverse-work" class="steps" hidden><li>De lijn snijdt de y-as bij (0; 4). Dus b = 4.</li><li>Van (0; 4) naar (4; 1): 4 naar rechts en 3 omlaag.</li><li>a = −3 ÷ 4 = −0,75. Dus y = −0,75x + 4.</li></ol></div></div></details>';
+   $('reverse').setAttribute('aria-label','Dalende lijn door de gemarkeerde punten (0; 4) en (4; 1)');
+   graph($('reverse'),[[-.75,4,'#2157a9']],[[0,4,'#167664'],[4,1,'#b74018']],[0,4,4,1]);
+   $('reveal-line').onclick=()=>{ $('reverse-work').hidden=false; };
+   function show() {
+     const a=+$('a').value,b=+$('b').value;
+     $('av').textContent=fmt(a);$('bv').textContent=fmt(b);
+     $('slope-formula').textContent='y = '+line(a,b);
+     $('slope-data').textContent='Snijpunt met de y-as (0; '+fmt(b)+'). Van (0; '+fmt(b)+') naar (2; '+fmt(b+2*a)+') is Δx = 2 en Δy = '+fmt(2*a)+'. Dus a = '+fmt(2*a)+' ÷ 2 = '+fmt(a)+'. De lijn is '+(a>0?'stijgend':a<0?'dalend':'horizontaal')+'.';
+     $('slope').setAttribute('aria-label','Grafiek van y = '+line(a,b)+' met een stap van 2 horizontaal');
+     graph($('slope'),[[a,b,'#2157a9']],[[0,b,'#167664'],[2,b+2*a,'#b74018']],[0,b,2,b+2*a],[-6,6,-10,10]);
+   }
+   $('a').oninput=$('b').oninput=show;show();
+ },
+ check(host) {
+   host.innerHTML='<p class="formula">−3x + 4 = 19</p>'+range('tryx','Probeer x',-8,5,1,0)+'<div class="balance formula"><span id="leftValue"></span><span id="comparison"></span><span>19</span></div><p id="check-result" role="status"></p>';
+   function show() {
+     const x=+$('tryx').value,y=-3*x+4;
+     $('tryxv').textContent=fmt(x);
+     $('leftValue').textContent='−3 × ('+fmt(x)+') + 4 = '+fmt(y);
+     $('comparison').textContent=y===19?'=':'≠';
+     $('check-result').textContent=y===19?'De leden zijn gelijk. x = '+fmt(x)+' is de oplossing.':'Links krijg je '+fmt(y)+', rechts 19. Probeer een andere x.';
+   }
+   $('tryx').oninput=show;show();
+ },
+ balance(host) {
+   const examples=[
+     ['4x + 3 = 19',[4,3,0,19],[['− 3',0,-3],['÷ 4',0,0,4]],4],
+     ['−3x − 2 = 13',[-3,-2,0,13],[['+ 2',0,2],['÷ (−3)',0,0,-3]],-5]
+   ];
+   balanceLab(host,examples);
+ },
+ both(host) {
+   host.innerHTML='<div class="row tabs"><button id="open-balance" aria-current="true">Vergelijking oplossen</button><button id="open-cross" aria-current="false">Snijpunt onderzoeken</button></div><div id="both-panel" class="tab-panel"></div>';
+   $('open-balance').onclick=()=>{
+     $('open-balance').setAttribute('aria-current','true');$('open-cross').setAttribute('aria-current','false');
+     balanceLab($('both-panel'),[['5x − 4 = 2x + 8',[5,-4,2,8],[['− 2x',-2,0],['+ 4',0,4],['÷ 3',0,0,3]],4]]);
+   };
+   $('open-cross').onclick=()=>{
+     $('open-balance').setAttribute('aria-current','false');$('open-cross').setAttribute('aria-current','true');
+     $('both-panel').innerHTML='<div class="split"><div><p class="formula">Blauw: y = 2x − 1<br>Groen: y = −x + 8</p>'+range('crossx','Vergelijk bij x',-1,5,1,0)+'<p id="cross-info" role="status"></p><details><summary>Bereken het snijpunt exact</summary><ol><li>2x − 1 = −x + 8</li><li>3x − 1 = 8</li><li>3x = 9, dus x = 3</li><li>y = 2 × 3 − 1 = 5. Dus S(3; 5).</li></ol></details></div>'+canvas('cross')+'</div>';
+     function show() {
+       const x=+$('crossx').value,p=2*x-1,q=-x+8;
+       $('crossxv').textContent=fmt(x);
+       $('cross-info').textContent='Blauw geeft '+fmt(p)+', groen geeft '+fmt(q)+'. '+(p===q?'De punten vallen samen: S('+fmt(x)+'; '+fmt(p)+').':'De punten liggen boven elkaar bij dezelfde x.');
+       $('cross').setAttribute('aria-label','Twee lijnen met gemarkeerde punten bij x = '+fmt(x));
+       graph($('cross'),[[2,-1,'#2157a9'],[-1,8,'#167664']],[[x,p,'#2157a9'],[x,q,'#167664']]);
+     }
+     $('crossx').oninput=show;show();
+   };
+   $('open-balance').onclick();
+ },
+ hard(host) {
+   const tracks=[
+     ['Haakjes', '−2(x − 4) + 1 = x + 3', [
+       ['Welke uitwerking van −2(x − 4) klopt?',['−2x − 8','−2x + 8','−2x − 4'],1,'−2 × (−4) = +8.','−2x + 8 + 1 = x + 3'],
+       ['Herleid links en haal x aan de rechterkant weg.',['Trek aan beide kanten x af','Tel aan beide kanten x op','Deel aan beide kanten door x'],0,'Links wordt −2x − x = −3x.','−3x + 9 = 3'],
+       ['Hoe vind je x?',['Eerst +9, daarna ÷ 3','Eerst −9, daarna ÷ 3','Eerst −9, daarna ÷ (−3)'],2,'−3x = −6. Delen door −3 geeft x = 2.','x = 2']
+     ]],
+     ['Breuken','¼x + ½ = ⅛x + 1',[
+       ['Wat is het kleinste gehele getal waarmee je alle breuken wegwerkt?',['4','8','16'],1,'8 is het kleinste gemeenschappelijke veelvoud van 4, 2 en 8. Ook ×16 werkt, maar is niet het kleinste.','2x + 4 = x + 8'],
+       ['Werk de x aan de rechterkant weg.',['Trek aan beide kanten x af','Trek alleen rechts x af','Tel aan beide kanten x op'],0,'Links wordt 2x − x = x.','x + 4 = 8'],
+       ['Welke laatste stap klopt?',['Deel door 4','Tel 4 op','Trek 4 af'],2,'x = 8 − 4 = 4. Controle: beide leden zijn 1,5.','x = 4']
+     ]]
+   ];
+   host.innerHTML='<div class="row tabs"><button id="hard0">Haakjes</button><button id="hard1">Breuken</button></div><div id="hard-panel"></div>';
+   function run(i){
+     const [,start,steps]=tracks[i];
+     let step=0;
+     $('hard0').setAttribute('aria-current',String(i===0));$('hard1').setAttribute('aria-current',String(i===1));
+     $('hard-panel').innerHTML='<p class="formula">'+start+'</p><ol class="history" id="hard-history"></ol><div id="hard-current"></div><p class="feedback" id="hard-feedback" role="status"></p>';
+     function draw(){
+       if(step===steps.length){$('hard-current').innerHTML='<button id="hard-repeat">Opnieuw</button>';$('hard-repeat').onclick=()=>run(i);return;}
+       const [prompt,options,correctIndex,feedback,result]=steps[step];
+       $('hard-current').innerHTML='<p><strong>'+prompt+'</strong></p><div class="row">'+options.map((option,j)=>'<button data-choice="'+j+'">'+option+'</button>').join('')+'</div>';
+       $('hard-current').querySelectorAll('button').forEach(button=>button.onclick=()=>{
+         if(+button.dataset.choice!==correctIndex){$('hard-feedback').textContent=i===0?'Denk aan beide termen in het haakje en dezelfde bewerking aan beide kanten.':'Denk aan alle noemers en pas de bewerking toe op beide leden.';return;}
+         $('hard-history').insertAdjacentHTML('beforeend','<li><strong>'+result+'</strong> · '+feedback+'</li>');
+         $('hard-feedback').textContent='Volgende regel: '+result;
+         step++;draw();$('hard-current').querySelector('button').focus();
+       });
+     }
+     draw();
+   }
+   $('hard0').onclick=()=>run(0);$('hard1').onclick=()=>run(1);run(0);
+ }
+};
+function balanceLab(host,examples) {
+  host.innerHTML='<label>Voorbeeld <select id="balance-example">'+examples.map(([title],i)=>'<option value="'+i+'">'+title+'</option>').join('')+'</select></label><div class="balance formula"><span id="bal-left"></span><span>=</span><span id="bal-right"></span></div><div class="row" id="balance-choices"></div><p id="balance-message" class="feedback" role="status"></p><ol id="balance-history" class="history"></ol><button id="balance-reset">Opnieuw</button>';
+  let index=0,step=0,state;
+  function draw(){
+    const [a,b,c,d]=state;
+    $('bal-left').textContent=line(a,b);$('bal-right').textContent=line(c,d);
+    const [, ,steps,solution]=examples[index];
+    if(step===steps.length){
+      $('balance-choices').innerHTML='';
+      $('balance-message').textContent='Opgelost: x = '+fmt(solution)+'. Vul dit terug in de oorspronkelijke vergelijking.';
+      $('balance-reset').focus();return;
+    }
+    const [op]=steps[step];
+    const distractor=op.startsWith('÷')?'Tel 1 op aan beide kanten':'Deel beide kanten door 2';
+    const rightChoice=op+' aan beide kanten';
+    const options=step%2?[rightChoice,'Verander alleen links',distractor]:[distractor,rightChoice,'Verander alleen links'];
+    $('balance-choices').innerHTML=options.map(option=>'<button>'+option+'</button>').join('');
+    $('balance-choices').querySelectorAll('button').forEach(button=>button.onclick=()=>{
+      if(button.textContent!==rightChoice){
+        $('balance-message').textContent=button.textContent==='Verander alleen links'?'Dan verander je de vergelijking. Doe dezelfde bewerking links en rechts.':'Dat maakt deze vergelijking hier minder eenvoudig. Zoek welke term je in deze stap kunt wegwerken.';
+        return;
+      }
+      const [,dx,dn,k=1]=steps[step++];
+      state=[(a+dx)/k,(b+dn)/k,(c+dx)/k,(d+dn)/k];
+      $('balance-history').insertAdjacentHTML('beforeend','<li>'+op+' links en rechts → <strong>'+line(state[0],state[1])+' = '+line(state[2],state[3])+'</strong></li>');
+      $('balance-message').textContent='Links en rechts is dezelfde bewerking uitgevoerd.';
+      draw();$('balance-choices').querySelector('button')?.focus();
+    });
+  }
+  function reset(){
+    index=+$('balance-example').value;step=0;state=[...examples[index][1]];
+    $('balance-history').replaceChildren();$('balance-message').textContent='Kies de stap waarmee je de vergelijking eenvoudiger maakt.';draw();
+  }
+  $('balance-example').onchange=$('balance-reset').onclick=reset;reset();
+}
+function question(data,i) {
+  const [prompt,,hint,work,options]=data;
+  const field=options?'<select id="answer'+i+'" required><option value="">Kies een antwoord</option>'+options.map(option=>'<option>'+option+'</option>').join('')+'</select>':'<input type="text" id="answer'+i+'" placeholder="Jouw antwoord" autocomplete="off" required>';
+  return '<form class="question" data-i="'+i+'"><label for="answer'+i+'">'+prompt+'</label><div class="answer">'+field+'<button class="primary">Controleer</button></div><p class="feedback" role="status"></p><details><summary>Hint</summary><p>'+hint+'</p></details><details><summary>Uitwerking</summary><p>'+work+'</p></details></form>';
+}
+function showLesson(index,focus=false){
+  const lesson=lessons[index];
+  $('nav').querySelectorAll('button').forEach((button,i)=>button.setAttribute('aria-current',String(i===index)));
+  $('lesson').innerHTML='<section class="card intro"><p class="phase">Bijles '+(index+1)+' · '+lesson.section+' · 60 minuten</p><h2 id="lesson-title" tabindex="-1">'+lesson.title+'</h2><p>'+lesson.goal+'</p></section>'+
+    lesson.parts.map(([title,description,id])=>'<section class="card"><h3>'+title+'</h3><p>'+description+'</p><div class="lab" id="lab-'+id+'"></div></section>').join('')+
+    '<section class="card"><h3>'+lesson.practice+'</h3><p>Schrijf je tussenstappen op. Controleer daarna je antwoord.</p>'+lesson.questions.map(question).join('')+
+    '<details><summary>Extra uitdaging</summary><p>'+lesson.challenge[0]+'</p><details><summary>Bekijk de uitwerking</summary><p>'+lesson.challenge[1]+'</p></details></details></section>'+
+    '<section class="card"><h3>Afsluitcheck · 5 min</h3>'+question(lesson.exit,4)+(index<2?'<button id="next">Naar bijles '+(index+2)+' →</button>':'')+'</section>';
+  lesson.parts.forEach(([, ,id])=>labs[id]($('lab-'+id)));
+  $('lesson').querySelectorAll('form').forEach(form=>{
+    const i=+form.dataset.i,data=i===4?lesson.exit:lesson.questions[i],expected=data[1];
+    form.onsubmit=event=>{
+      event.preventDefault();
+      const value=$('answer'+i).value;
+      const correct=data[4]?value===expected:Math.abs(number(value)-number(expected))<1e-9;
+      const feedback=form.querySelector('.feedback');
+      feedback.className='feedback '+(correct?'good':'wrong');
+      feedback.textContent=correct?'✓ Klopt. Kun je uitleggen welke stap de doorslag gaf?':'Dit antwoord klopt nog niet. Bekijk de hint en probeer opnieuw.';
+    };
+  });
+  if($('next')) $('next').onclick=()=>showLesson(index+1,true);
+  if(focus) $('lesson-title').focus();
+}
+lessons.forEach((lesson,i)=>{
+  const button=document.createElement('button');
+  button.textContent=(i+1)+'. '+lesson.title;
+  button.onclick=()=>showLesson(i,true);$('nav').append(button);
+});
+showLesson(0);
+</script></body></html>
