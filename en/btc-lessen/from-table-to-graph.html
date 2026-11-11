@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From table to graph | TVWO 1</title>
+<style>
+:root{font:17px/1.55 "Atkinson Hyperlegible Next",system-ui,sans-serif;color:#173342;background:#eef4f4;--ink:#173342;--blue:#126c76;--line:#cbdcde}
+[hidden]{display:none!important}*{box-sizing:border-box}body{margin:0}header{background:#123b49;color:white;padding:2.7rem max(5vw,calc((100vw - 940px)/2)) 2.2rem}header p{margin:.15rem 0;color:#d3edef}h1{font-size:clamp(2rem,5vw,3.6rem);line-height:1.05;margin:.45rem 0 .7rem;letter-spacing:-.045em}main{max-width:980px;margin:auto;padding:1rem 1rem 3rem}nav{display:flex;gap:.55rem;flex-wrap:wrap;margin:.35rem 0 1rem}nav button{background:white;color:var(--ink);border:1px solid var(--line)}nav button[aria-current]{background:#126c76;color:white}section{background:white;border:1px solid var(--line);border-radius:1rem;padding:clamp(1rem,4vw,2.1rem)}h2{font-size:clamp(1.55rem,4vw,2.15rem);letter-spacing:-.03em;margin:0 0 .6rem}h3{margin-bottom:.35rem}p{margin:.5rem 0 1rem}li{margin:.45rem 0}aside{padding:.7rem 1rem;background:#eaf5f5;border-radius:.6rem;margin:1rem 0}button,select{font:inherit;border-radius:.5rem;padding:.42rem .75rem}button{border:1px solid transparent;background:var(--blue);color:white;cursor:pointer;font-weight:650}button.secondary{background:white;color:var(--blue);border-color:var(--line)}button:disabled{opacity:.45;cursor:default}button:focus-visible,select:focus-visible,canvas:focus-visible{outline:3px solid #cb591c;outline-offset:3px}select{max-width:100%;color:var(--ink);background:white;border:1px solid #9bb7ba}fieldset{border:1px solid var(--line);border-radius:.65rem;margin:1.1rem 0;padding:.65rem 1rem .8rem;min-width:0}legend{font-weight:700;padding:0 .3rem}fieldset label{display:block;margin:.2rem 0}fieldset button{margin:.5rem .35rem .2rem 0}output{display:block}output:not(:empty){padding:.5rem .75rem;background:#f6f0df;border-radius:.4rem;margin-top:.45rem}output.good{background:#e4f4e9}canvas{display:block;width:100%;max-width:680px;height:auto;border:1px solid var(--line);border-radius:.5rem;margin:.65rem 0;background:white}canvas.plot,canvas.draw{touch-action:none;cursor:crosshair}.controls{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:.65rem 0}details{margin:.85rem 0}summary{font-weight:650;cursor:pointer}.table{overflow:auto}table{border-collapse:collapse;margin:.5rem 0;width:100%;font-variant-numeric:tabular-nums}td,th{border:1px solid var(--line);padding:.35rem .6rem;text-align:center;white-space:nowrap}th{background:#eaf5f5}footer{display:flex;justify-content:space-between;gap:.5rem;margin:1rem 0}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.75rem}.cards fieldset{margin:0}.cards canvas{margin:.25rem 0}img{display:block;max-width:100%;height:auto}.meta{font-size:.9rem;color:#49626a}.swatch{color:#a23064}
+</style>
+<header><p>TVWO 1 · Chapter 3 · Theory B · 40 minutes</p><h1>From table to graph</h1><p>Choose a scale, plot points and explain what a graph shows.</p></header>
+<main><p><a href="index.html">← Back to TVWO 1 BTC lessons</a></p><nav aria-label="Lesson stages"></nav>
+<section data-stage="1 · Start" hidden>
+<h2 tabindex="-1">Read a walk from left to right</h2>
+<p><b>5 min</b> · Think on your own, then compare with a partner. Tess is walking in the mountains. The graph shows how her altitude changes over time.</p>
+<canvas id="tess" width="680" height="290" role="img" aria-label="Tess’s altitude starts level, rises to a peak, falls, rises to a lower peak, falls, and ends level."></canvas>
+<div class="controls"><button id="descents">Highlight the descents</button><button id="flats" class="secondary">Highlight the constant sections</button></div>
+<output id="tess-feedback"></output><div id="tess-q"></div>
+</section>
+<section data-stage="2 · Learn" hidden>
+<h2 tabindex="-1">Turn a table into a graph</h2>
+<p><b>8 min</b> · Discuss what each axis should show before looking at the worked example.</p>
+<ol>
+<li>Put the variable from the top row on the <b>horizontal axis</b>.</li>
+<li>Put the variable from the bottom row on the <b>vertical axis</b>. Choose a scale that fits the largest value. Equal distances on an axis represent equal steps wherever the scale is continuous.</li>
+<li>Write a title and label both axes. Include units where needed.</li>
+<li>Plot the points. For measurements that change gradually, such as weight over time, draw a <b>smooth curve</b> through them.</li>
+</ol>
+<aside><b>Example:</b> At 0, 1, 2 and 3 weeks, a puppy weighs 2, 3, 5 and 6 kg. The point (2, 5) means that the puppy weighs 5 kg at 2 weeks.</aside>
+<div id="scale-q"></div>
+<div class="controls"><button id="puppy-toggle">Show the puppy graph</button></div><canvas id="puppy" width="680" height="290" hidden role="img" aria-label="Puppy weight increases from 2 kg at week 0 to 3 kg at week 1, 5 kg at week 2 and 6 kg at week 3."></canvas>
+</section>
+<section data-stage="3 · Practise" hidden>
+<h2 tabindex="-1">Plot Otto’s weight</h2>
+<p><b>19 min</b> · Use the measurements to plot all eleven points. Click or tap the grid, or choose a day and type its weight below the graph. Then copy your graph onto squared paper and draw a smooth curve through the points before revealing the model.</p>
+<div class="table"><table id="otto-table" aria-label="Otto’s weight by day"></table></div>
+<div id="zigzag-q"></div>
+<h3>Otto’s weight</h3>
+<canvas class="plot" id="otto" width="680" height="290" aria-label="Plotting grid, day 0 to 10 and weight 2800 to 3200 grams, with an axis break below the plotted scale. You can also plot points using the controls below."></canvas>
+<div class="controls"><label>Day <select id="day"></select></label><label>Weight (g) <input id="weight" type="number" min="2800" max="3200" step="10" style="font:inherit;width:6em"></label><button id="plot-point">Plot point</button></div>
+<div class="controls"><button id="check-points">Check points</button><button id="show-curve" class="secondary">Show model curve</button><button id="clear-points" class="secondary">Clear</button></div>
+<output id="point-feedback"></output>
+<div id="birth-q"></div>
+</section>
+<section data-stage="4 · Exit ticket" hidden>
+<h2 tabindex="-1">Check what you can do</h2>
+<p><b>8 min</b> · Answer the questions individually and explain one answer to a partner.</p>
+<div id="exit-b1"></div><div id="exit-b2"></div>
+<details><summary>Optional Kangaroo challenge</summary><p>Seven dwarfs play each other once over several days. On Monday, Grumpy, Sneezy, Sleepy, Bashful, Happy and Doc play 1, 2, 3, 4, 5 and 6 games respectively. How many games does Dopey play on Monday?</p><div id="chess"></div></details>
+</section>
+
+<footer><button class="secondary" id="back">Previous</button><button id="next">Next stage</button></footer>
+<details><summary>Teacher notes</summary><p>5 min start · 8 min instruction · 19 min practice · 8 min exit ticket. Use the first graph on the board. Let pupils plot Otto’s points individually or in pairs. Ask them to explain the difference between the estimated crossing and the first recorded measurement above the birth weight. The Kangaroo challenge is optional.</p></details>
+</main>
+<script>
+const sections = [...document.querySelectorAll('main > section')];
+let current = 0;
+const nav = document.querySelector('nav');
+const back = document.querySelector('#back');
+const next = document.querySelector('#next');
+function show(index, focus = true) {
+  current = index;
+  sections.forEach((section, i) => {
+    section.hidden = i !== index;
+    if (i === index) nav.children[i].setAttribute('aria-current', 'step');
+    else nav.children[i].removeAttribute('aria-current');
+  });
+  back.disabled = index === 0;
+  next.hidden = index === sections.length - 1;
+  if (focus) {
+    sections[index].querySelector('h2').focus({preventScroll:true});
+    window.scrollTo(0, nav.offsetTop - 12);
+  }
+}
+sections.forEach((section, i) => {
+  const button = document.createElement('button');
+  button.textContent = section.dataset.stage;
+  button.onclick = () => show(i);
+  nav.append(button);
+});
+back.onclick = () => show(current - 1);
+next.onclick = () => show(current + 1);
+show(0, false);
+
+function question(target, prompt, answers, correct, explanation, hints = []) {
+  const field = document.createElement('fieldset');
+  const legend = document.createElement('legend');
+  legend.textContent = prompt;
+  field.append(legend);
+  const radios = answers.map(answer => {
+    const label = document.createElement('label');
+    const radio = document.createElement('input');
+    radio.type = 'radio';
+    radio.name = target;
+    label.append(radio, ' ' + answer);
+    field.append(label);
+    return radio;
+  });
+  const check = document.createElement('button');
+  check.textContent = 'Check';
+  const reveal = document.createElement('button');
+  reveal.className = 'secondary';
+  reveal.textContent = 'Show answer';
+  const output = document.createElement('output');
+  function feedback(message, good) {
+    output.textContent = message;
+    output.classList.toggle('good', good);
+  }
+  check.onclick = () => {
+    const choice = radios.findIndex(radio => radio.checked);
+    if (choice === -1) feedback('Choose an answer first.', false);
+    else if (choice === correct) feedback('Correct. ' + explanation, true);
+    else feedback(hints[choice] || 'Try again. Read the graph from left to right and think about what each axis shows.', false);
+  };
+  reveal.onclick = () => feedback(answers[correct] + '. ' + explanation, false);
+  radios.forEach(radio => radio.onchange = () => feedback('', false));
+  field.append(check, reveal, output);
+  document.querySelector('#' + target).append(field);
+}
+
+function axes(canvas, vertical, horizontal) {
+  const ctx = canvas.getContext('2d');
+  const x = 65, y = 235, right = 640, top = 34;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.strokeStyle = '#45636d';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(x, top);
+  ctx.lineTo(x, y);
+  ctx.lineTo(right, y);
+  ctx.stroke();
+  ctx.font = '16px system-ui';
+  ctx.fillStyle = '#173342';
+  ctx.fillText(vertical, x, 22);
+  ctx.textAlign = 'right';
+  ctx.fillText(horizontal, right, 278);
+  ctx.textAlign = 'left';
+  return ctx;
+}
+function path(ctx, commands, color = '#a23064', width = 4) {
+  ctx.beginPath();
+  commands.forEach(points => {
+    if (points.length === 2) ctx.lineTo(...points);
+    else ctx.bezierCurveTo(...points);
+  });
+  ctx.strokeStyle = color;
+  ctx.lineWidth = width;
+  ctx.lineJoin = ctx.lineCap = 'round';
+  ctx.stroke();
+}
+function position(event, canvas) {
+  const bounds = canvas.getBoundingClientRect();
+  return [(event.clientX - bounds.left) * canvas.width / bounds.width,
+          (event.clientY - bounds.top) * canvas.height / bounds.height];
+}
+const tess = document.querySelector('#tess');
+const walk = [
+  [[65,212],[130,212]], [[130,212],[194,212,228,71,276,71]],
+  [[276,71],[309,71,330,133,391,133]],
+  [[391,133],[419,133,424,95,444,95]],
+  [[444,95],[467,95,480,212,554,212]], [[554,212],[640,212]]
+];
+function drawTess(mode) {
+  const ctx = axes(tess, 'Altitude', 'Time');
+  walk.forEach((segment,i) => {
+    const active = mode.includes(i);
+    path(ctx,segment,active ? '#126c76' : '#a23064',active ? 8 : 4);
+  });
+}
+drawTess([]);
+document.querySelector('#descents').onclick = () => {
+  drawTess([2,4]);
+  document.querySelector('#tess-feedback').textContent = 'Tess descends after each peak. Her altitude decreases in both highlighted sections.';
+};
+document.querySelector('#flats').onclick = () => {
+  drawTess([0,5]);
+  document.querySelector('#tess-feedback').textContent = 'At the start and end the graph is horizontal. Tess’s altitude stays constant.';
+};
+question('tess-q','How many times does Tess ascend?',['Once','Twice','Three times'],1,'There is one uphill section before each peak.',['Look for a second section where altitude rises.','','A descent is a section where altitude decreases.']);
+question('scale-q','Which vertical scale fits the puppy data?',['0 to 4 kg in steps of 1 kg','0 to 6 kg in steps of 1 kg','0, 1, 3, 6 kg at equally spaced marks'],1,'The largest value is 6 kg and each interval represents 1 kg.',['The last weight is 6 kg.','','Compare the gaps between consecutive numbers.']);
+question('zigzag-q','If each 100 g interval is 1 cm, how tall is the axis from 0 to 3,200 g?',['3.2 cm','32 cm','320 cm'],1,'3,200 ÷ 100 = 32 intervals of 1 cm. A zigzag skips the long section near the bottom.',['How many groups of 100 fit into 3,200?','','Each centimetre represents 100 g.']);
+const weights = [3000,2960,2930,2910,2900,2920,2940,2980,3030,3080,3130];
+const daySelect = document.querySelector('#day');
+weights.forEach((_, day) => daySelect.add(new Option(day, day)));
+const weightInput = document.querySelector('#weight');
+document.querySelector('#otto-table').innerHTML = '<tr><th scope="row">Day</th>' + weights.map((_,i) => '<td>'+i+'</td>').join('') +
+  '</tr><tr><th scope="row">Weight (g)</th>' + weights.map(w => '<td>'+w+'</td>').join('') + '</tr>';
+const otto = document.querySelector('#otto');
+const pointFeedback = document.querySelector('#point-feedback');
+const placed = new Map();
+let checked = false, model = false;
+const px = day => 65 + 57.5 * day;
+const py = weight => 218 - (weight - 2800) * .45;
+function drawOtto() {
+  const ctx = axes(otto, 'Weight (g)', 'Day');
+  ctx.font = '13px system-ui';
+  for (let w=2800; w<=3200; w+=20) {
+    const major = w%100 === 0;
+    path(ctx,[[65,py(w)],[640,py(w)]], major ? '#b3cace' : '#e7eeee',1);
+    if (major) {
+      ctx.textAlign = 'right';
+      ctx.fillText(w,60,py(w)+4);
+    }
+  }
+  ctx.textAlign = 'center';
+  weights.forEach((_,d) => {
+    path(ctx,[[px(d),38],[px(d),218]],'#cbdcde',1);
+    ctx.fillText(d,px(d),254);
+  });
+  ctx.textAlign = 'left';
+  ctx.clearRect(59,221,12,11);
+  path(ctx,[[65,220],[69,223],[61,229],[65,232]],'#45636d',2);
+  if (model) {
+    const points = weights.map((w,i) => [px(i),py(w)]);
+    const commands = [points[0]];
+    for (let i=0;i<points.length-1;i++) {
+      const [x,y] = points[i], [nx,ny] = points[i+1];
+      const previous = points[Math.max(0,i-1)], following = points[Math.min(points.length-1,i+2)];
+      commands.push([x+(nx-x)/3,y+(ny-previous[1])/6,nx-(nx-x)/3,ny-(following[1]-y)/6,nx,ny]);
+    }
+    path(ctx,commands);
+    points.forEach(([x,y]) => dot(ctx,x,y,'#a23064',4));
+  }
+  placed.forEach((w,d) => dot(ctx,px(d),py(w),!checked ? '#126c76' : w === weights[d] ? '#20743e' : '#c45413',5));
+}
+function dot(ctx,x,y,color,r) {
+  ctx.beginPath();
+  ctx.arc(x,y,r,0,Math.PI*2);
+  ctx.fillStyle=color;
+  ctx.fill();
+  ctx.fillStyle='#173342';
+}
+function plot(day,weight) {
+  placed.set(day,weight);
+  checked = false;
+  daySelect.value = day;
+  weightInput.value = weight;
+  pointFeedback.textContent = 'Plotted day ' + day + ' at ' + weight + ' g. ' + placed.size + ' of 11 days plotted.';
+  drawOtto();
+}
+drawOtto();
+otto.onclick = event => {
+  const [x,y] = position(event,otto);
+  if (x<50 || x>654 || y<32 || y>224) return;
+  plot(Math.min(10,Math.max(0,Math.round((x-65)/57.5))), Math.min(3200,Math.max(2800,2800+10*Math.round((218-y)/4.5))));
+};
+daySelect.onchange = () => { weightInput.value = placed.get(Number(daySelect.value)) ?? ''; };
+document.querySelector('#plot-point').onclick = () => {
+  const w=weightInput.valueAsNumber;
+  if (!weightInput.checkValidity() || !Number.isFinite(w)) {
+    pointFeedback.textContent = 'Enter a weight from 2800 to 3200 g in steps of 10 g.';
+    return;
+  }
+  plot(Number(daySelect.value),w);
+};
+document.querySelector('#check-points').onclick = () => {
+  checked = true;
+  const wrong = [...placed].filter(([d,w]) => w!==weights[d]).map(([d])=>d).sort((a,b)=>a-b);
+  const missing = weights.map((_,i)=>i).filter(i=>!placed.has(i));
+  pointFeedback.textContent = [
+    wrong.length ? 'Check the table again for days ' + wrong.join(', ') + '.' : '',
+    missing.length ? 'Still to plot: days ' + missing.join(', ') + '.' : ''
+  ].filter(Boolean).join(' ') || 'All 11 points are correct. Compare them with the model curve.';
+  drawOtto();
+};
+document.querySelector('#show-curve').onclick = event => {
+  model = !model;
+  event.currentTarget.textContent = model ? 'Hide model curve' : 'Show model curve';
+  drawOtto();
+};
+document.querySelector('#clear-points').onclick = () => {
+  placed.clear();
+  checked = false;
+  weightInput.value = '';
+  pointFeedback.textContent = '';
+  drawOtto();
+};
+question('birth-q','When does the curve return to Otto’s birth weight of 3,000 g?',['Day 4','Between day 7 and day 8','Exactly on day 8'],1,'At day 7 Otto weighs 2,980 g and at day 8 he weighs 3,030 g. The model curve crosses 3,000 g between them, at about day 7.4. Day 8 is the first recorded weight at or above 3,000 g after the drop.',['Check the lowest value in the table.','','At day 8 the weight is already above 3,000 g.']);
+question('exit-b1','What does (4, 2900) mean?',['Otto weighs 2,900 g on day 4','Otto gains 2,900 g over 4 days','Otto weighs 4 g on day 2,900'],0,'Read day from the horizontal axis and weight from the vertical axis.');
+question('exit-b2','Why does the graph fall from day 0 to day 4?',['Time goes backwards','Otto’s weight decreases','The vertical scale changes every day'],1,'Time moves forwards while the measured weight falls from 3,000 g to 2,900 g.');
+question('chess','How many games does Dopey play?',['1','2','3','4','5'],2,'Doc plays everyone, so Grumpy is done. Happy must play everyone except Grumpy, so Sneezy is done too. Bashful still needs two games, against Sleepy and Dopey. Sleepy is then done. Dopey played Doc, Happy and Bashful.');
+const puppyCanvas = document.querySelector('#puppy');
+const puppy = axes(puppyCanvas,'Weight (kg)','Age (weeks)');
+for(let w=0;w<=6;w++) {
+  const y = 235-w*30;
+  path(puppy,[[65,y],[640,y]],w===0 ? '#45636d' : '#d8e5e6',1);
+  puppy.fillText(w,43,y+5);
+}
+for(let week=0;week<=3;week++) {
+  const x = 65+180*week;
+  path(puppy,[[x,55],[x,235]],week===0 ? '#45636d' : '#d8e5e6',1);
+  puppy.fillText(week,x-4,254);
+}
+path(puppy,[[65,175],[133,165,185,163,245,145],[305,127,365,103,425,85],[485,67,551,65,605,55]]);
+[[65,175],[245,145],[425,85],[605,55]].forEach(([x,y])=>dot(puppy,x,y,'#a23064',5));
+document.querySelector('#puppy-toggle').onclick = event => {
+  puppyCanvas.hidden = !puppyCanvas.hidden;
+  event.currentTarget.textContent = puppyCanvas.hidden ? 'Show the puppy graph' : 'Hide the puppy graph';
+};
+
+</script>
+</html>

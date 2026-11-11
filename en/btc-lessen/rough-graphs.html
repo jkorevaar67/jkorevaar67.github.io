@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rough graphs | TVWO 1</title>
+<style>
+:root{font:17px/1.55 "Atkinson Hyperlegible Next",system-ui,sans-serif;color:#173342;background:#eef4f4;--ink:#173342;--blue:#126c76;--line:#cbdcde}
+[hidden]{display:none!important}*{box-sizing:border-box}body{margin:0}header{background:#123b49;color:white;padding:2.7rem max(5vw,calc((100vw - 940px)/2)) 2.2rem}header p{margin:.15rem 0;color:#d3edef}h1{font-size:clamp(2rem,5vw,3.6rem);line-height:1.05;margin:.45rem 0 .7rem;letter-spacing:-.045em}main{max-width:980px;margin:auto;padding:1rem 1rem 3rem}nav{display:flex;gap:.55rem;flex-wrap:wrap;margin:.35rem 0 1rem}nav button{background:white;color:var(--ink);border:1px solid var(--line)}nav button[aria-current]{background:#126c76;color:white}section{background:white;border:1px solid var(--line);border-radius:1rem;padding:clamp(1rem,4vw,2.1rem)}h2{font-size:clamp(1.55rem,4vw,2.15rem);letter-spacing:-.03em;margin:0 0 .6rem}h3{margin-bottom:.35rem}p{margin:.5rem 0 1rem}li{margin:.45rem 0}aside{padding:.7rem 1rem;background:#eaf5f5;border-radius:.6rem;margin:1rem 0}button,select{font:inherit;border-radius:.5rem;padding:.42rem .75rem}button{border:1px solid transparent;background:var(--blue);color:white;cursor:pointer;font-weight:650}button.secondary{background:white;color:var(--blue);border-color:var(--line)}button:disabled{opacity:.45;cursor:default}button:focus-visible,select:focus-visible,canvas:focus-visible{outline:3px solid #cb591c;outline-offset:3px}select{max-width:100%;color:var(--ink);background:white;border:1px solid #9bb7ba}fieldset{border:1px solid var(--line);border-radius:.65rem;margin:1.1rem 0;padding:.65rem 1rem .8rem;min-width:0}legend{font-weight:700;padding:0 .3rem}fieldset label{display:block;margin:.2rem 0}fieldset button{margin:.5rem .35rem .2rem 0}output{display:block}output:not(:empty){padding:.5rem .75rem;background:#f6f0df;border-radius:.4rem;margin-top:.45rem}output.good{background:#e4f4e9}canvas{display:block;width:100%;max-width:680px;height:auto;border:1px solid var(--line);border-radius:.5rem;margin:.65rem 0;background:white}canvas.plot,canvas.draw{touch-action:none;cursor:crosshair}.controls{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:.65rem 0}details{margin:.85rem 0}summary{font-weight:650;cursor:pointer}.table{overflow:auto}table{border-collapse:collapse;margin:.5rem 0;width:100%;font-variant-numeric:tabular-nums}td,th{border:1px solid var(--line);padding:.35rem .6rem;text-align:center;white-space:nowrap}th{background:#eaf5f5}footer{display:flex;justify-content:space-between;gap:.5rem;margin:1rem 0}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.75rem}.cards fieldset{margin:0}.cards canvas{margin:.25rem 0}img{display:block;max-width:100%;height:auto}.meta{font-size:.9rem;color:#49626a}.swatch{color:#a23064}
+</style>
+<header><p>TVWO 1 · Chapter 3 · Theory C · 40 minutes</p><h1>Rough graphs</h1><p>Describe changes in a graph and sketch graphs from a situation.</p></header>
+<main><p><a href="index.html">← Back to TVWO 1 BTC lessons</a></p><nav aria-label="Lesson stages"></nav>
+<section data-stage="1 · Discover" hidden>
+<h2 tabindex="-1">What can you tell without numbers?</h2>
+<p><b>7 min</b> · Describe the graph to a partner. Start on the left. What changes and what stays the same?</p>
+<canvas id="demo" width="680" height="290" role="img" aria-label="A rough graph showing altitude decreasing, then staying constant, then increasing. Both axes are labelled and have no numbers."></canvas>
+<div class="controls"><button data-trend="0">Decreasing</button><button data-trend="1">Constant</button><button data-trend="2">Increasing</button></div>
+<output id="trend-feedback">Choose a term to highlight its section.</output>
+<aside>A <b>rough graph</b> shows how two variables are related. Its axes are labelled and usually have no numbers. You can describe how a variable changes and compare heights or speeds shown on the same graph.</aside>
+<div id="rough-q"></div>
+</section>
+<section data-stage="2 · Scooter ride" hidden>
+<h2 tabindex="-1">Read Wouter’s speed graph</h2>
+<p><b>9 min</b> · For each part, decide what happens to Wouter’s speed as time moves forward.</p>
+<canvas id="scooter" width="680" height="290" role="img" aria-label="Wouter’s speed graph with nine labelled sections, a to i."></canvas>
+<div class="controls"><label>Section <select id="segment"></select></label><label>Speed <select id="trend"><option value="">Choose…</option><option>Increasing</option><option>Decreasing</option><option>Constant</option></select></label><button id="check-scooter">Check section</button><button id="reveal-scooter" class="secondary">Show all answers</button></div>
+<output id="scooter-feedback"></output>
+<div id="turn-q"></div><div id="stop-q"></div>
+</section>
+<section data-stage="3 · Water shapes" hidden>
+<h2 tabindex="-1">Match the shape to its graph</h2>
+<p><b>10 min</b> · Water flows into each container at a steady rate. Think about what happens to the water height when the container gets wider or narrower.</p>
+<img src="data:image/jpeg;base64,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" alt="I wide at bottom and narrow at top. II narrow at bottom and wide at top. III wide cylinder with a narrow tube above. IV straight-sided cylinder." width="513" height="82">
+<div class="cards" id="water-graphs"></div>
+<div id="match-i"></div><div id="match-ii"></div><div id="match-iii"></div><div id="match-iv"></div>
+<details><summary>Extension · Sketch five more shapes</summary>
+<p>Sketch one water-height graph per container on paper. Start each graph at the origin. Use the selector to compare a sketch with its model.</p>
+<img src="data:image/jpeg;base64,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" alt="I sphere with a narrow neck. II narrow tube below a wide container that tapers upwards. III hourglass-like container, narrowest in the middle. IV cylinder narrowing towards a narrow neck. V two wide chambers joined by a narrow tube." width="525" height="124">
+<div class="controls"><label>Container <select id="extra-shape"><option>I</option><option>II</option><option>III</option><option>IV</option><option>V</option></select></label><button id="show-extra">Show model</button></div>
+<canvas id="extra-graph" width="680" height="290" hidden></canvas><output id="extra-feedback"></output>
+</details>
+</section>
+<section data-stage="4 · Draw and check" hidden>
+<h2 tabindex="-1">Sketch Carolien’s cycle ride</h2>
+<p><b>14 min</b> · Carolien cycles slowly, waits at a level crossing, sets off quickly and cycles fast. At school she brakes hard and parks her bike. Sketch both graphs, then compare each with a model.</p>
+<div class="controls"><button data-drawing="speed" aria-pressed="true">Speed</button><button data-drawing="distance" class="secondary" aria-pressed="false">Distance from home</button></div>
+<p class="meta">Drag to sketch. With a keyboard, focus the graph and use the arrow keys to move, Enter to add a point and Escape to start a new line.</p>
+<canvas id="drawing" class="draw" width="680" height="290" tabindex="0" aria-label="Sketch pad for speed against time."></canvas>
+<div class="controls"><button id="model">Show model and check</button><button id="undo" class="secondary">Undo last line</button><button id="clear" class="secondary">Clear sketch</button></div>
+<output id="model-feedback"></output>
+<div id="exit-c"></div>
+</section>
+
+<footer><button class="secondary" id="back">Previous</button><button id="next">Next stage</button></footer>
+<details><summary>Teacher notes</summary><p>7 min discovery · 9 min scooter graph · 10 min water graphs · 14 min sketch and exit question. Have pupils explain a choice before checking it. The extra water sketches are an extension. Accept alternative sketches that show the same changes in speed and distance.</p></details>
+</main>
+<script>
+const sections = [...document.querySelectorAll('main > section')];
+let current = 0;
+const nav = document.querySelector('nav');
+const back = document.querySelector('#back');
+const next = document.querySelector('#next');
+function show(index, focus = true) {
+  current = index;
+  sections.forEach((section, i) => {
+    section.hidden = i !== index;
+    if (i === index) nav.children[i].setAttribute('aria-current', 'step');
+    else nav.children[i].removeAttribute('aria-current');
+  });
+  back.disabled = index === 0;
+  next.hidden = index === sections.length - 1;
+  if (focus) {
+    sections[index].querySelector('h2').focus({preventScroll:true});
+    window.scrollTo(0, nav.offsetTop - 12);
+  }
+}
+sections.forEach((section, i) => {
+  const button = document.createElement('button');
+  button.textContent = section.dataset.stage;
+  button.onclick = () => show(i);
+  nav.append(button);
+});
+back.onclick = () => show(current - 1);
+next.onclick = () => show(current + 1);
+show(0, false);
+
+function question(target, prompt, answers, correct, explanation, hints = []) {
+  const field = document.createElement('fieldset');
+  const legend = document.createElement('legend');
+  legend.textContent = prompt;
+  field.append(legend);
+  const radios = answers.map(answer => {
+    const label = document.createElement('label');
+    const radio = document.createElement('input');
+    radio.type = 'radio';
+    radio.name = target;
+    label.append(radio, ' ' + answer);
+    field.append(label);
+    return radio;
+  });
+  const check = document.createElement('button');
+  check.textContent = 'Check';
+  const reveal = document.createElement('button');
+  reveal.className = 'secondary';
+  reveal.textContent = 'Show answer';
+  const output = document.createElement('output');
+  function feedback(message, good) {
+    output.textContent = message;
+    output.classList.toggle('good', good);
+  }
+  check.onclick = () => {
+    const choice = radios.findIndex(radio => radio.checked);
+    if (choice === -1) feedback('Choose an answer first.', false);
+    else if (choice === correct) feedback('Correct. ' + explanation, true);
+    else feedback(hints[choice] || 'Try again. Read the graph from left to right and think about what each axis shows.', false);
+  };
+  reveal.onclick = () => feedback(answers[correct] + '. ' + explanation, false);
+  radios.forEach(radio => radio.onchange = () => feedback('', false));
+  field.append(check, reveal, output);
+  document.querySelector('#' + target).append(field);
+}
+
+function axes(canvas, vertical, horizontal) {
+  const ctx = canvas.getContext('2d');
+  const x = 65, y = 235, right = 640, top = 34;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.strokeStyle = '#45636d';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(x, top);
+  ctx.lineTo(x, y);
+  ctx.lineTo(right, y);
+  ctx.stroke();
+  ctx.font = '16px system-ui';
+  ctx.fillStyle = '#173342';
+  ctx.fillText(vertical, x, 22);
+  ctx.textAlign = 'right';
+  ctx.fillText(horizontal, right, 278);
+  ctx.textAlign = 'left';
+  return ctx;
+}
+function path(ctx, commands, color = '#a23064', width = 4) {
+  ctx.beginPath();
+  commands.forEach(points => {
+    if (points.length === 2) ctx.lineTo(...points);
+    else ctx.bezierCurveTo(...points);
+  });
+  ctx.strokeStyle = color;
+  ctx.lineWidth = width;
+  ctx.lineJoin = ctx.lineCap = 'round';
+  ctx.stroke();
+}
+function position(event, canvas) {
+  const bounds = canvas.getBoundingClientRect();
+  return [(event.clientX - bounds.left) * canvas.width / bounds.width,
+          (event.clientY - bounds.top) * canvas.height / bounds.height];
+}
+const demo = document.querySelector('#demo');
+const trends = [
+  [[65,70],[190,70,196,172,285,172]],
+  [[285,172],[405,172]],
+  [[405,172],[496,172,523,63,640,48]]
+];
+const trendText = ['Decreasing: altitude falls as time passes.','Constant: altitude stays the same. The graph is horizontal.','Increasing: altitude rises as time passes.'];
+function drawDemo(active) {
+  const ctx = axes(demo,'Altitude','Time');
+  trends.forEach((segment,i) => path(ctx,segment,i===active ? '#126c76' : '#a23064',i===active ? 8 : 4));
+}
+drawDemo(-1);
+document.querySelectorAll('[data-trend]').forEach(button => button.onclick = () => {
+  const i = Number(button.dataset.trend);
+  drawDemo(i);
+  document.querySelector('#trend-feedback').textContent = trendText[i];
+});
+question('rough-q','What can you read from this rough graph?',['The exact highest altitude in metres','Whether the altitude increases or decreases','Exactly how many minutes the walk takes'],1,'The shape shows how altitude changes. Exact values require a numbered scale.',['The altitude axis has no numbered scale.','','The time axis has no numbered scale.']);
+const scooter = document.querySelector('#scooter');
+const scooterParts = [
+  [[65,235],[66,107,70,68,111,68]], [[111,68],[188,68]], [[188,68],[206,68,212,91,229,91]],
+  [[229,91],[242,91,248,50,268,50]], [[268,50],[298,50]],
+  [[298,50],[312,50,305,169,380,169]], [[380,169],[426,169]],
+  [[426,169],[487,169,470,47,530,47]], [[530,47],[640,47]]
+];
+const labels = [[78,148],[145,60],[203,60],[246,95],[282,42],[316,113],[398,159],[479,135],[575,38]];
+const answers = ['Increasing','Constant','Decreasing','Increasing','Constant','Decreasing','Constant','Increasing','Constant'];
+const letter = i => 'abcdefghi'[i];
+function drawScooter(active) {
+  const ctx = axes(scooter,'Speed','Time');
+  scooterParts.forEach((segment,i) => {
+    path(ctx,segment,i===active ? '#126c76' : '#a23064',i===active ? 8 : 4);
+    ctx.fillText(letter(i),...labels[i]);
+  });
+}
+const segmentSelect = document.querySelector('#segment');
+const trendSelect = document.querySelector('#trend');
+const scooterFeedback = document.querySelector('#scooter-feedback');
+const answered = new Map();
+answers.forEach((_,i) => segmentSelect.add(new Option(letter(i),i)));
+function segmentChange() {
+  drawScooter(Number(segmentSelect.value));
+  trendSelect.value = answered.get(segmentSelect.value) || '';
+  scooterFeedback.textContent = '';
+}
+segmentSelect.onchange = segmentChange;
+segmentChange();
+document.querySelector('#check-scooter').onclick = () => {
+  const i = Number(segmentSelect.value);
+  const guess = trendSelect.value;
+  if (!guess) {
+    scooterFeedback.textContent = 'Choose how the speed changes.';
+    return;
+  }
+  const correct = guess === answers[i];
+  if (correct) answered.set(segmentSelect.value,guess);
+  const detail = {Increasing:'speed rises', Decreasing:'speed falls', Constant:'speed stays the same'};
+  scooterFeedback.textContent = correct ? 'Correct. In section '+letter(i)+' the '+detail[guess]+'. '+answered.size+' of 9 checked correctly.' :
+    'Try again. Compare the height at the left and right of section '+letter(i)+'.';
+};
+document.querySelector('#reveal-scooter').onclick = () => {
+  scooterFeedback.textContent = 'Increasing: a, d, h. Decreasing: c, f. Constant: b, e, g, i.';
+};
+question('turn-q','Which happened first according to the graph?',['The corner','The hard braking'],0,'The smaller dip comes first at c. The steeper and larger drop at f represents the hard braking.');
+question('stop-q','Did Wouter stop along the way?',['Yes, at g','Yes, at c','No'],2,'At c and g his speed is still above zero. A stop would bring the graph down to the time axis.');
+const water = [
+  [[65,235],[640,47]],
+  [[65,235],[510,147],[640,47]],
+  [[65,235],[139,140,416,84,640,47]],
+  [[65,235],[312,212,554,135,640,47]]
+];
+water.forEach((points,i) => {
+  const card = document.createElement('div');
+  const label = document.createElement('b');
+  label.textContent = 'Graph '+ 'abcd'[i];
+  const canvas = document.createElement('canvas');
+  canvas.width = 680;
+  canvas.height = 290;
+  canvas.setAttribute('role','img');
+  canvas.setAttribute('aria-label', [
+    'Water height rises at a constant rate.',
+    'Water height first rises slowly at a constant rate, then rises faster at a constant rate.',
+    'Water height rises quickly at first and gradually more slowly.',
+    'Water height rises slowly at first and gradually faster.'
+  ][i]);
+  card.append(label,canvas);
+  document.querySelector('#water-graphs').append(card);
+  path(axes(canvas,'Water height','Time'),points);
+});
+const matching = [
+  ['i','I',3,'The container narrows upwards. The same amount of water makes the level rise more quickly higher up.'],
+  ['ii','II',2,'The container widens upwards. The same amount of water makes the level rise more slowly higher up.'],
+  ['iii','III',1,'The level rises steadily in the wide cylinder, then rises faster at a steady rate in the narrow tube.'],
+  ['iv','IV',0,'The cylinder has the same width throughout, so the water height rises at a constant rate.']
+];
+matching.forEach(([id,name,correct,reason]) => {
+  question('match-'+id,'Container '+name+' matches…',['Graph a','Graph b','Graph c','Graph d'],correct,reason,
+    Array.from({length:4},()=> 'Try again. A wider section gives a gentler slope and a narrower section gives a steeper slope.'));
+});
+const extraModels = [
+  [[[65,235],[77,203,152,159,278,144],[401,129,471,103,494,81],[535,43]],
+   'I. The rise slows as the sphere widens, then speeds up as it narrows. The neck gives a steep straight section.'],
+  [[[65,235],[130,197],[348,153,501,103,590,48]],
+   'II. The bottom tube gives a steep straight section. The level rises more slowly in the wide part, then faster as the container narrows.'],
+  [[[65,235],[164,222,253,202,337,146],[412,96,518,64,640,48]],
+   'III. The rise speeds up towards the narrow middle, then slows as the container widens again.'],
+  [[[65,235],[305,178],[417,151,485,117,523,84],[561,46]],
+   'IV. The level rises steadily in the cylinder, then faster as the container narrows. The neck gives a steep straight section.'],
+  [[[65,235],[270,195],[350,106],[640,49]],
+   'V. The level rises slowly in the wide bottom chamber, quickly in the narrow tube and slowly again in the wide top chamber.']
+];
+const extraShape = document.querySelector('#extra-shape');
+const extraCanvas = document.querySelector('#extra-graph');
+const extraFeedback = document.querySelector('#extra-feedback');
+extraShape.onchange = () => { extraCanvas.hidden = true; extraFeedback.textContent = ''; };
+document.querySelector('#show-extra').onclick = () => {
+  const [points,reason] = extraModels[extraShape.selectedIndex];
+  extraCanvas.hidden = false;
+  path(axes(extraCanvas,'Water height','Time'),points);
+  extraFeedback.textContent = reason;
+};
+
+const drawing = document.querySelector('#drawing');
+const modelButton = document.querySelector('#model');
+const modelFeedback = document.querySelector('#model-feedback');
+const drawingModes = document.querySelectorAll('[data-drawing]');
+const sketches = {
+  speed:{label:'Speed', lines:[], visible:false, curve:[[65,235],[80,202],[215,202],[238,235],[335,235],[357,113],[574,113],[596,235],[640,235]], feedback:'Check for a low first plateau, zero speed at the crossing, a higher plateau and a steep drop to zero at school.'},
+  distance:{label:'Distance from home', lines:[], visible:false, curve:[[65,235],[75,235,82,230,89,227],[215,188],[224,185,233,183,238,183],[335,183],[342,183,350,178,357,174],[574,56],[585,50,592,46,596,46],[640,46]], feedback:'Check for a gentle rise first, a horizontal section while waiting, a steeper rise after the crossing and a final horizontal section at school.'}
+};
+let sketch = sketches.speed;
+let activeLine = null;
+let keyboardLine = null;
+let cursor = [65,235];
+let keyboardActive = false;
+function renderSketch() {
+  const ctx = axes(drawing,sketch.label,'Time');
+  if (sketch.visible) path(ctx,sketch.curve,'#a23064',5);
+  sketch.lines.forEach(line => {
+    if (line.length > 1) path(ctx,line,'#126c76',3);
+  });
+  if (keyboardActive) {
+    ctx.beginPath();
+    ctx.arc(...cursor,5,0,Math.PI*2);
+    ctx.fillStyle='#cb591c';
+    ctx.fill();
+  }
+}
+function updateModel() {
+  modelButton.textContent = sketch.visible ? 'Hide model' : 'Show model and check';
+  modelFeedback.textContent = sketch.visible ? 'Purple is the model. '+sketch.feedback : '';
+  renderSketch();
+}
+drawingModes.forEach(button => button.onclick = () => {
+  sketch = sketches[button.dataset.drawing];
+  keyboardLine = null;
+  cursor = [65,235];
+  drawing.setAttribute('aria-label','Sketch pad for '+sketch.label.toLowerCase()+' against time.');
+  drawingModes.forEach(mode => {
+    mode.setAttribute('aria-pressed',String(mode === button));
+    mode.classList.toggle('secondary',mode !== button);
+  });
+  updateModel();
+});
+function bounded(x,y) {
+  return [Math.min(640,Math.max(65,x)),Math.min(235,Math.max(34,y))];
+}
+drawing.onpointerdown = event => {
+  if (activeLine) return;
+  keyboardActive = false;
+  keyboardLine = null;
+  activeLine = [bounded(...position(event,drawing))];
+  sketch.lines.push(activeLine);
+  drawing.setPointerCapture(event.pointerId);
+};
+drawing.onpointermove = event => {
+  if (!activeLine || !drawing.hasPointerCapture(event.pointerId)) return;
+  activeLine.push(bounded(...position(event,drawing)));
+  renderSketch();
+};
+drawing.onlostpointercapture = () => { activeLine = null; };
+drawing.onkeydown = event => {
+  const moves = {ArrowLeft:[-8,0],ArrowRight:[8,0],ArrowUp:[0,-8],ArrowDown:[0,8]};
+  if (!moves[event.key] && !['Enter','Escape'].includes(event.key)) return;
+  event.preventDefault();
+  keyboardActive = true;
+  if (moves[event.key]) {
+    const [dx,dy] = moves[event.key];
+    cursor = bounded(cursor[0]+dx,cursor[1]+dy);
+  } else if (event.key === 'Escape') keyboardLine = null;
+  else {
+    if (!keyboardLine) {
+      keyboardLine = [];
+      sketch.lines.push(keyboardLine);
+    }
+    keyboardLine.push(cursor);
+  }
+  renderSketch();
+};
+drawing.onblur = () => { keyboardActive = false; renderSketch(); };
+modelButton.onclick = () => { sketch.visible = !sketch.visible; updateModel(); };
+document.querySelector('#undo').onclick = () => { sketch.lines.pop(); keyboardLine = null; renderSketch(); };
+document.querySelector('#clear').onclick = () => { sketch.lines.length = 0; keyboardLine = null; renderSketch(); };
+updateModel();
+question('exit-c','What happens on both graphs while Carolien waits?',['Both lines are horizontal. Speed is zero and distance from home stays the same.','Both lines drop to zero.','Speed is zero and distance from home keeps rising.'],0,'While she waits, she is stationary. She remains the same distance from home.');
+
+</script>
+</html>
