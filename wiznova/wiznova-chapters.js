@@ -66,7 +66,7 @@
   if (practiceOnly) { $('activity').value = 'exercise'; $('activity').closest('label').hidden = true; $('start').textContent = 'Open oefensite'; }
   const latest = items.at(-1);
   $('heading').textContent = labels[group] || 'Kies eerst je klas';
-  latestContent($('latest-section'),latest);
+  latestContent($('latest-section'), practiceOnly ? undefined : latest);
   function selected() {
     return items.find(item => String(item.chapter) === chapter.value && String(item.section) === $('section').value);
   }
@@ -82,7 +82,7 @@
   function sections() {
     $('section').replaceChildren();
     for (const item of items.filter(item => String(item.chapter) === chapter.value)) {
-      $('section').add(new Option(title(item) + (item === latest ? ' (nieuwste)' : ''),String(item.section)));
+      $('section').add(new Option(title(item) + (!practiceOnly && item === latest ? ' (nieuwste)' : ''),String(item.section)));
     }
     $('section').disabled = !$('section').options.length;
     update();
