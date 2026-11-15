@@ -2,7 +2,7 @@
 <html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>§7.4 Afstanden en raaklijnen bij cirkels | Wiznova</title>
 <style>
 :root{background:#f2f6fc;color:#172b4c;font:17px/1.6 "Atkinson Hyperlegible Next",system-ui,sans-serif}*{box-sizing:border-box}body{margin:0}main,.wrap{max-width:1100px;margin:auto;padding:0 clamp(16px,4vw,38px)}header{background:#173566;color:#fff;padding:22px 0 34px;border-bottom:5px solid #65d9c8}header a{color:#c2f5ea}h1{font-size:clamp(2rem,5vw,3.7rem);line-height:1.03;letter-spacing:-.045em;margin:.5em 0 .2em}h2,h3{line-height:1.2}header p{margin-bottom:0;color:#dce9ff}nav{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}button,input,select{font:inherit;color:inherit}button{cursor:pointer;background:#fff;border:1px solid #94aac6;border-radius:8px;padding:.45em .75em;font-weight:700}button:hover{background:#e3efff}button[aria-current=true],.primary{background:#224f9e;color:white}button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #b24a13;outline-offset:3px}.card{background:white;border:1px solid #d5e0ee;border-radius:16px;padding:clamp(15px,3vw,28px);margin-bottom:14px}.intro{background:#def5f0}.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:center}.demo{background:#eaf3ff}canvas{width:100%;height:auto;display:block;background:white;border-radius:9px;border:1px solid #c5d4e8}.control{display:block;margin:.7em 0}.control input{vertical-align:middle;max-width:52%}.formula,.feedback{font-weight:750}.question{border-top:1px solid #dae3ef;padding:12px 0}.question label{display:block;font-weight:700}.answer{display:flex;gap:8px;flex-wrap:wrap;margin:.5em 0}input[type=text],select{border:1px solid #8399b5;padding:.45em;border-radius:7px;background:white;max-width:100%}summary{cursor:pointer;color:#204987;font-weight:700}details{margin:.5em 0}.good{color:#126343}.wrong{color:#9c3029}.note{background:#fff3d9;padding:8px 12px;border-radius:8px}.muted{color:#46617c}@media(max-width:720px){.cols{grid-template-columns:1fr}}main{padding-bottom:40px}
-</style></head><body>
+.math-keys{display:flex;flex-wrap:wrap;gap:6px;margin:.4em 0}.math-keys button{min-width:42px;min-height:42px;background:#edf4ff;color:#173566}.math-keys button:hover{background:#d8e8ff}</style></head><body>
 <header><div class="wrap"><a href="/wiznova/choose-topic.html?klas=vwo5wisb">← Kies je materiaal</a><p>VWO 5 Wiskunde B · §7.4</p><h1>Afstanden en raaklijnen bij cirkels</h1><p>Onderzoek de figuur, reken exact en controleer je antwoord.</p></div></header>
 <main><nav id="nav" aria-label="Lesonderdelen"></nav><article id="lesson"></article></main>
 <script>
@@ -37,7 +37,7 @@ const lessons=[
 const $=id=>document.getElementById(id);
 const f=n=>Number(n.toFixed(3)).toLocaleString('nl-NL');
 function value(raw){
- const s=raw.replaceAll('−','-').replaceAll(',','.').replaceAll(' ','');
+ const s=raw.replaceAll('−','-').replaceAll(',','.').replace(/\s/g,'').replace(/sqrt?/gi,'√');
  const tokens=s.match(/\d+(?:\.\d+)?|[√()+*/^−-]/g)||[];
  if(tokens.join('')!==s||!s||s.length>100)return NaN;
  let i=0;
@@ -111,19 +111,54 @@ function demo(modes){
  }
  $('mode').onchange=set;slider.oninput=draw;set();
 }
+function addMathKeys(form){
+ const input=form.querySelector('input[type="text"]');
+ if(!input)return;
+ const keys=document.createElement('div');
+ keys.className='math-keys';
+ keys.setAttribute('role','group');
+ keys.setAttribute('aria-label','Wiskundig toetsenbord');
+ for(const [label,symbol,name,offset] of [
+   ['√','√()','Wortel',2],['a/b','/','Breukstreep',1],
+   ['xⁿ','^','Macht',1],['×','*','Vermenigvuldigen',1],
+   ['−','−','Minteken',1],['(', '(','Haakje openen',1],
+   [')', ')','Haakje sluiten',1]
+ ]){
+   const button=document.createElement('button');
+   button.type='button';
+   button.textContent=label;
+   button.setAttribute('aria-label',name);
+   button.title=name;
+   button.addEventListener('click',()=>{
+     const start=input.selectionStart;
+     const end=input.selectionEnd;
+     const selected=input.value.slice(start,end);
+     const inserted=symbol==='√()'&&selected?'√('+selected+')':symbol;
+     if(input.value.length-(end-start)+inserted.length>input.maxLength)return;
+     input.setRangeText(inserted,start,end,'end');
+     if(inserted===symbol)input.setSelectionRange(start+offset,start+offset);
+     input.focus();
+   });
+   keys.append(button);
+ }
+ form.querySelector('.answer').after(keys);
+}
 function show(i,focus=false){
  const l=lessons[i];$('nav').querySelectorAll('button').forEach((b,j)=>b.setAttribute('aria-current',String(i===j)));
  $('lesson').innerHTML='<section class="card intro"><h2 id="heading" tabindex="-1">'+l.title+'</h2><p>'+l.goal+'</p><p>'+l.theory+'</p>'+(l.note?'<p class="note">'+l.note+'</p>':'')+'</section>'+
  (l.modes?'<section class="card demo"><h2>Onderzoek de figuur</h2><div id="demo"></div></section>':'')+
  '<section class="card"><h2>Uitgewerkt voorbeeld</h2><ol>'+l.steps.map(s=>'<li>'+s+'</li>').join('')+'</ol></section>'+
- '<section class="card"><h2>Oefenen</h2><p class="muted">Reken eerst exact. Typ bijvoorbeeld 3/4 of 2√5. Een gelijkwaardige schrijfwijze wordt herkend.</p>'+l.qs.map(([text,answer,hint,work,options],j)=>'<form class="question"><label for="a'+j+'">'+text+'</label><div class="answer">'+(options?'<select id="a'+j+'" required><option value="">Kies je antwoord</option>'+options.map(s=>'<option>'+s+'</option>').join('')+'</select>':'<input id="a'+j+'" type="text" autocomplete="off" maxlength="100" required>')+'<button class="primary">Controleer</button></div><p class="feedback" role="status"></p><details><summary>Hint</summary><p>'+hint+'</p></details><details><summary>Uitwerking</summary><p>'+work+'</p></details></form>').join('')+
+ '<section class="card"><h2>Oefenen</h2><p class="muted">Reken eerst exact. Typ bijvoorbeeld 3/4, 2sqrt5, 2sqr5 of 2√5. Gebruik haakjes als er meer onder de wortel staat, bijvoorbeeld sqrt(3+2).</p>'+l.qs.map(([text,answer,hint,work,options],j)=>'<form class="question"><label for="a'+j+'">'+text+'</label><div class="answer">'+(options?'<select id="a'+j+'" required><option value="">Kies je antwoord</option>'+options.map(s=>'<option>'+s+'</option>').join('')+'</select>':'<input id="a'+j+'" type="text" autocomplete="off" maxlength="100" required>')+'<button class="primary">Controleer</button></div><p class="feedback" role="status"></p><details><summary>Hint</summary><p>'+hint+'</p></details><details><summary>Uitwerking</summary><p>'+work+'</p></details></form>').join('')+
  (i<lessons.length-1?'<button id="next">Volgende onderdeel →</button>':'')+'</section>';
  if(l.modes)demo(l.modes);
- $('lesson').querySelectorAll('form').forEach((form,j)=>form.onsubmit=e=>{
+ $('lesson').querySelectorAll('form').forEach((form,j)=>{
+  addMathKeys(form);
+  form.onsubmit=e=>{
   e.preventDefault();const [,expected,,,options]=l.qs[j];const given=$('a'+j).value;
   const ok=options?given===expected:Math.abs(value(given)-value(expected))<1e-8;
   const p=form.querySelector('.feedback');p.className='feedback '+(ok?'good':'wrong');
   p.textContent=ok?'Goed! Bekijk eventueel de uitwerking.':'Dit klopt nog niet. Controleer je berekening of open de hint.';
+  };
  });
  if($('next'))$('next').onclick=()=>show(i+1,true);
  if(focus)$('heading').focus();
