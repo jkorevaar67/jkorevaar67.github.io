@@ -21,6 +21,15 @@
       pages: {exercise:'vwo5wisb-chapter-8-3-exercise.html'}
     });
   }
+  if (!catalog.some(item => item?.group === 'vwo5wisb' && Number(item.chapter) === 7 &&
+      Number(item.section) === 4 && page(item, 'exercise'))) {
+    catalog.push({
+      group: 'vwo5wisb', chapter: 7, section: 4,
+      chapterTitle: 'Meetkunde met coördinaten',
+      title: 'Afstanden en raaklijnen bij cirkels',
+      pages: {exercise:'vwo5wisb-chapter-7-4-exercise.html'}
+    });
+  }
   function page(item, kind) {
     const path = item.pages?.[kind];
     if (typeof path !== 'string' || !path.trim()) return null;
