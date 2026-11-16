@@ -2,6 +2,30 @@
    The newest section is the highest chapter/section number within each class. */
 (function () {
   'use strict';
+  const btcChapter = document.querySelector('[data-btc-vwo4-h3]');
+  if (btcChapter) {
+    const lessons = [
+      [1, '3.1A', 'Standaard goniometrische berekeningen'],
+      [2, '3.1B', 'Berekeningen met gelijkvormigheid'],
+      [3, '3.3A', 'Vergelijkingen met wortels'],
+      [4, '3.3B', 'Bijzondere rechthoekige driehoeken'],
+      [6, '3.4A–B', 'De sinusregel'],
+      [7, '3.4C', 'De cosinusregel']
+    ];
+    for (const [number, section, title] of lessons) {
+      const card = document.createElement('article');
+      const heading = document.createElement('h3');
+      heading.textContent = title;
+      const reference = document.createElement('p');
+      reference.textContent = 'Les ' + number + ' · § ' + section;
+      const link = document.createElement('a');
+      link.className = 'button';
+      link.href = 'BTC-VWO4-WiskundeB-H3.html#les-' + number;
+      link.textContent = 'Open les ' + number + ' →';
+      card.append(heading, reference, link);
+      btcChapter.append(card);
+    }
+  }
   const labels = {mavo2:'MAVO 2', havo3:'HAVO 2', vwo3:'VWO 3', vwo5wisb:'VWO 5 Wiskunde B'};
   const kinds = {learn:'Leren', exercise:'Oefenen', test:'Test maken'};
   const catalog = Array.isArray(window.WIZNOVA_CATALOG) ? [...window.WIZNOVA_CATALOG] : [];
@@ -19,15 +43,6 @@
       chapterTitle: 'Goniometrische functies',
       title: 'Goniometrische vergelijkingen',
       pages: {exercise:'vwo5wisb-chapter-8-3-exercise.html'}
-    });
-  }
-  if (!catalog.some(item => item?.group === 'vwo5wisb' && Number(item.chapter) === 7 &&
-      Number(item.section) === 4 && page(item, 'exercise'))) {
-    catalog.push({
-      group: 'vwo5wisb', chapter: 7, section: 4,
-      chapterTitle: 'Meetkunde met coördinaten',
-      title: 'Afstanden en raaklijnen bij cirkels',
-      pages: {exercise:'vwo5wisb-chapter-7-4-exercise.html'}
     });
   }
   function page(item, kind) {
