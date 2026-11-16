@@ -30,7 +30,10 @@
   const kinds = {learn:'Leren', exercise:'Oefenen', test:'Test maken'};
   const catalog = Array.isArray(window.WIZNOVA_CATALOG) ? [...window.WIZNOVA_CATALOG] : [];
   // VWO 5 uses one practice site per section. Keep the shared catalog intact.
-  const practiceSite = item => page(item, 'exercise') || page(item, 'learn');
+  const practiceSite = item =>
+    item.group === 'vwo5wisb' && Number(item.chapter) === 7 && Number(item.section) === 4
+      ? '/vwo5/7-4/'
+      : page(item, 'exercise') || page(item, 'learn');
   const goniometry = catalog.find(item => item.group === 'vwo5wisb' && Number(item.chapter) === 8 && Number(item.section) === 1);
   if (goniometry) goniometry.pages = {exercise:'goniometrie-oefenen.html'};
   const hasGoniometricEquations = catalog.some(item => item?.group === 'vwo5wisb' &&
@@ -43,6 +46,15 @@
       chapterTitle: 'Goniometrische functies',
       title: 'Goniometrische vergelijkingen',
       pages: {exercise:'vwo5wisb-chapter-8-3-exercise.html'}
+    });
+  }
+  if (!catalog.some(item => item?.group === 'vwo5wisb' && Number(item.chapter) === 7 &&
+      Number(item.section) === 4 && page(item, 'exercise'))) {
+    catalog.push({
+      group: 'vwo5wisb', chapter: 7, section: 4,
+      chapterTitle: 'Meetkunde met coördinaten',
+      title: 'Afstanden en raaklijnen bij cirkels',
+      pages: {exercise:'vwo5wisb-chapter-7-4-exercise.html'}
     });
   }
   function page(item, kind) {
