@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BTC-lessen · VWO 4 Wiskunde B · H3</title>
+<style>
+:root{font-family:"Inter","Segoe UI",sans-serif;color:#19283c;background:#f1f5f8;line-height:1.55;--ink:#19283c;--accent:#005f58;--line:#cfdbdf}*{box-sizing:border-box}body{margin:0}header{background:#172e41;color:white;padding:1.2rem max(1.2rem,calc((100vw - 1050px)/2))}header a{color:#e1faf6;text-decoration:none;font-weight:750}main{max-width:1090px;margin:auto;padding:2rem 1.2rem 4rem}h1,h2,h3,p{margin-top:0}h1{font-size:clamp(2rem,5vw,3.65rem);line-height:1.08;letter-spacing:-.04em;margin-bottom:.75rem}h2{font-size:1.5rem;line-height:1.2}h3{font-size:1.1rem;margin-bottom:.45rem}.eyebrow{color:var(--accent);font-weight:750;margin-bottom:.5rem}.lead{font-size:1.12rem;max-width:72ch}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,275px),1fr));gap:1rem}.tile,section,details.teacher{background:#fff;border:1px solid var(--line);border-radius:16px;padding:1.25rem}.tile{color:var(--ink);text-decoration:none;display:block}.tile:hover{border-color:var(--accent);background:#edf9f6}.tile p{margin-bottom:0}section,details.teacher{margin-top:1rem}.start{border-left:5px solid #00877c}.work{display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start}canvas{width:100%;height:auto;background:#eaf4f7;border-radius:12px;display:block}label{display:block;margin:.75rem 0 .3rem;font-weight:650}input,select,button,textarea{font:inherit}input[type=range]{width:100%;accent-color:var(--accent)}select,input[type=text],textarea{width:100%;background:#fff;border:1px solid #879ca8;border-radius:8px;padding:.55rem;color:var(--ink)}textarea{resize:vertical;min-height:5rem}button{padding:.48rem .82rem;border:1px solid var(--accent);border-radius:8px;color:var(--accent);background:#f3fbf9;font-weight:650;cursor:pointer}button:hover{background:#d7f0e9}button:disabled{opacity:.48;cursor:default}.buttons{display:flex;flex-wrap:wrap;gap:.5rem;margin:.8rem 0}.reading{padding:.7rem;border-radius:8px;background:#eef6f5;margin:.8rem 0;font-variant-numeric:tabular-nums}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:.93rem}th,td{text-align:left;padding:.4rem;border-bottom:1px solid var(--line)}.task{border-top:1px solid var(--line);padding:1rem 0}.task:last-child{padding-bottom:0}.reveal{white-space:pre-line;padding:.7rem .9rem;background:#eef6f5;border-radius:8px;margin-bottom:.5rem}.reveal:empty{display:none}.notice{color:#385263;font-size:.94rem}summary{font-weight:750;cursor:pointer}.teacher div{margin-top:.75rem}a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #b25a07;outline-offset:3px}[hidden]{display:none!important}@media(max-width:680px){.work{grid-template-columns:1fr}main{padding-top:1.2rem}}@media print{header,button,input,select,textarea{display:none}}
+</style>
+</head>
+<body>
+<header><a href="#">← Alle BTC-lessen</a></header>
+<main id="app"></main>
+<script>
+"use strict";
+const lessons = [
+{id:1,title:"Standaard goniometrische berekeningen",book:"1–6",page:106,goal:"Ontdek welke zijdeverhoudingen gelijk blijven als je een helling vergroot. Kies daarna zelf tussen sinus, cosinus en tangens.",
+start:"Welke hellingen zijn even steil? A stijgt 3 bij 4 horizontaal, B stijgt 6 bij 8, C stijgt 5 bij 12 en D stijgt 9 bij 12. Teken ze en overtuig elkaar met één berekening per helling.",
+lab:"Kies helling A. Verander de schaal en meet minstens twee keer. Vergelijk daarna met C. Welke breuken veranderen bij vergroten? Welke veranderen bij een andere hellingshoek?",
+cols:["Helling","Hoogte","Horizontaal","Schuin","h/s","b/s","h/b"],
+tasks:[
+["Welke breuk past?","Bekijk bij helling A eerst de linkerhoek en daarna de andere scherpe hoek. Noteer bij die tweede hoek de overstaande, aanliggende en schuine zijde. Bereken de drie verhoudingen.","De schuine zijde is altijd tegenover de rechte hoek.","De horizontale zijde ligt tegenover de tweede scherpe hoek.","Bij de tweede scherpe hoek is overstaand 4, aanliggend 3 en schuin 5. Dus sin = 4/5, cos = 3/5 en tan = 4/3. Bij de linkerhoek wisselen 3 en 4 van rol."],
+["Dezelfde hoogte","Twee hellingen bereiken hetzelfde platform. De eerste heeft horizontaal 1 m en maakt een hoek van 70°. De tweede maakt 50°. Bereken de horizontale lengte van de tweede helling.","Welke lengte delen beide driehoeken?","Druk de hoogte op twee manieren uit met tangens.","De hoogte is tan(70°) m. Als de andere horizontale lengte p is, is de hoogte ook p·tan(50°). Dus p = tan(70°)/tan(50°) ≈ 2,31 m."]],
+exit:["Een helling maakt 32° en is langs de schuine kant 9 m lang. Hoe hoog kom je? Leg je keuze uit.","De hoogte ligt tegenover 32° en 9 m is de schuine zijde. Hoogte = 9·sin(32°) ≈ 4,77 m."],
+teacher:"Laat één groep hoogte/basis gebruiken en een andere groep hoogte/schuine zijde. Benoem bij de consolidatie vanuit welke hoek je kijkt en laat leerlingen bij een nieuwe driehoek zelf de juiste verhouding kiezen."},
+{id:2,title:"Berekeningen met gelijkvormigheid",book:"7–13",page:110,goal:"Koppel overeenkomstige zijden en druk een ontbrekend lijnstuk uit in x.",
+start:"B ligt tussen A en C en AC = 10. Bepaal BC als AB = 7. Schrijf daarna AB als BC = x. Schrijf ten slotte BC als AB = x + 2. Laat in je schets zien welk stuk je telkens van het geheel aftrekt.",
+lab:"In de figuur ligt D op AB en E op AC. Verplaats D en houd DE evenwijdig aan BC. Vergelijk daarna een stand waarin DE niet evenwijdig is. Onderzoek wanneer AD/AB en DE/BC gelijk zijn.",
+cols:["DE ∥ BC?","DB","AD","DE","AD/AB","DE/BC"],
+tasks:[
+["Van deel naar geheel","AB = 12, DE = 6 en BC = 9. DE loopt evenwijdig aan BC. DB = x. Bereken x exact en laat zien welke zijden bij elkaar horen.","Welk deel van AB hoort bij DE in de kleine driehoek?","AD = 12 − x. Zet kleine zijde boven grote zijde in beide breuken.","AD/AB = DE/BC. Dus (12 − x)/12 = 6/9 = 2/3. AD = 8 en DB = 12 − 8 = 4."],
+["Terugrekenen","Nu is AB = 15, DB = 5 en DE = 7, met DE ∥ BC. Bereken BC exact. Leg uit waarom BC groter moet zijn dan DE.","Gebruik eerst AB = AD + DB.","De vergrotingsfactor van klein naar groot is AB/AD.","AD = 10. Van klein naar groot is de factor 15/10 = 1,5. Dus BC = 7·1,5 = 10,5."]],
+exit:["AB = 18, BC = 12 en DE = 8. DE ∥ BC. Bereken DB.","AD/18 = 8/12 = 2/3. Dus AD = 12 en DB = 6."],
+teacher:"Vraag bij de start steeds waar B ligt. Kies tijdens de consolidatie een bord met een schets, daarna één met een verhouding en ten slotte één met de vergelijking in x. Bespreek waarom DB geen overeenkomstige zijde is."},
+{id:3,title:"Vergelijkingen met wortels",book:"40–44",page:126,goal:"Maak x vrij en schrijf een exacte oplossing met een wortelvrije noemer.",
+start:"Welk van deze getallen is het grootst: 4/√3 of 6/√2? Bedenk daarna voor elk een gelijkwaardige schrijfwijze zonder wortel in de noemer. Hoe weet je dat de waarde gelijk blijft?",
+lab:"Kies een breuk. Voorspel eerst welke factor de wortel uit de noemer haalt. Vermenigvuldig teller en noemer met diezelfde factor en vergelijk jouw voorspelling met de uitkomst. Probeer bij de laatste breuk ook de factor met een plusteken.",
+cols:["Breuk","Factor boven en onder","Nieuwe breuk","Noemer wortelvrij?"],
+tasks:[
+["De plaats van x","Los beide vergelijkingen exact op: √3·x = 6 en x/√3 = 6. Vergelijk welke bewerking x vrijmaakt.","Schrijf op wat er met x gebeurt voordat de vergelijking 6 oplevert.","Deel in de eerste vergelijking door √3. Vermenigvuldig in de tweede met √3.","Eerste: x = 6/√3 = 6√3/3 = 2√3. Tweede: x = 6√3."],
+["Het minteken dat helpt","Los exact op: (√3 + √2)x = 14. Werk de wortels uit de noemer weg en verklaar waarom jouw factor werkt.","Maak eerst x vrij.","Probeer (a + b)(a − b) = a² − b².","x = 14/(√3 + √2). Vermenigvuldig teller en noemer met √3 − √2. De noemer wordt 3 − 2 = 1. Dus x = 14√3 − 14√2."]],
+exit:["Los exact op: (√5 + 2)x = 3.","x = 3/(√5 + 2). Vermenigvuldig boven en onder met √5 − 2. De noemer wordt 5 − 4 = 1. Dus x = 3√5 − 6."],
+teacher:"Bij de eerste vergelijking is 6/√2 het grootst. Beide getallen zijn positief en hun kwadraten zijn 16/3 en 18. Laat leerlingen bij de proef zowel de tussenproducten als de uitkomst vergelijken. Vraag waarom de toegevoegde factor van de vorm k/k de oorspronkelijke waarde behoudt."},
+{id:4,title:"Bijzondere rechthoekige driehoeken",book:"45–55",page:127,goal:"Leid de exacte zijdeverhoudingen af uit een vierkant en een gelijkzijdige driehoek.",
+start:"Teken een vierkant met zijde 1 en trek een diagonaal. Teken ernaast een gelijkzijdige driehoek met zijde 2 en trek een hoogtelijn. Voorspel de hoeken en bereken de onbekende lengtes exact.",
+lab:"Wissel tussen de twee figuren. Vergroot elke figuur en neem een meting. Zoek steeds de kortste rechthoekszijde. Welke vaste verhouding krijg je als je die op 1 zet?",
+cols:["Figuur","Schaal","Kortste rechthoekszijde","Andere rechthoekszijde","Schuine zijde"],
+tasks:[
+["Waarom blijft de verhouding gelijk?","Leid met Pythagoras voor beide figuren de exacte verhouding kortste rechthoekszijde : andere rechthoekszijde : schuine zijde af. Verklaar waarom vergroten die verhouding behoudt.","De diagonaal halveert een hoek van het vierkant. De hoogtelijn halveert de basis van de gelijkzijdige driehoek.","Gebruik 1² + 1² voor de diagonaal en 2² − 1² voor de hoogtelijn.","45°–45°–90° geeft 1 : 1 : √2. 30°–60°–90° geeft 1 : √3 : 2. Bij vergroten worden alle drie de zijden met dezelfde factor vermenigvuldigd."],
+["Kies zelf de factor","Een driehoek van 45°–45°–90° heeft schuine zijde 6. Een driehoek van 30°–60°–90° heeft schuine zijde 8. Bereken bij beide driehoeken de rechthoekszijden exact.","Laat in elk geval zien welke zijde jouw schaalfactor bepaalt.","De schaalfactoren zijn 6/√2 en 8/2.","De eerste heeft twee zijden van 3√2. De tweede heeft zijden 4 en 4√3."]],
+exit:["Een driehoek met hoeken 30°, 60° en 90° heeft langste rechthoekszijde 9. Bereken de schuine zijde exact.","De schaalfactor is 9/√3 = 3√3. De schuine zijde is 2·3√3 = 6√3."],
+teacher:"Vergelijk de schetsen voordat je de verhoudingen opschrijft. Vraag welke zijde tegenover 30° ligt. Laat de klas bij de meetwaarden in het lab teruggaan naar Pythagoras voor een exact antwoord."},
+{id:6,title:"De sinusregel",book:"63–66 (blz. 134) en 67–76 (blz. 135)",goal:"Vind een vaste verhouding in een willekeurige driehoek en verklaar waarom twee hoeken dezelfde sinus kunnen hebben.",
+start:"Teken op jullie bord een driehoek zonder rechte hoek. Label de hoeken A, B en C. Zet bij elke hoek de overstaande zijde. Teken daarna een hoogtelijn en zoek twee manieren om diezelfde lengte met sinus te beschrijven.",
+lab:"Houd A en B vast en verplaats C. Neem een meting bij een scherphoekige en bij een stomphoekige driehoek. Bereken met je rekenmachine de drie quotiënten a/sin(A), b/sin(B) en c/sin(C). Wat blijft gelijk binnen één driehoek?",
+cols:["a","b","c","A","B","C","Quotiënten (a/sin A, b/sin B, c/sin C)"],
+tasks:[
+["Eén hoogte, twee formules","In een scherphoekige driehoek teken je de hoogte h vanuit C op AB. Noem de overstaande zijden van A en B respectievelijk a en b. Leid af waarom a/sin(A) = b/sin(B).","In beide rechthoekige driehoeken is h de overstaande zijde.","Schrijf h één keer met sin(A) en één keer met sin(B).","h = b·sin(A) en h = a·sin(B). Stel gelijk en deel door sin(A)·sin(B). Dan krijg je a/sin(A) = b/sin(B). Een tweede hoogtelijn levert de gelijkheid met c/sin(C)."],
+["Twee driehoeken?","Gegeven A = 30°, a = 6 en c = 8. Bereken alle mogelijke waarden van C. Gebruik de hoekensom om elke mogelijkheid te controleren.","Bereken eerst sin(C) met de sinusregel.","Als C₁ uit je rekenmachine komt, controleer dan ook 180° − C₁.","sin(C) = 8·sin(30°)/6 = 2/3. C kan ongeveer 41,8° of 138,2° zijn. Beide passen, want A + C < 180°. B is ongeveer 108,2° of 11,8°."]],
+exit:["A = 45°, C = 60° en c = 12. Bereken a exact.","a = 12·sin(45°)/sin(60°) = 12√2/√3 = 4√6."],
+teacher:"Zet de rekenmachines op DEG. Laat groepen verschillende vormen vergelijken. Verklaar bij de consolidatie dat sin(180° − α) = sin(α). Bij een stompe basishoek kan een hoogtelijn buiten de driehoek vallen en gebruik je in de rechthoekige hulpdriehoek de supplementaire hoek."},
+{id:7,title:"De cosinusregel",book:"77–84",page:138,goal:"Ontdek hoe de ingesloten hoek de derde zijde bepaalt en kies tussen de sinusregel en cosinusregel.",
+start:"Twee latten van 5 en 6 scharnieren in A. Hoe ver liggen hun uiteinden uit elkaar bij 90°? Kan die afstand ook 10 worden? Bedenk hoe je kunt uitzoeken welke hoek daarbij past.",
+lab:"Beweeg het scharnier. Onderzoek de standen 40°, 90° en 120°. Vergelijk a² met b² + c². Wanneer is de correctie positief, nul of negatief? Probeer zelf een formule te vinden met cos(A).",
+cols:["A","a","a²","a² − (b² + c²)","Horizontale projectie van b"],
+tasks:[
+["Bouw de formule","Neem b en c als de twee latten. Leg c horizontaal vanaf A. Druk de horizontale en verticale component van b uit met cos(A) en sin(A). Gebruik Pythagoras voor de afstand tussen de uiteinden.","Het horizontale verschil is c − b·cos(A).","Werk (c − b·cos(A))² + (b·sin(A))² uit. Gebruik cos²(A) + sin²(A) = 1.","a² = c² − 2bc·cos(A) + b²cos²(A) + b²sin²(A) = b² + c² − 2bc·cos(A). Bij 90° verdwijnt de correctieterm."],
+["Welke regel past?","a. b = 5, c = 6 en A = 40°. Bereken a.\nb. PQ = 7, QR = 10, PR = 6. Bereken ∠P.\nc. In KLM zijn M = 40°, L = 65° en KL = 8. Bereken LM. Leg bij elk deel je keuze uit.","Kijk eerst of je een zijde én haar overstaande hoek kent.","Bij c is KL overstaand aan M en LM overstaand aan K. Bereken eerst K.","a. Cosinusregel: a² = 61 − 60·cos(40°), dus a ≈ 3,88.\nb. Cosinusregel: cos(P) = (49 + 36 − 100)/84 = −15/84, dus P ≈ 100,3°.\nc. K = 75°. Sinusregel: LM = 8·sin(75°)/sin(40°) ≈ 12,02."]],
+exit:["Een driehoek heeft zijden 5, 6 en 10. Bereken de hoek tegenover 10 en verklaar het teken van de cosinus.","cos(A) = (25 + 36 − 100)/60 = −0,65. A ≈ 130,5°. De cosinus is negatief omdat A stomp is."],
+teacher:"Bespreek eerst 90° als herkenningspunt. Scheid daarna twee situaties: twee zijden met de ingesloten hoek en drie bekende zijden. Laat leerlingen bij de sinusregel het bekende overstaande paar op hun schets aanwijzen."}
+];
+const app = document.querySelector("#app");
+const alpha = Math.PI / 180;
+const fmt = (n, digits = 2) => new Intl.NumberFormat("nl-NL",{maximumFractionDigits:digits,useGrouping:false}).format(Math.abs(n) < 1e-9 ? 0 : n);
+const escapeHtml = value => String(value).replace(/[&<>"']/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
+const options = values => values.map((v,i) => '<option value="'+i+'">'+escapeHtml(v)+'</option>').join("");
+const select = (id,label,values) => '<label for="'+id+'">'+label+'</label><select id="'+id+'">'+options(values)+'</select>';
+const range = (id,label,min,max,step,value) => '<label for="'+id+'">'+label+' <output id="'+id+'-value" for="'+id+'"></output></label><input id="'+id+'" type="range" min="'+min+'" max="'+max+'" step="'+step+'" value="'+value+'">';
+const val = id => Number(document.getElementById(id).value);
+const labs = {
+  1: () => select("shape","Helling",["A","B","C","D"])+range("scale","Schaal",.5,2.5,.25,1),
+  2: () => select("shape","Stand van DE",["Evenwijdig aan BC","Niet evenwijdig aan BC"])+range("cut","DB",1,10,1,4),
+  3: () => select("shape","Breuk",["4/√3","6/√2","4/(√3 + 2)"])+select("factor","Factor boven en onder",["√3","√2","√3 + 2","√3 − 2","2"]),
+  4: () => select("shape","Figuur",["Vierkant met diagonaal","Gelijkzijdige driehoek met hoogtelijn"])+range("scale","Schaal",.5,4,.5,1),
+  6: () => range("cx","C horizontaal", -3,13,.25,4)+range("cy","C boven de basis",2,9,.25,6),
+  7: () => range("angle","Hoek A (°)",15,165,1,90)+range("b","Lengte b",3,8,.5,5)+range("c","Lengte c",3,8,.5,6)
+};
+function paint(drawFigure) {
+  const ctx = document.querySelector("canvas").getContext("2d");
+  ctx.clearRect(0,0,480,300);
+  const line = (points,color="#005f58",fill="",dashed=false) => {
+    ctx.beginPath();
+    ctx.setLineDash(dashed?[6,5]:[]);
+    points.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));
+    if(fill){ctx.closePath();ctx.fillStyle=fill;ctx.fill();}
+    ctx.lineWidth=2.5;ctx.strokeStyle=color;ctx.stroke();ctx.setLineDash([]);
+  };
+  const label = (x,y,s,size=17) => {ctx.fillStyle="#19283c";ctx.font="600 "+size+"px sans-serif";ctx.textAlign="center";ctx.fillText(s,x,y);};
+  drawFigure(line,label);
+}
+const trial = {
+  1() {
+    const i=val("shape"), k=val("scale"), key="ABCD"[i];
+    const [unscaledH,unscaledB]=[[3,4],[6,8],[5,12],[9,12]][i];
+    const [h,b]=[unscaledH*k,unscaledB*k], s=Math.hypot(h,b);
+    paint((draw,label)=>{
+      const x=45,y=247,u=8.6;
+      draw([[x,y],[x+b*u,y],[x+b*u,y-h*u]],"#005f58","#c8eae3");
+      label(x+b*u/2,y+26,"b");label(x+b*u+17,y-h*u/2,"h");label(x+b*u/2+3,y-h*u/2-12,"s");label(x+14,y-7,"α");
+    });
+    return {live:"Hoogte "+fmt(h)+" · horizontaal "+fmt(b)+" · schuin "+fmt(s,3), row:[key,h,b,s,h/s,b/s,h/b]};
+  },
+  2() {
+    const aligned=val("shape")===0,x=val("cut"),t=(12-x)/12;
+    const A=[90,35], B=[90,251], C=[252,251], D=[90,35+216*t];
+    const other=aligned?t:Math.min(.96,t+.18), E=[90+162*other,35+216*other];
+    const de=Math.hypot(E[0]-D[0],E[1]-D[1])/18;
+    paint((draw,label)=>{
+      draw([A,B,C],"#59748a","#dce9f3");draw([A,D,E],"#005f58","#bfe8df");
+      [[A,"A",-16,0],[B,"B",-16,14],[C,"C",14,14],[D,"D",-16,0],[E,"E",15,-5]].forEach(([[a,b],s,dx,dy])=>label(a+dx,b+dy,s));
+    });
+    return {live:"AB = 12 · BC = 9 · AD = "+fmt(12-x)+" · DE ≈ "+fmt(de,3),row:[aligned?"Ja":"Nee",x,12-x,de,t,de/9]};
+  },
+  3() {
+    const i=val("shape"), j=val("factor");
+    const fractions=["4/√3","6/√2","4/(√3 + 2)"], f=["√3","√2","√3 + 2","√3 − 2","2"];
+    const n=[4,6,4][i], d=["√3","√2","√3 + 2"][i];
+    const denom=[
+      ["3","√6","3 + 2√3","3 − 2√3","2√3"],
+      ["√6","2","√6 + 2√2","√6 − 2√2","2√2"],
+      ["3 + 2√3","√6 + 2√2","7 + 4√3","−1","2√3 + 4"]
+    ][i][j];
+    const numer=[n+"√3",n+"√2",n+"√3 + "+2*n,n+"√3 − "+2*n,String(2*n)][j];
+    const value=n/[Math.sqrt(3),Math.sqrt(2),Math.sqrt(3)+2][i];
+    return {live:"Gekozen breuk "+fractions[i]+" · factor "+f[j],row:[fractions[i],f[j],"("+numer+")/("+denom+")",denom.includes("√")?"Nee":"Ja"],reveal:"Teller: "+n+" × ("+f[j]+") = "+numer+"\nNoemer: ("+d+") × ("+f[j]+") = "+denom+"\nVoor en na: ≈ "+fmt(value,4)};
+  },
+  4() {
+    const i=val("shape"), k=val("scale"), l=k*32, x=122,y=242;
+    const h=i?l*Math.sqrt(3):l,s=k*(i?2:Math.sqrt(2));
+    paint((draw,label)=>{
+      if(i){
+        draw([[x,y],[x+2*l,y],[x+l,y-h]],"#648299","#dfebf5");
+        draw([[x,y],[x+l,y],[x+l,y-h]],"#005f58","#bfe8df");
+        label(x+l/2,y+25,"basishelft",15);label(x+l+32,y-h/2,"hoogte",15);
+      }else{
+        draw([[x,y],[x+l,y],[x+l,y-l],[x,y-l]],"#648299","#dfebf5");
+        draw([[x,y],[x+l,y],[x+l,y-l]],"#005f58","#bfe8df");
+        label(x+l/2,y+25,"zijde",15);
+      }
+    });
+    return {live:"Zijden van de gekleurde driehoek (gemeten)  "+[k,h/32,s].map(v=>fmt(v,3)).join(" · "),row:[i?"Halve gelijkzijdige driehoek":"Half vierkant",k,k,h/32,s]};
+  },
+  6() {
+    const x=val("cx"),y=val("cy"), a=Math.hypot(10-x,y),b=Math.hypot(x,y),c=10;
+    const A=Math.atan2(y,x)/alpha,B=Math.atan2(y,10-x)/alpha,C=180-A-B;
+    paint((draw,label)=>{
+      const left=104,base=252,u=24, X=left+x*u,Y=base-y*u;
+      draw([[left,base],[left+c*u,base],[X,Y]],"#005f58","#c8eae3");
+      draw([[X,Y],[X,base]],"#59748a","",true);
+      label(left,base+26,"A");label(left+c*u,base+26,"B");label(X,Y-10,"C");
+    });
+    return {live:"a = "+fmt(a,3)+" · b = "+fmt(b,3)+" · c = 10\nA = "+fmt(A,2)+"° · B = "+fmt(B,2)+"° · C = "+fmt(C,2)+"°",row:[a,b,c,A,B,C],quots:[a/Math.sin(A*alpha),b/Math.sin(B*alpha),c/Math.sin(C*alpha)]};
+  },
+  7() {
+    const A=val("angle"),b=val("b"),c=val("c"),proj=b*Math.cos(A*alpha),vertical=b*Math.sin(A*alpha);
+    const a=Math.hypot(c-proj,vertical);
+    paint((draw,label)=>{
+      const x=229,y=245,u=24, X=x+proj*u,Y=y-vertical*u;
+      draw([[x,y],[x+c*u,y],[X,Y]],"#005f58","#c8eae3");
+      if(proj<0)draw([[X,y],[x,y]],"#59748a","",true);
+      draw([[X,Y],[X,y]],"#59748a","",true);
+      label(x,y+26,"A");label(x+c*u,y+26,"B");label(X,Y-10,"C");
+    });
+    return {live:"a ≈ "+fmt(a,3)+" · a² ≈ "+fmt(a*a,3)+" · b² + c² = "+fmt(b*b+c*c),row:[A+"°",a,a*a,a*a-b*b-c*c,proj]};
+  }
+};
+const data = new Map();
+const current = id => {
+  if(!data.has(id)) data.set(id,{rows:[],notes:"",controls:{},trial:null});
+  return data.get(id);
+};
+function taskMarkup(task, i){
+  const [title,prompt]=task;
+  return '<article class="task"><h3>'+escapeHtml(title)+'</h3><p style="white-space:pre-line">'+escapeHtml(prompt)+'</p><div class="reveal" id="reveal-'+i+'" aria-live="polite"></div><button type="button" data-task="'+i+'" data-step="0">Toon hint 1</button></article>';
+}
+function render() {
+  const lesson=lessons.find(item=>location.hash==="#les-"+item.id);
+  if(!lesson){
+    document.title="BTC-lessen · VWO 4 Wiskunde B";
+    app.innerHTML='<p class="eyebrow">VWO 4 Wiskunde B · Hoofdstuk 3</p><h1>Ontdek meetkunde</h1><p class="lead">Kies een les. Begin met een voorspelling op je wisbord en toets jullie aanpak met de interactieve proef.</p><div class="grid">'+lessons.map(l=>'<a class="tile" href="#les-'+l.id+'"><p class="eyebrow">Les '+l.id+'</p><h3>'+l.title+'</h3><p>'+l.goal+'</p></a>').join("")+'</div>';
+  }else{
+    const {id}=lesson, state=current(id);
+    document.title=lesson.title+" · BTC-les "+id;
+    app.innerHTML=`
+      <p class="eyebrow">VWO 4 Wiskunde B · Hoofdstuk 3 · Les ${id}</p>
+      <h1>${lesson.title}</h1><p class="lead">${lesson.goal}</p>
+      <section class="start"><h2>Kom in de kring</h2><p>Luister naar de startvraag en denk even zelf. Werk daarna in groepjes van drie aan een verticaal wisbord. Wissel na elke opdracht van schrijver. Iedereen moet jullie aanpak kunnen uitleggen.</p><h3>Startvraag</h3><p>${lesson.start}</p></section>
+      <section><h2>Toets je vermoeden</h2><p>${lesson.lab}</p>
+        <div class="work"><div>
+          ${id===3?'': '<canvas width="480" height="300" aria-label="Interactieve meetkundige figuur. De bijbehorende lengtes en hoeken staan onder de bediening." role="img"></canvas>'}
+          ${labs[id]()}
+          <div class="reading" id="live" style="white-space:pre-line"></div>
+          ${id===6?'<label for="quotients">Jullie drie quotiënten</label><input id="quotients" type="text" maxlength="100" placeholder="Scheid de uitkomsten met een schuine streep">':''}
+          <div class="buttons"><button type="button" id="log">${id===3?"Test de factor":"Voeg meting toe"}</button><button type="button" id="clear" hidden>Wis tabel</button></div>
+        </div><div>
+          <div class="reveal" id="trial-result" aria-live="polite"></div>
+          <div class="table-wrap" id="measurements" hidden><table aria-label="Jullie metingen"><thead><tr>${lesson.cols.map(col=>'<th scope="col">'+col+'</th>').join("")}</tr></thead><tbody id="rows"></tbody></table></div>
+          <label for="notes">Wat denken jullie dat altijd geldt?</label><textarea id="notes" placeholder="Schrijf jullie regel en één meting die erbij past."></textarea>
+        </div></div>
+      </section>
+      <section><h2>Werk verder op je wisbord</h2><p>Probeer elke opdracht eerst samen. Open een hint als jullie vastlopen. Vergelijk na afloop jullie redenering met de uitwerking.</p>${lesson.tasks.map(taskMarkup).join("")}</section>
+      <section><h2>Exitvraag</h2><p>${lesson.exit[0]}</p><details><summary>Controleer je uitwerking</summary><p>${lesson.exit[1]}</p></details><p class="notice">Verder oefenen in het boek · opgaven ${lesson.book}${lesson.page ? " (blz. "+lesson.page+")" : ""}.</p></section>
+      <details class="teacher"><summary>Docentnotities · 40 minuten</summary><div><p>Kring en groepjes 5 min · Proef 8 min · Wisbordopdrachten 15 min · Borden vergelijken 8 min · Exitvraag 4 min.</p><p>${lesson.teacher}</p></div></details>`;
+    connect(lesson,state);
+  }
+  window.scrollTo(0,0);
+}
+function connect(lesson,state){
+  const {id}=lesson;
+  const controls=Array.from(app.querySelectorAll("select,input[type=range]"));
+  const plot = () => {
+    controls.forEach(control=>{
+      const output=document.getElementById(control.id+"-value");
+      if(output)output.value=fmt(Number(control.value));
+      state.controls[control.id]=control.value;
+    });
+    document.getElementById("live").textContent=trial[id]().live;
+  };
+  controls.forEach(control=>{
+    if(state.controls[control.id]!==undefined)control.value=state.controls[control.id];
+    control.addEventListener("input",plot);
+  });
+  const notes=document.getElementById("notes");
+  notes.value=state.notes;
+  notes.addEventListener("input",()=>{state.notes=notes.value;});
+  const clear=document.getElementById("clear");
+  const result=document.getElementById("trial-result");
+  const showRows=()=>{
+    document.getElementById("measurements").hidden=clear.hidden=state.rows.length===0;
+    document.getElementById("rows").innerHTML=state.rows.map(row=>'<tr>'+row.map(cell=>'<td>'+escapeHtml(typeof cell==="number"?fmt(cell,3):cell)+'</td>').join("")+'</tr>').join("");
+    result.textContent=state.trial||"";
+  };
+  clear.addEventListener("click",()=>{state.rows=[];state.trial=null;showRows();document.getElementById("log").focus();});
+  document.getElementById("log").addEventListener("click",()=>{
+    const reading=trial[id]();
+    const response=document.getElementById("quotients");
+    if(response){
+      const parts=response.value.split("/").map(s=>s.trim());
+      if(parts.length!==3||parts.some(s=>s===""||!Number.isFinite(Number(s.replace(",","."))))){
+        result.textContent="Vul drie getallen in, bijvoorbeeld 12,4 / 12,4 / 12,4.";
+        response.focus();
+        return;
+      }
+      const values=parts.map(s=>Number(s.replace(",",".")));
+      const correct=values.every((v,i)=>Math.abs(v-reading.quots[i])<=.08);
+      reading.row.push(parts.join(" / "));
+      reading.reveal=correct?"De drie quotiënten kloppen afgerond. Maak nu een andere driehoek en vergelijk.":"Controleer de gradenstand en het overstaande paar bij elk quotiënt. Reken de drie breuken opnieuw uit.";
+      if(!correct){result.textContent=reading.reveal;return;}
+      response.value="";
+    }
+    state.rows.push(reading.row);
+    state.trial=reading.reveal||null;
+    showRows();
+  });
+  app.querySelectorAll("[data-task]").forEach(button=>{
+    button.addEventListener("click",()=>{
+      const index=Number(button.dataset.task),step=Number(button.dataset.step);
+      const panel=document.getElementById("reveal-"+index);
+      const labels=["Hint 1","Hint 2","Uitwerking"];
+      const heading=document.createElement("strong");
+      heading.textContent=labels[step]+"  ";
+      const para=document.createElement("div");
+      para.append(heading,lesson.tasks[index][step+2]);
+      panel.append(para);
+      button.dataset.step=step+1;
+      button.textContent=["Toon hint 2","Toon uitwerking","Uitwerking geopend"][step];
+      button.disabled=step===2;
+    });
+  });
+  plot();
+  showRows();
+}
+window.addEventListener("hashchange",render);
+render();
+</script>
+</body>
+</html>
