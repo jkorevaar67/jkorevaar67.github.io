@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="nl"><head><meta charset="utf-8"><link rel="canonical" href="https://wiznova.nl/vwo5/7-4/"><meta name="viewport" content="width=device-width,initial-scale=1"><title>§7.4 Afstanden en raaklijnen bij cirkels | Wiznova</title>
+<style>
+:root{background:#f2f6fc;color:#172b4c;font:17px/1.6 "Atkinson Hyperlegible Next",system-ui,sans-serif}*{box-sizing:border-box}body{margin:0}main,.wrap{max-width:1100px;margin:auto;padding:0 clamp(16px,4vw,38px)}header{background:#173566;color:#fff;padding:22px 0 34px;border-bottom:5px solid #65d9c8}header a{color:#c2f5ea}h1{font-size:clamp(2rem,5vw,3.7rem);line-height:1.03;letter-spacing:-.045em;margin:.5em 0 .2em}h2,h3{line-height:1.2}header p{margin-bottom:0;color:#dce9ff}nav{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}button,input,select{font:inherit;color:inherit}button{cursor:pointer;background:#fff;border:1px solid #94aac6;border-radius:8px;padding:.45em .75em;font-weight:700}button:hover{background:#e3efff}button[aria-current=true],.primary{background:#224f9e;color:white}button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #b24a13;outline-offset:3px}.card{background:white;border:1px solid #d5e0ee;border-radius:16px;padding:clamp(15px,3vw,28px);margin-bottom:14px}.intro{background:#def5f0}.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:center}.demo{background:#eaf3ff}canvas{width:100%;height:auto;display:block;background:white;border-radius:9px;border:1px solid #c5d4e8}.control{display:block;margin:.7em 0}.control input{vertical-align:middle;max-width:52%}.formula,.feedback{font-weight:750}.question{border-top:1px solid #dae3ef;padding:12px 0}.question label{display:block;font-weight:700}.answer{display:flex;gap:8px;flex-wrap:wrap;margin:.5em 0}input[type=text],select{border:1px solid #8399b5;padding:.45em;border-radius:7px;background:white;max-width:100%}summary{cursor:pointer;color:#204987;font-weight:700}details{margin:.5em 0}.good{color:#126343}.wrong{color:#9c3029}.note{background:#fff3d9;padding:8px 12px;border-radius:8px}.muted{color:#46617c}@media(max-width:720px){.cols{grid-template-columns:1fr}}main{padding-bottom:40px}
+.math-keys{display:flex;flex-wrap:wrap;gap:6px;margin:.4em 0}.math-keys button{min-width:42px;min-height:42px;background:#edf4ff;color:#173566}.math-keys button:hover{background:#d8e8ff}</style></head><body>
+<header><div class="wrap"><a href="/wiznova/choose-topic.html?klas=vwo5wisb">← Kies je materiaal</a><p>VWO 5 Wiskunde B · §7.4</p><h1>Afstanden en raaklijnen bij cirkels</h1><p>Onderzoek de figuur, reken exact en controleer je antwoord.</p></div></header>
+<main><nav id="nav" aria-label="Lesonderdelen"></nav><article id="lesson"></article></main>
+<script>
+const lessons=[
+{title:'Voorkennis',goal:'Lees het middelpunt en de straal af en bereken de afstand tussen twee punten.',
+ theory:'Bij (x − a)² + (y − b)² = r² is M(a; b) het middelpunt en r de straal. De afstand tussen twee punten vind je met Pythagoras: √((Δx)² + (Δy)²).',
+ steps:['Vul bij x² + y² − 4x + 6y + 9 = 0 aan tot kwadraten.','x² − 4x = (x − 2)² − 4 en y² + 6y = (y + 3)² − 9.','Dus (x − 2)² + (y + 3)² = 4. Middelpunt M(2; −3), straal 2.'],
+ qs:[['Wat is de straal van (x + 3)² + (y − 4)² = 20?','2√5','Neem de positieve wortel van 20.','√20 = 2√5.'],['Wat is de y-coördinaat van M bij x² + y² − 6x + 8y = 0?','-4','Maak van y² + 8y een kwadraat.','(x − 3)² + (y + 4)² = 25. M(3; −4).']]},
+{title:'Afstanden',goal:'Bereken de kortste afstand van een punt, lijn of andere cirkel tot de cirkelrand.',
+ theory:'Punt P tot cirkelrand: |MP − r|. Lijn Ax + By + C = 0: bereken eerst d(M, ℓ) = |Axₘ + Byₘ + C|/√(A² + B²). Trek r af als de lijn buiten de cirkel ligt. Als de lijn raakt of snijdt, is de afstand nul.',
+ steps:['Neem M(2; 1), r = 2 en ℓ: 3x + 4y − 25 = 0.','d(M, ℓ) = |6 + 4 − 25|/5 = 3.','De lijn ligt buiten de cirkel, dus de afstand tot de cirkelrand is 3 − 2 = 1.'],
+ note:'Twee cirkels met middelpuntsafstand D: bij twee losse cirkels is de afstand D − r₁ − r₂. Bij een cirkel geheel binnen de andere is de afstand |r₁ − r₂| − D. Bij snijden of raken is de afstand 0.',
+ modes:['Punt','Lijn','Twee cirkels'],
+ qs:[['M(0; 0), r = 5. Bereken de afstand van P(1; 2) tot de cirkelrand.','5-√5','P ligt binnen de cirkel.','MP = √5 en dus is de afstand 5 − √5.'],['M(0; 0), r = 2. Bereken de afstand van 3x + 4y − 20 = 0 tot de cirkel.','2','Bereken eerst 20/5.','d(M, ℓ) = 4, dus d(ℓ, c) = 2.'],['De stralen zijn 2 en 3. De middelpunten zijn (0; 0) en (6; 2). Bereken de afstand tussen de cirkels.','√40-5','Bereken eerst D met Pythagoras.','D = √40. Omdat √40 > 5, is de afstand √40 − 5.'],['Twee cirkels hebben hetzelfde middelpunt en stralen 5 en 2. Wat is de afstand tussen de randen?','3','Vergelijk de stralen.','Iedere overeenkomstige radiale afstand is 5 − 2 = 3.']]},
+{title:'Raakpunt gegeven',goal:'Stel een vergelijking op van de raaklijn in een gegeven punt.',
+ theory:'De straal naar het raakpunt staat loodrecht op de raaklijn. Met M(a; b) en T(p; q) is (p − a, q − b) een normaalvector van de raaklijn. Dus (p − a)(x − p) + (q − b)(y − q) = 0.',
+ steps:['Neem M(1; 2) en T(4; 6). De normaalvector is (3; 4).','3(x − 4) + 4(y − 6) = 0, dus 3x + 4y = 36.','Via richtingscoëfficiënten vind je hetzelfde: helling MT is 4/3 en helling raaklijn is −3/4.'],
+ note:'Een horizontale straal geeft een verticale raaklijn x = p. Een verticale straal geeft een horizontale raaklijn y = q.',
+ modes:['Raakpunt'],
+ qs:[['M(0; 0), T(3; 4). Vul C in: 3x + 4y = C.','25','Vul T in de lijnvergelijking in.','C = 3·3 + 4·4 = 25.'],['M(2; 1), T(5; 1). Welke lijn raakt in T?','x = 5','De straal is horizontaal.','De raaklijn is verticaal en gaat door T.',['y = 1','x = 5','y = 5']],['M(1; 1), T(3; 5). Bereken de richtingscoëfficiënt van de raaklijn.','-1/2','De helling van MT is 4/2.','Het product van de twee hellingen is −1, dus de raaklijn heeft helling −½.']]},
+{title:'Helling gegeven',goal:'Bereken de twee evenwijdige raaklijnen met een voorgeschreven helling.',
+ theory:'Schrijf y = mx + b als mx − y + b = 0. Beide raaklijnen vind je met d(M, ℓ) = r. Los daarbij beide mogelijkheden van de absolute waarde op.',
+ steps:['Neem M(2; 3), r = √5 en m = 2.','|2·2 − 3 + b|/√5 = √5, dus |1 + b| = 5.','1 + b = 5 of 1 + b = −5. De lijnen zijn y = 2x + 4 en y = 2x − 6.'],
+ modes:['Helling'],
+ qs:[['M(1; 2), r = √2, m = 1. Wat is de grootste waarde van b?','3','Stel |1 − 2 + b| gelijk aan 2.','|b − 1| = 2. Dus b = 3 of b = −1.'],['M(1; 2), r = √2, m = 1. Wat is de kleinste waarde van b?','-1','Gebruik de negatieve mogelijkheid van de absolute waarde.','b − 1 = −2, dus b = −1.'],['M(−2; 3), r = 4. Geef de y-waarde van de onderste horizontale raaklijn.','-1','Een horizontale lijn heeft m = 0.','y = 3 − 4 = −1.']]},
+{title:'Buitenpunt gegeven',goal:'Bereken de raaklijnen door een punt buiten de cirkel.',
+ theory:'Voor A(u; v) probeer je y − v = m(x − u). Gebruik d(M, ℓ) = r om m te vinden. Controleer de gevonden lijnen en onderzoek ook x = u, want die lijn heeft geen eindige helling.',
+ steps:['Neem M(0; 0), r = 2 en A(4; 0). De lijn wordt mx − y − 4m = 0.','|−4m|/√(m² + 1) = 2. Kwadrateren geeft 16m² = 4m² + 4.','Dus m² = 1/3 en m = ±√3/3. De verticale lijn x = 4 ligt op afstand 4 en raakt niet.'],
+ modes:['Buitenpunt'],
+ qs:[['Voor M(0; 0), r = 3 en A(5; 0): bereken de positieve helling.','3/4','Gebruik |5m|/√(m² + 1) = 3.','25m² = 9m² + 9 → m² = 9/16 → m = ¾.'],['Zelfde cirkel en A(5; 0). Geef b van de lijn met negatieve helling.','15/4','Vul (5; 0) in met m = −¾.','0 = −¾·5 + b, dus b = 15/4.'],['Bij M(0; 0), r = 3 en A(3; 4): is x = 3 een raaklijn?','Ja','Vergelijk de afstand van M tot x = 3 met r.','De afstand is 3, gelijk aan de straal.',['Ja','Nee']]]}
+];
+const $=id=>document.getElementById(id);
+const f=n=>Number(n.toFixed(3)).toLocaleString('nl-NL');
+function value(raw){
+ const s=raw.replaceAll('−','-').replaceAll(',','.').replace(/\s/g,'').replace(/sqrt?/gi,'√');
+ const tokens=s.match(/\d+(?:\.\d+)?|[√()+*/^−-]/g)||[];
+ if(tokens.join('')!==s||!s||s.length>100)return NaN;
+ let i=0;
+ const eat=t=>tokens[i]===t&&(i++,true);
+ function atom(){
+   if(eat('-')) return -atom();
+   if(eat('+')) return atom();
+   if(eat('√')) return Math.sqrt(atom());
+   if(eat('(')){const x=sum();return eat(')')?x:NaN;}
+   return Number(tokens[i++]);
+ }
+ function power(){const x=atom();return eat('^')?x**power():x;}
+ function product(){let x=power();while(i<tokens.length){if(eat('*')||tokens[i]==='√'||tokens[i]==='(')x*=power();else if(eat('/'))x/=power();else break;}return x;}
+ function sum(){let x=product();while(i<tokens.length){if(eat('+'))x+=product();else if(eat('-'))x-=product();else break;}return x;}
+ const result=sum();return i===tokens.length&&Number.isFinite(result)?result:NaN;
+}
+function demo(modes){
+ const opts={
+  Punt:['x-coördinaat van P (y = 1)',0,5,.25,3],
+  Lijn:['Constante b in y = 0,5x + b',-4,4,.25,3],
+  'Twee cirkels':['Horizontale afstand tussen de middelpunten',0,5,.25,4],
+  Raakpunt:['Hoek van de straal (graden)',0,360,5,35],
+  Helling:['Richtingscoëfficiënt m',-2,2,.25,.5],
+  Buitenpunt:['x-coördinaat van A (y = 0)',2.25,5,.25,4],
+ };
+ $('demo').innerHTML='<div class="cols"><div><label class="control">Onderzoek <select id="mode">'+modes.map(m=>'<option>'+m+'</option>').join('')+'</select></label><label for="param" id="param-name"></label><div class="control"><input id="param" type="range"> <output id="param-value" for="param"></output></div><p class="formula" id="result"></p><p class="muted">De cirkel in deze figuur heeft M(0; 0) en straal 2.</p></div><canvas id="plot" width="500" height="380" role="img" aria-describedby="result"></canvas></div>';
+ const slider=$('param');
+ function set(){const [label,min,max,step,start]=opts[$('mode').value];$('param-name').textContent=label;Object.assign(slider,{min,max,step,value:start});draw();}
+ function draw(){
+  const n=+slider.value,mode=$('mode').value,c=$('plot').getContext('2d');
+  $('param-value').textContent=f(n);
+  const px=x=>250+31*x,py=y=>190-31*y;
+  function line(x,y,u,v,color='#2855a1',width=2){c.strokeStyle=color;c.lineWidth=width;c.beginPath();c.moveTo(px(x),py(y));c.lineTo(px(u),py(v));c.stroke();}
+  function circle(x,y,r,color){c.strokeStyle=color;c.lineWidth=3;c.beginPath();c.arc(px(x),py(y),31*r,0,2*Math.PI);c.stroke();}
+  function point(x,y,label){c.fillStyle='#182d57';c.beginPath();c.arc(px(x),py(y),4,0,2*Math.PI);c.fill();c.fillText(label,px(x)+7,py(y)-8);}
+  function tangent(x,y){line(x+12*y,y-12*x,x-12*y,y+12*x);}
+  c.clearRect(0,0,500,380);c.font='15px system-ui';
+  for(let k=-6;k<=6;k++){const color=k===0?'#768aa5':'#e5edf5';line(k,-6.2,k,6.2,color,1);line(-8.1,k,8.1,k,color,1);}
+  circle(0,0,2,'#cc3867');point(0,0,'M');
+  let result='';
+  if(mode==='Punt'){
+   const d=Math.hypot(n,1);line(0,0,n,1,'#70819a',1);line(n,1,2*n/d,2/d,'#b14716',4);point(n,1,'P');
+   result='MP ≈ '+f(d)+'. P ligt '+(Math.abs(d-2)<1e-8?'op':d<2?'binnen':'buiten')+' de cirkel. Afstand tot de rand ≈ '+f(Math.abs(d-2))+'.';
+  }
+  if(mode==='Lijn'){
+   line(-9,-4.5+n,9,4.5+n);const d=Math.abs(n)/Math.sqrt(1.25);const x=-.5*n/1.25,y=n/1.25;line(0,0,x,y,'#b14716',2);
+   result='Afstand van M tot de lijn ≈ '+f(d)+'. Afstand tot de cirkel ≈ '+f(Math.max(0,d-2))+'.';
+  }
+  if(mode==='Twee cirkels'){
+   circle(n,0,1,'#2855a1');point(n,0,'N');
+   if(n>3)line(2,0,n-1,0,'#b14716',4);
+   if(n<1)line(n+1,0,2,0,'#b14716',4);
+   result='MN = '+f(n)+'. De stralen zijn 2 en 1. Afstand tussen de randen = '+f(Math.max(0,n-3,1-n))+'.';
+  }
+  if(mode==='Raakpunt'){
+   const a=n*Math.PI/180,x=2*Math.cos(a),y=2*Math.sin(a);
+   line(0,0,x,y,'#b14716',3);tangent(x,y);point(x,y,'T');
+   result='T ≈ ('+f(x)+'; '+f(y)+'). De blauwe raaklijn staat loodrecht op MT.'+(Math.abs(y)<1e-8?' Hier is de raaklijn verticaal.':'');
+  }
+  if(mode==='Helling'){
+   const b=2*Math.hypot(n,1);
+   for(const sign of [-1,1])line(-9,-9*n+sign*b,9,9*n+sign*b);
+   result='y = '+f(n)+'x ± '+f(b)+'. Bij beide lijnen is d(M, ℓ) = 2.';
+  }
+  if(mode==='Buitenpunt'){
+   const x=4/n,y=Math.sqrt(4-x*x);point(n,0,'A');
+   for(const t of [-y,y]){tangent(x,t);line(0,0,x,t,'#b14716',2);point(x,t,'T');}
+   result='A = ('+f(n)+'; 0). De twee hellingen zijn ±'+f(y/(n-x))+'. Beide stralen staan loodrecht op hun raaklijn.';
+  }
+  $('result').textContent=result;
+ }
+ $('mode').onchange=set;slider.oninput=draw;set();
+}
+function addMathKeys(form){
+ const input=form.querySelector('input[type="text"]');
+ if(!input)return;
+ const keys=document.createElement('div');
+ keys.className='math-keys';
+ keys.setAttribute('role','group');
+ keys.setAttribute('aria-label','Wiskundig toetsenbord');
+ for(const [label,symbol,name,offset] of [
+   ['√','√()','Wortel',2],['a/b','/','Breukstreep',1],
+   ['xⁿ','^','Macht',1],['×','*','Vermenigvuldigen',1],
+   ['−','−','Minteken',1],['(', '(','Haakje openen',1],
+   [')', ')','Haakje sluiten',1]
+ ]){
+   const button=document.createElement('button');
+   button.type='button';
+   button.textContent=label;
+   button.setAttribute('aria-label',name);
+   button.title=name;
+   button.addEventListener('click',()=>{
+     const start=input.selectionStart;
+     const end=input.selectionEnd;
+     const selected=input.value.slice(start,end);
+     const inserted=symbol==='√()'&&selected?'√('+selected+')':symbol;
+     if(input.value.length-(end-start)+inserted.length>input.maxLength)return;
+     input.setRangeText(inserted,start,end,'end');
+     if(inserted===symbol)input.setSelectionRange(start+offset,start+offset);
+     input.focus();
+   });
+   keys.append(button);
+ }
+ form.querySelector('.answer').after(keys);
+}
+function show(i,focus=false){
+ const l=lessons[i];$('nav').querySelectorAll('button').forEach((b,j)=>b.setAttribute('aria-current',String(i===j)));
+ $('lesson').innerHTML='<section class="card intro"><h2 id="heading" tabindex="-1">'+l.title+'</h2><p>'+l.goal+'</p><p>'+l.theory+'</p>'+(l.note?'<p class="note">'+l.note+'</p>':'')+'</section>'+
+ (l.modes?'<section class="card demo"><h2>Onderzoek de figuur</h2><div id="demo"></div></section>':'')+
+ '<section class="card"><h2>Uitgewerkt voorbeeld</h2><ol>'+l.steps.map(s=>'<li>'+s+'</li>').join('')+'</ol></section>'+
+ '<section class="card"><h2>Oefenen</h2><p class="muted">Reken eerst exact. Typ bijvoorbeeld 3/4, 2sqrt5, 2sqr5 of 2√5. Gebruik haakjes als er meer onder de wortel staat, bijvoorbeeld sqrt(3+2).</p>'+l.qs.map(([text,answer,hint,work,options],j)=>'<form class="question"><label for="a'+j+'">'+text+'</label><div class="answer">'+(options?'<select id="a'+j+'" required><option value="">Kies je antwoord</option>'+options.map(s=>'<option>'+s+'</option>').join('')+'</select>':'<input id="a'+j+'" type="text" autocomplete="off" maxlength="100" required>')+'<button class="primary">Controleer</button></div><p class="feedback" role="status"></p><details><summary>Hint</summary><p>'+hint+'</p></details><details><summary>Uitwerking</summary><p>'+work+'</p></details></form>').join('')+
+ (i<lessons.length-1?'<button id="next">Volgende onderdeel →</button>':'')+'</section>';
+ if(l.modes)demo(l.modes);
+ $('lesson').querySelectorAll('form').forEach((form,j)=>{
+  addMathKeys(form);
+  form.onsubmit=e=>{
+  e.preventDefault();const [,expected,,,options]=l.qs[j];const given=$('a'+j).value;
+  const ok=options?given===expected:Math.abs(value(given)-value(expected))<1e-8;
+  const p=form.querySelector('.feedback');p.className='feedback '+(ok?'good':'wrong');
+  p.textContent=ok?'Goed! Bekijk eventueel de uitwerking.':'Dit klopt nog niet. Controleer je berekening of open de hint.';
+  };
+ });
+ if($('next'))$('next').onclick=()=>show(i+1,true);
+ if(focus)$('heading').focus();
+}
+lessons.forEach((l,i)=>{const b=document.createElement('button');b.textContent=l.title;b.onclick=()=>show(i,true);$('nav').append(b);});
+show(0);
+</script></body></html>
