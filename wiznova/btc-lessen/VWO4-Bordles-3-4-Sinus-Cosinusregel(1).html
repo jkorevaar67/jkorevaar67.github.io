@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VWO 4 Wiskunde B · §3.4 · Sinus- en cosinusregel</title>
+<style>
+:root{--paper:#fdfdf8;--grid:#d3e4f4;--ink:#1d2b64;--c:#3b6fe0;--hl:#bcd4ff;--soft:#eaf1ff}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:flex;flex-direction:column;color:var(--ink);
+ background:var(--paper) linear-gradient(var(--grid) 1px,transparent 1px) 0 0/34px 34px,linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/34px 34px;
+ font:clamp(17px,2vw,29px)/1.4 ui-rounded,"Nunito","Trebuchet MS",system-ui,sans-serif}
+body::before{content:"";position:fixed;inset:0 auto 0 4.2vw;width:3px;background:#f29a9a;opacity:.7;pointer-events:none}
+body.think{--c:#7a4fe0;--hl:#ddd0ff;--soft:#f1ecff}
+body.answer{--c:#14997c;--hl:#b4f0dc;--soft:#e4f8f1}
+body.together{--c:#e8741c;--hl:#ffd9b3;--soft:#fff0e0}
+body.work{--c:#3b6fe0;--hl:#bcd4ff;--soft:#eaf1ff}
+body.extra{--c:#d6336c;--hl:#ffc9de;--soft:#ffeaf2}
+main{flex:1;display:grid;grid-template-columns:1fr 1.05fr;align-items:center;gap:4vw;padding:4vh 5vw 2vh 9vw}
+main.wide{grid-template-columns:minmax(0,1000px)}
+main.statement{grid-template-columns:minmax(0,1100px)}
+main.statement h1{font-size:3.2em}
+.badge{display:inline-flex;align-items:center;gap:.5em;background:var(--c);color:#fff;font-weight:800;font-size:.62em;padding:.4em 1em .4em .7em;border-radius:999px;transform:rotate(-1.5deg);box-shadow:0 3px 0 rgba(0,0,0,.18)}
+.badge i{font-style:normal;font-size:1.25em}
+h1{font-size:2.2em;line-height:1.18;letter-spacing:-.03em;font-weight:850;margin:.5em 0 .5em}
+h1 span{background:linear-gradient(transparent 60%,var(--hl) 60%) no-repeat 0 0/100% 100%;-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:0 .12em;margin:0 -.12em}
+h1.sweep span{animation:sweep .7s ease-out}
+@keyframes sweep{from{background-size:0 100%}to{background-size:100% 100%}}
+p{margin:.6em 0}
+strong{background:linear-gradient(transparent 55%,var(--hl) 55%);font-weight:800;padding:0 .1em}
+ol{list-style:none;counter-reset:s;padding:0;margin:.8em 0}
+ol li{counter-increment:s;display:flex;align-items:center;gap:.7em;margin:.5em 0;padding:.5em .9em;background:#fff;border:2px solid var(--c);border-radius:14px;box-shadow:4px 4px 0 var(--hl)}
+ol li::before{content:counter(s);flex:none;display:grid;place-items:center;width:1.5em;height:1.5em;border-radius:50%;background:var(--c);color:#fff;font-weight:800;font-size:.85em}
+aside{position:relative;background:#fff;border:2px solid var(--ink);border-radius:6px;padding:14px;box-shadow:8px 8px 0 var(--hl);transform:rotate(.8deg)}
+aside::before{content:"";position:absolute;top:-14px;left:50%;width:110px;height:28px;margin-left:-55px;background:var(--hl);opacity:.9;transform:rotate(-3deg);border:1px dashed rgba(0,0,0,.15)}
+aside:empty{display:none}
+svg{display:block;width:100%;max-height:68vh}
+svg text{font:800 22px ui-rounded,system-ui,sans-serif;fill:#1d2b64;paint-order:stroke;stroke:#fff;stroke-width:5px;stroke-linejoin:round}
+#help:not([hidden]){margin-top:1em;padding:.7em 1em;background:#fff3a8;color:#4a3b00;font-size:.8em;font-weight:600;border-radius:4px 4px 14px 4px;box-shadow:4px 5px 0 rgba(0,0,0,.14);transform:rotate(-1deg)}
+footer{display:flex;align-items:center;gap:.6em;padding:1.2vh 5vw 2vh 9vw;flex-wrap:wrap}
+#dots{display:flex;gap:.5em;margin-right:auto;align-items:center}
+#dots button{all:unset;cursor:pointer;width:.7em;height:.7em;border-radius:50%;background:#b8c4dc;transition:transform .15s}
+#dots button.on{transform:scale(1.7);background:var(--c)}
+#dots button:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+output{color:var(--c);font-size:.6em;font-weight:800;min-width:3.5em}
+.nav{font:800 .58em ui-rounded,system-ui,sans-serif;color:var(--ink);background:#fff;border:2px solid var(--ink);border-radius:12px;padding:.6em 1.1em;cursor:pointer;box-shadow:0 3px 0 var(--ink);transition:transform .1s,box-shadow .1s}
+.nav:hover:not(:disabled){background:var(--soft)}
+.nav:active:not(:disabled){transform:translateY(3px);box-shadow:none}
+.nav:disabled{opacity:.35;cursor:default}
+.nav:focus-visible{outline:3px solid var(--c);outline-offset:2px}
+#next{background:var(--c);color:#fff;border-color:var(--ink)}
+#next:hover:not(:disabled){background:var(--c);filter:brightness(1.1)}
+#hint{background:#fff3a8}
+@media(max-width:750px){main{grid-template-columns:1fr;gap:1.2em;padding-left:9vw}svg{max-height:50vh}body::before{left:5vw}}
+@media(prefers-reduced-motion:reduce){h1.sweep span{animation:none}.nav{transition:none}}
+
+#dots{flex-wrap:wrap}
+.formula{display:block;padding:.45em .8em;border-radius:12px;background:#fff;border:2px dashed var(--c);font-weight:800;margin:.7em 0;box-shadow:4px 4px 0 var(--hl)}
+.fraction{display:inline-flex;vertical-align:middle;flex-direction:column;text-align:center;line-height:1.18}.fraction span:first-child{border-bottom:2px solid;padding:0 .18em}.fraction span:last-child{padding:0 .18em}
+svg .base{stroke:#233753;stroke-width:3;fill:none;stroke-linecap:round}svg .height{stroke:#14997c;stroke-width:3;stroke-dasharray:7 6;fill:none}svg .arc{fill:none;stroke:#e8741c;stroke-width:3;stroke-dasharray:6 7}
+svg .reveal{animation:pop .6s ease-out both}@keyframes pop{from{opacity:0;transform:scale(.96)}to{opacity:1}}
+table{border-collapse:separate;border-spacing:0;width:100%;font-size:.58em;line-height:1.3;background:#fff;border:2px solid var(--ink);border-radius:14px;overflow:hidden;box-shadow:6px 6px 0 var(--hl)}
+th,td{padding:.5em .8em;text-align:left;vertical-align:top;border-bottom:2px solid var(--grid)}tr:last-child>*{border-bottom:0}
+thead th{background:var(--c);color:#fff;font-size:1.1em}tbody th{background:var(--soft);width:15%}td+td,th+td,th+th{border-left:2px solid var(--grid)}
+main.wide:has(table){grid-template-columns:minmax(0,1500px)}
+@media(prefers-reduced-motion:reduce){svg .reveal{animation:none}}
+</style>
+</head>
+<body>
+<main><section><div class="badge"><i></i><span></span></div><h1><span></span></h1><div id="copy"></div><div id="help" aria-live="polite" hidden></div></section><aside></aside></main>
+<footer><div id="dots" role="tablist" aria-label="Dia’s"></div><output></output><button class="nav" id="hint" aria-controls="help" hidden>💡 Toon hint</button><button class="nav" id="full">Volledig scherm</button><button class="nav" id="prev">← Vorige</button><button class="nav" id="next">Volgende →</button></footer>
+<script>
+
+const frac=(top,bottom)=>'<span class="fraction"><span>'+top+'</span><span>'+bottom+'</span></span>';
+const text=(x,y,t)=>'<text x="'+x+'" y="'+y+'" text-anchor="middle">'+t+'</text>';
+const path=(d,cls='base')=>'<path class="'+cls+'" d="'+d+'"/>';
+const svg=(alt,content)=>'<svg viewBox="0 -20 550 350" role="img" aria-label="'+alt+'">'+content+'</svg>';
+function construction(reveal=false){
+ const ax=62,cy=147,by=259,cx=ax+112*Math.sqrt(3),r=112*Math.sqrt(2);
+ const left=cx-112,right=cx+112;
+ return svg(reveal?'De cirkel om C snijdt de halfrechte vanuit A in B₁ en B₂.':'Vanuit A vertrekken twee lijnen onder 30 graden. Punt C ligt op afstand 8 van A.',
+ path('M62 259H493 M62 259L'+cx+' '+cy)+
+ path('M99 259A37 37 0 0 0 94 240')+
+ text(109,246,'30°')+text(49,283,'A')+text(cx-5,cy-13,'C')+text(147,192,'8')+
+ (reveal?'<g class="reveal"><circle class="arc" cx="'+cx+'" cy="'+cy+'" r="'+r+'"/>'+
+ path('M'+left+' '+by+'L'+cx+' '+cy+'L'+right+' '+by)+path('M'+cx+' '+cy+'V259','height')+
+ text(left,284,'B₁')+text(right,284,'B₂')+text(cx,284,'D')+text(cx+104,80,'straal 4√2')+'</g>':''));
+}
+function height(obtuse=false){
+ const a=obtuse?168:56,b=474,c=obtuse?100:259;
+ return svg(obtuse?'De hoogtelijn valt buiten de driehoek, links van A.':'De hoogtelijn verdeelt de driehoek in twee rechthoekige driehoeken.',
+ '<polygon points="'+a+',251 '+b+',251 '+c+',57" fill="#e0f0e9"/>'+
+ path('M'+a+' 251L'+c+' 57L'+b+' 251Z')+
+ (obtuse?path('M'+c+' 251H'+a,'height'):'')+path('M'+c+' 57V251','height')+
+ path('M'+c+' 237h14v14')+
+ text(a,277,'A')+text(b,277,'B')+text(c,42,'C')+text(c,277,'D')+
+ text((a+c)/2-17,148,'b')+text((b+c)/2+20,148,'a')+text(c-18,177,'h')+
+ text(a+39,239,'α')+text(b-44,239,'β'));
+}
+
+function river(){
+ const k=28,ax=80,ay=265,bx=ax+12*k,cx=ax+11.8*k*Math.cos(42*Math.PI/180),cy=ay-11.8*k*Math.sin(42*Math.PI/180);
+ return svg('Rivier met meetpunten A en B op de oever. C ligt aan de overkant. Hoek A is 42 graden en hoek B is 68 graden.',
+ '<rect x="20" y="20" width="510" height="'+(ay-20)+'" rx="14" fill="#d7ecff"/>'+text(480,60,'rivier')+
+ '<polygon points="'+ax+','+ay+' '+bx+','+ay+' '+cx+','+cy+'" fill="#e0f0e9" opacity=".85"/>'+
+ path('M'+ax+' '+ay+'H'+bx+'L'+cx+' '+cy+'Z')+
+ text(ax-14,ay+24,'A')+text(bx+14,ay+24,'B')+text(cx,cy-12,'C')+
+ text((ax+bx)/2,ay+28,'AB = 12 m')+text(ax+62,ay-12,'42°')+text(bx-56,ay-12,'68°')+
+ text((ax+cx)/2-22,(ay+cy)/2,'AC = ?')+text((bx+cx)/2+30,(ay+cy)/2,'BC = ?'));
+}
+function obtuseCase(){
+ const k=30,ax=190,ay=262,cx=ax-8*k/2,cy=ay-8*k*Math.sin(Math.PI/3),dx=Math.sqrt(360*360-(ay-cy)**2),bx=cx+dx;
+ return svg('Driehoek met stompe hoek A van 120 graden, AC is 8 en BC is 12.',
+ '<polygon points="'+ax+','+ay+' '+bx+','+ay+' '+cx+','+cy+'" fill="#e0f0e9"/>'+
+ path('M'+cx+' '+ay+'H'+bx+'M'+ax+' '+ay+'L'+cx+' '+cy+'L'+bx+' '+ay)+
+ text(ax+8,ay+26,'A')+text(bx+14,ay+26,'B')+text(cx,cy-12,'C')+
+ text(ax-30,ay-12,'120°')+text(ax-84,(ay+cy)/2-6,'8')+text((cx+bx)/2+34,(ay+cy)/2-10,'12'));
+}
+function exitFigure(reveal=false){
+ const k=34,ax=80,ay=262,bx=ax+7*k,cx=ax+9*k*Math.cos(40*Math.PI/180),cy=ay-9*k*Math.sin(40*Math.PI/180);
+ return svg('Driehoek ABC met AB is 7, AC is 9 en hoek A is 40 graden.',
+ '<polygon points="'+ax+','+ay+' '+bx+','+ay+' '+cx+','+cy+'" fill="#e0f0e9"/>'+
+ path('M'+ax+' '+ay+'H'+bx+'L'+cx+' '+cy+'Z')+
+ (reveal?path('M'+bx+' '+ay+'L'+cx+' '+cy,'arc')+path('M'+(ax+40)+' '+(ay)+'A40 40 0 0 0 '+(ax+31)+' '+(ay-25),'arc'):'')+
+ text(ax-14,ay+24,'A')+text(bx+14,ay+24,'B')+text(cx,cy-12,'C')+
+ text((ax+bx)/2,ay+28,'7')+text((ax+cx)/2-20,(ay+cy)/2,'9')+text(ax+66,ay-10,'40°')+
+ text(bx+46,(ay+cy)/2,'BC = ?')+text(cx+120,cy+10,'∠B = ?')+text(cx+120,cy+44,'∠C = ?'));
+}
+function diagram(angle,b,c,labels,alt){
+ const rad=angle*Math.PI/180, x=b*Math.cos(rad), y=b*Math.sin(rad);
+ const min=Math.min(0,x),max=Math.max(c,x),k=Math.min(380/(max-min),180/y);
+ const ax=275-(min+max)*k/2,  ay=250, bx=ax+c*k, cx=ax+x*k,cy=ay-y*k;
+ const mid=(u,v)=> (u+v)/2;
+ return svg(alt,'<polygon points="'+ax+','+ay+' '+bx+','+ay+' '+cx+','+cy+'" fill="#dff2eb"/>'+
+ path('M'+ax+' '+ay+'L'+bx+' '+ay+'L'+cx+' '+cy+'Z')+
+ (angle===90?path('M'+ax+' '+(ay-16)+'h16v16'):path('M'+(ax+35)+' '+ay+' A35 35 0 0 0 '+(ax+35*Math.cos(rad))+' '+(ay-35*Math.sin(rad))))+
+ text(ax-10,ay+27,'A')+text(bx+12,ay+27,'B')+text(cx,cy-12,'C')+
+ text(mid(ax,bx),ay+29,labels[0])+text(mid(ax,cx)-24,mid(ay,cy)-8,labels[1])+
+ text(mid(bx,cx)+24,mid(ay,cy)-8,labels[2])+text(ax+51*Math.cos(rad/2),ay-51*Math.sin(rad/2),labels[3])+(labels[4]?text(bx-45,ay-18,labels[4]):''));
+}
+const right=(sol=false)=>diagram(90,3,4,['4','3',sol?'5':'?','90°'],'Rechthoekige driehoek met rechthoekszijden 3 en 4');
+const warm=(sol=false)=>diagram(60,3,4,['4','3',sol?'√13':'?','60°'],'Driehoek met zijden 3 en 4 en ingesloten hoek 60°');
+const bridge=(sol=false)=>diagram(60,8,7,['7','8',sol?'√57':'?','60°'],'AB is 7, AC is 8 en hoek A is 60°');
+const angle=Math.acos(-47/70)*180/Math.PI;
+const reverse=(sol=false)=>diagram(angle,5,7,['7','5','11',sol?'132,2°':'?'],'Driehoek met zijden AB 7, AC 5 en BC 11');
+const letters=()=>diagram(64,6,8,['c','b','a','α'],'Zijden a, b en c, met α tussen b en c');
+const sine=(sol=false)=>diagram(50,9,9,['9','',sol?'≈ 7,6':'?','50°','65°'],'Schets bij AB 9, hoek A 50° en hoek B 65°');
+
+function compare(sol=false){
+ const ax=130,ay=250,k=60,bx=ax+4*k,res=['√13','5','√37'];
+ let g='<line x1="'+ax+'" y1="'+ay+'" x2="'+bx+'" y2="'+ay+'" class="base"/>';
+ [60,90,120].forEach((t,i)=>{const r=t*Math.PI/180,cx=ax+3*k*Math.cos(r),cy=ay-3*k*Math.sin(r);
+  g+=path('M'+ax+' '+ay+'L'+cx+' '+cy)+path('M'+bx+' '+ay+'L'+cx+' '+cy,'arc')+text(cx,cy-12,'C'+'₁₂₃'[i])+
+  text(485,70+i*42,'C'+'₁₂₃'[i]+' '+t+'°: '+(sol?res[i]:'?'));});
+ return svg('Drie driehoeken met AB is 4 en AC is 3 en hoek A van 60, 90 en 120 graden.',g+text(ax-14,ay+27,'A')+text(bx+14,ay+27,'B')+text((ax+bx)/2,ay+29,'4')+text(485,40,'BC ='));
+}
+const slides=[
+ ['DENKSTARTER · 3 MIN','Eén set gegevens. Hoeveel driehoeken?','<p>In driehoek ABC geldt <strong>∠A = 30°, AC = 8 en BC = 4√2</strong>.</p><ol><li>Teken ∠A en leg AC = 8 af op één been. Laat vanuit C een loodlijn neer op het andere been. Hoe lang is die loodlijn?</li><li>B moet <strong>4√2 ≈ 5,7</strong> van C liggen. Is dat meer of minder dan de loodlijn? Hoeveel plekken voor B vind je?</li><li>Extra: hoe ver liggen die plekken uit elkaar?</li></ol>',()=>construction(),['De loodlijn vanuit C hoort bij een rechthoekige driehoek met hoek 30° en schuine zijde 8. Gebruik sin 30°.','Alle punten op afstand 4√2 van C liggen op een cirkel. Hoe vaak snijdt die cirkel het andere been?']],
+ ['ANTWOORD OP DE DENKSTARTER','Twee driehoeken','<p>De twee mogelijke punten B liggen <strong>8 eenheden</strong> uit elkaar.</p>'],
+ ['NABESPREKING','Waarom zijn het er precies twee?','<p>De cirkel met middelpunt C en straal 4√2 snijdt de halfrechte vanuit A in B₁ en B₂.</p><p>Laat D het voetpunt zijn. Dan is CD = 8 · sin 30° = 4. Pythagoras geeft <strong>DB₁ = DB₂ = √(32 − 16) = 4</strong>.</p><p>AD = 4√3 &gt; 4, dus beide punten liggen op de halfrechte. Samen liggen ze 8 uit elkaar.</p>',()=>construction(true)],
+ ['THEORIE A · SCHERPHOEKIG','Eén hoogte, twee berekeningen','<p>Met α = ∠A en β = ∠B geldt:</p><p class="formula">h = b · sin α = a · sin β</p><p>Deel door sin α · sin β. Gebruik daarna de hoogtelijn vanuit A voor het derde paar.</p><div class="formula">'+frac('a','sin α')+' = '+frac('b','sin β')+' = '+frac('c','sin γ')+'</div><p><strong>Koppel elke zijde aan de hoek ertegenover.</strong></p>',()=>height()],
+ ['BTC 1 · 5 MIN','Meet zonder over te steken','<p><strong>Werk in groepjes van 2 of 3.</strong> Maak één gezamenlijke schets en wissel van schrijver per opgave.</p><p>Een team meet <strong>AB = 12 m</strong> langs een oever. Een meetpunt C ligt aan de overkant. ∠A = 42° en ∠B = 68°.</p><ol><li>Schets de situatie. Welke zijde is langer, AC of BC? Leg uit vóór je rekent.</li><li>Bereken beide afstanden. Rond pas aan het eind af op één decimaal.</li><li>Leg uit welk bekend hoek-zijdepaar je gebruikt.</li></ol>',()=>river(),['Bereken eerst ∠C met de hoekensom.','AB ligt tegenover ∠C. Voor AC gebruik je ∠B, voor BC gebruik je ∠A.']],
+ ['BTC 1 · UITWERKING','De grootste hoek wijst naar de langste zijde','<p>∠C = 180° − 42° − 68° = <strong>70°</strong>. AB hoort dus bij 70°.</p><p>AC ligt tegenover 68°, BC tegenover 42°. Daarom is AC langer dan BC.</p><p class="formula">AC = 12 · '+frac('sin 68°','sin 70°')+' ≈ 11,8 m<br>BC = 12 · '+frac('sin 42°','sin 70°')+' ≈ 8,5 m</p>'],
+ ['THEORIE B · STOMPHOEKIG','De hoogte valt buiten de driehoek','<p>Bij stompe α ligt D op het verlengde van AB. De scherpe hoek bij A in driehoek ACD is <strong>180° − α</strong>.</p><p>Dus h = b · sin(180° − α) en ook h = a · sin β.</p><p class="formula">sin(180° − α) = sin α</p><p>Daarom blijft de sinusregel geldig. Omgekeerd kunnen een scherpe en een stompe hoek dezelfde sinus hebben.</p>',()=>height(true)],
+ ['BTC 2 · 7 MIN','Ontwerp nul, één én twee driehoeken','<p>Houd <strong>∠A = 30° en AC = 8</strong> vast. Nu mag je BC = r zelf kiezen.</p><ol><li>Kies positieve waarden voor r die 0, 1 en 2 driehoeken opleveren. Bewijs ze met een schets.</li><li>Vind alle waarden van r voor elk aantal. Onderzoek apart wat er bij <strong>r = 4 en r = 8</strong> gebeurt.</li><li>Verklaar waarom B = A niet meetelt.</li></ol>',()=>construction(),['Hoe ver ligt C loodrecht van de halfrechte?','Tel alleen snijpunten op de halfrechte voorbij A. Bij welke straal raakt de cirkel juist A?']],
+ ['BTC 2 · UITWERKING','De grensgevallen zijn 4 en 8','<ol><li><strong>0 &lt; r &lt; 4:</strong> geen snijpunt.</li><li><strong>r = 4:</strong> één raakpunt, een rechthoekige driehoek.</li><li><strong>4 &lt; r &lt; 8:</strong> twee snijpunten voorbij A.</li><li><strong>r ≥ 8:</strong> één geldige driehoek.</li></ol><p>Bij r = 8 valt het linker snijpunt op A. De basis is dan 0. Voor r &gt; 8 ligt dat snijpunt achter A.</p>',()=>construction(true)],
+ ['BTC 3 · 5 MIN','De rekenmachine geeft maar één hoek','<p>Ga terug naar de starter. Een leerling vindt met sin⁻¹ dat ∠B = 45° en stopt.</p><ol><li>Gebruik de sinusregel om beide mogelijkheden voor ∠B te vinden en controleer de hoekensom.</li><li>Probeer dezelfde redenering bij <strong>∠A = 120°, BC = 12 en AC = 8</strong>. Zijn hier ook twee driehoeken mogelijk?</li><li>Schrijf een beslisregel op die in beide situaties werkt.</li></ol>',()=>obtuseCase(),['Een tweede kandidaat krijg je met 180° min de scherpe hoek.','Controleer voor elke kandidaat of ∠A + ∠B kleiner is dan 180°.']],
+ ['BTC 3 · UITWERKING','Controleer beide kandidaten','<p>Bij de starter geeft de sinusregel sin B = 8 · sin 30° / (4√2) = √2/2. Dus <strong>B = 45° of 135°</strong>. De bijbehorende hoeken C zijn 105° en 15°. Beide kunnen.</p><p>Bij A = 120° geeft sin B = 8 · sin 120° / 12 = √3/3. De kandidaten zijn ongeveer <strong>35,3° en 144,7°</strong>. Alleen 35,3° kan, want B moet kleiner zijn dan 60°.</p>'],
+ ['EXITVRAAG · 2 MIN','Kun je de sinusregel al gebruiken?','<p>Je kent <strong>AB = 7, AC = 9 en ∠A = 40°</strong>. Iemand begint met 7/sin 40°.</p><p>Welk paar hoort wél bij elkaar? Leg uit waarom je met de gegeven informatie de sinusregel nog niet rechtstreeks kunt gebruiken.</p>',()=>exitFigure(),['Een paar bestaat uit een zijde en de hoek die er recht tegenover ligt.','Welke zijde ligt tegenover ∠A? Is die lengte gegeven?']],
+ ['EXITVRAAG · ANTWOORD','Zoek een volledig overstaand paar','<p>Bij ∠A hoort <strong>BC</strong>. Bij AB hoort ∠C en bij AC hoort ∠B.</p><p>Geen enkel overstaand paar is volledig bekend. Dat is precies waar deze poging vastloopt.</p>',()=>exitFigure(true)],
+ ['LESUUR 2 · START','Wat als er geen overstaand paar is?','<p>Vorig uur gebruikte je de sinusregel. Die werkt alleen met een <strong>zijde en de hoek ertegenover</strong>.</p><p>Vandaag: hoe reken je als dat paar ontbreekt? Bijvoorbeeld bij twee zijden met hun ingesloten hoek, of bij drie zijden.</p>'],
+ 
+ ['DENKSTARTER · 2 MIN','Dit ken je al','<p>De zijden van <strong>3</strong> en <strong>4</strong> staan loodrecht op elkaar.</p><p><strong>Hoe lang is BC?</strong> Schrijf één regel waarmee je je antwoord kunt uitleggen.</p>',()=>right(),['Welke zijde ligt tegenover de rechte hoek?','Gebruik Pythagoras: tel de kwadraten van de twee korte zijden op.']],
+ ['ANTWOORD OP DE DENKSTARTER','BC = 5','<p>BC² = 3² + 4² = 25. Een lengte is positief, dus <strong>BC = 5</strong>.</p>',()=>right(true)],
+ ['BRUG NAAR THEORIE C','Dezelfde zijden. Een kleinere hoek.','<p>We draaien AC naar binnen tot ∠A = 60°. AB blijft 4 en AC blijft 3.</p><p><strong>Voorspel zonder te rekenen.</strong> Wordt BC korter, langer of blijft die even lang? Leg uit met de tekening.</p>',()=>warm(),['Laat A en B op hun plek. Welk punt beweegt?','Vergelijk de afstand van C tot B vóór en na de draai.']],
+ ['THEORIE C','Pythagoras met een extra term','<p>Voor elke driehoek geldt:</p><p class="formula">a² = b² + c² − 2 · b · c · cos α</p><p>α is de hoek <strong>tussen b en c</strong>. Zijde a ligt ertegenover.</p><p>Bij 90° is de cosinus 0. Bij 60° is die ½. Dus in de vorige driehoek is BC² = 25 − 12 = 13, en <strong>BC = √13 &lt; 5</strong>.</p>',()=>warm(true)],
+ ['BTC 1 · 4 MIN','Maak drie verschillende driehoeken','<p>Werk in groepjes van twee of drie. Maak één schets per keuze en wissel van schrijver. Neem steeds <strong>AB = 4 en AC = 3</strong>.</p><ol><li>Schets de driehoek voor <strong>A = 60°, 90° en 120°</strong>. Bij welke hoek lijkt BC het kortst, en bij welke het langst?</li><li>Bereken BC bij elke hoek met de cosinusregel.</li><li>Extra: leg uit waarom het teken van cos A bepaalt of BC kleiner of groter is dan 5.</li></ol>',()=>compare(),['Een grotere hoek A trekt B en C verder uit elkaar. Bij welke hoek wordt BC dus het langst?','Vul in: BC² = 4² + 3² − 2 · 4 · 3 · cos A. Bij 60° is cos A = ½, bij 90° is cos A = 0 en bij 120° is cos A = −½.','Extra: vergelijk BC² = 25 − 24 · cos A met 25. Wat doet het minteken bij een negatieve cosinus?']],
+ ['BTC 1 · UITWERKING','Het teken van de cosinus beslist','<p class="formula">BC² = 25 − 24 · cos A</p><p><strong>Scherp:</strong> cos A &gt; 0, dus BC &lt; 5.<br><strong>Recht:</strong> cos A = 0, dus BC = 5.<br><strong>Stomp:</strong> cos A &lt; 0, dus BC &gt; 5.</p><p>Voorbeelden bij 60°, 90° en 120° zijn √13, 5 en √37.</p>',()=>compare(true)],
+ ['BTC 2 · 6 MIN','Welke hoek is het grootst?','<p>Je kent <strong>AB = 7, AC = 5 en BC = 11</strong>.</p><ol><li>Wijs de grootste hoek aan. Kan die scherp zijn? Onderbouw je antwoord zonder inverse cosinus.</li><li>Bereken daarna die hoek op één decimaal.</li><li><strong>Extra:</strong> Welke lengte van BC zou de hoek precies recht maken?</li></ol>',()=>reverse(),['De langste zijde ligt tegenover de grootste hoek.','Isoleer cos A uit 11² = 5² + 7² − 2 · 5 · 7 · cos A.','Extra: bij een rechte hoek is cos A = 0. Welke bekende regel krijg je dan?']],
+ ['BTC 2 · UITWERKING','Drie zijden bekend? Reken terug naar de hoek','<p>BC is het langst, dus A is de grootste hoek.</p><p class="formula">cos A = (5² + 7² − 11²) / (2 · 5 · 7) = −47/70</p><p>De cosinus is negatief, dus A is stomp. In gradenstand geeft cos⁻¹ <strong>A ≈ 132,2°</strong>.</p><p>Voor A = 90° geldt BC = √(5² + 7²) = <strong>√74</strong>.</p>',()=>reverse(true)],
+ ['BTC 3 · 7 MIN','Twee regels in één driehoek','<p>Je kent <strong>AB = 7, AC = 8 en ∠A = 60°</strong>. Bereken BC exact en ∠B op één decimaal.</p><ol><li>Leg uit waarom je begint met de cosinusregel.</li><li>Gebruik daarna de sinusregel. Welke twee kandidaat-hoeken geeft dezelfde sinus?</li><li>Controleer beide met de hoekensom. Kun je daarna met de drie zijden bewijzen welke kandidaat klopt?</li></ol>',()=>bridge(),['Bij de start ken je twee zijden en hun ingesloten hoek. Zoek eerst BC, tegenover 60°.','Als BC bekend is, heb je een volledig hoek-zijdepaar. Controleer de hoekensom en bepaal daarna het teken van cos B met de drie zijden.']],
+ ['BTC 3 · UITWERKING','Van zijde naar hoek','<p>BC² = 7² + 8² − 2 · 7 · 8 · cos 60° = 57, dus <strong>BC = √57</strong>.</p><p>Met de sinusregel volgt sin B = 8 · sin 60° / √57. De kandidaten zijn <strong>66,6° en 113,4°</strong>.</p><p><strong>Beide kandidaten passen binnen de hoekensom.</strong> Maar de cosinusregel met alle drie de zijden geeft cos B = (7² + 57 − 8²)/(2 · 7 · √57) &gt; 0. Dus alleen 66,6° past bij deze drie zijden.</p>',()=>bridge(true)],
+ ['EXITVRAAG · 2 MIN','Kies de eerste regel','<p>Je kent <strong>AB = 9, ∠A = 50° en ∠B = 65°</strong>. Welke regel gebruik je om BC te berekenen?</p><p>Schrijf eerst het bekende hoek-zijdepaar op en geef daarna één berekening.</p>',sine,['Bereken ∠C met de hoekensom.','AB ligt tegenover ∠C. BC ligt tegenover ∠A.']],
+ ['EXITVRAAG · ANTWOORD','Hier werkt de sinusregel direct','<p>∠C = 180° − 50° − 65° = 65°. Daardoor ken je het paar <strong>AB = 9 en ∠C = 65°</strong>.</p><p class="formula">BC = 9 · sin 50° / sin 65° ≈ 7,6</p><p>Gebruik de cosinusregel bij twee zijden met hun ingesloten hoek of bij drie bekende zijden. Gebruik een volledig overstaand hoek-zijdepaar om met de sinusregel te starten.</p>',()=>sine(true)],
+ ['AFSLUITING · SAMENVATTING','Sinusregel of cosinusregel?','<table><thead><tr><th></th><th>Sinusregel</th><th>Cosinusregel</th></tr></thead><tbody><tr><th>Formule</th><td>'+frac('a','sin α')+' = '+frac('b','sin β')+' = '+frac('c','sin γ')+'</td><td>a² = b² + c² − 2bc · cos α<br>cos α = '+frac('b² + c² − a²','2bc')+'</td></tr><tr><th>Gebruik als je kent</th><td>een zijde <strong>met de hoek ertegenover</strong> en nog een zijde of hoek (HHZ, ZZH)</td><td>twee zijden met hun <strong>ingesloten</strong> hoek (ZHZ) of alle drie de zijden (ZZZ)</td></tr><tr><th>Je berekent</th><td>een andere zijde of hoek</td><td>de derde zijde, of een hoek</td></tr><tr><th>Let op</th><td>Koppel elke zijde aan de hoek ertegenover. Bij ZZH zijn 0, 1 of 2 driehoeken mogelijk: sin B geeft B én 180° − B. Controleer de hoekensom.</td><td>α ligt tussen b en c. Geen dubbelzinnigheid: cos α &gt; 0 is scherp, = 0 is recht (Pythagoras), &lt; 0 is stomp.</td></tr><tr><th>Voorbeeld</th><td>AB = 9, ∠A = 50°, ∠B = 65°: BC ≈ 7,6</td><td>AB = 7, AC = 8, ∠A = 60°: BC = √57</td></tr></tbody></table><p class=\"formula\">Staat er een zijde met de hoek ertegenover? Ja: sinusregel. Nee: cosinusregel.</p>']
+];
+
+const kindOf=p=>/ANTWOORD|UITWERKING|NABESPREKING/.test(p)?'answer':/THEORIE|BRUG|LESUUR/.test(p)?'together':/DENKSTARTER/.test(p)?'think':/BTC/.test(p)?'work':'extra';
+const icons={think:'🤔',answer:'✅',together:'🗣️',work:'✏️',extra:'🚀'};
+const nice=p=>{p=p.toLowerCase();p=p[0].toUpperCase()+p.slice(1);return p.replace(/btc/g,'BTC').replace(/ ([a-c])( ·|$)/g,(m,x,y)=>' '+x.toUpperCase()+y)};
+let index=0,step=0;
+const $=s=>document.querySelector(s);
+$('#dots').innerHTML=slides.map((s,i)=>'<button aria-label="Dia '+(i+1)+': '+s[1].replace(/"/g,'')+'" data-i="'+i+'"></button>').join('');
+$('#dots').onclick=e=>{const i=e.target.dataset.i;if(i!==undefined){index=+i;show()}};
+function show(){
+ const [phase,title,copy,figure,hints]=slides[index];
+ const kind=kindOf(phase);
+ document.body.className=kind;
+ $('.badge i').textContent=/^EXITVRAAG/.test(phase)&&kind==='extra'?'🎯':/^AFSLUITING/.test(phase)?'🏁':icons[kind];
+ $('.badge span').textContent=nice(phase);
+ const h=$('h1');h.firstElementChild.textContent=title;
+ h.classList.remove('sweep');void h.offsetWidth;h.classList.add('sweep');
+ $('#copy').innerHTML=copy;
+ $('aside').innerHTML=figure?figure():'';
+ $('main').classList.toggle('wide',!figure);
+ $('output').textContent=(index+1)+' / '+slides.length;
+ document.querySelectorAll('#dots button').forEach((b,i)=>b.classList.toggle('on',i===index));
+ step=0;$('#help').hidden=true;$('#hint').hidden=!hints;$('#hint').textContent='💡 Toon hint';
+ $('#prev').disabled=index===0;$('#next').disabled=index===slides.length-1;
+}
+function toggleHint(){
+ const hints=slides[index][4];if(!hints)return;
+ if(step===hints.length){step=0;$('#help').hidden=true;$('#hint').textContent='💡 Toon hint';return}
+ $('#help').textContent='Hint '+(step+1)+' · '+hints[step++];$('#help').hidden=false;
+ $('#hint').textContent=step===hints.length?'Verberg hint':'💡 Volgende hint';
+}
+function move(d){const n=index+d;if(n>=0&&n<slides.length){index=n;show()}}
+function toggleFull(){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen?.()}
+$('#hint').onclick=toggleHint;$('#next').onclick=()=>move(1);$('#prev').onclick=()=>move(-1);$('#full').onclick=toggleFull;
+document.addEventListener('keydown',e=>{
+ if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();move(e.key==='ArrowRight'?1:-1)}
+ else if(e.key==='h'||e.key==='H')toggleHint();
+ else if(e.key==='f'||e.key==='F')toggleFull();
+});
+show();
+</script>
+</body>
+</html>
