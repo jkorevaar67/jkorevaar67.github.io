@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TV1 · Chapter 3 Code Race</title>
+<style>
+*{box-sizing:border-box}body{margin:0;color:#212443;background:#fff4eb;font:clamp(17px,2.1vw,30px)/1.32 system-ui,sans-serif}header,main,footer{max-width:1500px;margin:auto;padding:2vh 5vw}header,footer{display:flex;justify-content:space-between;align-items:center;gap:.5em;flex-wrap:wrap}h1{font-size:2.1em;margin:.15em 0 .35em;line-height:1.03;letter-spacing:-.05em}p{margin:.48em 0}small{font-weight:800;letter-spacing:.13em;color:#5b287c;font-size:.65em}button{font:700 .63em system-ui;padding:.65em 1em;border:1px solid #9a83b0;border-radius:10px;background:#f0e4fc;color:#30234b;cursor:pointer}button:focus-visible{outline:3px solid #923e00}#board{display:grid;grid-template-columns:repeat(4,1fr);gap:.55em;margin-top:.75em}.tile{text-align:left;min-height:4.25em;font-size:.78em;background:#fff;border-color:#c1a9d1;border-bottom:5px solid #ac80d4}.tile:nth-child(3n+2){border-bottom-color:#e68b4f}.tile:nth-child(3n){border-bottom-color:#40a397}.tile b{display:block;color:#582278;font-size:.76em;margin-bottom:.25em}.layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:1em;align-items:center}.layout.solo{display:block;max-width:1000px}.panel{background:white;border:2px solid #e2c9eb;border-radius:18px;padding:.65em .8em}.panel svg{width:100%;display:block;max-height:49vh}svg text{font:700 14px system-ui;fill:#212443;paint-order:stroke;stroke:white;stroke-width:3px}#reveal{font-size:.85em;margin-top:.5em;background:#dcf4ee;border-left:4px solid #168477;padding:.55em .8em}table{border-collapse:collapse;margin:.4em auto;text-align:center}th,td{border:1px solid #b6a5c4;padding:.35em .65em}#clock{font-size:.8em;font-weight:850;font-variant-numeric:tabular-nums}strong{color:#63298b}[hidden]{display:none!important}@media(max-width:800px){#board{grid-template-columns:repeat(2,1fr)}.layout{grid-template-columns:1fr}}
+#all article{break-inside:avoid;font-size:.68em}#all article h2{font-size:1.1em;margin:.1em 0;color:#63298b}#all article svg{width:100%;max-height:140px}#allGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.6em}</style>
+<header><small>TV1 · CHAPTER 3 · GRAPHS AND FORMULAS</small><div><span id="clock">12:00</span> <button id="timer">Start timer</button> <button id="full">Full screen</button></div></header>
+<main>
+<section id="home"><h1>Crack the Chapter 3 Code</h1><p><strong>Choose four missions in any order.</strong> Include at least one drawing mission. Your teacher makes mixed teams of up to three.</p><p>Take turns writing. Earn <strong>1 point</strong> for a correct answer and <strong>1 point</strong> if any teammate can explain it.</p><button id="showAll">Show all mission cards</button><div id="board"></div></section>
+<section id="detail" hidden><div id="layout" class="layout"><div><small id="tag"></small><h1 id="name"></h1><div id="task"></div><div id="reveal" aria-live="polite" hidden></div></div><div id="graphic" class="panel"></div></div><p><button id="hint">Show hint</button> <button id="answer">Show answer</button></p></section>
+<section id="all" hidden><h1>Mission cards</h1><div id="allGrid"></div></section><section id="exit" hidden><h1>Final showdown</h1><p>Without drawing, find a point that lies on <strong>both</strong> graphs: y = 2 · x + 3 and y = x + 7.</p><p>Each teammate must be able to explain why your point fits both rules.</p><button id="exitAnswer">Show answer</button><p id="exitSolution" hidden><strong>(4, 11)</strong>. When x = 4, both formulas give y = 11.</p></section>
+</main>
+<footer><button id="back" hidden>← Mission board</button><button id="showExit">Final showdown →</button></footer>
+<script>
+function grid(plots=[],line=false){
+ const px=x=>178+27*x,py=y=>207-23*y;
+ const path=(a,b,c,d,colour,width)=>'<path d="M'+px(a)+' '+py(b)+'L'+px(c)+' '+py(d)+'" stroke="'+colour+'" stroke-width="'+width+'"/>';
+ const label=(x,y,t)=>'<text x="'+x+'" y="'+y+'" text-anchor="middle">'+t+'</text>';
+ let out='';
+ for(let x=-4;x<=4;x++){out+=path(x,-1,x,7,'#d6d8e7',1);if(x)out+=label(px(x),py(0)+17,x)}
+ for(let y=-1;y<=7;y++){out+=path(-4,y,4,y,'#d6d8e7',1);if(y)out+=label(px(0)-13,py(y)+5,y)}
+ out+=path(-4,0,4.3,0,'#253956',2)+path(0,-1,0,7.3,'#253956',2);
+ out+=label(px(4.65),py(0)+4,'x')+label(px(0),py(7.65),'y')+label(px(0)-11,py(0)+17,'0');
+ if(line)out+=path(-1,-1,3,7,'#8430b9',3);
+ for(const [x,y,name] of plots)out+='<circle cx="'+px(x)+'" cy="'+py(y)+'" r="5" fill="#8430b9"/>'+(name?label(px(x)+13,py(y)-8,name):'');
+ return '<svg viewBox="0 0 356 245" role="img" aria-label="Coordinate grid">'+out+'</svg>';
+}
+const table='<table><tr><th>x</th><td>0</td><td>1</td><td>2</td><td>4</td></tr><tr><th>y</th><td>7</td><td>10</td><td>13</td><td>?</td></tr></table>';
+const missions=[
+ {name:'The concert deal',kind:'Word formula',task:'<p>A concert ticket costs €5. Every souvenir costs €3.</p><ol><li>Write a word formula for the total cost.</li><li>You pay €26. How many souvenirs did you buy?</li></ol>',hint:'Take away the amount you pay even if you buy no souvenirs.',answer:'total cost = 5 + 3 · number of souvenirs. (26 − 5) ÷ 3 = 7 souvenirs.'},
+ {name:'Grid detective',kind:'Coordinates',task:'<p>Read the coordinates of P and Q in the correct order. Then plot R = (3, 3) on your own grid and name the two points on the same horizontal line.</p>',visual:()=>grid([[-3,3,'P'],[2,6,'Q']]),hint:'Read x first. On a horizontal line, the y-coordinates are equal.',answer:'P = (−3, 3), Q = (2, 6). P and R both have y = 3.'},
+ {name:'Spot the mistake',kind:'Error hunt',task:'<p>Sam says (2, 7) is on the graph of <strong>y = 2 · x + 1</strong> because 2 + 2 + 1 = 7.</p><p>Explain the mistake and find the point on the graph with y = 7.</p>',hint:'Check the calculation and read the middle dot as multiplication. Then work back from 7.',answer:'Sam adds instead of multiplying and 2 + 2 + 1 is 5 anyway. If x = 2, y = 5. If y = 7, then x = (7 − 1) ÷ 2 = 3. The point is (3, 7).'},
+ {name:'Draw the secret line',kind:'Drawing mission',task:'<p>Make a table for <strong>y = 2 · x + 1</strong> using x = −1, 0, 1, 2 and 3. Plot the points and draw the line.</p><p>Use your graph to find x when y = 6. Check with the formula.</p>',visual:()=>grid(),solution:()=>grid([[-1,-1],[0,1],[1,3],[2,5],[3,7]],true),hint:'Start at (0, 1). Each step of 1 to the right adds 2 to y.',answer:'The y-values are −1, 1, 3, 5 and 7. At y = 6, x = 2.5, since 2 · 2.5 + 1 = 6.'},
+ {name:'Predict the pattern',kind:'Table → formula',task:'<p>The table follows a rule with a constant increase per step of x. Find the missing y-value and write a formula.</p><p>Explain why y goes up by more from x = 2 to x = 4.</p>',visual:()=>table,hint:'Find y when x = 0. Then check the increase for one step in x.',answer:'y = 7 + 3 · x. At x = 4, y = 19. From x = 2 to x = 4 there are two steps, so y increases by 6.'},
+ {name:'Reverse the machine',kind:'Work backwards',task:'<p>The rule is <strong>y = 4 · x − 3</strong>.</p><ol><li>Find y if x = 5.</li><li>Find x if y = 25.</li><li>Is (6, 25) on the graph? Prove it.</li></ol>',hint:'To undo “multiply by 4, then subtract 3”, reverse the order and the operations.',answer:'1. y = 17. 2. x = (25 + 3) ÷ 4 = 7. 3. No: if x = 6, y = 21.'},
+ {name:'Catch up!',kind:'Drawing mission',task:'<p>Two cyclists ride away from the same landmark. After t minutes their distances in metres are <strong>A = 100 + 20 · t</strong> and <strong>B = 40 · t</strong>.</p><p>Draw their graphs for 0 to 6 minutes. When and where do they meet?</p>',hint:'Put time on the horizontal axis. Start with t = 0, 3 and 6. Look for the crossing.',answer:'After 5 minutes, 200 m from the landmark. Both formulas give 200 when t = 5.'},
+ {name:'Who owns this line?',kind:'Graph → formula',task:'<p>Read the value of y at x = 0. Then find how much y increases when x increases by 1.</p><p>Write a formula and check it with the point at x = 3.</p>',visual:()=>grid([[0,1],[1,3],[2,5],[3,7]],true),hint:'Use the point where the line crosses the y-axis as the starting value.',answer:'The starting value is 1 and the increase is 2. So y = 1 + 2 · x. At x = 3, y = 7.'}
+];
+const $=s=>document.querySelector(s);
+let current,remaining=720,tick=null,deadline=0;
+function displayTime(){$('#clock').textContent=Math.floor(remaining/60)+':'+String(remaining%60).padStart(2,'0')}
+$('#timer').onclick=()=>{
+ if(tick!==null){clearInterval(tick);tick=null;$('#timer').textContent='Resume timer';return}
+ if(!remaining){remaining=720;displayTime()}
+ deadline=Date.now()+remaining*1000;$('#timer').textContent='Pause timer';
+ tick=setInterval(()=>{remaining=Math.max(0,Math.ceil((deadline-Date.now())/1000));displayTime();if(!remaining){clearInterval(tick);tick=null;$('#timer').textContent='Reset timer'}},200);
+};
+function show(which){
+ $('#all').hidden=which!=='all';
+ $('#home').hidden=which!=='home';$('#detail').hidden=which!=='detail';$('#exit').hidden=which!=='exit';
+ $('#back').hidden=which==='home';$('#showExit').hidden=which==='exit';
+}
+function openMission(i){
+ current=missions[i];$('#tag').textContent='MISSION '+(i+1)+' · '+current.kind.toUpperCase();
+ $('#name').textContent=current.name;$('#task').innerHTML=current.task;$('#reveal').hidden=true;
+ $('#graphic').hidden=!current.visual;$('#graphic').innerHTML=current.visual?.()??'';
+ $('#layout').classList.toggle('solo',!current.visual);show('detail');
+}
+missions.forEach((m,i)=>{
+ const b=document.createElement('button');b.className='tile';
+ b.innerHTML='<b>0'+(i+1)+' · '+m.kind+'</b>'+m.name;b.onclick=()=>openMission(i);$('#board').appendChild(b);
+});
+function reveal(answer){
+ $('#reveal').textContent=(answer?'Answer · ':'Hint · ')+(answer?current.answer:current.hint);
+ $('#reveal').hidden=false;
+ if(current.solution)$('#graphic').innerHTML=answer?current.solution():current.visual();
+}
+$('#allGrid').innerHTML=missions.map((m,i)=>'<article class="panel"><h2>'+(i+1)+' · '+m.name+'</h2>'+m.task+(m.visual?.()??'')+'</article>').join('');
+$('#showAll').onclick=()=>show('all');
+$('#hint').onclick=()=>reveal(false);$('#answer').onclick=()=>reveal(true);
+$('#back').onclick=()=>show('home');$('#showExit').onclick=()=>{$('#exitSolution').hidden=true;show('exit')};
+$('#exitAnswer').onclick=()=>{$('#exitSolution').hidden=false};
+$('#full').onclick=()=>document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen?.();
+</script>
+</html>
