@@ -1,0 +1,123 @@
+<!doctype html><html lang="nl"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>VWO 4 · H3 · Cosinusregel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1b2a4a;--bg:#f4f9ff;--a:#ffc933;--a-soft:#fff4c9;--a-ink:#7a5600}
+body[data-k=t]{--a:#4f8cff;--a-soft:#e1ecff;--a-ink:#1d4ed8}
+body[data-k=b]{--a:#ff6f91;--a-soft:#ffe3ea;--a-ink:#be2350}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--ink);font:600 clamp(18px,2.2vw,32px)/1.4 Nunito,ui-rounded,"Segoe UI",system-ui,sans-serif;background:radial-gradient(circle at 93% 6%,var(--a-soft) 0 13%,transparent 13.2%),radial-gradient(circle at 3% 97%,#e8f6ff 0 17%,transparent 17.2%),var(--bg);transition:background .4s}
+body::before{content:"";position:fixed;inset:0 auto auto 0;height:8px;width:calc(var(--p,0)*100%);background:var(--a);border-radius:0 8px 8px 0;transition:width .35s,background .4s}
+main,header,footer{max-width:1450px;margin:auto;padding:3vh 5vw}
+header,footer{display:flex;gap:.5em;flex-wrap:wrap;align-items:center}header{justify-content:space-between;padding-bottom:0}
+main{min-height:70vh}
+small{display:inline-block;font-size:.5em;font-weight:900;letter-spacing:.04em;padding:.35em .9em;border-radius:99px;background:var(--a);color:#4a3500}
+body[data-k=t] small,body[data-k=b] small{color:#fff}
+header small{background:#4f8cff;color:#fff}
+#phase{margin-bottom:.3em}
+h1{font-size:2em;line-height:1.08;letter-spacing:-.02em;font-weight:900;margin:.2em 0 .5em}
+.grid{display:grid;grid-template-columns:1.1fr 1fr;align-items:start;gap:1.2em}
+section{background:#fff;border:3px solid var(--a);border-radius:28px;padding:1em 1.3em 1.2em;box-shadow:0 10px 0 var(--a-soft),0 18px 40px rgba(40,80,160,.10)}
+figure{margin:0;background:#fff;border:3px dashed #b9d4ff;border-radius:28px;padding:.5em;box-shadow:0 10px 0 #e8f1ff}
+svg{width:100%;display:block}
+svg text{font:800 17px Nunito,ui-rounded,system-ui,sans-serif;fill:#1b2a4a;paint-order:stroke;stroke:#fff;stroke-width:5px;stroke-linejoin:round}
+svg path{fill:#fff0b3;stroke:#3b6fe0;stroke-width:4;stroke-linejoin:round}
+button{border:3px solid #4f8cff;border-radius:99px;background:#fff;color:#1d4ed8;font:900 .6em Nunito,ui-rounded,system-ui,sans-serif;padding:.7em 1.1em;cursor:pointer;box-shadow:0 4px 0 #4f8cff;transition:transform .1s,box-shadow .1s}
+button:hover:not(:disabled){transform:translateY(-1px)}button:active:not(:disabled){transform:translateY(4px);box-shadow:0 0 0 #4f8cff}
+#next{background:#4f8cff;color:#fff}
+#hint{background:#fff4c9;color:#7a5600;border-color:#ffc933;box-shadow:0 4px 0 #ffc933}#hint:active:not(:disabled){box-shadow:0 0 0 #ffc933}
+#solve{background:#d9f6ee;color:#0b7a60;border-color:#2ec4a0;box-shadow:0 4px 0 #2ec4a0}#solve:active{box-shadow:0 0 0 #2ec4a0}
+button:focus-visible{outline:4px solid #ffc933;outline-offset:2px}button:disabled{opacity:.4;cursor:default}
+.result{padding:.6em .9em;border-radius:16px;margin-top:.7em;font-size:.88em}
+#hints{background:#fff4c9;border:3px solid #ffc933}
+#answer{background:#d9f6ee;border:3px solid #2ec4a0}
+#answer strong{color:#0b7a60;font-weight:900}
+details{background:#fff;border:3px solid #b9d4ff;border-radius:20px;padding:.5em .9em;font-size:.72em;margin-top:1.2em}
+summary{cursor:pointer;font-weight:900;color:#1d4ed8}
+output{margin-right:auto;font-size:.6em;font-weight:900;color:var(--a-ink);background:#fff;padding:.3em .8em;border-radius:99px;border:2px solid var(--a)}
+@media(prefers-reduced-motion:reduce){body,body::before,button{transition:none}}
+@media(max-width:760px){.grid{grid-template-columns:1fr}svg{max-height:34vh}}
+</style><header><small>VWO 4 · WISKUNDE B · H3 MEETKUNDE</small><button id="full">Volledig scherm</button></header>
+<main><small id="phase"></small><h1 id="title"></h1><div class="grid"><section><div id="question"></div><div id="hints" class="result" hidden aria-live="polite"></div><div id="answer" class="result" hidden aria-live="polite"></div></section><figure id="pic"></figure></div>
+<details id="theory"><summary>Uitleg · Welke regel kies je?</summary><p><strong>Cosinusregel:</strong> a² = b² + c² − 2 · b · c · cos A. Gebruik twee zijden met de ingesloten hoek om de derde zijde te vinden. Bij drie bekende zijden isoleer je cos A en gebruik je cos⁻¹.</p><p><strong>Sinusregel:</strong> a / sin A = b / sin B = c / sin C. Zoek eerst een volledig bekend overstaand hoek-zijdepaar. Zet je GR in gradenstand en rond pas aan het eind af.</p></details></main>
+<footer><output id="position"></output><button id="hint">Toon hint 1</button><button id="solve">Toon uitwerking</button><button id="back">← Vorige</button><button id="next">Volgende →</button></footer>
+<script>
+const items=[{"phase": "START · 4 MIN", "title": "Eén leerling, twee antwoorden", "q": "A = 30°, AC = 10 en BC = 7. Noor vindt B ≈ 45,6°. Ravi vindt B ≈ 134,4°. Kunnen ze allebei gelijk hebben? Bereken ook de twee mogelijke lengtes van AB op één decimaal.", "pic": "<svg viewBox=\"0 0 460 255\" role=\"img\" aria-label=\"Driehoek ABC met zijden ?, 10, 7\"><path d=\"M65.0 205 L395.0 205 L275.7703084805168 83.3117056615932Z\" fill=\"#fff0b3\" stroke=\"#23536b\" stroke-width=\"3\"/><text x=\"53.0\" y=\"227\" text-anchor=\"middle\">A</text><text x=\"407.0\" y=\"227\" text-anchor=\"middle\">B</text><text x=\"275.7703084805168\" y=\"71.3117056615932\" text-anchor=\"middle\">C</text><text x=\"230.0\" y=\"232\" text-anchor=\"middle\">?</text><text x=\"150.3851542402584\" y=\"136.1558528307966\" text-anchor=\"middle\">10</text><text x=\"355.38515424025843\" y=\"136.1558528307966\" text-anchor=\"middle\">7</text><text x=\"101.70518139898459\" y=\"195.1648762861042\" text-anchor=\"middle\">30°</text><text x=\"230\" y=\"25\" text-anchor=\"middle\">Eén mogelijke stand</text></svg>", "hints": ["Zoek het volledig bekende overstaande hoek-zijdepaar.", "Beide hoeken hebben dezelfde sinus. Controleer bij elk of er een positieve hoek C overblijft."], "answer": "sin B = 10 · sin 30° / 7 = 5/7. Beide B-waarden passen, want A + B &lt; 180°. Dan is C ≈ 104,4° of 15,6°. Met AB = 7 · sin C / sin 30° krijg je <strong>13,6 of 3,8</strong>."}, {"phase": "BTC 1 · 4 MIN", "title": "Scherp, recht of stomp?", "q": "AB = 7, AC = 8 en BC = 11. Zonder de hoek te berekenen: bewijs of de grootste hoek scherp, recht of stomp is. Bereken hem daarna op één decimaal.", "pic": "<svg viewBox=\"0 0 460 255\" role=\"img\" aria-label=\"Driehoek ABC met zijden 7, 8, 11\"><path d=\"M169.57780750292284 205 L301.1639156076686 205 L158.83608439233134 55.0Z\" fill=\"#fff0b3\" stroke=\"#23536b\" stroke-width=\"3\"/><text x=\"157.57780750292284\" y=\"227\" text-anchor=\"middle\">A</text><text x=\"313.1639156076686\" y=\"227\" text-anchor=\"middle\">B</text><text x=\"158.83608439233134\" y=\"43.0\" text-anchor=\"middle\">C</text><text x=\"235.37086155529573\" y=\"232\" text-anchor=\"middle\">7</text><text x=\"144.2069459476271\" y=\"122.0\" text-anchor=\"middle\">8</text><text x=\"250.0\" y=\"122.0\" text-anchor=\"middle\">11</text><text x=\"195.4704429699542\" y=\"177.1868479209668\" text-anchor=\"middle\">?</text></svg>", "hints": ["De grootste hoek ligt tegenover de langste zijde.", "Vergelijk 11² met 7² + 8². Wat betekent dat voor het teken van cos A?"], "answer": "De grootste hoek is A. cos A = (7² + 8² − 11²)/(2 · 7 · 8) = −1/14. De cosinus is negatief, dus A is stomp. In gradenstand volgt <strong>A ≈ 94,1°</strong>."}, {"phase": "BTC 2 · 5 MIN", "title": "Van zijde naar hoek", "q": "AB = 9, AC = 5 en A = 120°. Bereken BC exact en daarna B op één decimaal. Geef aan waar je van regel wisselt en waarom de tweede kandidaat voor B afvalt.", "pic": "<svg viewBox=\"0 0 460 255\" role=\"img\" aria-label=\"Driehoek ABC met zijden 9, 5, ?\"><path d=\"M136.7391304347826 205 L395.0 205 L65.00000000000001 80.74418119614575Z\" fill=\"#fff0b3\" stroke=\"#23536b\" stroke-width=\"3\"/><text x=\"124.7391304347826\" y=\"227\" text-anchor=\"middle\">A</text><text x=\"407.0\" y=\"227\" text-anchor=\"middle\">B</text><text x=\"65.00000000000001\" y=\"68.74418119614575\" text-anchor=\"middle\">C</text><text x=\"265.8695652173913\" y=\"232\" text-anchor=\"middle\">9</text><text x=\"80.86956521739131\" y=\"134.87209059807287\" text-anchor=\"middle\">5</text><text x=\"250.0\" y=\"134.87209059807287\" text-anchor=\"middle\">?</text><text x=\"155.7391304347826\" y=\"172.09103465619134\" text-anchor=\"middle\">120°</text></svg>", "hints": ["Begin met de ingesloten hoek en de twee zijden die eraan grenzen.", "Zodra BC bekend is, heb je het overstaande paar bij 120°. Welke bovengrens heeft B?"], "answer": "BC² = 9² + 5² − 2 · 9 · 5 · cos 120° = 151, dus <strong>BC = √151</strong>. Dan geeft de sinusregel sin B = 5 · sin 120° / √151. B ≈ 20,6°. De andere kandidaat is ongeveer 159,4°, maar B moet kleiner zijn dan 60°."}, {"phase": "BTC 3 · 4 MIN", "title": "De breedte van een baai", "q": "Meetpunten A en B liggen 18 m uit elkaar. Bij een boei C meten ze A = 35° en B = 70°. Bereken AC en BC op één decimaal. Voorspel eerst welke afstand groter is.", "pic": "<svg viewBox=\"0 0 460 255\" role=\"img\" aria-label=\"Driehoek ABC met zijden 18 m, ?, ?\"><path d=\"M95.59113192437619 205 L364.4088680756238 205 L309.8133329356934 55.0Z\" fill=\"#fff0b3\" stroke=\"#23536b\" stroke-width=\"3\"/><text x=\"83.59113192437619\" y=\"227\" text-anchor=\"middle\">A</text><text x=\"376.4088680756238\" y=\"227\" text-anchor=\"middle\">B</text><text x=\"309.8133329356934\" y=\"43.0\" text-anchor=\"middle\">C</text><text x=\"230.0\" y=\"232\" text-anchor=\"middle\">18 m</text><text x=\"182.70223243003477\" y=\"122.0\" text-anchor=\"middle\">?</text><text x=\"357.11110050565856\" y=\"122.0\" text-anchor=\"middle\">?</text><text x=\"131.8323760528088\" y=\"193.57317961883763\" text-anchor=\"middle\">35°</text><text x=\"355\" y=\"190\" text-anchor=\"middle\">70°</text></svg>", "hints": ["Bereken C met de hoekensom.", "AC ligt tegenover B en BC tegenover A. Gebruik AB met de hoek C."], "answer": "C = 75°. AC ligt tegenover de grotere hoek, dus AC &gt; BC. AC = 18 · sin 70° / sin 75° ≈ <strong>17,5 m</strong>. BC = 18 · sin 35° / sin 75° ≈ <strong>10,7 m</strong>."}, {"phase": "VERDIEPING · 5 MIN", "title": "Wanneer wordt hoek A stomp?", "q": "Houd AB = 7 en AC = 10 vast. Zoek de exacte grenswaarde van BC waarbij A precies recht is. Geef alle lengtes van BC waarvoor A stomp is én er een echte driehoek bestaat.", "pic": "<svg viewBox=\"0 0 460 255\" role=\"img\" aria-label=\"Driehoek ABC met zijden 7, 10, ?\"><path d=\"M201.42843451497978 205 L313.16710062495054 205 L146.83289937504944 55.0Z\" fill=\"#fff0b3\" stroke=\"#23536b\" stroke-width=\"3\"/><text x=\"189.42843451497978\" y=\"227\" text-anchor=\"middle\">A</text><text x=\"325.16710062495054\" y=\"227\" text-anchor=\"middle\">B</text><text x=\"146.83289937504944\" y=\"43.0\" text-anchor=\"middle\">C</text><text x=\"257.2977675699652\" y=\"232\" text-anchor=\"middle\">7</text><text x=\"154.1306669450146\" y=\"122.0\" text-anchor=\"middle\">10</text><text x=\"250.0\" y=\"122.0\" text-anchor=\"middle\">?</text><text x=\"223.22433909631954\" y=\"173.87222231701833\" text-anchor=\"middle\">A</text></svg>", "hints": ["Wat is cos A bij 90°?", "Gebruik ook de driehoeksongelijkheid: hoe lang kan BC maximaal bijna worden?"], "answer": "Bij 90° volgt BC² = 7² + 10² = 149. Bij een stompe A is cos A &lt; 0, dus BC² &gt; 149. De driehoeksongelijkheid vraagt BC &lt; 7 + 10. Samen geeft dat <strong>√149 &lt; BC &lt; 17</strong>."}];
+
+const tri=(a,b,c,o={})=>{
+ const cA=(b*b+c*c-a*a)/(2*b*c),sA=Math.sqrt(1-cA*cA),xs=[0,c,b*cA];
+ const lo=Math.min(...xs),hi=Math.max(...xs),k=Math.min(340/(hi-lo),150/(b*sA)),mx=(lo+hi)/2;
+ const raw={A:[0,0],B:[c,0],C:[b*cA,-b*sA]},P={};
+ for(const n in raw)P[n]=[230+(raw[n][0]-mx)*k,205+raw[n][1]*k];
+ const G=[(P.A[0]+P.B[0]+P.C[0])/3,(P.A[1]+P.B[1]+P.C[1])/3];
+ const at=(p,d)=>{const x=p[0]-G[0],y=p[1]-G[1],l=Math.hypot(x,y);return [p[0]+x/l*d,p[1]+y/l*d]};
+ const t=(p,v)=>'<text x="'+p[0].toFixed(1)+'" y="'+(p[1]+6).toFixed(1)+'" text-anchor="middle">'+v+'</text>';
+ const mid=(p,q)=>[(p[0]+q[0])/2,(p[1]+q[1])/2],v=o.v||['A','B','C'];
+ const dash=(p,q)=>'<line x1="'+p[0]+'" y1="'+p[1]+'" x2="'+q[0]+'" y2="'+q[1]+'" stroke="#15a98a" stroke-width="4" stroke-dasharray="8 7"/><circle cx="'+q[0]+'" cy="'+q[1]+'" r="5" fill="#15a98a"/>';
+ let s='<path d="M'+P.A+'L'+P.B+'L'+P.C+'Z"/>';
+ if(o.extra)s+=o.extra(P,{t,mid,at,dash});
+ s+=t(at(P.A,20),v[0])+t(at(P.B,20),v[1])+t(at(P.C,20),v[2]);
+ s+=t(at(mid(P.B,P.C),22),o.la||'')+t(at(mid(P.C,P.A),22),o.lb||'')+t(at(mid(P.A,P.B),22),o.lc||'');
+ for(const n of ['A','B','C'])if(o[n])s+=t(at(P[n],-38),o[n]);
+ return '<svg viewBox="0 0 460 255" role="img" aria-label="'+(o.alt||'Driehoek')+'">'+s+'</svg>';
+};
+items.splice(1,4,
+{phase:"BTC 1 · 6 MIN",title:"Een driehoek met een onbekende x",
+q:"De zijden van een driehoek zijn x, x + 2 en x + 4 (in cm). De grootste hoek is 120°. a) Stel met de cosinusregel een vergelijking in x op en los die op. b) Controleer je antwoord: bereken de andere twee hoeken en kijk of de hoekensom klopt.",
+pic:tri(7,5,3,{la:'x + 4',lb:'x + 2',lc:'x',A:'120°',alt:'Driehoek met zijden x, x+2, x+4 en een hoek van 120 graden.'}),
+hints:["Welke zijde ligt tegenover de grootste hoek? Die zet je links in de cosinusregel.","Je krijgt een kwadratische vergelijking. Werk de haakjes zorgvuldig uit en gebruik cos 120° = −½."],
+answer:"(x + 4)² = x² + (x + 2)² − 2 · x · (x + 2) · cos 120° = x² + (x + 2)² + x(x + 2). Dat geeft x² − x − 6 = 0, dus x = 3 of x = −2. Een lengte is positief, dus <strong>x = 3</strong>: de zijden zijn 3, 5 en 7 cm. Controle: sin A = 3 · sin 120° / 7 ≈ 0,371 geeft 21,8° en sin B = 5 · sin 120° / 7 ≈ 0,619 geeft 38,2°. En 21,8° + 38,2° + 120° = 180°."},
+{phase:"BTC 2 · 8 MIN",title:"Twee schepen verlaten de haven",
+q:"Twee schepen vertrekken tegelijk uit haven H. Schip 1 vaart 14 km/u op koers 040°, schip 2 vaart 18 km/u op koers 155° (koers = hoek met het noorden, met de klok mee). a) Hoe ver liggen ze na 2,5 uur uit elkaar? b) Op welke koers moet schip 1 dan varen om rechtstreeks naar schip 2 te gaan? Rond de koers af op hele graden.",
+pic:tri(67.7,45,35,{v:['H','S₁','S₂'],la:'?',lb:'45 km',lc:'35 km',A:'115°',alt:'Driehoek met haven H en de schepen S1 en S2. HS1 is 35 km, HS2 is 45 km en de hoek bij H is 115 graden.'}),
+hints:["Teken een noordlijn bij H. Welke hoek maken de twee koersen met elkaar bij H?","Voor b: bereken eerst de hoek bij schip 1 in de driehoek. Vanuit S₁ ligt H op koers 220°."],
+answer:"De hoek bij H is 155° − 40° = 115°, met HS₁ = 14 · 2,5 = 35 km en HS₂ = 18 · 2,5 = 45 km. S₁S₂² = 35² + 45² − 2 · 35 · 45 · cos 115° ≈ 4581, dus <strong>S₁S₂ ≈ 67,7 km</strong>. Sinusregel: sin S₁ = 45 · sin 115° / 67,7 ≈ 0,603, dus ∠S₁ ≈ 37,1° (scherp, want de stompe hoek zit al bij H). Vanuit S₁ ligt H op koers 220° en schip 2 ligt links daarvan, dus de koers is 220° − 37,1° ≈ <strong>183°</strong>. Controle met een schets: de koers moet tussen 180° en 220° liggen."},
+{phase:"BTC 3 · 7 MIN",title:"Naar het midden van een zijde",
+q:"In driehoek ABC is AB = 9, AC = 13 en BC = 14. M is het midden van BC. a) Bereken AM exact met de cosinusregel, in twee stappen. b) Bereken ∠AMB op één decimaal.",
+pic:tri(14,13,9,{la:'14',lb:'13',lc:'9',alt:'Driehoek ABC met zijden 9, 13 en 14 en het midden M van BC.',extra:(P,h)=>{const M=h.mid(P.B,P.C),q=h.mid(P.A,M);return h.dash(P.A,M)+h.t(h.at(M,20),'M')+h.t([q[0]-14,q[1]],'?')}}),
+hints:["Je kent geen hoek in driehoek ABM. Welke hoek uit de grote driehoek zit er ook in ABM?","Hoek B zit in allebei, en BM = 7. Bereken dus eerst cos B in driehoek ABC."],
+answer:"cos B = (9² + 14² − 13²) / (2 · 9 · 14) = 108/252 = 3/7. In driehoek ABM: AM² = 9² + 7² − 2 · 9 · 7 · (3/7) = 130 − 54 = 76, dus <strong>AM = √76 = 2√19 ≈ 8,7</strong>. Dan cos ∠AMB = (76 + 49 − 81) / (2 · √76 · 7) = 44 / (14√76) ≈ 0,360, dus <strong>∠AMB ≈ 68,9°</strong>."},
+{phase:"BTC 4 · 8 MIN",title:"Een weg door het midden van de hoek",
+q:"Drie dorpen A, B en C liggen zo dat AB = 12 km, BC = 9 km en AC = 7 km. Vanuit A komt een nieuwe weg die de hoek bij A precies in tweeën deelt en uitkomt op de weg BC in punt D. Bereken de lengte van AD en van BD op één decimaal.",
+pic:tri(9,7,12,{la:'9 km',lb:'7 km',lc:'12 km',alt:'Driehoek met dorpen A, B en C. Een weg van A deelt hoek A middendoor en komt uit op BC in punt D.',extra:(P,h)=>{const f=12/19,D=[P.B[0]+(P.C[0]-P.B[0])*f,P.B[1]+(P.C[1]-P.B[1])*f];return h.dash(P.A,D)+h.t(h.at(D,20),'D')}}),
+hints:["Bereken eerst ∠A met de cosinusregel. De nieuwe weg maakt met AB een hoek van de helft daarvan.","Bereken ook ∠B. Dan ken je in driehoek ABD twee hoeken en een zijde: zoek de derde hoek en gebruik de sinusregel."],
+answer:"cos A = (7² + 12² − 9²) / (2 · 7 · 12) = 2/3, dus ∠A ≈ 48,2° en ∠BAD ≈ 24,1°. cos B = (9² + 12² − 7²) / (2 · 9 · 12) ≈ 0,815, dus ∠B ≈ 35,4°. In driehoek ABD is ∠ADB = 180° − 24,1° − 35,4° ≈ 120,5°. Sinusregel: AD = 12 · sin 35,4° / sin 120,5° ≈ <strong>8,1 km</strong> en BD = 12 · sin 24,1° / sin 120,5° ≈ <strong>5,7 km</strong>."},
+{phase:"VERDIEPING · 6 MIN",title:"Wanneer is de driehoek scherp, recht of stomp?",
+q:"Houd AB = 7 en AC = 10 vast en laat BC = r variëren. Voor welke waarden van r is de driehoek a) scherphoekig, b) rechthoekig, c) stomphoekig? Gebruik de cosinusregel en geef exacte grenzen. Begin met de vraag voor welke r de driehoek überhaupt bestaat.",
+pic:tri(9,10,7,{la:'r',lb:'10',lc:'7',alt:'Driehoek ABC met AB = 7, AC = 10 en BC = r.'}),
+hints:["Een hoek is stomp als zijn cosinus negatief is. Schrijf dat voor elke hoek apart uit.","Voor hoek B geldt cos B = (7² + r² − 10²) / (2 · 7 · r). Wanneer is de teller positief?"],
+answer:"De driehoek bestaat voor 3 &lt; r &lt; 17. Hoek A is stomp als r² &gt; 149. Hoek B is stomp als r² &lt; 51. Hoek C is nooit stomp, want 7² &lt; 10² + r². Dus: <strong>scherphoekig voor √51 &lt; r &lt; √149</strong> (ongeveer 7,14 &lt; r &lt; 12,21), <strong>rechthoekig voor r = √51 (B = 90°) of r = √149 (A = 90°)</strong> en <strong>stomphoekig voor 3 &lt; r &lt; √51 of √149 &lt; r &lt; 17</strong>."}
+);
+
+const $=s=>document.getElementById(s);
+let page=0,shown=0;
+function display(){
+ const entry=items[page];
+ document.body.dataset.k=entry.phase.startsWith('BTC')?'b':entry.phase.startsWith('VERD')?'t':'d';
+ document.body.style.setProperty('--p',(page+1)/items.length);
+ for(const key of ['phase','title'])$(key).textContent=entry[key];
+ $('question').textContent=entry.q;
+ $('pic').innerHTML=entry.pic;
+ $('answer').innerHTML=entry.answer;
+ $('hints').replaceChildren();
+ $('hints').hidden=$('answer').hidden=true;
+ $('solve').textContent='Toon uitwerking';
+ $('theory').open=false;
+ shown=0;
+ $('hint').textContent='Toon hint 1';$('hint').disabled=false;
+ $('back').disabled=page===0;$('next').disabled=page===items.length-1;
+ $('position').textContent=(page+1)+' / '+items.length;
+}
+function move(by){const target=page+by;if(target>=0&&target<items.length){page=target;display()}}
+$('hint').onclick=()=>{
+ const hint=document.createElement('div');
+ hint.textContent='Hint '+(shown+1)+' · '+items[page].hints[shown++];
+ $('hints').append(hint);$('hints').hidden=false;
+ $('hint').disabled=shown===items[page].hints.length;
+ $('hint').textContent=$('hint').disabled?'Beide hints getoond':'Toon hint 2';
+};
+$('solve').onclick=()=>{$('answer').hidden=!$('answer').hidden;$('solve').textContent=$('answer').hidden?'Toon uitwerking':'Verberg uitwerking'};
+$('next').onclick=()=>move(1);$('back').onclick=()=>move(-1);
+$('full').onclick=()=>document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen?.();
+document.addEventListener('keydown',event=>{if(event.key==='ArrowRight')move(1);if(event.key==='ArrowLeft')move(-1)});
+display();
+</script></html>
